@@ -1,0 +1,12 @@
+@use 'sass:map';
+
+// Get breakpoint value from tokens map
+@function breakpoint($keys...) {
+    $value: token(breakpoints, $keys...);
+    @return $value;
+  }
+  
+  // Get map of sorted breakpoints prepended with `'default': 0` from tokens map
+  @function sortedBreakpoints() {
+    @return map-sort-by-values(map.merge(token(breakpoints), ('default': 0)));
+  }

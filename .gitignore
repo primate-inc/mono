@@ -1,0 +1,8 @@
+.git/
+.cache/
+.parcel-cache/
+node_modules/
+
+yarn-error.log
+
+dist/

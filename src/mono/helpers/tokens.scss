@@ -1,0 +1,7 @@
+@use 'sass:map';
+
+// Get value from a tokens map
+@function token($keys...) {
+    $value: map.get($tokens, $keys...);
+    @return $value;
+}
