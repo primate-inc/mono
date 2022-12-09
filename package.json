@@ -1,7 +1,8 @@
 {
-  "name": "mono.style",
+  "name": "@primate-inc/mono",
   "version": "0.1.0",
   "license": "MIT",
+  "keywords": ["sass", "scss", "css", "design tokens", "figma", "style dictionary"],
   "type": "module",
   "main": "main.js",
   "files": [
