@@ -30,11 +30,11 @@
     "postcss-modules": "^5.0.0",
     "postcss-sort-media-queries": "^4.3.0",
     "sass": "^1.32.8",
-    "stimulus": "^3.1.0"
+    "stimulus": "^3.1.0",
+    "css-purge": "^3.1.8"
   },
   "dependencies": {
     "style-dictionary": "^3",
-    "css-purge": "^3.1.8",
     "fs-extra": "^10.1.0",
     "meow": "^11.0.0"
   },

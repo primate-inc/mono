@@ -2,7 +2,8 @@
 'use strict';
 
 import meow from 'meow';
-import copyFiles from './src/scripts/copyFiles.js';
+import init from './src/scripts/init.js';
+import copyExamples from './src/scripts/copyExamples.js';
 import { transformTokens, transformTokensFromConfig } from './src/scripts/transformTokens.js'
 
 const pkgName = 'MONO';
@@ -14,17 +15,18 @@ const cli = meow(`
 	$ ${pkgCommand} <command> <options>
 
 	Commands
-		copy <options -do> Copies ${pkgName} folder to destination directory.
+		init <options -do> Copies ${pkgName} example files to destination directory.
 		tokens <options -dt> Generates SCSS tokens from JSON file
 
 	Options
 		--token, -t  Tokens source file exported from Figma in JSON file.
 		--config, -c  Style-Dictionary JSON config file path.
-		--dest, -d  Destination path inside the project where ${pkgFolderName} folder should be copied to.
-		--overwrite, -o  Overwrite files on copy.
+		--dest, -d  Destination path inside the project where ${pkgName} example files should be copied to.
+		--overwrite, -o  Overwrite files on init.
 
 	Examples
-		$ ${pkgCommand} copy --dest path/to/scss -o
+		$ ${pkgCommand} init --dest path/to/project -o
+		$ ${pkgCommand} examples --dest path/to/scss -o
 		$ ${pkgCommand} tokens -t ./tokens.json
 `, {
 	importMeta: import.meta,
@@ -42,7 +44,7 @@ const cli = meow(`
 		dest: {
 			type: 'string',
 			alias: 'd',
-			isRequired: (flags, input) => input[0] == 'copy' ? true : false
+			isRequired: (flags, input) => input[0] == 'init' ? true : false
 		},
 		overwrite: {
 			type: 'boolean',
@@ -55,20 +57,29 @@ const cli = meow(`
 const currentCommand = cli.input[0];
 
 switch (currentCommand) {
-	case 'copy' :
-		console.log('copying')
-		copyFiles(cli.flags.dest, cli.flags.overwrite)
+	case 'init' :
+		console.log(`Initializing ${pkgName}.`)
+		init(cli.flags.dest, cli.flags.overwrite)
+		break
+	case 'examples' :
+		console.log(`Copying ${pkgName} example files.`)
+		init(cli.flags.dest, cli.flags.overwrite)
 		break
 	case 'tokens' :
-		console.log('tokening')
-		if (cli.flags.config != undefined) {
+		console.log('Generating SCSS tokens.')
+		if (cli.flags.config != null) {
 			transformTokensFromConfig(cli.flags.config)
 		} else {
-			transformTokens(cli.flags.dest, cli.flags.token)
+			if (cli.flags.dest != null || cli.flags.token != null) {
+				transformTokens(cli.flags.dest, cli.flags.token)
+			} else {
+				console.log('Intialization unsuccessful. Missing command options.')
+				console.log(cli.help)
+			}
 		}
 		break
 	default:
-		console.log('Command not found.')
+		console.log(`Command '${currentCommand}' not found.`)
 		console.log(cli.help)
 }
 

@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary';
-import config from '../config.example.js';
+import config from '../../examples/mono.config.js';
 
 import hexToHSL from './hexToHSL.js';
 import deepMapSearch from './deepMapSearch.js';

@@ -3,10 +3,10 @@
 import fs from 'fs-extra';
 
 // Async/Await:
-async function copyFiles(destination, overwrite) {
+async function examples(destination, overwrite) {
   const cwd = process.env.PWD
   const userPath = (destination + '/mono/').replace('//', '/')
-  const src = (cwd + '/node_modules/monolith/src/mono').replace('//','/')
+  const src = (cwd + '/node_modules/monolith/src/examples/mono.*.scss').replace('//','/')
   const dest = userPath[0] == '.' ? userPath : (cwd + '/' + userPath).replace('//','/')
 
   try {
@@ -16,14 +16,14 @@ async function copyFiles(destination, overwrite) {
     });
     console.log(
       '\x1b[32m',
-      `Yay! Mono was copied to: ${dest}. Now simply @import mono folder in your main scss file.`
+      `Mono example files were copied to: ${dest}.`
     );
     return true;
   } catch (error) {
     if (error.message.includes('already exists')) {
       console.log(
         '\x1b[36m',
-        `It looks like ${userPath} folder already exist. Complementary files were added to it. Use -o to overwrite files.`
+        `It looks like some of those files already exist. Use -o to overwrite them.`
       );
       return false;
     }
@@ -31,5 +31,5 @@ async function copyFiles(destination, overwrite) {
   }
 }
 
-export default copyFiles;
+export default examples;
 

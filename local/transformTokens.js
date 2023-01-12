@@ -1,3 +1,3 @@
-import { transformTokens } from '../scripts/transformTokens.js';
+import { transformTokens } from '../src/scripts/transformTokens.js';
 
 transformTokens('./src/', './local/tokens.json') 

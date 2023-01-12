@@ -1,8 +1,5 @@
-// const StyleDictionary = require('style-dictionary')
-// const config = require('./config.json')
-
 import StyleDictionary from 'style-dictionary';
-import config from './config.example.js';
+import config from '../examples/mono.config.js';
 import './transforms/register.js';
 
 // Main function to generate tokens
@@ -14,6 +11,7 @@ function transformTokens(dest, token) {
   StyleDictionaryExtended.buildAllPlatforms()
 }
 
+// Alternative to the above, this time using user config file
 function transformTokensFromConfig(userConfig) {
   const StyleDictionaryExtended = StyleDictionary.extend(userConfig)
   StyleDictionaryExtended.buildAllPlatforms()
