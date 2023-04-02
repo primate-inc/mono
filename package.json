@@ -43,7 +43,9 @@
   "dependencies": {
     "fs-extra": "^10.1.0",
     "meow": "^11.0.0",
-    "style-dictionary": "^3"
+    "path": "^0.12.7",
+    "style-dictionary": "^3",
+    "url": "^0.11.0"
   },
   "babel": {
     "plugins": [

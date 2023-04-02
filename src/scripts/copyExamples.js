@@ -6,7 +6,7 @@ import fs from 'fs-extra';
 async function examples(destination, overwrite) {
   const cwd = process.env.PWD
   const userPath = (destination + '/mono/').replace('//', '/')
-  const src = (cwd + '/node_modules/monolith/src/examples/mono.*.scss').replace('//','/')
+  const src = (cwd + '/node_modules/@primate-inc/mono/src/examples/mono.*.scss').replace('//','/')
   const dest = userPath[0] == '.' ? userPath : (cwd + '/' + userPath).replace('//','/')
 
   try {

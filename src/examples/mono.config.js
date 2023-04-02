@@ -7,7 +7,7 @@ const config = {
       "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "color/hsla", "scss/deepMap"],
       "buildPath": "", // value passed via command
       "files": [{
-        "destination": "tokens.scss",
+        "destination": "mono.tokens.scss",
         "format": "scss/map-deep",
         "options": {
           "outputReferences": false,
