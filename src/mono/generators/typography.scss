@@ -3,171 +3,76 @@
 @use 'sass:list';
 @use 'sass:string';
 
-$sortedBreakpoints: map-sort-by-values(map.merge(token(breakpoints), ('default': 0)));
+// $sortedBreakpoints: map-sort-by-values(map.merge(token(breakpoints), ('default': 0)));
 
-$fontSchema: (
-  fontFamily: 'font-family',
-  fontSize: 'font-size',
-  lineHeight: 'line-height',
-  fontWeight: 'font-weight',
-  fontStyle: 'font-style',
-  fontStretch: 'font-stretch',
-  letterSpacing: 'letter-spacing',
-  textCase: 'text-transform',
-  textDecoration: 'text-decoration'
-);
 
-@function generate-fluid-typography-value($fontName, $attributeKey, $attributeName) {
-  // Assign default range values
-  $rangeStart: breakpoint(config(typography, fluid, range, start));
-  $rangeEnd: breakpoint(config(typography, fluid, range, end));
-
-  // Re-assign range values if provided in config
-  @if (type-of(config(typography, fluid, tags, $fontName, range)) == 'map') {
-    @if (map.has-key(config(typography, fluid, tags, $fontName, range), start)) {
-      $rangeStart: breakpoint(config(typography, fluid, tags, $fontName, range, start));
-    }
-
-    @if (map.has-key(config(typography, fluid, tags, $fontName, range), end)) {
-      $rangeEnd: breakpoint(config(typography, fluid, tags, $fontName, range, end));
-    }
+@function calculate_fluid($min-value, $max-value, $min-screen, $max-screen) {
+  @if $min-value == $max-value {
+    @return $min-value;
   }
 
-  // Assign default style values
-  $valueStart: px-to-rem(token(font, $fontName, config(typography, fluid, styles, start), $attributeKey));
-  $valueEnd: px-to-rem(token(font, $fontName, config(typography, fluid, styles, end), $attributeKey));
+  $factor: calc(calc(1 / calc($max-screen - $min-screen)) * calc($max-value - $min-value));
+  $rem: $min-value - $min-screen * $factor;
+  $vw: (100 * $factor) * 1vw;
 
-  // Re-assign style values if provided in config
-  @if (type-of(config(typography, fluid, tags, $fontName, styles)) == 'map') {
-    @if (map.has-key(config(typography, fluid, tags, $fontName, styles), start)) {
-      @if (type-of(config(typography, fluid, tags, $fontName, styles, start)) == 'map') {
-        @if (map.has-key(config(typography, fluid, tags, $fontName, styles, start), $attributeName)) {
-          $valueStart: px-to-rem(config(typography, fluid, tags, $fontName, styles, start, $attributeName));
-        }
-      } @else {
-        $valueStart: px-to-rem(token(font, $fontName, config(typography, fluid, tags, $fontName, styles, start), $attributeKey));
-      }
-    }
-
-    @if (map.has-key(config(typography, fluid, tags, $fontName, styles), end)) {
-      @if (type-of(config(typography, fluid, tags, $fontName, styles, end)) == 'map') {
-        @if (map.has-key(config(typography, fluid, tags, $fontName, styles, end), $attributeName)) {
-          $valueEnd: px-to-rem(config(typography, fluid, tags, $fontName, styles, end, $attributeName));
-        }
-      } @else {
-        $valueEnd: px-to-rem(token(font, $fontName, config(typography, fluid, tags, $fontName, styles, end), $attributeKey));
-      }
-    }
-  }
-
-  // Assign default value to $valueStart
-  $value: $valueStart;
-
-  // Re-assign value if start & end values & ranges are different and rangeStart is smaller than rangeEnd
-  @if ($valueStart != $valueEnd and $rangeStart != $rangeEnd and $rangeStart < $rangeEnd) {
-    $factor: calc(calc(1 / calc($rangeEnd - $rangeStart)) * calc($valueEnd - $valueStart));
-
-    $rem: $valueStart - $rangeStart * $factor;
-    $vw: (100 * $factor) * 1vw;
-
-    $value: clamp($valueStart, calc($vw + $rem), $valueEnd);
-  } 
-
-  // @debug $value, $rangeStart, $rangeEnd;
-  // @debug ----;
-
-  @return $value;
+  $clamp: clamp($min-value, calc($vw + $rem), $max-value);
+  @return $clamp;
 }
 
-@function generate-font-attributes-map($fontName, $fontMap) {
-  $output: ();
+@mixin fluid($font-name) {
+  $range-start: config(typography, fluid, $font-name, start); 
+  $range-end: config(typography, fluid, $font-name, end);
 
-  @each $key, $name in $fontSchema {
-    $value: map.get($fontMap, $key);
-    $sanitizedName: sanitize($fontName);
+  $start-breakpoint: token(font, $range-start, $font-name);
+  $end-breakpoint: token(font, $range-end, $font-name);
 
-    // @debug $fontName, $name, $sanitizedName, $value;
-
-    @if ($name == 'font-family') {
-      // merging token font with a fallbacks defined in config
-      $fontFallback: config(typography, fontFallbacks, '#{$value}');
-      @if ($fontFallback) {
-        $combinedValue: "#{$value}, #{$fontFallback}";
-        $output: map.set($output, $name, string.unquote($combinedValue));
-      } @else {
-        $output: map.set($output, $name, $value);
-      }
-    } @else if ($name == 'font-size') {
-      @if (map.has-key(config(typography), fluid) and map.has-key(config(typography, fluid, tags), $fontName)) {
-        $output: map.set($output, $name, fallback, px-to-rem($value));
-        $output: map.set($output, $name, fluid, generate-fluid-typography-value($fontName, $key, $name));
-      } @else {
-        $output: map.set($output, $name, px-to-rem($value));
-      }
-    } @else if ($name == 'line-height') {
-      @if (map.has-key(config(typography), fluid) and map.has-key(config(typography, fluid, tags), $fontName)) {
-        $output: map.set($output, $name, fallback, px-to-rem($value));
-        $output: map.set($output, $name, fluid, generate-fluid-typography-value($fontName, $key, $name));
-      } @else {
-        $output: map.set($output, $name, px-to-rem($value));
-      }
-    } @else if ($name == 'letter-spacing') {
-      @if (map.has-key(config(typography), fluid) and map.has-key(config(typography, fluid, tags), $fontName)) {
-        $output: map.set($output, $name, fallback, px-to-rem($value));
-        $output: map.set($output, $name, fluid, generate-fluid-typography-value($fontName, $key, $name));
-      } @else {
-        $output: map.set($output, $name, px-to-rem($value));
-      }
-    } @else {
-      $output: map.set($output, $name, $value);
-    }
+  $min-screen-width: 10rem;
+  @if token(breakpoints, $range-start) != null {
+    $min-screen-width: token(breakpoints, $range-start);
   }
+  $max-screen-width: token(breakpoints, $range-end);
+  
+  $min-font-size: rem(map-get($start-breakpoint, fontSize));
+  $max-font-size: rem(map-get($end-breakpoint, fontSize));
+  $min-line-height: rem(map-get($start-breakpoint, lineHeight));
+  $max-line-height: rem(map-get($end-breakpoint, lineHeight));
+  $min-letter-spacing: rem(map-get($start-breakpoint, letterSpacing));
+  $max-letter-spacing: rem(map-get($end-breakpoint, letterSpacing));
 
-  @return $output;
-}
+  @debug 'font-size', calculate_fluid($min-font-size, $max-font-size, $min-screen-width, $max-screen-width);
+  @debug 'line-height', calculate_fluid($min-line-height, $max-line-height, $min-screen-width, $max-screen-width);
+  @debug 'letter-spacing', calculate_fluid($min-letter-spacing, $max-letter-spacing, $min-screen-width, $max-screen-width);
 
-// Create typography map
-$typographyMap: ();
-
-// Parse token fonts map into typography map for use in a mixin
-@each $name, $map in token('font') {
-  $sanitizedName: sanitize($name);
-  // @debug $name, $map;
-  @if (map.has-key($map, 'default')) {
-    @each $screen, $font in $map {
-      $typographyMap: map.set($typographyMap, $sanitizedName, $screen, generate-font-attributes-map($name, $font));
-    }
-  } @else {
-    $typographyMap: map.set($typographyMap, $sanitizedName, 'default', generate-font-attributes-map($name, $map));
-  }
+  font-size: calculate_fluid($min-font-size, $max-font-size, $min-screen-width, $max-screen-width);
+  line-height: calculate_fluid($min-line-height, $max-line-height, $min-screen-width, $max-screen-width);
+  letter-spacing: calculate_fluid($min-letter-spacing, $max-letter-spacing, $min-screen-width, $max-screen-width);
 }
 
 // Generates font styles with all breakpoints that were defined in the Figma
-@mixin typography($name) {
-  $sanitizedName: sanitize($name);
+@mixin typography($token) {
+  $properties: map-get($tokens, 'font');
 
-  @each $screen, $size in $sortedBreakpoints {
-    @include screen($screen) {
-      @each $attr, $value in map.get($typographyMap, $sanitizedName, $screen) {
-        // Catch fluid typography values representred as a map
-        @if (type-of($value) == 'map' and map.has-key($value, fluid) and map.has-key($value, fallback)) {
-          #{$attr}: map.get($value, fallback);
-          @supports (#{$attr}: map.get($value, fluid)) {
-            #{$attr}: map.get($value, fluid);
-          }
-        } @else {
-          #{$attr}: $value;
+  @each $breakpoint, $sizes in $properties {
+    $size: map-get($sizes, $token);
+    $fluid: config(typography, fluid, $token);
+
+    @include screen($breakpoint) {
+      font-size: map-get($size, 'fontSize') * 1px;
+      @if $fluid != null {
+        @if map-get($fluid, 'start') == $breakpoint or map-get($fluid, 'end') == $breakpoint {
+          @include fluid($token);
         }
       }
+      font-weight: map-get($size, 'fontWeight');
+      font-style: map-get($size, 'fontStyle');
+      font-stretch: map-get($size, 'fontStretch');
+      letter-spacing: map-get($size, 'letterSpacing') * 1px;
+      line-height: map-get($size, 'lineHeight') * 1px;
+      text-indent: map-get($size, 'paragraphIndent') * 1px;
+      margin-bottom: map-get($size, 'paragraphSpacing') * 1px;
+      text-transform: map-get($size, 'textCase');
+      text-decoration: map-get($size, 'textDecoration');
+      font-family: map-get($size, 'fontFamily');
     }
   }
 }
-
-
-
-// LEt's do fluid across multiple breakpoints.
-// in Figma:
-// fluid steps would be marked as ie: `header-1/fluid-start/desktop`
-// in Mono:
-// values will be generated programiatically for each specified breakpoint
-// 
