@@ -39,9 +39,9 @@
   $min-letter-spacing: rem(map-get($start-breakpoint, letterSpacing));
   $max-letter-spacing: rem(map-get($end-breakpoint, letterSpacing));
 
-  @debug 'font-size', calculate_fluid($min-font-size, $max-font-size, $min-screen-width, $max-screen-width);
-  @debug 'line-height', calculate_fluid($min-line-height, $max-line-height, $min-screen-width, $max-screen-width);
-  @debug 'letter-spacing', calculate_fluid($min-letter-spacing, $max-letter-spacing, $min-screen-width, $max-screen-width);
+  // @debug 'font-size', calculate_fluid($min-font-size, $max-font-size, $min-screen-width, $max-screen-width);
+  // @debug 'line-height', calculate_fluid($min-line-height, $max-line-height, $min-screen-width, $max-screen-width);
+  // @debug 'letter-spacing', calculate_fluid($min-letter-spacing, $max-letter-spacing, $min-screen-width, $max-screen-width);
 
   font-size: calculate_fluid($min-font-size, $max-font-size, $min-screen-width, $max-screen-width);
   line-height: calculate_fluid($min-line-height, $max-line-height, $min-screen-width, $max-screen-width);
