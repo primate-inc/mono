@@ -118,9 +118,11 @@ $slots: (
     )
 );
 ```
-
-@include responsive-slot('grid-column', grid, wide)
-
+```
+div {
+      @include responsive-slot('grid-column', grid, wide);
+}
+```
 
 ## License
 This project is licensed under the MIT License.
