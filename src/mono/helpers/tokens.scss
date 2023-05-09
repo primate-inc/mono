@@ -20,6 +20,13 @@
 
   $value: map.get($tokens, $quotedKeys...);
 
+  // @debug '--TOKEN-------------';
+  // @debug 'token: ' $keys;
+  // @debug 'quotedKeys: ' $quotedKeys;
+  // @debug 'value: ' $value;
+  // @debug '--ENDTOKEN-------------';
+
+
   // If values is a map, check for a default value (*) and return it.
   // Otherwise returns map.
   @if (type-of($value) == map) {

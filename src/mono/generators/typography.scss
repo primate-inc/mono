@@ -58,21 +58,22 @@
 
     @include screen($breakpoint) {
       font-size: map-get($size, 'fontSize') * 1px;
-      @if $fluid != null {
-        @if map-get($fluid, 'start') == $breakpoint or map-get($fluid, 'end') == $breakpoint {
-          @include fluid($token);
-        }
-      }
+      line-height: map-get($size, 'lineHeight') * 1px;
+      letter-spacing: map-get($size, 'letterSpacing') * 1px;
       font-weight: map-get($size, 'fontWeight');
       font-style: map-get($size, 'fontStyle');
       font-stretch: map-get($size, 'fontStretch');
-      letter-spacing: map-get($size, 'letterSpacing') * 1px;
-      line-height: map-get($size, 'lineHeight') * 1px;
       text-indent: map-get($size, 'paragraphIndent') * 1px;
       margin-bottom: map-get($size, 'paragraphSpacing') * 1px;
       text-transform: map-get($size, 'textCase');
       text-decoration: map-get($size, 'textDecoration');
       font-family: map-get($size, 'fontFamily');
+
+      @if $fluid != null {
+        @if map-get($fluid, 'start') == $breakpoint or map-get($fluid, 'end') == $breakpoint {
+          @include fluid($token);
+        }
+      }
     }
   }
 }

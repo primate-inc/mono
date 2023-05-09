@@ -13,46 +13,115 @@
 
 ```
 
-## Hello world
+## Welcome to MONO
+
+MONO is a framework agnostic utility library for scss. It helps to manage your styles between Figma Tokens and your project.
+
+## Installation
+
+For now entirely manual.
+
+Future Installation
+
+Requirements
+
+- npm package installer (npm, yarn, pnpm, etc)
+- Dart Sass compiler
+
+
+```
+pnpm add -D @primate-inc/mono
+
+pnpm mono init -d ./styles
+```
+
+This will install MONO and copy files into the `styles/mono`. Replace example `tokens.json` file with your [DesignTokens](https://github.com/lukasoppermann/design-tokens) exported from Figma. Next you can update all the other files to match your preferences and new tokens file.
+
+```
+pnpm mono tokens -t ./styles/mono/tokens.json
+```
+
+Next you can import mono at the beginig of your stylesheet `@import 'styles/mono';` and compile you scss files using preffered tool.
 
 ## Usage
-Those steps are likely to change in the future releases.
 
-1. Install `mono` globally
+MONO contains a set of helpful functions and mixins to use your tokens data more efficiently.
+
+#### Typography mixin:
+
+This converts typography token into responsive css styles.
+
 ```
-npm install -g @primate-inc/mono
+@include typography(header)
 ```
-2. Add `tokens.json` exported from your Figma project.
-3. Add config file and update  `source`, `buildPath` and `destination` if needed.
+
+
+#### Token function:
+
+Mostly used to assign tokens to more functional slots, but can also be used to assign a value to css property.
+
 ```
-# config.json
-{
-  "source": ["./token.json"],
-  "basePxFontSize": 16,
-  "platforms": {
-    "scss": {
-      "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "color/hsla", "scss/deepMap"],
-      "buildPath": "./scss/",
-      "files": [{
-        "destination": "tokens.scss",
-        "format": "scss/map-deep",
-        "options": {
-          "outputReferences": false,
-          "themable": false
-        },
-        "filter": "noTypography"
-      }]
-    }
-  }
+$slots: (
+    page: (
+        background: token(color, blue, 500);
+    )
+);
+```
+or
+```
+div {
+    background: token('color', 'white');
 }
 ```
-4. Add example files and update them to match your tokens and config, next link them in your main scss file.
-```
-# main.scss
 
-@import 'tokens';
-@import 'config';
-@import 'slots';
+#### Slot function:
 
-@import '@primate-inc/mono';
+Slots are like a catalog for your styles. Their names are more meaningful and functional comparing to tokens.
+
 ```
+body {
+    background: slot(page, background);
+}
+```
+or
+```
+:root {
+    --text-color: slot(page, text);
+}
+```
+
+#### Responsive Slot mixin:
+
+You can use your slot as responsive using breakpoints names as keys in a map instead of the value in $slots map.
+
+```
+$tokens: (
+    breakpoints: (
+        desktop: ...,
+        tablet: ...,
+        ...etc
+    )
+);
+```
+
+Note: `default` and any custom breakpoints can be added in $slots map.
+
+
+```
+$slots: (
+    grid: (
+        wide: (
+            default: '1 / -1',
+            tablet: '3 / -3',
+            desktop: '3 / 8,
+        )
+    )
+);
+```
+
+@include responsive-slot('grid-column', grid, wide)
+
+
+## License
+This project is licensed under the MIT License.
+
