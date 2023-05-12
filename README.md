@@ -32,13 +32,13 @@ Requirements
 ```
 pnpm add -D @primate-inc/mono
 
-pnpm mono init -d ./styles
+pnpm mono init -p ./styles
 ```
 
 This will install MONO and copy files into the `styles/mono`. Replace example `tokens.json` file with your [DesignTokens](https://github.com/lukasoppermann/design-tokens) exported from Figma. Next you can update all the other files to match your preferences and new tokens file.
 
 ```
-pnpm mono tokens -t ./styles/mono/tokens.json
+pnpm mono tokens -p ./styles
 ```
 
 Next you can import mono at the beginig of your stylesheet `@import 'styles/mono';` and compile you scss files using preffered tool.
@@ -47,7 +47,7 @@ Next you can import mono at the beginig of your stylesheet `@import 'styles/mono
 
 MONO contains a set of helpful functions and mixins to use your tokens data more efficiently.
 
-#### Typography mixin:
+### Typography mixin:
 
 This converts typography token into responsive css styles.
 
@@ -55,8 +55,17 @@ This converts typography token into responsive css styles.
 @include typography(header)
 ```
 
+### Screen mixin:
 
-#### Token function:
+This serves as a media query generator. Simply provide it with a breakpoint from tokens and properties.
+
+```
+@include screen(desktop) {
+      margin-left: 2rem;
+}
+```
+
+### Token function:
 
 Mostly used to assign tokens to more functional slots, but can also be used to assign a value to css property.
 
