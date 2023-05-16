@@ -60,13 +60,29 @@
 
   @if (type-of($map) == 'map') {
     @each $screen, $value in sortedBreakpoints() {
-      $stepSize: map.get($map, $screen);
+      $newKeys: list.append($keys, $screen);
+      $stepSize: map.get($slots, $newKeys...); //  map.get($map, $screen);
+
+      // @debug ----;
+      // @debug 'responsive-slot: ' $attr;
+      // @debug 'keys: ' $keys;
+      // @debug 'screen: ' $screen;
+      // @debug 'value: ' $value;
+      // @debug 'stepSize: ' $stepSize;
+      // @debug ----;
+      // @debug ----;
+
 
       @if ($stepSize != null) {
         $check: true;
+        $value: slot($newKeys...);
 
         @include screen($screen) {
-          #{$attr}: unquote($stepSize);
+          @if (type-of($value) == 'string') {
+            #{$attr}: unquote($value);
+          } @else {
+            #{$attr}: $value;
+          }
         }
       }
     }

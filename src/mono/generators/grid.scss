@@ -20,6 +20,13 @@
     @error 'Invalid Value. Expected keys `count` & `gutterSize` to be a defined, instead has: #{map.keys($grid-token)}.';
   }
 
+  // @debug -----;
+  // @debug 'grid: ' $name;
+  // @debug 'breakpoint: ' $breakpoint;
+  // @debug 'width' $grid-width;
+  // @debug -----;
+  // @debug -----;
+
   $grid-columns: map.get($grid-token, count);
   $grid-gap: rem(map.get($grid-token, gutterSize));
   $grid-offset: rem(map.get($grid-token, offset));

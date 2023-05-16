@@ -1,20 +1,34 @@
 import StyleDictionary from 'style-dictionary';
-import config from '../examples/mono.config.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import './transforms/register.js';
 
 // Main function to generate tokens
-function transformTokens(dest, token) {
-  config.source[0] = token
-  config.platforms.scss.buildPath = dest
+async function transformTokens(dest) {
+  const userProjectDir = path.join(path.resolve(dest), 'mono');
+  const configPath = path.join(userProjectDir, 'config.js');
+  let config;
 
-  const StyleDictionaryExtended = StyleDictionary.extend(config)
-  StyleDictionaryExtended.buildAllPlatforms()
+  try {
+    const module = await import(configPath);
+    config = module.default || module;
+  } catch (err) {
+    console.error('Failed to load config:', err);
+    return;
+  }
+
+    config.source = [path.join(userProjectDir, 'tokens.json')];
+    config.platforms.scss.buildPath = userProjectDir;
+    if (!config.platforms.scss.buildPath.endsWith('/')) {
+        config.platforms.scss.buildPath += '/';
+    }
+    config.platforms.scss.files.destination = path.join(userProjectDir, 'tokens.scss');
+
+  const StyleDictionaryExtended = StyleDictionary.extend(config);
+    console.log('config --> ', config);
+    console.log('--> ', StyleDictionaryExtended);
+  StyleDictionaryExtended.buildAllPlatforms();
 }
 
-// Alternative to the above, this time using user config file
-function transformTokensFromConfig(userConfig) {
-  const StyleDictionaryExtended = StyleDictionary.extend(userConfig)
-  StyleDictionaryExtended.buildAllPlatforms()
-}
+export { transformTokens };
 
-export { transformTokens, transformTokensFromConfig };

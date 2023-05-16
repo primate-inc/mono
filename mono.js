@@ -4,7 +4,7 @@
 import meow from 'meow';
 import init from './src/scripts/init.js';
 import copyExamples from './src/scripts/copyExamples.js';
-import { transformTokens, transformTokensFromConfig } from './src/scripts/transformTokens.js'
+import { transformTokens } from './src/scripts/transformTokens.js'
 
 const pkgName = 'MONO';
 const pkgCommand = 'mono';
@@ -15,68 +15,38 @@ const cli = meow(`
 	$ ${pkgCommand} <command> <options>
 
 	Commands
-		init <options -do> Copies ${pkgName} example files to destination directory.
-		tokens <options -dt> Generates SCSS tokens from JSON file
+		init <options -p> Copies ${pkgName} example files to destination directory.
+		tokens <options -p> Generates SCSS tokens from JSON file
 
 	Options
-		--token, -t  Tokens source file exported from Figma in JSON file.
-		--config, -c  Style-Dictionary JSON config file path.
-		--dest, -d  Destination path inside the project where ${pkgName} example files should be copied to.
-		--overwrite, -o  Overwrite files on init.
+		--path, -p  Destination path inside the project where /${pkgFolderName} folder would live.
 
 	Examples
-		$ ${pkgCommand} init --dest path/to/project -o
-		$ ${pkgCommand} examples --dest path/to/scss -o
-		$ ${pkgCommand} tokens -t ./tokens.json
+		$ ${pkgCommand} init -p ./path/to/styles
+		$ ${pkgCommand} tokens -p ./path/to/styles
 `, {
 	importMeta: import.meta,
 	flags: {
-		token: {
+		path: {
 			type: 'string',
-			alias: 't',
-			// isRequired: (flags, input) => input[0] == 'tokens' ? true : false
-		},
-		config: {
-			type: 'string',
-			alias: 'c',
-			// isRequired: (flags, input) => input[0] == 'tokens' ? true : false
-		},
-		dest: {
-			type: 'string',
-			alias: 'd',
-			isRequired: (flags, input) => input[0] == 'init' ? true : false
-		},
-		overwrite: {
-			type: 'boolean',
-			alias: 'o',
-			default: false
-		}
-	}
+			alias: 'p',
+			isRequired: true //(flags, input) => input[0] == 'init' ? true : false
+		}	
+    }
 });
 
 const currentCommand = cli.input[0];
 
 switch (currentCommand) {
 	case 'init' :
-		console.log(`Initializing ${pkgName}.`)
-		init(cli.flags.dest, cli.flags.overwrite)
+        console.log(`Initializing ${pkgName}...`);
+		init(cli.flags.path)
+        console.log('Package initialization completed.');
 		break
-	case 'examples' :
-		console.log(`Copying ${pkgName} example files.`)
-		init(cli.flags.dest, cli.flags.overwrite)
-		break
-	case 'tokens' :
+    case 'tokens' :
 		console.log('Generating SCSS tokens.')
-		if (cli.flags.config != null) {
-			transformTokensFromConfig(cli.flags.config)
-		} else {
-			if (cli.flags.dest != null || cli.flags.token != null) {
-				transformTokens(cli.flags.dest, cli.flags.token)
-			} else {
-				console.log('Intialization unsuccessful. Missing command options.')
-				console.log(cli.help)
-			}
-		}
+        transformTokens(cli.flags.path)
+		console.log('Tokens generation complete.')
 		break
 	default:
 		console.log(`Command '${currentCommand}' not found.`)

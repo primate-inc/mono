@@ -1,55 +1,44 @@
-'use strict'
+'use strict';
 
 import fs from 'fs-extra';
-import url from 'url';
+import { fileURLToPath } from 'url';
 import path from 'path';
 
 async function copyFile(file, dest) {
     try {
-        const data = await fs.readFile(file, 'utf8')
-        console.log('saveFile read -> ', file, dest, data)
-        await fs.outputFile(dest, data)
+        const data = await fs.readFile(file, 'utf8'); // Read the contents of the source file
+        await fs.outputFile(dest, data); // Write the contents to the destination file
     } catch (err) {
-        console.error(err)
+        console.error(`Failed to copy file: ${file}`, err);
+        throw err; // Throw the error to be handled by the caller
     }
 }
 
 async function copyFilesArray(arr, dest) {
     try {
-        // get package dir
-        const __filename = url.fileURLToPath(import.meta.url);
-        const __dirname = path.dirname(__filename);
+        const packageDir = path.resolve(new URL('.', import.meta.url).pathname, '..', 'init'); // Get the path to the package directory
+        const cwd = process.cwd(); // Get the current working directory of the user
 
-        // get users cwd
-        const cwd = process.env.PWD
+        console.log(`Copying files to destination: ${dest}`);
 
-    console.log('^^^')
-    console.log(__filename)
-    console.log(__dirname)
-    console.log(cwd)
-    console.log('^^^')
-        
-        arr.forEach(file => {
-            console.log(dest)
-            
-            const fileDest = dest[0] == '.' ? (dest + '/' + file).replace('//', '/') : (cwd + '/' + dest + '/' + file).replace('//','/')
+        arr.forEach(async (file) => {
+            const fileDest = dest.startsWith('.') ? path.join(dest, file) : path.join(cwd, dest, file); // Determine the destination path for the file
+            const filePath = path.join(packageDir, file); // Construct the source file path
 
-            const filePath = path.join(__dirname, '..', 'examples', file);
-
-            copyFile(filePath, fileDest)
-        })
+            await copyFile(filePath, fileDest); // Copy the file to the destination
+        });
+        console.log('File copying completed.');
     } catch (err) {
-        console.error(err)
+        console.error('An error occurred during file copying:', err);
+        throw err; // Throw any errors that occur during file copying
     }
 }
 
 async function init(userPath) {
-    const scssConfig = ['mono.config.scss', 'mono.slots.scss', 'mono.tokens.scss']
-    const jsConfig = ['mono.config.js']
+    const files = ['config.scss', 'slots.scss', 'tokens.scss', 'config.js']; // Array of files to copy
 
-    await copyFilesArray(scssConfig, userPath)
-    await copyFilesArray(jsConfig, userPath)
+    const dest = path.join(userPath, 'mono'); 
+    await copyFilesArray(files, dest); // Copy the files to the specified destination
 }
 
 export default init;
-
