@@ -1,4 +1,3 @@
-@use 'sass:meta';
 @use 'sass:map';
 @use 'sass:list';
 @use 'sass:string';
@@ -24,16 +23,8 @@
     @error 'There is no slot defined for #{$keys}'; 
   }
 
-  @if type-of($value) == 'string' {
-    @if string.index($value, '(') and string.index($value, ')') == string.length($value) {
-      $m: str-split(string.slice(str-replace($value, ' ', ''), 1, -2), '(');
-      $func: list.nth($m, 1);
-      $args: str-split(list.nth($m, 2), ',');
-
-      @if meta.function-exists($func) {
-        $value: meta.call(meta.get-function($func), $args...);
-      }
-    }
+  @if is-function($value) {
+    $value: get-function-value($value);
   }
 
   @if type-of($value) == 'string' {
@@ -58,24 +49,26 @@
   $map: map.get($slots, $keys...);
   $check: false;
 
+    // @debug '----';
+    // @debug '---------';
+    // @debug '---slot------';
+    // @debug $map, type-of($map);
+    // @debug '------slot---';
+    // @debug '---------';
+    // @debug '----';
+
+  @if is-function($map) {
+    $map: get-function-value($map);
+  }
+
   @if (type-of($map) == 'map') {
     @each $screen, $value in sortedBreakpoints() {
       $newKeys: list.append($keys, $screen);
-      $stepSize: map.get($slots, $newKeys...); //  map.get($map, $screen);
-
-      // @debug ----;
-      // @debug 'responsive-slot: ' $attr;
-      // @debug 'keys: ' $keys;
-      // @debug 'screen: ' $screen;
-      // @debug 'value: ' $value;
-      // @debug 'stepSize: ' $stepSize;
-      // @debug ----;
-      // @debug ----;
-
+      $stepSize: map.get($map, string.quote($screen));
 
       @if ($stepSize != null) {
         $check: true;
-        $value: slot($newKeys...);
+        $value: $stepSize; // slot($newKeys...);
 
         @include screen($screen) {
           @if (type-of($value) == 'string') {

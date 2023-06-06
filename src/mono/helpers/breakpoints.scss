@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:list';
 
 // Get breakpoint value from tokens map
 @function breakpoint($keys...) {
@@ -12,4 +13,9 @@
   @function sortedBreakpoints() {
     $breakpoints: map.merge(map.get($tokens, "breakpoints"), map.get($configs, breakpoints));
     @return map-sort-by-values($breakpoints);
+  }
+
+  @function is-valid-breakpoint($string) {
+    $breakpoints: map.keys(sortedBreakpoints());
+    @return list.index($breakpoints, $string);
   }
