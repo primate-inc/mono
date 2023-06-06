@@ -33,7 +33,7 @@
   $grid-free-space: 0; // minmax(0, $grid-gap);
 
   @if ($grid-width != null and type-of($grid-width) == 'number') {
-    $grid-free-space: minmax(0, calc(50% - ($grid-width/2) - $grid-gap));
+    $grid-free-space: minmax(0, calc(50% - ($grid-width/2) - $grid-offset));
   }
 
   $grid-template-columns: ();
