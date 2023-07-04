@@ -1,7 +1,9 @@
 import StyleDictionary from 'style-dictionary';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import './transforms/register.js';
+import defaultConfig from './defaultConfig.js';
 
 // Main function to generate tokens
 async function transformTokens(dest) {
@@ -9,12 +11,16 @@ async function transformTokens(dest) {
   const configPath = path.join(userProjectDir, 'config.js');
   let config;
 
-  try {
-    const module = await import(configPath);
-    config = module.default || module;
-  } catch (err) {
-    console.error('Failed to load config:', err);
-    return;
+  if (!fs.existsSync(configPath)) { // Check if the configPath exists
+    config = defaultConfig;
+  } else {
+    try {
+      const module = await import(configPath);
+      config = module.default || module;
+    } catch (err) {
+      console.error('Failed to load config:', err);
+      return;
+    }
   }
 
     config.source = [path.join(userProjectDir, 'tokens.json')];
@@ -25,8 +31,6 @@ async function transformTokens(dest) {
     config.platforms.scss.files.destination = path.join(userProjectDir, 'tokens.scss');
 
   const StyleDictionaryExtended = StyleDictionary.extend(config);
-    console.log('config --> ', config);
-    console.log('--> ', StyleDictionaryExtended);
   StyleDictionaryExtended.buildAllPlatforms();
 }
 

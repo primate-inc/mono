@@ -32,6 +32,7 @@
     "@parcel/transformer-sass": "2.7.0",
     "autoprefixer": "^10.4.10",
     "css-purge": "^3.1.8",
+    "fs": "0.0.1-security",
     "gently-copy": "^3.2.0",
     "parcel": "^2.0.0-beta.1",
     "postcss": "^8",
