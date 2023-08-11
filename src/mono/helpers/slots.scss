@@ -72,10 +72,16 @@
 
         @include screen($screen) {
           @if (type-of($value) == 'string') {
-            #{$attr}: unquote($value);
-          } @else {
-            #{$attr}: $value;
+              $value: unquote($value); 
           }
+
+            @if (type-of($attr) == 'list') {
+              @each $attribute in $attr {
+                #{$attribute}: $value;
+              }
+            } @else {
+              #{$attr}: #{$value};
+            }
         }
       }
     }
