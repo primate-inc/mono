@@ -9,7 +9,7 @@
 // valid css value (quoted), sass function
 //   
 // Usage:
-// @include responsive-slot('grid-column', grid, component, small) 
+// grid-column: slot(grid, component, small) 
 // -> slot: grid > component > small
 // -> grid-column: <default value>;
 @function slot($keys...) {
@@ -91,5 +91,22 @@
     }
   } @else {
     @error 'No map found. Instead had: Type <#{type-of($map)}>: #{$map}';
+  }
+}
+
+// Generate params from slot map.
+// Slot should be a map of valid breakpoints as keys.
+//
+@mixin slot-params($keys...) {
+  $map: map.get($slots, $keys...);
+
+  @each $key, $props in $map {
+    &--#{$key} {
+      @each $prop, $value in $props {
+        @if is-function($value) { $value: get-function-value($value); }
+
+        #{$prop}: $value;
+      }
+    }
   }
 }
