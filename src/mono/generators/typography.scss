@@ -64,6 +64,11 @@
 
     @if $size != null {
       $fluid: config(typography, fluid, $token);
+      $font-family: map-get($size, 'fontFamily');
+
+      @if config(typography, fontFallbacks, $font-family) != null {
+        $font-family: string.unquote("#{$font-family}, #{config(typography, fontFallbacks, $font-family)}");
+      }
 
       @include screen($breakpoint) {
         font-size: rem(map-get($size, 'fontSize') * 1px);
@@ -76,7 +81,7 @@
         // margin-bottom: rem(map-get($size, 'paragraphSpacing') * 1px);
         text-transform: map-get($size, 'textCase');
         text-decoration: map-get($size, 'textDecoration');
-        font-family: map-get($size, 'fontFamily');
+        font-family: $font-family;
 
         @if $fluid != null {
           @if map-get($fluid, 'start') == $breakpoint or map-get($fluid, 'end') == $breakpoint {
