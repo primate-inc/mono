@@ -3,7 +3,8 @@ const defaultConfig = {
   "basePxFontSize": 16,
   "platforms": {
     "scss": {
-      "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "color/hsla", "scss/deepMap"],
+      // "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "color/hsla", "scss/deepMap"],
+      "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "scss/deepMap"],
       "buildPath": "", // value passed via command
       "files": [{
         "destination": "tokens.scss",

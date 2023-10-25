@@ -65,9 +65,18 @@
     @if $size != null {
       $fluid: config(typography, fluid, $token);
       $font-family: map-get($size, 'fontFamily');
+      $remaped-font-family: null;
+
+      @if config(typography, fontRemaps, $font-family) != null {
+        $remaped-font-family: string.unquote("#{config(typography, fontRemaps, $font-family)}");
+      }
 
       @if config(typography, fontFallbacks, $font-family) != null {
-        $font-family: string.unquote("#{$font-family}, #{config(typography, fontFallbacks, $font-family)}");
+        @if $remaped-font-family != null {
+          $font-family: string.unquote("#{$remaped-font-family}, #{config(typography, fontFallbacks, $font-family)}");
+        } @else {
+          $font-family: string.unquote("#{$font-family}, #{config(typography, fontFallbacks, $font-family)}");
+        }
       }
 
       @include screen($breakpoint) {
@@ -88,6 +97,9 @@
             @include fluid($token);
           }
         }
+
+        // Allow for custom styles and overrides to be applied directly to the typography
+        @content;
       }
     }
   }

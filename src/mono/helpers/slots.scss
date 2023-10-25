@@ -98,10 +98,17 @@
 // Slot should be a map of valid breakpoints as keys.
 //
 @mixin slot-params($keys...) {
+  $prefix: '';
   $map: map.get($slots, $keys...);
 
+  //keys to string
+  // $keysString: '';
+  // @each $key in $keys {
+  //   $keysString: $keysString + $key + '-';
+  // }
+
   @each $key, $props in $map {
-    &--#{$key} {
+    &--#{$prefix + $key} {
       @each $prop, $value in $props {
         @if is-function($value) { $value: get-function-value($value); }
 
