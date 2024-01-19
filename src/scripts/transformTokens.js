@@ -15,8 +15,8 @@ async function transformTokens(dest) {
     config = defaultConfig;
   } else {
     try {
-      const module = await import(configPath);
-      config = module.default || module;
+        const module = await import(configPath);
+        config = module.default || module;
     } catch (err) {
       console.error('Failed to load config:', err);
       return;
@@ -31,6 +31,10 @@ async function transformTokens(dest) {
     config.platforms.scss.files.destination = path.join(userProjectDir, 'tokens.scss');
 
   const StyleDictionaryExtended = StyleDictionary.extend(config);
+
+    console.log('Build started...');
+    console.log('Build path:', config);
+
   StyleDictionaryExtended.buildAllPlatforms();
 }
 
