@@ -32,9 +32,6 @@ async function transformTokens(dest) {
 
   const StyleDictionaryExtended = StyleDictionary.extend(config);
 
-    console.log('Build started...');
-    console.log('Build path:', config);
-
   StyleDictionaryExtended.buildAllPlatforms();
 }
 

@@ -35,7 +35,7 @@ async function copyFilesArray(arr, dest) {
 }
 
 async function init(userPath) {
-    const files = ['config.scss', 'slots.scss', 'tokens.scss', 'config.js']; // Array of files to copy
+    const files = ['index.scss', 'config.scss', 'slots.scss', 'config.js']; // Array of files to copy
 
     const dest = path.join(userPath, 'mono'); 
     await copyFilesArray(files, dest); // Copy the files to the specified destination
