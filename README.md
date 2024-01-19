@@ -15,7 +15,9 @@
 
 ## Welcome to MONO
 
-MONO is a framework agnostic utility library for scss. It helps to manage your styles between Figma Tokens and your project.
+MONO is a framework agnostic utility library for SASS. It helps to manage your styles between Figma and your code.
+
+MONO is not generating any CSS code, insteead it provides you access to Figma Variables and set of useful tools to help you reflect the designs easier in your code.
 
 ## Installation
 

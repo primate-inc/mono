@@ -1,0 +1,53 @@
+
+/**
+ * Do not edit directly
+ * Generated on Fri, 19 Jan 2024 00:00:33 GMT
+ */
+
+$grid-main-desktop: ("pattern": columns, "gutterSize": 32, "alignment": stretch, "count": 12, "offset": 64) !default;
+$primitives-color-secondary-100: #fdefedff !default;
+$primitives-color-secondary-200: #fbdedaff !default;
+$primitives-color-secondary-300: #f7bdb5ff !default;
+$primitives-color-secondary-400: #f29c90ff !default;
+$primitives-color-secondary-500: #ee7b6bff !default;
+$primitives-color-secondary-600: #ea5a46ff !default;
+$primitives-color-secondary-700: #bb4838ff !default;
+$primitives-color-secondary-800: #8c362aff !default;
+$primitives-color-secondary-900: #5e241cff !default;
+$primitives-color-secondary-1000: #2f120eff !default;
+$colour-surface-accent: #ea5a46ff !default;
+$test-surface-bar: #fdefedff !default;
+
+$tokens: (
+  'grid': (
+    'main': (
+      'desktop': $grid-main-desktop
+    )
+  ),
+  'primitives': (
+    'color': (
+      'secondary': (
+        '100': $primitives-color-secondary-100,
+        '200': $primitives-color-secondary-200,
+        '300': $primitives-color-secondary-300,
+        '400': $primitives-color-secondary-400,
+        '500': $primitives-color-secondary-500,
+        '600': $primitives-color-secondary-600,
+        '700': $primitives-color-secondary-700,
+        '800': $primitives-color-secondary-800,
+        '900': $primitives-color-secondary-900,
+        '1000': $primitives-color-secondary-1000
+      )
+    )
+  ),
+  'colour': (
+    'surface': (
+      'accent': $colour-surface-accent
+    )
+  ),
+  'test': (
+    'surface': (
+      'bar': $test-surface-bar
+    )
+  )
+);

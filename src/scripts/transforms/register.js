@@ -54,7 +54,8 @@ StyleDictionary.registerTransform({
   name: 'scss/deepMap',
   type: 'value',
   matcher: token => {
-    return typeof(token.value) == 'object' //  token.type === 'custom-fontStyle' || token.type === 'custom-grid'
+    // return typeof(token.value) === 'object' && typeof(token.original.value) === 'object';
+    return typeof(token.value) === 'object';
   },
   transformer: token => {
     return deepMapSearch(token.value);

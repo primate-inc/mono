@@ -4,10 +4,18 @@ const config = {
   "platforms": {
     "scss": {
       // "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "color/hsla", "scss/deepMap", "font/fluid"],
-      "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "color/hsla", "scss/deepMap"],
+      "transforms": [
+        // "custom", 
+        "attribute/cti", 
+        "name/cti/kebab", 
+        "time/seconds", 
+        "dimension/pxToRem", 
+        "scss/deepMap"
+      ],
+      // "transforms": ["custom"],
       "buildPath": "", // value passed via command
       "files": [{
-        "destination": "mono.tokens.scss",
+        "destination": "tokens.scss",
         "format": "scss/map-deep",
         "options": {
           "outputReferences": false,

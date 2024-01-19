@@ -1,60 +1,50 @@
-// 
-// Slots
-// Deep map providing nodes to elements. 
+@use "sass:map";
+@use "sass:meta";
+
 //
-// value: There are few keywords 
-// color token name or list of keys for deeper nested and responsive colors.
-//        responsive colors
+// Slots
+// Deep map providing nodes to elements.
+//
 // usage: slot(color, test)
 //        slot(color, typography, h1)
 //        responsive-slot('grid-column', grid, component, cta)
 //
 $slots: (
+  token: $tokens,
   color: (
-    test: token(color, grey, 500),
     page: (
-      background: token(color, white),
-      text: token(color, blue)
+      background: token(color, base, white),
+      text: token(color, base, black),
+      accent: token(color, base, accent),
     ),
-    article: (
-      nav: (
-        text: black,
+  ),
+  grid: (
+    full: "1 / -1",
+    wide: "2 / -2",
+    content: "3 / -3",
+    header: (
+      default: "3 / 10",
+      desktop: "3 / 14",
+    ),
+    component: (
+      desktop: "3 / -5",
+      default: "3 / -3",
+    ),
+  ),
+  component: (
+    button: (
+      theme: (
+        primary: (
+          --background: token(color, primary, 900),
+          --background-hover: token(color, primary, 1000),
+          --text: token(color, base, white),
+        ),
+        accent: (
+          --background: token(color, accent, 800),
+          --background-hover: token(color, accent, 900),
+          --text: token(color, base, white),
+        ),
       ),
-    ),
-    typography: (
-      h1: blue,
-      h2: black,
-    ),
-    components: (
-      cta: (
-        background: black,
-      )
     )
   ),
-
-  grid: (
-    full: '1 / -1',
-    wide: '3 / -3',
-    component: '2 / 14',
-    text: '3 / span 6',
-
-    typography: (
-      h1: (
-        default: '3 / 10',
-      ),
-      h2: (
-        default: '11 / 26',
-      )
-    ),
-
-    header: (
-      default: '3 / -3',
-      tablet: '5 / -3',
-      desktop: '7 / -3',
-    )
-  )
 );
-
-// breakpoints: () // this should be where new BPs are generated
-// $slots: map.set($slots, breakpoints, map.merge(token(breakpoints), config(layout, customBreakpoints)));
-

@@ -5,15 +5,16 @@ const defaultConfig = {
     "scss": {
       // "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "color/hsla", "scss/deepMap"],
       "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "scss/deepMap"],
+      // "transforms": ["custom", "attribute/cti", "name/cti/kebab", "time/seconds",],
       "buildPath": "", // value passed via command
       "files": [{
         "destination": "tokens.scss",
         "format": "scss/map-deep",
         "options": {
-          "outputReferences": false,
+          "outputReferences": true,
           "themable": false
         },
-        "filter": "noTypography"
+        "filter": ["noTypography"]
       }]
     }
   }
