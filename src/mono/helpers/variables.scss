@@ -1,0 +1,147 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+
+//
+// Generate CSS variables from a tokens map
+//
+
+@mixin variables($keys...) {
+    $value: map.get($tokens, $keys...);
+
+    // @debug '--VAR-------------';
+    // @debug 'keys: ' $keys;
+    // @debug 'value: ' $value;
+    // @debug '--ENDVAR-------------';
+
+
+    @if (type-of($value) == map) {
+        @each $k, $v in $value {
+            $newKeys: list.append($keys, $k);
+            @include variables($newKeys...);
+        }
+    } @else {
+        $varName: '-';
+
+        @each $k in $keys {
+            // if $k contains -- replace with -
+            // @if (string.index($k, '--') != null) {
+            //     $k: string.slice($k, 2);
+            // }
+            $varName: $varName + '-' + $k;
+        }
+
+        #{$varName}: $value;
+
+        @debug 'varName: ' $varName;
+    }
+}
+
+@mixin defined-variables($prefix, $keys...) {
+    $originalKeys: $keys;
+    $value: map.get($tokens, $keys...);
+
+    @debug '--Defined Variables-------------';
+    @debug 'prefix: ' $prefix;
+    @debug 'keys: ' $keys;
+    @debug 'value: ' $value;
+    @debug '--END Defined Variables-------------';
+
+    @if (type-of($value) == map) {
+        @each $k, $v in $value {
+            #{'--' + $prefix + '-' + $k}: $v;
+        }
+    }
+}
+
+@function dig($map, $keys...) {
+    $value: map.get($map, $keys...);
+
+    @if (type-of($value) == map) {
+        @return dig($value, $keys...);
+    } @else {
+        @return $value;
+    }
+}
+
+@mixin dig($map, $keys...) {
+    $value: map.get($map, $keys...);
+
+    @if (type-of($value) == map) {
+        @each $k, $v in $value {
+            $newKeys: list.append($keys, $k);
+            @include dig($map, $newKeys...);
+        }
+    } @else {
+        $digValue: $value;
+    }
+}
+
+@function remove-nth($list, $n) {
+    $new-list: ();
+    $separator: list.separator($list);
+    $i: 1;
+    
+    @each $element in $list {
+      @if $i != $n {
+        $new-list: list.append($new-list, $element, $separator: $separator);
+      }
+      $i: $i + 1;
+    }
+    
+    @return $new-list;
+  }
+
+@mixin find-variants($prefix, $excludedKeys, $keys...) {
+    $value: map.get($tokens, $keys...);
+
+    @debug '--Find Variants-------------';
+    @debug 'prefix: ' $prefix;
+    @debug 'excludedKeys: ' $excludedKeys;
+    @debug 'keys: ' $keys;
+    @debug 'value: ' $value;
+    @debug '--END Find Variants-------------';
+
+    @if (type-of($value) == map) {
+        @each $k, $v in $value {
+            $newKeys: list.append($keys, $k);
+            @include find-variants($prefix, $excludedKeys, $newKeys...);
+        }
+    } @else {
+        $lastKey: list.nth($keys, -1);
+
+        // remove excluded keys from keys
+        // $lastExcludedKey: list.nth($excludedKeys, -1);
+        // $test: list.index($keys, $lastExcludedKey);
+
+        @each $excludedKey in $excludedKeys {
+            $keys: remove-nth($keys, list.index($keys, $excludedKey));
+        }
+
+        $keys: remove-nth($keys, list.index($keys, $lastKey));
+
+        $class: '-';
+        @each $key in $keys {
+            $class: $class + '-' + $key;
+        }
+
+        @debug 'class: ' $class;
+
+        @debug 'keys: ' $keys;
+
+        &#{$class} {
+            #{'--' + $prefix + '-' + $lastKey}: $value;
+        }
+
+        // #{'--' + $prefix + '-' + $lastKey}: $value;
+    }
+}
+
+@mixin variants($prefix, $keys...) {
+    $excludedKeys: $keys;
+ 
+
+    @include find-variants($prefix, $excludedKeys, $keys...);
+    
+}
+
