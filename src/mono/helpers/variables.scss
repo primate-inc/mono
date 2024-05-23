@@ -6,53 +6,104 @@
 // Generate CSS variables from a tokens map
 //
 
-@mixin variables($keys...) {
-    $value: map.get($tokens, $keys...);
+@mixin variables($prefix, $group, $keys...) {
+    // $value: map.get($tokens, $keys...);
 
-    // @debug '--VAR-------------';
-    // @debug 'keys: ' $keys;
-    // @debug 'value: ' $value;
-    // @debug '--ENDVAR-------------';
-
-
-    @if (type-of($value) == map) {
-        @each $k, $v in $value {
-            $newKeys: list.append($keys, $k);
-            @include variables($newKeys...);
-        }
-    } @else {
-        $varName: '-';
-
-        @each $k in $keys {
-            // if $k contains -- replace with -
-            // @if (string.index($k, '--') != null) {
-            //     $k: string.slice($k, 2);
-            // }
-            $varName: $varName + '-' + $k;
-        }
-
-        #{$varName}: $value;
-
-        @debug 'varName: ' $varName;
-    }
-}
-
-@mixin defined-variables($prefix, $keys...) {
-    $originalKeys: $keys;
-    $value: map.get($tokens, $keys...);
-
-    @debug '--Defined Variables-------------';
-    @debug 'prefix: ' $prefix;
+    @debug '--VAR-------------';
+    @debug 'group: ' $group;
     @debug 'keys: ' $keys;
-    @debug 'value: ' $value;
-    @debug '--END Defined Variables-------------';
+    // @debug 'value: ' $value;
+    @debug '--ENDVAR-------------';
 
-    @if (type-of($value) == map) {
-        @each $k, $v in $value {
-            #{'--' + $prefix + '-' + $k}: $v;
+    $breakpoints: sortedBreakpoints();
+    
+    @each $screen, $screenSize in $breakpoints {
+        $keysGroup: ($group, $screen);
+        $newKeys: list.join($keysGroup, $keys);
+
+        $values: map.get($tokens, $newKeys...);
+
+        @debug '----newKeys';
+        @debug $newKeys;
+        @debug $values;
+        @debug '---------';
+
+        @if $values != null {
+            @if type-of($values) == map {
+                @include screen($screen) {
+                    @each $k, $v in $values {
+                        // $valueKeys: list.append($newKeys, $k);
+                        // $value: map.get($tokens, $newKeys...);
+                        
+                        
+
+
+                        @if $k and $v {
+                            // #{'--', $prefix + '-' + $k}: $v;
+                            @debug '----variables-----';
+                            @debug 'k: ', $k;
+                            @debug 'v: ', $v;
+                            @debug '---------';
+
+                            #{'--' + $prefix + '-' + $k}: $v;
+                        }
+                    }
+                }
+            } @else {
+                @debug '----variables-----';
+                @debug 'k: ', $newKeys;
+                @debug 'value: ', $values;
+
+                $lastKey: list.nth($keys, -1);
+
+                @if $values {
+                    @include screen($screen) {
+                        #{'--' + $prefix + '-' + $lastKey}: $values;
+                    }
+                }
+            }
         }
     }
+
+
+    // @if (type-of($value) == map) {
+    //     @each $k, $v in $value {
+    //         $newKeys: list.append($keys, $k);
+    //         @include variables($newKeys...);
+    //     }
+    // } @else {
+    //     $varName: '-';
+
+    //     @each $k in $keys {
+    //         // if $k contains -- replace with -
+    //         // @if (string.index($k, '--') != null) {
+    //         //     $k: string.slice($k, 2);
+    //         // }
+    //         $varName: $varName + '-' + $k;
+    //     }
+
+    //     #{$varName}: $value;
+
+    //     @debug 'varName: ' $varName;
+    // }
 }
+
+// @mixin defined-variables($prefix, $keys...) {
+//     $originalKeys: $keys;
+//     $value: map.get($tokens, $keys...);
+
+//     @debug '--Defined Variables-------------';
+//     @debug 'prefix: ' $prefix;
+//     @debug 'keys: ' $keys;
+//     @debug 'value: ' $value;
+//     @debug '--END Defined Variables-------------';
+
+//     @if (type-of($value) == map) {
+//         @each $k, $v in $value {
+//             #{'--' + $prefix + '-' + $k}: $v;
+//         }
+//     }
+// }
 
 @function dig($map, $keys...) {
     $value: map.get($map, $keys...);
@@ -95,12 +146,12 @@
 @mixin find-variants($prefix, $excludedKeys, $keys...) {
     $value: map.get($tokens, $keys...);
 
-    @debug '--Find Variants-------------';
-    @debug 'prefix: ' $prefix;
-    @debug 'excludedKeys: ' $excludedKeys;
-    @debug 'keys: ' $keys;
-    @debug 'value: ' $value;
-    @debug '--END Find Variants-------------';
+    // @debug '--Find Variants-------------';
+    // @debug 'prefix: ' $prefix;
+    // @debug 'excludedKeys: ' $excludedKeys;
+    // @debug 'keys: ' $keys;
+    // @debug 'value: ' $value;
+    // @debug '--END Find Variants-------------';
 
     @if (type-of($value) == map) {
         @each $k, $v in $value {
@@ -122,26 +173,51 @@
 
         $class: '-';
         @each $key in $keys {
-            $class: $class + '-' + $key;
+            @if (string.index($key, '@') == null) {
+                $class: $class + '-' + $key;
+            }
         }
 
-        @debug 'class: ' $class;
+        // @debug 'class: ' $class;
+        // @debug 'keys: ' $keys;
+        // @debug 'value: ' $value;
 
-        @debug 'keys: ' $keys;
 
-        &#{$class} {
-            #{'--' + $prefix + '-' + $lastKey}: $value;
+        @if $value != null {
+            &#{$class} {
+                #{'--' + $prefix + '-' + $lastKey}: $value;
+            }
         }
 
         // #{'--' + $prefix + '-' + $lastKey}: $value;
     }
 }
 
-@mixin variants($prefix, $keys...) {
-    $excludedKeys: $keys;
- 
+@mixin variants($prefix, $group, $keys...) {
+    $breakpoints: sortedBreakpoints();
 
-    @include find-variants($prefix, $excludedKeys, $keys...);
+    // @debug '--Variants-------------';
+    // @debug 'prefix: ' $prefix;
+    // @debug 'keys: ' $keys;
+    // @debug 'excludedKeys: ' $excludedKeys;
+    // @debug 'breakpoints: ' $breakpoints;
+    // @debug '--END Variants-------------';
     
+    @each $screen, $value in $breakpoints {
+        $keysGroup: ($group, $screen);
+        // $newKeys: list.append($keysGroup, $keys...);
+        $newKeys: list.join($keysGroup, $keys);
+        $excludedKeys: $newKeys;
+
+        // @debug '----newKeys';
+        // @debug $newKeys;
+        // @debug '---------';
+
+        @include screen($screen) {
+            @include find-variants($prefix, $excludedKeys, $newKeys...);
+        }
+    }
+
+    // @include find-variants($prefix, $excludedKeys, $keys...);
 }
 

@@ -1,7 +1,7 @@
 @mixin screen($size, $mode: null, $type: min) {
   $breakpoint: breakpoint($size);
 
-  @if ($size == 'default' or $size == false) {
+  @if ($size == '@xx' or $size == false) {
     @content;
   } @else {
     @if $mode {
