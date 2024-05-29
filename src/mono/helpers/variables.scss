@@ -99,14 +99,23 @@
             @include find-variants($prefix, $excludedKeys, $newKeys...);
         }
     } @else {
-        $lastKey: list.nth($keys, -1);
+        $variableBase: (list.nth($keys, -1));
+
+        @if string.index($variableBase, ":") != null {
+            $variableBase: list.append(list.nth($keys, -2), $variableBase);
+        }
+
+        $excludedKeys: list.join($excludedKeys, $variableBase);
 
         // Remove excluded keys from the keys list
         @each $excludedKey in $excludedKeys {
             $keys: remove-nth($keys, list.index($keys, $excludedKey));
         }
 
-        $keys: remove-nth($keys, list.index($keys, $lastKey));
+        $variableBase: to-string($variableBase, '-');
+        // $variableBase: str-replace($variableBase, " ", ""); // maybe we don't need it as to-string() seems to be trimming spaces
+        $variableBase: str-replace($variableBase, ":", "-");
+
         $class: "-";
 
         // Generate class name based on keys
@@ -140,7 +149,7 @@
             // If the value is the same as default value, return the variant CSS
             @if $value != $defaultValue {
                 &#{$class} {
-                    #{'--' + $prefix + '-' + $lastKey}: $value;
+                    #{'--' + $prefix + '-' + $variableBase}: $value;
                 }
             }
         }
