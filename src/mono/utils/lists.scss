@@ -1,0 +1,68 @@
+@use "sass:list";
+@use "sass:string";
+
+/// Converts a list to a string by concatenating its elements with an optional glue string.
+/// If the list contains nested lists, they are recursively converted to strings.
+///
+/// @param {List} $list - The list to be converted to a string.
+/// @param {String} $glue - The string used to concatenate the elements of the list. Default is an empty string.
+/// @param {Boolean} $is-nested - Indicates if the current list is nested within another list. Default is false.
+/// @return {String} - The resulting string after converting the list.
+///
+@function to-string($list, $glue: "", $is-nested: false) {
+  $result: "";
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+    @if type-of($e) == list {
+      $result: $result + to-string($e, $glue, true);
+    } @else {
+      @if $i != length($list) or $is-nested {
+        $result: $result + $e + $glue;
+      } @else {
+        $result: $result + $e;
+      }
+    }
+  }
+  @return $result;
+}
+
+/// Remove the nth element from a list
+///
+/// @param {List} $list - The list to remove the element from
+/// @param {Number} $n - The index of the element to remove
+/// @return {List} - The new list without the nth element
+///
+@function remove-nth($list, $n) {
+  $new-list: ();
+  $separator: list.separator($list);
+  $i: 1;
+  @each $element in $list {
+    @if $i != $n {
+      $new-list: list.append($new-list, $element, $separator: $separator);
+    }
+    $i: $i + 1;
+  }
+  @return $new-list;
+}
+
+/// Replace the nth element in a list
+/// 
+/// @param {List} $list - The list to replace the element in
+/// @param {Number} $n - The index of the element to replace
+/// @param {Any} $value - The new value
+/// @return {List} - The new list with the nth element replaced
+///
+@function replace-nth($list, $n, $value) {
+  $new-list: ();
+  $separator: list.separator($list);
+  $i: 1;
+  @each $element in $list {
+    @if $i == $n {
+      $new-list: list.append($new-list, $value, $separator: $separator);
+    } @else {
+      $new-list: list.append($new-list, $element, $separator: $separator);
+    }
+    $i: $i + 1;
+  }
+  @return $new-list;
+}

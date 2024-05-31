@@ -3,9 +3,14 @@
 @use 'sass:list';
 @use 'sass:string';
 
-// $sortedBreakpoints: map-sort-by-values(map.merge(token(breakpoints), ('default': 0)));
-
-
+/// Calculate fluid typography values.
+/// 
+/// @param {number} $min-value - The minimum value for the fluid typography.
+/// @param {number} $max-value - The maximum value for the fluid typography.
+/// @param {number} $min-screen - The minimum screen width for the fluid typography.
+/// @param {number} $max-screen - The maximum screen width for the fluid typography.
+/// 
+/// @returns {number} - The calculated fluid typography clamp value.
 @function calculate_fluid($min-value, $max-value, $min-screen, $max-screen) {
   @if $min-value == $max-value {
     @return $min-value;
@@ -19,6 +24,11 @@
   @return $clamp;
 }
 
+/// Generate fluid typography styles.
+/// 
+/// @param {string} $font-name - The name of the font to generate fluid typography for.
+/// 
+/// @returns {void} - Fluid typography styles for given font name.
 @mixin fluid($font-name) {
   $range-start: config(typography, fluid, $font-name, start); 
   $range-end: config(typography, fluid, $font-name, end);
@@ -39,27 +49,20 @@
   $min-letter-spacing: rem(map-get($start-breakpoint, letterSpacing));
   $max-letter-spacing: rem(map-get($end-breakpoint, letterSpacing));
 
-  // @debug 'font-size', calculate_fluid($min-font-size, $max-font-size, $min-screen-width, $max-screen-width);
-  // @debug 'line-height', calculate_fluid($min-line-height, $max-line-height, $min-screen-width, $max-screen-width);
-  // @debug 'letter-spacing', calculate_fluid($min-letter-spacing, $max-letter-spacing, $min-screen-width, $max-screen-width);
-
   font-size: calculate_fluid($min-font-size, $max-font-size, $min-screen-width, $max-screen-width);
   line-height: calculate_fluid($min-line-height, $max-line-height, $min-screen-width, $max-screen-width);
   letter-spacing: calculate_fluid($min-letter-spacing, $max-letter-spacing, $min-screen-width, $max-screen-width);
 }
 
-// Generates font styles with all breakpoints that were defined in the Figma
+/// Generates font styles with all breakpoints that were defined in the tokens map.
+/// 
+/// @param {string} $token - The token name to generate font styles for.
+/// 
+/// @returns {void} - Responsive font styles for given token.
 @mixin typography($token) {
   $properties: map-get($tokens, "font");
-  
-  // @debug 'start typography --------------------------';
-  // @debug 'font', $token, $properties;
 
   @each $breakpoint, $sizes in $properties {
-    // @debug 'font---->', $breakpoint, $token, type-of($value: $sizes);
-    // @debug '---> ', map-get($sizes, "#{$token}");
-    // @debug '-------------------------- end typography';
-
     $size: map-get($sizes, $token);
 
     @if $size != null {
@@ -87,7 +90,6 @@
         font-style: map-get($size, 'fontStyle');
         font-stretch: map-get($size, 'fontStretch');
         text-indent: rem(map-get($size, 'paragraphIndent') * 1px);
-        // margin-bottom: rem(map-get($size, 'paragraphSpacing') * 1px);
         text-transform: map-get($size, 'textCase');
         text-decoration: map-get($size, 'textDecoration');
         font-family: $font-family;

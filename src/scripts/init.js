@@ -3,6 +3,38 @@
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import ansis from 'ansis';
+
+function logo() {
+    const colors = [
+        ansis.hex('#0077B6'), // Dark blue
+        ansis.hex('#0096C7'),
+        ansis.hex('#00B4D8'),
+        ansis.hex('#48CAE4'),
+        ansis.hex('#90E0EF'),
+        ansis.hex('#CAF0F8')  // Light blue
+    ];
+    
+    // Define the "mono" logo with block letters
+    const logo = [
+        "",
+        "███╗   ███╗ ██████╗ ███╗   ██╗ ██████╗ ",
+        "████╗ ████║██╔═══██╗████╗  ██║██╔═══██╗",
+        "██╔████╔██║██║   ██║██╔██╗ ██║██║   ██║",
+        "██║╚██╔╝██║██║   ██║██║╚██╗██║██║   ██║",
+        "██║ ╚═╝ ██║╚██████╔╝██║ ╚████║╚██████╔╝",
+        "╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ",
+        "Welcome to the mono!",
+    ];
+    
+    // Apply gradient
+    const gradientLogo = logo.map((line, index) => {
+        const colorIndex = Math.floor(index * (colors.length / logo.length));
+        return colors[colorIndex](line);
+    }).join('\n');
+    
+    console.log(gradientLogo);
+}
 
 async function copyFile(file, dest) {
     try {
@@ -27,6 +59,8 @@ async function copyFilesArray(arr, dest) {
 
             await copyFile(filePath, fileDest); // Copy the file to the destination
         });
+        
+
         console.log('File copying completed.');
     } catch (err) {
         console.error('An error occurred during file copying:', err);
@@ -35,6 +69,8 @@ async function copyFilesArray(arr, dest) {
 }
 
 async function init(userPath) {
+    logo(); // Display the mono logo
+
     const files = ['index.scss', 'config.scss', 'slots.scss', 'config.js']; // Array of files to copy
 
     const dest = path.join(userPath, 'mono'); 

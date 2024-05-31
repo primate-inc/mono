@@ -3,6 +3,11 @@
 @use 'sass:list';
 @use 'sass:string';
 
+/// Convert a string to a number
+/// 
+/// @param {string} $value - The value to convert to a number.
+/// 
+/// @returns {number} - The converted number.
 @function to-number($value) {
   @if type-of($value) == 'number' {
     @return $value;
@@ -35,13 +40,20 @@
   @return if($minus, -$result, $result);;
 }
 
+/// Check if a value is not a rem unit
+/// 
+/// @param {any} $value - The value to check.
+/// 
+/// @returns {boolean} - Whether the value is not a rem unit.
 @function is-not-rem($value) {
   @return is-number($value) and index('cm' 'mm' 'in' 'px' 'pt' 'pc', unit($value)) != null;
 }
 
-// Remove the unit of a length
-// @param {Number} $value - Number to remove unit from
-// @return {Number} - Unitless number
+/// Remove the unit of a length
+/// 
+/// @param {Number} $value - Number to remove unit from
+/// 
+/// @return {Number} - Unitless number
 @function strip-unit($value) {
   $number: to-number($value);
 
@@ -52,9 +64,11 @@
   @return $number;
 }
 
-// Change px to em
-// @param {Number} $value - Value in px or unitless
-// @return {Number} - Value in em
+/// Change px to em
+/// 
+/// @param {Number} $value - Value in px or unitless
+/// 
+/// @return {Number} - Value in em
 @function em($value) {
   $base_font: config('typography', 'baseFontSize');
   $pixels: strip-unit($value);
@@ -62,9 +76,11 @@
   @return $output * 1em;
 }
 
-// Number to rem
-// @param {Number} $value - Value in px or unitless
-// @return {Number} - Value in rem
+/// Number to rem
+/// 
+/// @param {Number} $value - Value in px or unitless
+/// 
+/// @return {Number} - Value in rem
 @function rem($value) {
   $base_font: config('typography', 'baseFontSize');
   $pixels: strip-unit($value);
@@ -89,20 +105,30 @@
   }
 }
 
-// Returns 0 if $value is negative
+/// Prevent negative values
+/// 
+/// @param {Number} $value - Value to check
+/// 
+/// @return {Number} - Value or 0
 @function not-less-than-zero($value) {
   @return if(strip-unit($value) < 0, 0, $value);
 }
 
-// Return $min if $value is lower
+/// Prevent values less than a minimum
+/// 
+/// @param {Number} $value - Value to check
+/// 
+/// @return {Number} - Value or minimum
 @function not-less-than($value, $min: 0) {
   @return if(strip-unit($value) < strip-unit($min), $min, $value);
 }
 
-// toFixed() function in Sass
-// @param {Number} $float - Number to format
-// @param {Number} $digits [2] - Number of digits to leave
-// @return {Number}
+/// Convert value to a fixed number
+/// 
+/// @param {Number} $float - Number to format
+/// @param {Number} $digits [2] - Number of digits to leave
+/// 
+/// @return {Number} - Fixed number
 @function to-fixed($float, $digits: 2) {
   $sass-precision: 5;
   
@@ -116,6 +142,11 @@
   @return math.div(math.round($float * $pow), $pow);
 }
 
+/// Check if a string is a function
+/// 
+/// @param {String} $string - String to check
+/// 
+/// @return {Boolean} - Whether the string is a function
 @function is-function($string) {
   @if type-of($string) == 'string' {
     @if string.index($string, '(') and string.index($string, ')') == string.length($string) {
@@ -125,6 +156,11 @@
   @return false;
 }
 
+/// Get the value of a function
+/// 
+/// @param {String} $string - Function to get the value from
+/// 
+/// @return {Any} - Value of the function
 @function get-function-value($string) {
   $m: str-split(string.slice(str-replace($string, ' ', ''), 1, -2), '(');
   $func: list.nth($m, 1);

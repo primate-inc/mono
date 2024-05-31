@@ -1,13 +1,11 @@
-//*
-// CSS FALLBACK RULE FOR IE0+
-//*
+/// CSS fallback for IE
 @mixin ie {
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     @content;
   }
 }
 
-// IE FALLBACK WITH BREAKPOINT SUPPORT
+/// IE fallback with media query
 @mixin ie-screen($size) {
   @media only screen and (min-width: map-get($breakpoints, $size)) and (-ms-high-contrast: none),
     (-ms-high-contrast: active) {

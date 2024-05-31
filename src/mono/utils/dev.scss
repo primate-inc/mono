@@ -1,8 +1,13 @@
-// Paint border around element using box-shadow to prevent resizing & shifting
+/// Paints a border around the element using box-shadow to prevent resizing & shifting
+/// 
+/// @param {String} $color - The color of the border
+/// 
+/// @returns {void} - The border around the element
 @mixin css-debug($color: pink) {
   box-shadow: 0 0 0 1px $color;
 }
 
+/// Debugs the SCSS code
 @mixin scss-debug {
   @debug 'DEBUG ========>>';
   @content;

@@ -39,7 +39,7 @@ const currentCommand = cli.input[0];
 
 switch (currentCommand) {
 	case 'init' :
-        console.log(`Initializing ${pkgName}...`);
+        // console.log(`Initializing ${pkgName}...`);
 		init(cli.flags.path)
         console.log('Package initialization completed.');
 		break

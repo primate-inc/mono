@@ -1,6 +1,10 @@
 @use 'sass:map';
 
-// Get value from a config map
+/// Get value from a config map
+/// 
+/// @param {string} $keys - The key to get the value from the config map.
+/// 
+/// @returns {any} - The value from the config map.
 @function config($keys...) {
     $value: map.get($configs, $keys...);
     @return $value;

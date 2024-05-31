@@ -2,12 +2,11 @@
 @use 'sass:list';
 @use 'sass:string';
 
-//
-// Get value from a tokens map
-//
-// Usage: token(color, black) -> #000
-//        token(color, grey) -> medium* -> #333333
-//
+/// Get value from a tokens map
+///
+/// @param {string} $keys - The key to get the value from the tokens map.
+///
+/// @returns {any} - The value from the tokens map.
 @function token($keys...) {
   $quotedKeys: ();
 
@@ -19,13 +18,6 @@
   }
 
   $value: map.get($tokens, $quotedKeys...);
-
-  // @debug '--TOKEN-------------';
-  // @debug 'token: ' $keys;
-  // @debug 'quotedKeys: ' $quotedKeys;
-  // @debug 'value: ' $value;
-  // @debug '--ENDTOKEN-------------';
-
 
   // If values is a map, check for a default value (*) and return it.
   // Otherwise returns map.
