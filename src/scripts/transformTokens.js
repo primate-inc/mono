@@ -1,7 +1,6 @@
 import StyleDictionary from 'style-dictionary';
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import './transforms/register.js';
 import defaultConfig from './defaultConfig.js';
 

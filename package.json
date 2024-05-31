@@ -11,7 +11,7 @@
     "style dictionary"
   ],
   "type": "module",
-  "main": "main.js",
+  "main": "mono.js",
   "files": [
     "mono.scss",
     "src/mono/**/*.scss",
@@ -22,25 +22,9 @@
     "mono": "./mono.js"
   },
   "scripts": {
-    "tokens": "node ./transformTokens.js",
-    "start": "parcel serve src/example/index.html --dist-dir dist"
+    "tokens": "node ./transformTokens.js"
   },
-  "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.23.8",
-    "@parcel/transformer-sass": "2.7.0",
-    "autoprefixer": "^10.4.17",
-    "css-purge": "^3.1.8",
-    "fs": "0.0.1-security",
-    "gently-copy": "^3.2.0",
-    "parcel": "^2.11.0",
-    "postcss": "^8.4.33",
-    "postcss-combine-media-query": "^1.0.1",
-    "postcss-modules": "^5.0.0",
-    "postcss-sort-media-queries": "^4.4.1",
-    "sass": "^1.70.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "ansis": "^3.2.0",
     "fs-extra": "^10.1.0",

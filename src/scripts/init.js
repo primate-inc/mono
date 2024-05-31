@@ -1,18 +1,17 @@
 'use strict';
 
 import fs from 'fs-extra';
-import { fileURLToPath } from 'url';
 import path from 'path';
 import ansis from 'ansis';
 
 function logo() {
     const colors = [
-        ansis.hex('#0077B6'), // Dark blue
-        ansis.hex('#0096C7'),
-        ansis.hex('#00B4D8'),
-        ansis.hex('#48CAE4'),
-        ansis.hex('#90E0EF'),
-        ansis.hex('#CAF0F8')  // Light blue
+        ansis.hex('#878fc4'),
+        ansis.hex('#656eb4'),
+        ansis.hex('#545eab'),
+        ansis.hex('#414985'),
+        ansis.hex('#2f345f'),
+        ansis.hex('#1c1f39'),
     ];
     
     // Define the "mono" logo with block letters
@@ -23,8 +22,7 @@ function logo() {
         "██╔████╔██║██║   ██║██╔██╗ ██║██║   ██║",
         "██║╚██╔╝██║██║   ██║██║╚██╗██║██║   ██║",
         "██║ ╚═╝ ██║╚██████╔╝██║ ╚████║╚██████╔╝",
-        "╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ",
-        "Welcome to the mono!",
+        "╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ "
     ];
     
     // Apply gradient
