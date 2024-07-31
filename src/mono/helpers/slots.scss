@@ -2,79 +2,23 @@
 @use 'sass:list';
 @use 'sass:string';
 
-/// Get value from slot map.
+/// Get value from a slots map
 /// 
-/// Slot could be many things, it's just a placeholder for your values.
-///
-/// @param {string} $keys - The key to get the value from the slot map.
-///
-/// @returns {any} - The value from the slot map.
+/// @param {string} $keys - The key to get the value from the slots map.
+/// 
+/// @returns {any} - The value from the slots map.
 @function slot($keys...) {
-  $value: map.get($slots, $keys...);
-
-  @if type-of($value) == 'map' {
-    @error 'Looks like this slot goes deeper, please extend your slot arguments or use responsive-slot function. Available keys: #{map.keys($value)}.'; 
-  }
-
-  @if $value == null { 
-    @error 'There is no slot defined for #{$keys}'; 
-  }
-
-  @if is-function($value) {
-    $value: get-function-value($value);
-  }
-
-  @if type-of($value) == 'string' {
-    $value: unquote($value);
-  }
-
-  @return $value;
+    @return value('slot', $keys...);
 }
 
-/// Get responsive pair of attribute & value from slot map.
-/// Slot should be a map of valid breakpoints as keys.
-///   
+/// Get responsive pair of attribute & value from a slots map.
+/// Value should be a part of collecion with breakpoints.
+/// 
 /// @param {string} $attr - The CSS attribute to assign the value to.
-/// @param {string} $keys - The key to get the value from the slot map.
-///
-/// @returns {void} - The responsive pair of attribute & value from the slot map.
-@mixin responsive-slot($attr, $keys...) {
-  $map: map.get($slots, $keys...);
-  $check: false;
-
-  @if is-function($map) {
-    $map: get-function-value($map);
-  }
-
-  @if (type-of($map) == 'map') {
-    @each $screen, $value in sortedBreakpoints() {
-      $newKeys: list.append($keys, $screen);
-      $stepSize: map.get($map, string.quote($screen));
-
-      @if ($stepSize != null) {
-        $check: true;
-        $value: $stepSize;
-
-        @include screen($screen) {
-          @if (type-of($value) == 'string') {
-              $value: unquote($value); 
-          }
-
-            @if (type-of($attr) == 'list') {
-              @each $attribute in $attr {
-                #{$attribute}: $value;
-              }
-            } @else {
-              #{$attr}: #{$value};
-            }
-        }
-      }
-    }
-
-    @if (not $check) {
-      @error 'No breakpoints found. You need to select a key that returns a map containing one of following keys: #{map.keys(sortedBreakpoints())}';
-    }
-  } @else {
-    @error 'No map found. Instead had: Type <#{type-of($map)}>: #{$map}';
-  }
+/// @param {string} $collection - The key of the group of slots to get the value from.
+/// @param {string} $keys - The key to get the value from the map.
+/// 
+/// @returns {void} - The responsive pair of attribute & value from the map.
+@mixin slot($attr, $collection, $keys...) {
+    @include responsive-value($attr, 'slot', $collection, $keys...);
 }

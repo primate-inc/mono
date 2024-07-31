@@ -1,0 +1,94 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+
+/// Get value from a map.
+///
+/// @param {string} $type - The type of the map to get the value from. Available types: token, slot.
+/// @param {string} $keys - The key to get the value from the slot map.
+///
+/// @returns {any} - The value from the slot map.
+@function value($type, $keys...) {
+  $value: null;
+  @if $type == 'token' {
+    $value: map.get($tokens, $keys...);
+  } @else if $type == 'slot' {
+    $value: map.get($slots, $keys...);
+  }
+
+  // @debug 'value: ' + $value;
+
+  @if type-of($value) == 'map' {
+    @error 'Looks like this slot goes deeper, please extend your slot arguments or use responsive-slot function. Available keys: #{map.keys($value)}.'; 
+  }
+
+  @if $value == null { 
+    @error 'There is no slot defined for #{$keys}'; 
+  }
+
+  @if is-function($value) {
+    $value: get-function-value($value);
+  }
+
+  @if type-of($value) == 'string' {
+    $value: unquote($value);
+  }
+
+  @return $value;
+}
+
+/// Get responsive pair of attribute & value from a map.
+/// Value should be a part of collecion with breakpoints.
+///   
+/// @param {string} $attr - The CSS attribute to assign the value to.
+/// @param {string} $type - The type of the map to get the value from. Available types: token, slot.
+/// @param {string} $collection - The key of the group of tokens to get the value from.
+/// @param {string} $keys - The key to get the value from the map.
+///
+/// @returns {void} - The responsive pair of attribute & value from the map.
+@mixin responsive-value($attr, $type, $collection, $keys...) {
+  $map: null;
+  @if $type == 'token' {
+    $map: map.get($tokens, $collection);
+  } @else if $type == 'slot' {
+    $map: map.get($slots, $collection);
+  } @else {
+    @error 'Unrecognized type: #{$type}. Available types: token, slot.';
+  }
+  $check: false;
+
+  // @if is-function($map) {
+  //   $map: get-function-value($map);
+  // }
+
+  @if (type-of($map) == 'map') {
+    @each $screen, $value in sortedBreakpoints() {
+      $stepSize: map.get($map, string.quote($screen), $keys...);
+
+      @if ($stepSize != null) {
+        $check: true;
+        $value: $stepSize;
+
+        @include screen($screen) {
+          @if (type-of($value) == 'string') {
+              $value: unquote($value); 
+          }
+
+            @if (type-of($attr) == 'list') {
+              @each $attribute in $attr {
+                #{$attribute}: $value;
+              }
+            } @else {
+              #{$attr}: #{$value};
+            }
+        }
+      }
+    }
+
+    @if (not $check) {
+      @error 'No breakpoints found. You need to select a key that returns a map containing one of following keys: #{map.keys(sortedBreakpoints())}';
+    }
+  } @else {
+    @error 'No map found. Instead had: Type <#{type-of($map)}>: #{$map}';
+  }
+}

@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "sass:list";
 @use "sass:string";
 
@@ -7,7 +8,7 @@
 /// @param $excludedKeys - The keys to exclude from the variants
 /// @param $keys... - The keys to access the tokens map
 @mixin find-variants($prefix, $excludedKeys, $keys...) {
-    $value: token($keys...);
+    $value: map.get($tokens, $keys...);
     $originalKeys: $keys;
 
     // Recursively iterate through the value map

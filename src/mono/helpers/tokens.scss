@@ -8,26 +8,17 @@
 ///
 /// @returns {any} - The value from the tokens map.
 @function token($keys...) {
-  $quotedKeys: ();
+  @return value('token', $keys...);
+}
 
-  // Quote each key
-  @each $k in $keys {
-    @if (type-of($k) == string) {
-      $quotedKeys: list.append($quotedKeys, string.quote($k));
-    }
-  }
-
-  $value: map.get($tokens, $quotedKeys...);
-
-  // If values is a map, check for a default value (*) and return it.
-  // Otherwise returns map.
-  @if (type-of($value) == map) {
-    @each $k, $v in $value {
-      @if (string.index($k, '*') != null) {
-        $value: map.get($value, $k);
-      }       
-    } 
-  }
-
-  @return $value;
+/// Get responsive pair of attribute & value from a tokens map.
+/// Value should be a part of collecion with breakpoints.
+/// 
+/// @param {string} $attr - The CSS attribute to assign the value to.
+/// @param {string} $collection - The key of the group of tokens to get the value from.
+/// @param {string} $keys - The key to get the value from the map.
+/// 
+/// @returns {void} - The responsive pair of attribute & value from the map.
+@mixin token($attr, $collection, $keys...) {
+    @include responsive-value($attr, 'token', $collection, $keys...);
 }
