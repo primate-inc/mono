@@ -16,14 +16,12 @@
     $value: map.get($slots, $keys...);
   }
 
-  // @debug 'value: ' + $value;
-
   @if type-of($value) == 'map' {
-    @error 'Looks like this slot goes deeper, please extend your slot arguments or use responsive-slot function. Available keys: #{map.keys($value)}.'; 
+    @error 'Looks like this value goes deeper, please extend your arguments or use responsive-#{$type} function. Available keys: #{map.keys($value)}.'; 
   }
 
   @if $value == null { 
-    @error 'There is no slot defined for #{$keys}'; 
+    @error 'There is no value defined for #{$keys}'; 
   }
 
   @if is-function($value) {

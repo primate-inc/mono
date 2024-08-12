@@ -66,3 +66,34 @@
   }
   @return $new-list;
 }
+
+/// Insert a value at a specific index in a list
+///  
+/// @param {List} $list - The list to insert the value into
+/// @param {Number} $index - The index to insert the value at
+/// @param {Any} $value - The value to insert
+/// @return {List} - The new list with the value inserted at the specified index
+/// 
+@function insert-nth($list, $index, $value) {
+  $result: null;
+
+  @if type-of($index) != number {
+    @warn "$index: #{quote($index)} is not a number for `insert-nth`.";
+  } @else if $index < 1 {
+    @warn "List index 0 must be a non-zero integer for `insert-nth`";
+  } @else if $index > length($list) {
+    @warn "List index is #{$index} but list is only #{length($list)} item long for `insert-nth'.";
+  } @else {
+    $result: ();
+
+    @for $i from 1 through length($list) {
+      @if $i == $index {
+        $result: append($result, $value);
+      }
+
+      $result: append($result, nth($list, $i));
+    }
+  }
+
+  @return $result;
+}

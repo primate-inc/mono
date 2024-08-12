@@ -4,8 +4,8 @@ const defaultConfig = {
   "platforms": {
     "scss": {
       // "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "color/hsla", "scss/deepMap"],
-      "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "scss/deepMap", "figma/references"],
-      // "transforms": ["custom", "attribute/cti", "name/cti/kebab", "time/seconds",],
+      // "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "dimension/pxToRem", "scss/deepMap"],
+      "transforms": [],
       "buildPath": "", // value passed via command
       "files": [{
         "destination": "tokens.scss",

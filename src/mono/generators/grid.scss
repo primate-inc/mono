@@ -9,7 +9,7 @@
 @mixin grid($name: main, $breakpoint: false) {
   $grid-map: map.get($tokens, grid);
   $grid-token: null;
-  $grid-width: 100vw; // token('sizes', '@xx', 'grid', $name, 'max-width');
+  $grid-width: 100vw; // token('size', '@xx', 'grid', $name, 'max-width');
 
   @if($breakpoint) {
     @if (map.has-key($grid-map, $breakpoint)) {
@@ -18,8 +18,8 @@
       @error 'Value not found. Expected token grid > #{$name} > #{$breakpoint} being a valid grid map.';
     }
 
-    @if (type-of(map.get($tokens, 'sizes')) == 'map' and map.has-key(map.get($tokens, 'sizes'), $breakpoint)) {
-      $grid-width: token('sizes', $breakpoint, 'grid', $name, 'max-width');
+    @if (type-of(map.get($tokens, 'size')) == 'map' and map.has-key(map.get($tokens, 'size'), $breakpoint)) {
+      $grid-width: map.get($tokens, 'size', $breakpoint, 'grid', $name, 'max-width');
       @if ($grid-width == null or $grid-width == 0) {
         $grid-width: 100vw;
       }

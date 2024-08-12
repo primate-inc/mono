@@ -11,6 +11,16 @@
     @return value('slot', $keys...);
 }
 
+/// Get default (@xx) value from a slots map
+/// 
+/// @param {string} $keys - The key to get the value from the slots map omitting the breakpoint.
+/// 
+/// @returns {any} - The default value from the slots map.
+@function _slot($keys...) {
+    $keys: insert-nth($keys, 2, '@xx');
+    @return value('slot', $keys...);
+  }
+
 /// Get responsive pair of attribute & value from a slots map.
 /// Value should be a part of collecion with breakpoints.
 /// 

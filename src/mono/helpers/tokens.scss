@@ -11,6 +11,16 @@
   @return value('token', $keys...);
 }
 
+/// Get default (@xx) value from a tokens map
+/// 
+/// @param {string} $keys - The key to get the value from the tokens map omitting the breakpoint.
+/// 
+/// @returns {any} - The default value from the tokens map.
+@function _token($keys...) {
+  $keys: insert-nth($keys, 2, '@xx');
+  @return value('token', $keys...);
+}
+
 /// Get responsive pair of attribute & value from a tokens map.
 /// Value should be a part of collecion with breakpoints.
 /// 

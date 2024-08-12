@@ -33,14 +33,14 @@
   $range-start: config(typography, fluid, $font-name, start); 
   $range-end: config(typography, fluid, $font-name, end);
 
-  $start-breakpoint: token(font, $range-start, $font-name);
-  $end-breakpoint: token(font, $range-end, $font-name);
+  $start-breakpoint: map.get($tokens, font, $range-start, $font-name);
+  $end-breakpoint: map.get($tokens, font, $range-end, $font-name);
 
-  $min-screen-width: 10rem;
-  @if token(breakpoints, $range-start) != null {
-    $min-screen-width: token(breakpoints, $range-start);
+  $min-screen-width: rem(375);
+  @if map.get($tokens, breakpoint, $range-start) != null {
+    $min-screen-width: map.get($tokens, breakpoint, $range-start);
   }
-  $max-screen-width: token(breakpoints, $range-end);
+  $max-screen-width: map.get($tokens, breakpoint, $range-end);
   
   $min-font-size: rem(map-get($start-breakpoint, fontSize));
   $max-font-size: rem(map-get($end-breakpoint, fontSize));

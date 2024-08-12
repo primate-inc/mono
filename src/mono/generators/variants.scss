@@ -34,12 +34,13 @@
         $variableBase: to-string($variableBase, '-');
         $variableBase: str-replace($variableBase, ":", "-");
 
-        $class: "-";
+        $class: "";
 
         // Generate class name based on keys
         @each $key in $keys {
             @if (string.index($key, "@") == null) {
-                $class: $class + "-" + $key;
+                // $class: $class + "-" + $key;
+                $class: $class + $key;
             } @else {
                 @warn 'Invalid key found: #{$key}';
             }
