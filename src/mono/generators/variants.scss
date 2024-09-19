@@ -67,6 +67,10 @@
 
             // If the value is the same as default value, return the variant CSS
             @if $value != $defaultValue {
+                @if string.index($class, 'default') != null {
+                    #{'--' + $prefix + '-' + $variableBase}: $value;
+                }
+
                 &#{$class} {
                     #{'--' + $prefix + '-' + $variableBase}: $value;
                 }
