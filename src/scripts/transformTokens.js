@@ -28,8 +28,10 @@ async function transformTokens(dest) {
         config.platforms.scss.buildPath += '/';
     }
     config.platforms.scss.files.destination = path.join(userProjectDir, 'tokens.scss');
+  
+  
 
-  const StyleDictionaryExtended = StyleDictionary.extend(config);
+  const StyleDictionaryExtended = new StyleDictionary(config);
 
   StyleDictionaryExtended.buildAllPlatforms();
 }

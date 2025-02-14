@@ -24,14 +24,13 @@
   "scripts": {
     "tokens": "node ./transformTokens.js"
   },
-  "devDependencies": {},
   "dependencies": {
-    "ansis": "^3.2.0",
+    "ansis": "^3.14.0",
     "fs-extra": "^10.1.0",
     "meow": "^11.0.0",
     "path": "^0.12.7",
-    "style-dictionary": "^3.9.2",
-    "url": "^0.11.3"
+    "style-dictionary": "^4.3.3",
+    "url": "^0.11.4"
   },
   "babel": {
     "plugins": [
