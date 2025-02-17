@@ -2,6 +2,7 @@ import StyleDictionary from 'style-dictionary';
 import fs from 'fs-extra';
 import path from 'path';
 import './transforms/register.js';
+import './preprocessors/register.js';
 import defaultConfig from './defaultConfig.js';
 
 // Main function to generate tokens

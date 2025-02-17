@@ -4,146 +4,238 @@ import config from '../defaultConfig.js';
 import hexToHSL from './hexToHSL.js';
 import deepMapSearch from './deepMapSearch.js';
 
-// Recursive function to traverse the object and collect keys
-function traverseObject(obj, path = []) {
-  let result = [];
-  for (let key in obj) {
-    if (typeof obj[key] === 'object' && obj[key] !== null) {
-      result = result.concat(traverseObject(obj[key], path.concat(key)));
-    } else if (key === 'value') {
-      result.push({ path: path.concat(key), value: obj[key] });
-    }
-  }
-  return result;
-}
+// // Recursive function to traverse the object and collect keys
+// function traverseObject(obj, path = []) {
+//   let result = [];
+//   for (let key in obj) {
+//     if (typeof obj[key] === 'object' && obj[key] !== null) {
+//       result = result.concat(traverseObject(obj[key], path.concat(key)));
+//     } else if (key === 'value') {
+//       result.push({ path: path.concat(key), value: obj[key] });
+//     }
+//   }
+//   return result;
+// }
 
-// Function to resolve the value including modes against the referenced object
-function resolveValue(value, group) {
-  const path = value.replace(/[{}]/g, '').split('.');
-  const [groupName, ...restOfPath] = path;
-  const groupObject = group[groupName];
-  if (!groupObject) {
-    return null;
-  }
+// // Function to resolve the value including modes against the referenced object
+// function resolveValue(value, group) {
+//   const path = value.replace(/[{}]/g, '').split('.');
+//   const [groupName, ...restOfPath] = path;
+//   const groupObject = group[groupName];
+//   if (!groupObject) {
+//     return null;
+//   }
 
-  const modes = Object.keys(groupObject);
-  const resolvedValues = {};
+//   const modes = Object.keys(groupObject);
+//   const resolvedValues = {};
 
-  modes.forEach(mode => {
-    let resolvedValue = groupObject[mode];
-    for (let key of restOfPath) {
-      if (resolvedValue[key]) {
-        resolvedValue = resolvedValue[key];
-      } else {
-        resolvedValue = null;
-        break;
-      }
-    }
-    // Recursively resolve until the 'value' key is found
-    while (typeof resolvedValue === 'object' && resolvedValue !== null && 'value' in resolvedValue) {
-      resolvedValue = resolvedValue['value'];
-    }
-    resolvedValues[mode] = resolvedValue;
-  });
+//   modes.forEach(mode => {
+//     let resolvedValue = groupObject[mode];
+//     for (let key of restOfPath) {
+//       if (resolvedValue[key]) {
+//         resolvedValue = resolvedValue[key];
+//       } else {
+//         resolvedValue = null;
+//         break;
+//       }
+//     }
+//     // Recursively resolve until the 'value' key is found
+//     while (typeof resolvedValue === 'object' && resolvedValue !== null && 'value' in resolvedValue) {
+//       resolvedValue = resolvedValue['value'];
+//     }
+//     resolvedValues[mode] = resolvedValue;
+//   });
 
-  return resolvedValues;
-}
+//   return resolvedValues;
+// }
 
-function mergeDeep(target, source) {
-  for (let key in source) {
-    if (source[key] instanceof Object && key in target) {
-      Object.assign(source[key], mergeDeep(target[key], source[key]));
-    }
-  }
-  Object.assign(target || {}, source);
-  return target;
-}
+// function mergeDeep(target, source) {
+//   for (let key in source) {
+//     if (source[key] instanceof Object && key in target) {
+//       Object.assign(source[key], mergeDeep(target[key], source[key]));
+//     }
+//   }
+//   Object.assign(target || {}, source);
+//   return target;
+// }
 
-const elementReferences = {
-  name: 'element-references',
-  preprocessor: (dictionary, options) => {
-    console.log('Preprocessing element references');
-    const elements = dictionary.element;
-    const elementsGroups = Object.keys(elements);
+// const transformJson = (obj) => {
+//   const paths = [];
+  
+//   // Helper function to check if key starts with @ or #
+//   const isSpecialKey = (key) => key.startsWith('@') || key.startsWith('#');
+  
+//   // Helper function to check if object is a leaf node
+//   const isLeafNode = (obj) => {
+//     return obj && typeof obj === 'object' && 
+//            ('value' in obj && 'type' in obj);
+//   };
 
-    let newElementsObject = {};
+//   // Function to collect all paths and their associated data
+//   const collectPaths = (obj, currentPath = [], specialKeys = []) => {
+//     if (!obj || typeof obj !== 'object') return;
 
-    const allValues = traverseObject(elements);
-    // console.log('All Values:', allValues);
+//     // If we found a leaf node, save its path and data
+//     if (isLeafNode(obj)) {
+//       paths.push({
+//         path: currentPath,
+//         specialKeys: specialKeys,
+//         data: obj
+//       });
+//       return;
+//     }
 
-    elementsGroups.forEach(group => {
-      const groupObject = elements[group];
-      // console.log('Group:', group, ' Object:', groupObject);
+//     // Process each key
+//     Object.keys(obj).forEach(key => {
+//       const newPath = [...currentPath];
+//       if (!isSpecialKey(key)) {
+//         newPath.push(key);
+//         collectPaths(obj[key], newPath, specialKeys);
+//       } else {
+//         // For special keys, traverse their contents with the special key added to the specialKeys array
+//         collectPaths(obj[key], currentPath, [...specialKeys, key]);
+//       }
+//     });
+//   };
 
-      const filteredValues = allValues.filter(item => item.path[0] === group);
-      // console.log('Filtered Values for group', group, ':', filteredValues);
+//   // Function to set a value in nested object based on path
+//   const setNestedValue = (obj, path, value) => {
+//     let current = obj;
+//     for (let i = 0; i < path.length - 1; i++) {
+//       if (!(path[i] in current)) {
+//         current[path[i]] = {};
+//       }
+//       current = current[path[i]];
+//     }
+//     current[path[path.length - 1]] = value;
+//   };
 
-      filteredValues.forEach(item => {
-        // Extract the path and value
-        const valuePath = item.path;
-        const referenceValue = item.value;
+//   // Collect all paths
+//   collectPaths(obj);
 
-        // Skip the last key to get the original object path
-        const originalObjectPath = valuePath.slice(0, -1);
+//   // Build the new object
+//   const result = {};
+//   paths.forEach(({ path, specialKeys, data }) => {
+//     if (specialKeys.length === 0) {
+//       // If no special keys, just set the value directly
+//       setNestedValue(result, path, data);
+//     } else {
+//       // If there are special keys, create the structure with special keys as parents of leaf node
+//       let current = result;
+//       path.forEach((key, index) => {
+//         if (index === path.length - 1) {
+//           if (!(key in current)) {
+//             current[key] = {};
+//           }
+//           specialKeys.forEach(specialKey => {
+//             if (!(specialKey in current[key])) {
+//               current[key][specialKey] = {};
+//             }
+//             current[key][specialKey] = data;
+//           });
+//         } else {
+//           if (!(key in current)) {
+//             current[key] = {};
+//           }
+//           current = current[key];
+//         }
+//       });
+//     }
+//   });
 
-        // Function to get the object by path
-        function getObjectByPath(obj, path) {
-          return path.reduce((acc, key) => acc && acc[key], obj);
-        }
+//   return result;
+// };
 
-        // Extract the original object
-        const originalObject = getObjectByPath(elements, originalObjectPath);
+// const elementReferences = {
+//   name: 'element-references',
+//   preprocessor: (dictionary, options) => {
+//     console.log('Preprocessing element references');
+//     const elements = dictionary.element;
+//     const elementsGroups = Object.keys(elements);
 
-        // Resolve the reference value against the dictionary
-        const resolvedReferenceValues = resolveValue(referenceValue, dictionary);
+//     let newElementsObject = {};
 
-        // Save both as variables
-        // console.log('Original Object:', originalObject);
-        // console.log('Resolved Reference Values:', resolvedReferenceValues);
+//     const allValues = traverseObject(elements);
+//     // console.log('All Values:', allValues);
 
-        // Iterate through the modes and update the path with the mode
-        Object.keys(resolvedReferenceValues).forEach(mode => {
-          const modePath = [group, mode, ...originalObjectPath.slice(1)];
-          const modeValue = resolvedReferenceValues[mode];
+//     elementsGroups.forEach(group => {
+//       const groupObject = elements[group];
+//       // console.log('Group:', group, ' Object:', groupObject);
 
-          // Create a new object with the updated path and value
-          const newObject = {
-            ...originalObject,
-            value: modeValue
-          };
+//       const filteredValues = allValues.filter(item => item.path[0] === group);
+//       // console.log('Filtered Values for group', group, ':', filteredValues);
 
-          console.log('Mode Path:', modePath);
-          console.log('New Object:', newObject);
+//       filteredValues.forEach(item => {
+//         // Extract the path and value
+//         const valuePath = item.path;
+//         const referenceValue = item.value;
 
-          // Merge the new object back into the dictionary
-          newElementsObject = mergeDeep(newElementsObject, setObjectByPath(newElementsObject, modePath, newObject));
-        });
-      });
-    });
+//         // Skip the last key to get the original object path
+//         const originalObjectPath = valuePath.slice(0, -1);
 
-    // console.log('New Elements:', JSON.stringify(newElementsObject, null, 5));
-    // dictionary.element = mergeDeep(dictionary.element, newElementsObject);
-    dictionary.element = newElementsObject;
+//         // Function to get the object by path
+//         function getObjectByPath(obj, path) {
+//           return path.reduce((acc, key) => acc && acc[key], obj);
+//         }
 
-    return dictionary;
-  },
-};
+//         // Extract the original object
+//         const originalObject = getObjectByPath(elements, originalObjectPath);
 
-// Helper function to set an object by path
-function setObjectByPath(obj, path, value) {
-  let current = obj;
-  path.forEach((key, index) => {
-    if (index === path.length - 1) {
-      current[key] = value;
-    } else {
-      current[key] = current[key] || {};
-      current = current[key];
-    }
-  });
-  return obj;
-}
+//         // Resolve the reference value against the dictionary
+//         const resolvedReferenceValues = resolveValue(referenceValue, dictionary);
 
-StyleDictionary.registerPreprocessor(elementReferences);
+//         // Save both as variables
+//         // console.log('Original Object:', originalObject);
+//         // console.log('Resolved Reference Values:', resolvedReferenceValues);
+
+//         // Iterate through the modes and update the path with the mode
+//         Object.keys(resolvedReferenceValues).forEach(mode => {
+//           const modePath = [group, mode, ...originalObjectPath.slice(1)];
+//           const modeValue = resolvedReferenceValues[mode];
+
+//           // Create a new object with the updated path and value
+//           const newObject = {
+//             ...originalObject,
+//             value: modeValue
+//           };
+
+//           console.log('Mode Path:', modePath);
+//           console.log('New Object:', newObject);
+
+//           // Merge the new object back into the dictionary
+//           newElementsObject = mergeDeep(newElementsObject, setObjectByPath(newElementsObject, modePath, newObject));
+//         });
+//       });
+//     });
+
+//     // console.log('New Elements:', JSON.stringify(newElementsObject, null, 5));
+//     // dictionary.element = mergeDeep(dictionary.element, newElementsObject);
+//     dictionary.element = newElementsObject;
+
+//     // console.log('Transform test: ', JSON.stringify(dictionary, null, 3));
+//     const transformedDictionary = transformJson(dictionary);
+//     // console.log('Transform test: ', JSON.stringify(transformedDictionary, null, 3));
+
+//     // return dictionary;
+//     return transformedDictionary;
+//   },
+// };
+
+// // Helper function to set an object by path
+// function setObjectByPath(obj, path, value) {
+//   let current = obj;
+//   path.forEach((key, index) => {
+//     if (index === path.length - 1) {
+//       current[key] = value;
+//     } else {
+//       current[key] = current[key] || {};
+//       current = current[key];
+//     }
+//   });
+//   return obj;
+// }
+
+// StyleDictionary.registerPreprocessor(elementReferences);
 
 
 
@@ -152,6 +244,7 @@ StyleDictionary.registerPreprocessor(elementReferences);
 
 
 // Transform px values to rem
+
 StyleDictionary.registerTransform({
   name: 'dimension/pxToRem',
   type: 'value',
@@ -208,27 +301,3 @@ StyleDictionary.registerTransform({
     return deepMapSearch(token.value);
   }
 })
-
-// // Filter out typography to prevent double font tokens
-// StyleDictionary.registerFilter({
-//   name: 'noTypography',
-//   matcher: function(token) {
-//     if (token.attributes != undefined) {
-//       if (token.attributes.category != undefined) {
-//         return !['typography'].includes(token.attributes.category)
-//       }
-//     }
-//     return true;
-
-//     // return !['typography'].includes(token.attributes.category)
-//   }
-// })
-
-// // Generic filtering
-// StyleDictionary.registerFilter({
-//   name: 'validToken',
-//   matcher: function(token) {
-//     return ['dimension', 'string', 'number', 'color'].includes(token.type)
-//   }
-// })
-

@@ -3,7 +3,6 @@
 
 import meow from 'meow';
 import init from './src/scripts/init.js';
-import copyExamples from './src/scripts/copyExamples.js';
 import { transformTokens } from './src/scripts/transformTokens.js'
 
 const pkgName = 'MONO';
@@ -39,14 +38,12 @@ const currentCommand = cli.input[0];
 
 switch (currentCommand) {
 	case 'init' :
-        // console.log(`Initializing ${pkgName}...`);
 		init(cli.flags.path)
         console.log('Package initialization completed.');
 		break
     case 'tokens' :
-		console.log('Generating SCSS tokens.')
-        transformTokens(cli.flags.path)
-		console.log('Tokens generation complete.')
+		console.log('Generating tokens...');
+		transformTokens(cli.flags.path);
 		break
 	default:
 		console.log(`Command '${currentCommand}' not found.`)

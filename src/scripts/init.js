@@ -69,7 +69,8 @@ async function copyFilesArray(arr, dest) {
 async function init(userPath) {
     logo(); // Display the mono logo
 
-    const files = ['index.scss', 'config.scss', 'slots.scss', 'config.js']; // Array of files to copy
+    // const files = ['index.scss', 'config.scss', 'slots.scss', 'config.js']; // Array of files to copy
+    const files = ['index.scss', 'config.scss', 'slots.scss']; // Array of files to copy
 
     const dest = path.join(userPath, 'mono'); 
     await copyFilesArray(files, dest); // Copy the files to the specified destination
