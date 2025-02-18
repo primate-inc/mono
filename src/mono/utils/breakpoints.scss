@@ -2,16 +2,28 @@
 @use 'sass:list';
 
 // Get breakpoint value from tokens map
-@function breakpoint($keys...) {
+@function breakpoint($key) {
     $breakpoints: map.merge(map.get($tokens, "breakpoint"), map.get($configs, breakpoints));
 
-    $value: map.get($breakpoints, $keys...);
+    // @if str-index($key, '@') == 1 {
+    //   $key: str-slice($key, 2);
+    // }
+
+    $value: map.get($breakpoints, $key);
     @return $value;
   }
   
-  // Get map of sorted breakpoints prepended with `'default': 0` from tokens map
+  // Get map of sorted breakpoints from tokens map and config custom breakpoints
   @function sortedBreakpoints() {
     $breakpoints: map.merge(map.get($tokens, "breakpoint"), map.get($configs, breakpoints));
+
+    // // Prepend all breakpoints with @ character
+    // $prefixed-breakpoints: ();
+    // @each $key, $value in $breakpoints {
+    //   $prefixed-breakpoints: map.set($prefixed-breakpoints, "@#{$key}", $value);
+    // }
+    // $breakpoints: $prefixed-breakpoints;
+
     @return map-sort-by-values($breakpoints);
   }
 

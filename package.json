@@ -1,8 +1,11 @@
 {
   "name": "@primate-inc/mono",
-  "version": "1.0.0",
+  "version": "2.0.0alpha",
+  "description": "A design token generator",
+  "author": "Raf Zielinski",
   "license": "MIT",
   "keywords": [
+    "mono",
     "sass",
     "scss",
     "css",

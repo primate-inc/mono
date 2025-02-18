@@ -29,6 +29,7 @@
 /// @param {string} $keys - The key to get the value from the map.
 /// 
 /// @returns {void} - The responsive pair of attribute & value from the map.
+// @mixin token($attr, $collection, $keys...) {
 @mixin token($attr, $collection, $keys...) {
     @include responsive-value($attr, 'token', $collection, $keys...);
 }

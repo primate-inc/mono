@@ -60,17 +60,19 @@
   // }
 
   @if (type-of($map) == 'map') {
-    @each $screen, $value in sortedBreakpoints() {
-      $stepSize: map.get($map, string.quote($screen), $keys...);
+    $scopedMap: map.get($map, $keys...);
 
-      @if ($stepSize != null) {
+    @if ($scopedMap != null) {
+      @each $screen, $value in sortedBreakpoints() {     
+
         $check: true;
-        $value: $stepSize;
+        $value: map.get($scopedMap, string.quote($screen));
 
-        @include screen($screen) {
-          @if (type-of($value) == 'string') {
-              $value: unquote($value); 
-          }
+        @if $value != null {
+          @include screen($screen) {
+            @if (type-of($value) == 'string') {
+                $value: unquote($value); 
+            }
 
             @if (type-of($attr) == 'list') {
               @each $attribute in $attr {
@@ -79,6 +81,7 @@
             } @else {
               #{$attr}: #{$value};
             }
+          }
         }
       }
     }

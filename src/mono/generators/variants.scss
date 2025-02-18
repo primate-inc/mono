@@ -85,15 +85,27 @@
 /// @param $group - The group name for the tokens
 /// @param $keys... - The keys to access the tokens map
 @mixin variants($prefix, $group, $keys...) {
-  $breakpoints: sortedBreakpoints();
+    @include find-variants($prefix, $group, $keys...);
 
-  @each $screen, $value in $breakpoints {
-    $keysGroup: ($group, $screen);
-    $newKeys: list.join($keysGroup, $keys);
-    $excludedKeys: $newKeys;
+    @debug '-------';
+    @debug '-------';
+    @debug $prefix;
+    @debug $group;
+    @debug $keys;
+    @debug map.get($tokens, $group, $keys...);
+    @debug '-------';
+    @debug '-------';
 
-    @include screen($screen) {
-      @include find-variants($prefix, $excludedKeys, $newKeys...);
-    }
-  }
+
+//   $breakpoints: sortedBreakpoints();
+
+//   @each $screen, $value in $breakpoints {
+//     $keysGroup: ($group, $screen);
+//     $newKeys: list.join($keysGroup, $keys);
+//     $excludedKeys: $newKeys;
+
+//     @include screen($screen) {
+//       @include find-variants($prefix, $excludedKeys, $newKeys...);
+//     }
+//   }
 }
