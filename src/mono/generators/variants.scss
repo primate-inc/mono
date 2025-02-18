@@ -83,6 +83,8 @@
         //   @debug "  Values: ", $value;
 
         @each $sub-key, $sub-value in $value {
+
+          // Check if the special key is a responsive key
           @if is-responsive-key($sub-key) {
             &#{$class-name} {
               @include token(
@@ -94,12 +96,12 @@
             }
           }
 
+          // Check if the special key is a theme key
           @if is-theme-key($sub-key) {
             $theme-name: string.slice($sub-key, 2);
 
             // @at-root .theme-#{$theme-name} & { // less specific selector, pretty much the same for nested classes
-            .theme-#{$theme-name} & {
-              // more specific selector, we want this for now
+            .theme-#{$theme-name} & { // more specific selector, we want this for now
               &#{$class-name} {
                 --_#{$prefix}-#{$var-name}: #{$sub-value};
               }
@@ -114,10 +116,14 @@
       // We've reached a leaf node with a direct value
       $class-name: generate-class-name($current-path);
       $var-name: list.nth($current-path, list.length($current-path));
-      @debug "Leaf node reached:";
-      @debug "  Class name: #{$class-name}";
-      @debug "  Variable name: #{$var-name}";
-      @debug "  Value: ", $value;
+      // @debug "Leaf node reached:";
+      // @debug "  Class name: #{$class-name}";
+      // @debug "  Variable name: #{$var-name}";
+      // @debug "  Value: ", $value;
+
+      &#{$class-name} {
+        --_#{$prefix}-#{$var-name}: #{$value};
+      }
     }
   }
 }
