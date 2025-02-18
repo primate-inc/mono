@@ -2,81 +2,124 @@
 @use "sass:list";
 @use "sass:string";
 
-/// Find variants of CSS variables from a tokens map
-///
-/// @param $prefix - The prefix for the CSS variable names
-/// @param $excludedKeys - The keys to exclude from the variants
-/// @param $keys... - The keys to access the tokens map
-@mixin find-variants($prefix, $excludedKeys, $keys...) {
-    $value: map.get($tokens, $keys...);
-    $originalKeys: $keys;
+// Validates if the key starts with -- or -
+@function is-valid-key($key) {
+  @if not string.slice($key, 1, 1) == "-" {
+    @error "Invalid key format: #{$key}. Must start with -- or -";
+    @return false;
+  }
+  @return true;
+}
 
-    // Recursively iterate through the value map
-    @if (type-of($value) == map) {
-        @each $k, $v in $value {
-            $newKeys: list.append($keys, $k);
-            @include find-variants($prefix, $excludedKeys, $newKeys...);
-        }
-    } @else {
-        $variableBase: (list.nth($keys, -1));
+// Checks if key is a root level key (starts with --)
+@function is-root-key($key) {
+  @return string.slice($key, 1, 2) == "--";
+}
 
-        @if string.index($variableBase, ":") != null {
-            $variableBase: list.append(list.nth($keys, -2), $variableBase);
-        }
+// Checks if the key is a variant key (starts with single -)
+@function is-variant-key($key) {
+  @return string.slice($key, 1, 1) == "-" and string.slice($key, 1, 2) != "--";
+}
 
-        $excludedKeys: list.join($excludedKeys, $variableBase);
+// Checks if the key is a special key (starts with @ or #)
+@function is-special-key($key) {
+  $first-char: string.slice($key, 1, 1);
+  @return $first-char == "@" or $first-char == "#";
+}
 
-        // Remove excluded keys from the keys list
-        @each $excludedKey in $excludedKeys {
-            $keys: remove-nth($keys, list.index($keys, $excludedKey));
-        }
+@function is-responsive-key($key) {
+  $first-char: string.slice($key, 1, 1);
+  @return $first-char == "@";
+}
 
-        $variableBase: to-string($variableBase, '-');
-        $variableBase: str-replace($variableBase, ":", "-");
+@function is-theme-key($key) {
+  $first-char: string.slice($key, 1, 1);
+  @return $first-char == "#";
+}
 
-        $class: "";
-
-        // Generate class name based on keys
-        @each $key in $keys {
-            @if (string.index($key, "@") == null) {
-                // $class: $class + "-" + $key;
-                $class: $class + $key;
-            } @else {
-                @warn 'Invalid key found: #{$key}';
-            }
-        }
-
-        @if $value != null {
-            // Find the default value for the variant
-            $defaultValueKeys: null;
-            $defaultValue: null;
-
-            @each $key in $originalKeys {
-                @if (string.index($key, "@") != null) {
-                    // Replace the second list item with 'default'
-                    @if $key != '@xx' {
-                        $defaultValueKeys: replace-nth($originalKeys, 2, '@xx');
-                    }
-                }
-            }
-
-            // Resolve the default value
-            @if $defaultValueKeys {
-                $defaultValue: token($defaultValueKeys...);
-            }
-
-            // If the value is the same as default value, return the variant CSS
-            @if $value != $defaultValue {
-                @if string.index($class, 'default') != null {
-                    #{'--' + $prefix + '-' + $variableBase}: $value;
-                }
-
-                &#{$class} {
-                    #{'--' + $prefix + '-' + $variableBase}: $value;
-                }
-            }
-        }
+// Generates the class name from the key path
+@function generate-class-name($path) {
+  $result: "";
+  @each $segment in $path {
+    @if is-root-key($segment) {
+      $result: $result + $segment;
+    } @else if is-variant-key($segment) {
+      $result: $result + $segment;
     }
+  }
+  @return $result;
+}
+
+// Main function to traverse the variants map
+@mixin traverse-variants($prefix, $map, $path: (), $parent-key: null) {
+  @each $key, $value in $map {
+    // Validate key format
+    @if $parent-key == null and not is-root-key($key) {
+      @error "Root level key must start with --: #{$key}";
+    } @else if $parent-key != null and not is-valid-key($key) {
+      @error "Invalid key format: #{$key}";
+    }
+
+    $current-path: append($path, $key);
+
+    @if type-of($value) == "map" {
+      // Check if we've reached a map with only special keys
+      $all-special: true;
+      @each $sub-key, $_ in $value {
+        @if not is-special-key($sub-key) {
+          $all-special: false;
+          // @break;
+        }
+      }
+
+      @if $all-special {
+        // We've reached a leaf node with special keys
+        $class-name: generate-class-name($current-path);
+        $var-name: list.nth($current-path, list.length($current-path));
+        //   @debug "Leaf node reached:";
+        //   @debug "  Current path: #{$current-path}";
+        //   @debug "  Class name: #{$class-name}";
+        //   @debug "  Variable name: #{$var-name}";
+        //   @debug "  Values: ", $value;
+
+        @each $sub-key, $sub-value in $value {
+          @if is-responsive-key($sub-key) {
+            &#{$class-name} {
+              @include token(
+                "--_#{$prefix}-#{$var-name}",
+                "element",
+                "button",
+                $current-path...
+              );
+            }
+          }
+
+          @if is-theme-key($sub-key) {
+            $theme-name: string.slice($sub-key, 2);
+
+            // @at-root .theme-#{$theme-name} & { // less specific selector, pretty much the same for nested classes
+            .theme-#{$theme-name} & {
+              // more specific selector, we want this for now
+              &#{$class-name} {
+                --_#{$prefix}-#{$var-name}: #{$sub-value};
+              }
+            }
+          }
+        }
+      } @else {
+        // Continue traversing
+        @include traverse-variants($prefix, $value, $current-path, $key);
+      }
+    } @else {
+      // We've reached a leaf node with a direct value
+      $class-name: generate-class-name($current-path);
+      $var-name: list.nth($current-path, list.length($current-path));
+      @debug "Leaf node reached:";
+      @debug "  Class name: #{$class-name}";
+      @debug "  Variable name: #{$var-name}";
+      @debug "  Value: ", $value;
+    }
+  }
 }
 
 /// Generate variants of CSS variables from a tokens map
@@ -85,27 +128,32 @@
 /// @param $group - The group name for the tokens
 /// @param $keys... - The keys to access the tokens map
 @mixin variants($prefix, $group, $keys...) {
-    @include find-variants($prefix, $group, $keys...);
+  // @include find-variants($prefix, $group, $keys...);
 
-    @debug '-------';
-    @debug '-------';
-    @debug $prefix;
-    @debug $group;
-    @debug $keys;
-    @debug map.get($tokens, $group, $keys...);
-    @debug '-------';
-    @debug '-------';
+  // @debug '-------';
+  // @debug '-------';
+  // @debug $prefix;
+  // // @debug $group;
+  // @debug $keys;
+  // @debug map.get($tokens, $keys...);
+  // @debug '-------';
+  // @debug '-------';
 
+  $variantsMap: map.get($tokens, $group, $keys...);
 
-//   $breakpoints: sortedBreakpoints();
+  $prefix: list.nth($keys, 1);
 
-//   @each $screen, $value in $breakpoints {
-//     $keysGroup: ($group, $screen);
-//     $newKeys: list.join($keysGroup, $keys);
-//     $excludedKeys: $newKeys;
+  @include traverse-variants($prefix, $variantsMap);
 
-//     @include screen($screen) {
-//       @include find-variants($prefix, $excludedKeys, $newKeys...);
-//     }
-//   }
+  //   $breakpoints: sortedBreakpoints();
+
+  //   @each $screen, $value in $breakpoints {
+  //     $keysGroup: ($group, $screen);
+  //     $newKeys: list.join($keysGroup, $keys);
+  //     $excludedKeys: $newKeys;
+
+  //     @include screen($screen) {
+  //       @include find-variants($prefix, $excludedKeys, $newKeys...);
+  //     }
+  //   }
 }
