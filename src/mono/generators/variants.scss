@@ -88,7 +88,7 @@
           @if is-responsive-key($sub-key) {
             &#{$class-name} {
               @include token(
-                "--_#{$prefix}-#{$var-name}",
+                "--#{$prefix}-#{$var-name}",
                 "element",
                 "button",
                 $current-path...
@@ -103,7 +103,7 @@
             // @at-root .theme-#{$theme-name} & { // less specific selector, pretty much the same for nested classes
             .theme-#{$theme-name} & { // more specific selector, we want this for now
               &#{$class-name} {
-                --_#{$prefix}-#{$var-name}: #{$sub-value};
+                --#{$prefix}-#{$var-name}: #{$sub-value};
               }
             }
           }
@@ -122,7 +122,7 @@
       // @debug "  Value: ", $value;
 
       &#{$class-name} {
-        --_#{$prefix}-#{$var-name}: #{$value};
+        --#{$prefix}-#{$var-name}: #{$value};
       }
     }
   }
@@ -134,32 +134,8 @@
 /// @param $group - The group name for the tokens
 /// @param $keys... - The keys to access the tokens map
 @mixin variants($prefix, $group, $keys...) {
-  // @include find-variants($prefix, $group, $keys...);
-
-  // @debug '-------';
-  // @debug '-------';
-  // @debug $prefix;
-  // // @debug $group;
-  // @debug $keys;
-  // @debug map.get($tokens, $keys...);
-  // @debug '-------';
-  // @debug '-------';
-
   $variantsMap: map.get($tokens, $group, $keys...);
-
-  $prefix: list.nth($keys, 1);
+  // $prefix: list.nth($keys, 1);
 
   @include traverse-variants($prefix, $variantsMap);
-
-  //   $breakpoints: sortedBreakpoints();
-
-  //   @each $screen, $value in $breakpoints {
-  //     $keysGroup: ($group, $screen);
-  //     $newKeys: list.join($keysGroup, $keys);
-  //     $excludedKeys: $newKeys;
-
-  //     @include screen($screen) {
-  //       @include find-variants($prefix, $excludedKeys, $newKeys...);
-  //     }
-  //   }
 }
