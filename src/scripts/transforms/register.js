@@ -295,7 +295,7 @@ StyleDictionary.registerTransform({
   type: 'value',
   filter: token => {
     // return typeof(token.value) === 'object' && typeof(token.original.value) === 'object';
-    return typeof(token.value) === 'object';
+    return typeof(token.value) === 'object' && token.value !== null;
   },
   transform: token => {
     return deepMapSearch(token.value);

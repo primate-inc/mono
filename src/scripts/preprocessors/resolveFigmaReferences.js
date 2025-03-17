@@ -12,19 +12,35 @@ function traverseObject(obj, path = []) {
 }
 
 // Function to resolve the value including modes against the referenced object
-function resolveValue(value, group) {
+function resolveValue(value, dictionary) {
+  if (typeof value !== "string" || !value.includes("{") || !value.includes("}")) {
+    return value;
+  }
+
   const path = value.replace(/[{}]/g, "").split(".");
-  const [groupName, ...restOfPath] = path;
-  const groupObject = group[groupName];
-  if (!groupObject) {
+  const [collectionName, ...restOfPath] = path;
+  const collectionObject = dictionary[collectionName];
+  if (!collectionObject) {
     return null;
   }
 
-  const modes = Object.keys(groupObject);
+  const modes = Object.keys(collectionObject);
+
+  const validModes = modes.filter(mode => mode.startsWith('@') || mode.startsWith('#'));
+
+  if (validModes.length === 0) {
+    return value;
+  }
+
   const resolvedValues = {};
 
+  // console.log("Resolving Value for", collectionName, "with Modes:", modes, "and Path:", restOfPath);
+  // console.log("Collection Object:", dictionary);
+
   modes.forEach((mode) => {
-    let resolvedValue = groupObject[mode];
+    let resolvedValue = collectionObject[mode];
+    // console.log("Resolved Value for mode", mode, ":", resolvedValue);
+
     for (let key of restOfPath) {
       if (resolvedValue[key]) {
         resolvedValue = resolvedValue[key];
@@ -43,6 +59,8 @@ function resolveValue(value, group) {
     }
     resolvedValues[mode] = resolvedValue;
   });
+
+  console.log("Resolved Value for", value, ":", resolvedValues);
 
   return resolvedValues;
 }
@@ -73,69 +91,74 @@ function setObjectByPath(obj, path, value) {
 
 function resolveFigmaReferences(dictionary) {
     console.log("Preprocessing: Resolving Figma References...");
-    const elements = dictionary.element;
-    const elementsGroups = Object.keys(elements);
+    console.log("Dictionary:", dictionary);
+    const originalDictionary = JSON.parse(JSON.stringify(dictionary));
 
-    let newElementsObject = {};
+    Object.keys(dictionary).forEach((collectionKey) => {
+      const collection = dictionary[collectionKey];
+      const collectionGroups = Object.keys(collection);
 
-    const allValues = traverseObject(elements);
-    // console.log('All Values:', allValues);
+      let newCollectionObject = {};
 
-    elementsGroups.forEach((group) => {
-      const groupObject = elements[group];
-      // console.log('Group:', group, ' Object:', groupObject);
+      const allValues = traverseObject(collection);
+      // console.log('All Values:', allValues);
 
-      const filteredValues = allValues.filter((item) => item.path[0] === group);
-      // console.log('Filtered Values for group', group, ':', filteredValues);
+      collectionGroups.forEach((group) => {
+        const groupObject = collection[group];
+        // console.log('Group:', group, ' Object:', groupObject);
 
-      filteredValues.forEach((item) => {
-        // Extract the path and value
-        const valuePath = item.path;
-        const referenceValue = item.value;
+        const filteredValues = allValues.filter((item) => item.path[0] === group);
+        // console.log('Filtered Values for group', group, ':', filteredValues);
 
-        // Skip the last key to get the original object path
-        const originalObjectPath = valuePath.slice(0, -1);
+        filteredValues.forEach((item) => {
+          // Extract the path and value
+          const valuePath = item.path;
+          const referenceValue = item.value;
 
-        // Function to get the object by path
-        function getObjectByPath(obj, path) {
-          return path.reduce((acc, key) => acc && acc[key], obj);
-        }
+          // Skip the last key to get the original object path
+          const originalObjectPath = valuePath.slice(0, -1);
 
-        // Extract the original object
-        const originalObject = getObjectByPath(elements, originalObjectPath);
+          // Function to get the object by path
+          function getObjectByPath(obj, path) {
+            return path.reduce((acc, key) => acc && acc[key], obj);
+          }
 
-        // Resolve the reference value against the dictionary
-        const resolvedReferenceValues = resolveValue(
-          referenceValue,
-          dictionary
-        );
+          // Extract the original object
+          const originalObject = getObjectByPath(collection, originalObjectPath);
 
-        // Iterate through the modes and update the path with the mode
-        Object.keys(resolvedReferenceValues).forEach((mode) => {
-          const modePath = [group, mode, ...originalObjectPath.slice(1)];
-          const modeValue = resolvedReferenceValues[mode];
-
-          // Create a new object with the updated path and value
-          const newObject = {
-            ...originalObject,
-            value: modeValue,
-          };
-
-          // console.log("Mode Path:", modePath);
-          // console.log("New Object:", newObject);
-
-          // Merge the new object back into the dictionary
-          newElementsObject = mergeDeep(
-            newElementsObject,
-            setObjectByPath(newElementsObject, modePath, newObject)
+          // Resolve the reference value against the dictionary
+          const resolvedReferenceValues = resolveValue(
+            referenceValue,
+            originalDictionary
           );
+
+          // Iterate through the modes and update the path with the mode
+          Object.keys(resolvedReferenceValues).forEach((mode) => {
+            const modePath = [group, mode, ...originalObjectPath.slice(1)];
+            const modeValue = resolvedReferenceValues[mode];
+
+            // Create a new object with the updated path and value
+            const newObject = {
+              ...originalObject,
+              value: modeValue,
+            };
+
+            // console.log("Mode Path:", modePath);
+            // console.log("New Object:", newObject);
+
+            // Merge the new object back into the dictionary
+            newCollectionObject = mergeDeep(
+              newCollectionObject,
+              setObjectByPath(newCollectionObject, modePath, newObject)
+            );
+          });
         });
       });
+
+      originalDictionary[collectionKey] = newCollectionObject;
     });
 
-    dictionary.element = newElementsObject;
-
-    return dictionary;
+    return originalDictionary;
 };
 
 export default resolveFigmaReferences;
