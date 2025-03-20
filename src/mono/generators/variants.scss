@@ -19,6 +19,7 @@
 // Checks if the key is a variant key (starts with single -)
 @function is-variant-key($key) {
   @return string.slice($key, 1, 1) == "-" and string.slice($key, 1, 2) != "--";
+  // @return string.slice($key, 1, 1) == "-";
 }
 
 // Checks if the key is a special key (starts with @ or #)
@@ -48,116 +49,272 @@
 @function generate-class-name($path) {
   $result: "";
   @each $segment in $path {
-    @if is-root-key($segment) {
+    @if ends-with($segment, "*") {
+      $segment: string.slice($segment, 1, -2);
+    }
+
+    $result: $result + $segment;
+  }
+  @return $result;
+}
+
+// Generates the variable name from the key path
+@function generate-variable-name($prefix, $path) {
+  $result: "--" + $prefix;
+  @each $segment in $path {
+    @if string.slice($segment, 1, 1) == "-" {
       $result: $result + $segment;
-    } @else if is-variant-key($segment) {
-      $result: $result + $segment;
+    } @else if string.slice($segment, 1, 1) == ":" {
+      $result: $result + str-replace($segment, ":", "--");
+    } @else {
+      $result: $result + '-' + $segment;
     }
   }
   @return $result;
 }
 
 // Main function to traverse the variants map
-@mixin traverse-variants($prefix, $group, $original-keys: (), $map, $path: (), $parent-key: null) {
+@mixin traverse-variants($prefix, $collection, $name, $map, $class-parts: (), $variable-parts: ()) {
   @each $key, $value in $map {
-    // Validate key format
-    @if $parent-key == null and not is-root-key($key) {
-      @error "Root level key must start with --: #{$key}";
-    } @else if $parent-key != null and not is-valid-key($key) {
-      @error "Invalid key format: #{$key}";
-    }
-
-    $current-path: append($path, $key);
+    // @debug '---START';
+    $current-class-parts: $class-parts;
+    $current-variable-parts: $variable-parts;
 
     @if type-of($value) == "map" {
-      // Check if we've reached a map with only special keys
-      $all-special: true;
-      @each $sub-key, $_ in $value {
-        @if not is-special-key($sub-key) {
-          $all-special: false;
-          // @break;
-        }
-      }
 
-      @if $all-special {
-        // We've reached a leaf node with special keys
-        $class-name: generate-class-name($current-path);
-        $var-name: list.nth($current-path, list.length($current-path));
-
-        // If current key is a state key then we need to modify the variable name
-        @if is-state-key($key) {
-          $state-key: $key;
-          $modified-state-key: str-replace($state-key, ":", "--");
-          $property-key: list.nth($current-path, list.length($current-path) - 1);
-
-          $var-name: #{$property-key + $modified-state-key};
-        }
-
-        // @debug "Leaf node reached:";
-        // @debug "  Current path: #{$current-path}";
-        // @debug "  Class name: #{$class-name}";
-        // @debug "  Variable name: #{$var-name}";
-        // @debug "  Values: ", $value;
-
-        @each $sub-key, $sub-value in $value {
-
-          // Check if the special key is a state key
-          @if is-state-key($sub-key) {
-            @include traverse-variants($prefix, $group, $original-keys, $value, $current-path, $sub-key);
+      // @if is-valid-key($key) {
+      @if is-root-key($key) or is-variant-key($key) {
+        // If the key is a variant key then append it to the class parts
+        // @debug "Key: #{$key} is a variant key";
+        
+        @if $current-class-parts == () {
+          // If no class parts are present then define the root part
+          @if is-root-key($key) {
+            // @debug "Key: #{$key} is a root key";
+            $current-class-parts: append($current-class-parts, $key);
+          } @else {
+            // @debug "Key: #{$key} is not a root key, using collection name: #{$collection} instead";
+            $current-class-parts: append($current-class-parts, '--' + $collection);
+            $current-class-parts: append($current-class-parts, $key);
           }
+        } @else {
+          // else append the variant key to the class parts
+          $current-class-parts: append($current-class-parts, $key);
+        }
 
-          // Check if the special key is a responsive key
-          @if is-responsive-key($sub-key) {
-            $token-keys: list.join($original-keys, $current-path);
+        // @debug "------------- Current Class Parts Check: ", $current-class-parts;
 
-            &#{$class-name} {
-              @include token(
-                "--#{$prefix}-#{$var-name}",
-                $group,
-                $token-keys...
-              );
+      } @else {
+        // If the key is not a variant key check for special keys or continue traversal
+        // @debug "Key: #{$key} is not a variant key";
+
+        $current-variable-parts: append($current-variable-parts, $key);
+
+        // Check if we've reached a map with only special keys
+        $all-special: true;
+        @each $sub-key, $_ in $value {
+          @if not is-special-key($sub-key) {
+            $all-special: false;
+          }
+        }
+
+        @if $all-special {
+          // We've reached a leaf node with special keys
+          // @debug "Key: #{$key} has only special keys";
+          // $current-class-parts: append($current-class-parts, $key);
+
+          @each $sub-key, $sub-value in $value {
+            // Check if the special key is a state key
+            @if is-state-key($sub-key) {
+              // @debug "State key found: #{$sub-key}";
+              // @debug "  Class name: #{$class-name}";
+              // @debug "  Variable name: #{$variable-name}";
+              // @debug "  Value: #{$sub-value}";
+
+              @include traverse-variants($prefix, $collection, $name, $sub-value, $current-class-parts, $current-variable-parts);
+      
             }
-          }
 
-          // Check if the special key is a theme key
-          @if is-theme-key($sub-key) {
-            $theme-name: string.slice($sub-key, 2);
 
-            // @at-root .theme-#{$theme-name} & { // less specific selector, pretty much the same for nested classes
-            .theme-#{$theme-name} & { // more specific selector, we want this for now
-              &#{$class-name} {
-                --#{$prefix}-#{$var-name}: #{$sub-value};
+            $last-class-part: list.nth($current-class-parts, list.length($current-class-parts));
+            $is-default: ends-with($last-class-part, '*');
+            $class-name: generate-class-name($current-class-parts);
+            $variable-name: generate-variable-name($prefix, $current-variable-parts);
+
+            // Check if the special key is a responsive key
+            @if is-responsive-key($sub-key) {
+              // $token-keys: list.join($name, $current-path);
+
+              // @debug "Responsive key found: #{$sub-key}";
+              // @debug "  Class name: #{$class-name}";
+              // @debug "  Variable name: #{$variable-name}";
+              // @debug "  Value: #{$sub-value}";
+              // @debug "  Is #{$last-class-part} default: #{$is-default}";
+
+              @include screen($sub-key) {
+                @if $is-default {
+                  &,
+                  &#{$class-name} {
+                    #{$variable-name}: #{$sub-value};
+                  }
+                } @else {
+                  &#{$class-name} {
+                    #{$variable-name}: #{$sub-value};
+                  }
+                }
+              }
+            }
+
+            // Check if the special key is a theme key
+            @if is-theme-key($sub-key) {
+              $theme-name: string.slice($sub-key, 2);
+
+              // @at-root .theme-#{$theme-name} & { // less specific selector, pretty much the same for nested classes
+              .theme-#{$theme-name} & { // more specific selector, we want this for now
+                @if $is-default {
+                  &,
+                  &#{$class-name} {
+                    #{$variable-name}: #{$sub-value};
+                  }
+                } @else {
+                  &#{$class-name} {
+                    #{$variable-name}: #{$sub-value};
+                  }
+                }
               }
             }
           }
-        }
-      } @else {
-        // Continue traversing
-        @include traverse-variants($prefix, $group, $original-keys, $value, $current-path, $key);
-      }
-    } @else {
-      // We've reached a leaf node with a direct value
-      $class-name: generate-class-name($current-path);
-      $var-name: list.nth($current-path, list.length($current-path));
-      // @debug "Leaf node reached:";
-      // @debug "  Class name: #{$class-name}";
-      // @debug "  Variable name: #{$var-name}";
-      // @debug "  Value: ", $value;
 
-      &#{$class-name} {
-        --#{$prefix}-#{$var-name}: #{$value};
+        } @else {
+          // We've reached a map with no special keys, continue traversal
+          // @debug "Key: #{$key} has no special keys, continuing traversal";
+          // $current-class-parts: append($current-class-parts, $key);
+
+          @include traverse-variants($prefix, $collection, $name, $value, $current-class-parts, $current-variable-parts);
+        }
       }
+
+
+      // @debug "Current Class Parts: ", $current-class-parts;
+      // @debug "Key: #{$key}";
+      // @debug "Value: ", $value;
+      // @debug 'END---';
+
+      @include traverse-variants($prefix, $collection, $name, $value, $current-class-parts, $current-variable-parts);
     }
   }
+
+
+
+
+
+
+
+  // @each $key, $value in $map {
+  //   // Validate key format
+  //   @if $parent-key == null and not is-root-key($key) {
+  //     // @error "Root level key must start with --: #{$key}";
+  //     $parent-key: '--' + $collection;
+  //   } @else if $parent-key != null and not is-valid-key($key) {
+  //     @error "Invalid key format: #{$key}";
+  //   }
+
+  //   $current-path: append($path, $key);
+
+  //   @if type-of($value) == "map" {
+  //     // Check if we've reached a map with only special keys
+  //     $all-special: true;
+  //     @each $sub-key, $_ in $value {
+  //       @if not is-special-key($sub-key) {
+  //         $all-special: false;
+  //         // @break;
+  //       }
+  //     }
+
+  //     @if $all-special {
+  //       // We've reached a leaf node with special keys
+  //       $class-name: generate-class-name($current-path);
+  //       $var-name: list.nth($current-path, list.length($current-path));
+
+  //       // If current key is a state key then we need to modify the variable name
+  //       @if is-state-key($key) {
+  //         $state-key: $key;
+  //         $modified-state-key: str-replace($state-key, ":", "--");
+  //         $property-key: list.nth($current-path, list.length($current-path) - 1);
+
+  //         $var-name: #{$property-key + $modified-state-key};
+  //       }
+
+  //       // @debug "Leaf node reached:";
+  //       // @debug "  Current path: #{$current-path}";
+  //       // @debug "  Class name: #{$class-name}";
+  //       // @debug "  Variable name: #{$var-name}";
+  //       // @debug "  Values: ", $value;
+
+  //       @each $sub-key, $sub-value in $value {
+
+  //         // Check if the special key is a state key
+  //         @if is-state-key($sub-key) {
+  //           @include traverse-variants($prefix, $collection, $name, $value, $current-path, $sub-key);
+  //         }
+
+  //         // Check if the special key is a responsive key
+  //         @if is-responsive-key($sub-key) {
+  //           $token-keys: list.join($name, $current-path);
+
+  //           &#{$class-name} {
+  //             @include token(
+  //               "--#{$prefix}-#{$var-name}",
+  //               $collection,
+  //               $token-keys...
+  //             );
+  //           }
+  //         }
+
+  //         // Check if the special key is a theme key
+  //         @if is-theme-key($sub-key) {
+  //           $theme-name: string.slice($sub-key, 2);
+
+  //           // @at-root .theme-#{$theme-name} & { // less specific selector, pretty much the same for nested classes
+  //           .theme-#{$theme-name} & { // more specific selector, we want this for now
+  //             &#{$class-name} {
+  //               --#{$prefix}-#{$var-name}: #{$sub-value};
+  //             }
+  //           }
+  //         }
+  //       }
+  //     } @else {
+  //       // Continue traversing
+  //       @include traverse-variants($prefix, $collection, $name, $value, $current-path, $key);
+  //     }
+  //   } @else {
+  //     // We've reached a leaf node with a direct value
+  //     $class-name: generate-class-name($current-path);
+  //     $var-name: list.nth($current-path, list.length($current-path));
+  //     // @debug "Leaf node reached:";
+  //     // @debug "  Class name: #{$class-name}";
+  //     // @debug "  Variable name: #{$var-name}";
+  //     // @debug "  Value: ", $value;
+
+  //     &#{$class-name} {
+  //       --#{$prefix}-#{$var-name}: #{$value};
+  //     }
+  //   }
+  // }
 }
 
 /// Generate variants of CSS variables from a tokens map
 ///
 /// @param $prefix - The prefix for the CSS variable names
-/// @param $group - The group name for the tokens
-/// @param $keys... - The keys to access the tokens map
-@mixin variants($prefix, $group, $keys...) {
-  $variants-map: map.get($tokens, $group, $keys...);
+/// @param $collection - The collection name for the tokens
+/// @param $name - The name of the token to generate variants for
+@mixin variants($prefix, $collection, $name) {
+  @debug "Generating variants for #{$collection} with name: #{$name}";
 
-  @include traverse-variants($prefix, $group, $keys, $variants-map);
+  $element-name: '%' + $name;
+  $variants-map: map.get($tokens, $collection, $element-name);
+
+  @debug "Variants map: ", $variants-map;
+
+  @include traverse-variants($prefix, $collection, $name, $variants-map);
 }
