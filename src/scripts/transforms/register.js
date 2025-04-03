@@ -246,6 +246,24 @@ import deepMapSearch from './deepMapSearch.js';
 // Transform px values to rem
 
 StyleDictionary.registerTransform({
+  name: 'figma/resolveReferences',
+  type: 'value',
+  transitive: true,
+  filter: token => {
+    if (typeof token.value === 'object') {
+      const lastItem = token.path[token.path.length - 1];
+      return lastItem.startsWith('@');
+    }
+    return false
+  },
+  transform: token => {
+    const lastItem = token.path[token.path.length - 1];
+    const resolvedValue = token.value[lastItem].value
+    return resolvedValue;
+  }
+})
+
+StyleDictionary.registerTransform({
   name: 'dimension/pxToRem',
   type: 'value',
   filter: token => {
