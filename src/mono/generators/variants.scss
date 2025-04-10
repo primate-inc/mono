@@ -135,51 +135,65 @@
       
             }
 
+            @if (list.length($current-class-parts) != 0) {
+              $last-class-part: list.nth($current-class-parts, list.length($current-class-parts));
+              $is-default: ends-with($last-class-part, '*');
+              $class-name: generate-class-name($current-class-parts);
+              $variable-name: generate-variable-name($prefix, $current-variable-parts);
 
-            $last-class-part: list.nth($current-class-parts, list.length($current-class-parts));
-            $is-default: ends-with($last-class-part, '*');
-            $class-name: generate-class-name($current-class-parts);
-            $variable-name: generate-variable-name($prefix, $current-variable-parts);
+              // Check if the special key is a responsive key
+              @if is-responsive-key($sub-key) {
+                // $token-keys: list.join($name, $current-path);
 
-            // Check if the special key is a responsive key
-            @if is-responsive-key($sub-key) {
-              // $token-keys: list.join($name, $current-path);
+                // @debug "Responsive key found: #{$sub-key}";
+                // @debug "  Class name: #{$class-name}";
+                // @debug "  Variable name: #{$variable-name}";
+                // @debug "  Value: #{$sub-value}";
+                // @debug "  Is #{$last-class-part} default: #{$is-default}";
 
-              // @debug "Responsive key found: #{$sub-key}";
-              // @debug "  Class name: #{$class-name}";
-              // @debug "  Variable name: #{$variable-name}";
-              // @debug "  Value: #{$sub-value}";
-              // @debug "  Is #{$last-class-part} default: #{$is-default}";
-
-              @include screen($sub-key) {
-                @if $is-default {
-                  &,
-                  &#{$class-name} {
-                    #{$variable-name}: #{$sub-value};
-                  }
-                } @else {
-                  &#{$class-name} {
-                    #{$variable-name}: #{$sub-value};
+                @include screen($sub-key) {
+                  @if $is-default {
+                    &,
+                    &#{$class-name} {
+                      #{$variable-name}: #{$sub-value};
+                    }
+                  } @else {
+                    &#{$class-name} {
+                      #{$variable-name}: #{$sub-value};
+                    }
                   }
                 }
               }
-            }
 
-            // Check if the special key is a theme key
-            @if is-theme-key($sub-key) {
-              $theme-name: string.slice($sub-key, 2);
+              // Check if the special key is a theme key
+              @if is-theme-key($sub-key) {
+                $theme-name: string.slice($sub-key, 2);
 
-              // @at-root .theme-#{$theme-name} & { // less specific selector, pretty much the same for nested classes
-              .theme-#{$theme-name} & { // more specific selector, we want this for now
-                @if $is-default {
-                  &,
-                  &#{$class-name} {
-                    #{$variable-name}: #{$sub-value};
+                // @at-root .theme-#{$theme-name} & { // less specific selector, pretty much the same for nested classes
+                .theme-#{$theme-name} & { // more specific selector, we want this for now
+                  @if $is-default {
+                    &,
+                    &#{$class-name} {
+                      #{$variable-name}: #{$sub-value};
+                    }
+                  } @else {
+                    &#{$class-name} {
+                      #{$variable-name}: #{$sub-value};
+                    }
                   }
-                } @else {
-                  &#{$class-name} {
-                    #{$variable-name}: #{$sub-value};
-                  }
+                }
+              }
+            } @else {
+              // When no variant keys found just generate all the variables
+              $variable-name: generate-variable-name($prefix, $current-variable-parts);
+              
+              @if is-responsive-key($sub-key) {
+                @debug "Responsive key found: #{$sub-key}";
+                @debug "  Variable name: #{$variable-name}";
+                @debug "  Value: #{$sub-value}";
+
+                @include screen($sub-key) {
+                  #{$variable-name}: #{$sub-value};
                 }
               }
             }
