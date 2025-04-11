@@ -6,67 +6,101 @@
 /// @param {boolean} $breakpoint - Whether to include a breakpoint for the grid layout. Default value is false.
 /// 
 /// @returns {void} - Grid layout for given name and breakpoint.
-@mixin grid($name: main, $breakpoint: false) {
-  $grid-map: map.get($tokens, grid);
-  $grid-token: null;
-  $grid-width: 100vw; // token('size', '@xx', 'grid', $name, 'max-width');
+@mixin grid($name: '') {
+  
+  $grid-map: map.get($tokens, size, grid);
 
-  @if($breakpoint) {
-    @if (map.has-key($grid-map, $breakpoint)) {
-      $grid-token: map.get($grid-map, $breakpoint, $name);
+  @if ($name != '') {
+    @if (map.has-key($grid-map, $name)) {
+      $grid-map: map.get($grid-map, $name);
     } @else {
-      @error 'Value not found. Expected token grid > #{$name} > #{$breakpoint} being a valid grid map.';
+      @error 'Value not found. Expected token grid > #{$name} being a valid grid map.';
     }
+  }
 
-    @if (type-of(map.get($tokens, 'size')) == 'map' and map.has-key(map.get($tokens, 'size'), $breakpoint)) {
-      $grid-width: map.get($tokens, 'size', $breakpoint, 'grid', $name, 'max-width');
-      @if ($grid-width == null or $grid-width == 0) {
-        $grid-width: 100vw;
+  $grid-token: null;
+  $grid-width: 100vw;
+
+  @debug '--------- Grid ---------';
+  @debug $grid-map;
+
+  @each $property, $values in $grid-map {
+    @if (type-of($values) == 'map') {
+      @debug 'Property: #{$property}';
+      @debug $values;
+      @debug sortedBreakpoints();
+
+      @each $screen, $size in sortedBreakpoints() {
+        @if (map.has-key($values, $screen)) {
+          $grid-token: map.get($values, $screen);
+          @debug 'Screen: #{$screen}';
+          @debug $grid-token;
+
+          @include screen($screen) {
+            --grid-#{$property}: #{$grid-token};
+          }
+        }
       }
     }
   }
+  @debug '------------------------';
 
-  @if not (map.has-key($grid-token, 'count') and map.has-key($grid-token, 'gutterSize')) {
-    @error 'Invalid Value. Expected keys `count` & `gutterSize` to be a defined, instead has: #{map.keys($grid-token)}.';
-  }
+  // @if($breakpoint) {
+  //   @if (map.has-key($grid-map, $breakpoint)) {
+  //     $grid-token: map.get($grid-map, $breakpoint, $name);
+  //   } @else {
+  //     @error 'Value not found. Expected token grid > #{$name} > #{$breakpoint} being a valid grid map.';
+  //   }
 
-  $grid-columns: map.get($grid-token, count);
-  $grid-gap: rem(map.get($grid-token, gutterSize));
-  $grid-offset: rem(map.get($grid-token, offset));
-  $grid-free-space: 0; // minmax(0, $grid-gap);
+  //   @if (type-of(map.get($tokens, 'size')) == 'map' and map.has-key(map.get($tokens, 'size'), $breakpoint)) {
+  //     $grid-width: map.get($tokens, 'size', $breakpoint, 'grid', $name, 'max-width');
+  //     @if ($grid-width == null or $grid-width == 0) {
+  //       $grid-width: 100vw;
+  //     }
+  //   }
+  // }
 
-  @if ($grid-width != null and type-of($grid-width) == 'number') {
-    $grid-free-space: minmax(0, calc(50% - ($grid-width/2) - $grid-offset));
-  }
+  // @if not (map.has-key($grid-token, 'count') and map.has-key($grid-token, 'gutterSize')) {
+  //   @error 'Invalid Value. Expected keys `count` & `gutterSize` to be a defined, instead has: #{map.keys($grid-token)}.';
+  // }
 
-  $grid-template-columns: ();
+  // $grid-columns: map.get($grid-token, count);
+  // $grid-gap: rem(map.get($grid-token, gutterSize));
+  // $grid-offset: rem(map.get($grid-token, offset));
+  // $grid-free-space: 0; // minmax(0, $grid-gap);
 
-  $grid-template-columns: append($grid-template-columns, $grid-free-space);
+  // @if ($grid-width != null and type-of($grid-width) == 'number') {
+  //   $grid-free-space: minmax(0, calc(50% - ($grid-width/2) - $grid-offset));
+  // }
 
-  $grid-template-columns: append($grid-template-columns, $grid-offset);
+  // $grid-template-columns: ();
 
-  @for $i from 1 through $grid-columns {
-    @if ($i == $grid-columns) {
-      $grid-template-columns: append($grid-template-columns, 1fr);
-    } @else {
-      $grid-template-columns: append($grid-template-columns, 1fr);
-      $grid-template-columns: append($grid-template-columns, $grid-gap);
-    }
-  }
+  // $grid-template-columns: append($grid-template-columns, $grid-free-space);
 
-  $grid-template-columns: append($grid-template-columns, $grid-offset);
+  // $grid-template-columns: append($grid-template-columns, $grid-offset);
 
-  $grid-template-columns: append($grid-template-columns, $grid-free-space);
+  // @for $i from 1 through $grid-columns {
+  //   @if ($i == $grid-columns) {
+  //     $grid-template-columns: append($grid-template-columns, 1fr);
+  //   } @else {
+  //     $grid-template-columns: append($grid-template-columns, 1fr);
+  //     $grid-template-columns: append($grid-template-columns, $grid-gap);
+  //   }
+  // }
 
-  @include screen($breakpoint) {
-    // --_grid-width: #{$grid-width};
-    // --_grid-columns: #{$grid-columns};
-    // --_grid-gap: #{$grid-gap};
-    // --_grid-offset: #{$grid-offset};
-    // --_grid-free-space: #{$grid-free-space};
-    display: grid;
-    grid-template-columns: $grid-template-columns;
-  }
+  // $grid-template-columns: append($grid-template-columns, $grid-offset);
+
+  // $grid-template-columns: append($grid-template-columns, $grid-free-space);
+
+  // @include screen($breakpoint) {
+  //   // --_grid-width: #{$grid-width};
+  //   // --_grid-columns: #{$grid-columns};
+  //   // --_grid-gap: #{$grid-gap};
+  //   // --_grid-offset: #{$grid-offset};
+  //   // --_grid-free-space: #{$grid-free-space};
+  //   display: grid;
+  //   grid-template-columns: $grid-template-columns;
+  // }
 }
 
 /// Creates a responsive grid layout.

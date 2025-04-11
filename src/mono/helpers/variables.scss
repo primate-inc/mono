@@ -6,37 +6,98 @@
 /// @param $prefix - The prefix for the CSS variable names
 /// @param $group - The group name for the tokens
 /// @param $keys... - The keys to access the tokens map
-@mixin variables($prefix, $group, $keys...) {
-  $breakpoints: sortedBreakpoints();
+// @mixin variables($prefix, $group, $keys...) {
+//   $map: map.get($tokens, $group, $keys...);
 
-  @each $screen, $screenSize in $breakpoints {
-    $keysGroup: ($group, $screen);
-    $newKeys: list.join($keysGroup, $keys);
-    $values: map.get($tokens, $newKeys...);
+//   @if $map == null {
+//     @error 'Value not found. Expected token #{$group} > #{$keys} being a valid map.';
+//   }
 
-    @if $values != null {
-      @if type-of($values) == map {
-        @include screen($screen) {
-          @each $k, $v in $values {
-            @if $k and $v {
-              #{'--' + $prefix + '-' + $k}: $v;
-            } @else {
-              @warn 'No value found for #{$newKeys}';
-            }
-          }
-        }
-      } @else {
-        $lastKey: list.nth($keys, -1);
-        @if $values {
-          @include screen($screen) {
-            #{'--' + $prefix + '-' + $lastKey}: $values;
-          }
-        } @else {
-          @warn 'No value found for #{$newKeys}';
-        }
-      }
+//   $keys: list.join($group, $keys);
+
+//   @each $k, $v in $map {
+//     @if $k and $v {
+//       @debug 'Key: #{$k}';
+//       @debug 'Value:', $v;
+//     }
+//   }
+
+//   // $breakpoints: sortedBreakpoints();
+
+//   // @each $screen, $screenSize in $breakpoints {
+//   //   $keysGroup: ($group, $screen);
+//   //   $newKeys: list.join($keysGroup, $keys);
+//   //   $values: map.get($tokens, $newKeys...);
+
+//   //   @if $values != null {
+//   //     @if type-of($values) == map {
+//   //       @include screen($screen) {
+//   //         @each $k, $v in $values {
+//   //           @if $k and $v {
+//   //             #{'--' + $prefix + '-' + $k}: $v;
+//   //           } @else {
+//   //             @warn 'No value found for #{$newKeys}';
+//   //           }
+//   //         }
+//   //       }
+//   //     } @else {
+//   //       $lastKey: list.nth($keys, -1);
+//   //       @if $values {
+//   //         @include screen($screen) {
+//   //           #{'--' + $prefix + '-' + $lastKey}: $values;
+//   //         }
+//   //       } @else {
+//   //         @warn 'No value found for #{$newKeys}';
+//   //       }
+//   //     }
+//   //   }
+//   // }
+// }
+
+@mixin variables($prefix, $collection, $name, $map: null, $variable-parts: ()) {
+  
+  @if $map == null {
+    $map: map.get($tokens, $collection, $name);
+    
+    @if $map == null {
+      @error 'Value not found. Expected token #{$collection} > #{$name} being a valid map.';
     }
   }
+  
+  @each $key, $value in $map {
+    $current-variable-parts: $variable-parts;
+
+    @if type-of($value) == "map" {
+
+        $current-variable-parts: append($current-variable-parts, $key);
+
+        // Check if we've reached a map with only special keys
+        $all-special: true;
+        @each $sub-key, $_ in $value {
+          @if not is-special-key($sub-key) {
+            $all-special: false;
+          }
+        }
+
+        @if $all-special {
+          // We've reached a leaf node with only special keys
+
+          @each $sub-key, $sub-value in $value {
+            $variable-name: generate-variable-name($prefix, $current-variable-parts);
+            
+            @if is-responsive-key($sub-key) {
+              @include screen($sub-key) {
+                #{$variable-name}: #{$sub-value};
+              }
+            }
+            
+          }
+
+        } @else {
+          @include variables($prefix, $collection, $name, $value, $current-variable-parts);
+        }
+      }
+
+      // @include variables($prefix, $collection, $name, $value, $current-variable-parts);
+  }
 }
-
-

@@ -267,6 +267,11 @@ StyleDictionary.registerTransform({
   name: 'dimension/pxToRem',
   type: 'value',
   filter: token => {
+    // Exclude specific tokens from transformation
+    const excludedTokens = ['size-grid-columns']
+    if (excludedTokens.some(excluded => token.name.startsWith(excluded))) {
+      return false
+    }
     return (token.unit === 'pixel' || token.type === 'dimension') && token.value !== 0
   },
   transform: token => {

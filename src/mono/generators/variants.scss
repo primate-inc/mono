@@ -2,76 +2,76 @@
 @use "sass:list";
 @use "sass:string";
 
-// Validates if the key starts with -- or -
-@function is-valid-key($key) {
-  @if not string.slice($key, 1, 1) == "-" {
-    @error "Invalid key format: #{$key}. Must start with -- or -";
-    @return false;
-  }
-  @return true;
-}
+// // Validates if the key starts with -- or -
+// @function is-valid-key($key) {
+//   @if not string.slice($key, 1, 1) == "-" {
+//     @error "Invalid key format: #{$key}. Must start with -- or -";
+//     @return false;
+//   }
+//   @return true;
+// }
 
-// Checks if key is a root level key (starts with --)
-@function is-root-key($key) {
-  @return string.slice($key, 1, 2) == "--";
-}
+// // Checks if key is a root level key (starts with --)
+// @function is-root-key($key) {
+//   @return string.slice($key, 1, 2) == "--";
+// }
 
-// Checks if the key is a variant key (starts with single -)
-@function is-variant-key($key) {
-  @return string.slice($key, 1, 1) == "-" and string.slice($key, 1, 2) != "--";
-  // @return string.slice($key, 1, 1) == "-";
-}
+// // Checks if the key is a variant key (starts with single -)
+// @function is-variant-key($key) {
+//   @return string.slice($key, 1, 1) == "-" and string.slice($key, 1, 2) != "--";
+//   // @return string.slice($key, 1, 1) == "-";
+// }
 
-// Checks if the key is a special key (starts with @ or #)
-@function is-special-key($key) {
-  $special-characters: ("@", "#", ":");
-  $first-char: string.slice($key, 1, 1);
-  // @return $first-char == "@" or $first-char == "#";
-  @return index($special-characters, $first-char) != null;
-}
+// // Checks if the key is a special key (starts with @ or #)
+// @function is-special-key($key) {
+//   $special-characters: ("@", "#", ":");
+//   $first-char: string.slice($key, 1, 1);
+//   // @return $first-char == "@" or $first-char == "#";
+//   @return index($special-characters, $first-char) != null;
+// }
 
-@function is-responsive-key($key) {
-  $first-char: string.slice($key, 1, 1);
-  @return $first-char == "@";
-}
+// @function is-responsive-key($key) {
+//   $first-char: string.slice($key, 1, 1);
+//   @return $first-char == "@";
+// }
 
-@function is-theme-key($key) {
-  $first-char: string.slice($key, 1, 1);
-  @return $first-char == "#";
-}
+// @function is-theme-key($key) {
+//   $first-char: string.slice($key, 1, 1);
+//   @return $first-char == "#";
+// }
 
-@function is-state-key($key) {
-  $first-char: string.slice($key, 1, 1);
-  @return $first-char == ":";
-}
+// @function is-state-key($key) {
+//   $first-char: string.slice($key, 1, 1);
+//   @return $first-char == ":";
+// }
 
-// Generates the class name from the key path
-@function generate-class-name($path) {
-  $result: "";
-  @each $segment in $path {
-    @if ends-with($segment, "*") {
-      $segment: string.slice($segment, 1, -2);
-    }
+// // Generates the class name from the key path
+// @function generate-class-name($path) {
+//   $result: "";
+//   @each $segment in $path {
+//     @if ends-with($segment, "*") {
+//       $segment: string.slice($segment, 1, -2);
+//     }
 
-    $result: $result + $segment;
-  }
-  @return $result;
-}
+//     $result: $result + $segment;
+//   }
+//   @return $result;
+// }
 
-// Generates the variable name from the key path
-@function generate-variable-name($prefix, $path) {
-  $result: "--" + $prefix;
-  @each $segment in $path {
-    @if string.slice($segment, 1, 1) == "-" {
-      $result: $result + $segment;
-    } @else if string.slice($segment, 1, 1) == ":" {
-      $result: $result + str-replace($segment, ":", "--");
-    } @else {
-      $result: $result + '-' + $segment;
-    }
-  }
-  @return $result;
-}
+// // Generates the variable name from the key path
+// @function generate-variable-name($prefix, $path) {
+//   $result: "--" + $prefix;
+//   @each $segment in $path {
+//     @if string.slice($segment, 1, 1) == "-" {
+//       $result: $result + $segment;
+//     } @else if string.slice($segment, 1, 1) == ":" {
+//       $result: $result + str-replace($segment, ":", "--");
+//     } @else {
+//       $result: $result + '-' + $segment;
+//     }
+//   }
+//   @return $result;
+// }
 
 // Main function to traverse the variants map
 @mixin traverse-variants($prefix, $collection, $name, $map, $class-parts: (), $variable-parts: ()) {
