@@ -1,0 +1,51 @@
+---
+alwaysApply: true
+---
+
+# General Project Rules
+
+## File Settings
+- Encoding: UTF-8
+- Line endings: LF
+- Insert final newline: true
+- Trim trailing whitespace: true
+
+## Ignore Patterns
+- `node_modules/`
+- `dist/`
+- `build/`
+- `*.min.*`
+- `*.map`
+
+## Project Structure
+- Source files in `src/`
+- Examples in `src/examples/`
+- Scripts in `src/scripts/`
+- Core functionality in `src/mono/`
+- Local development files in `local/`
+
+## Naming Conventions
+- Files: kebab-case
+- Directories: kebab-case
+- Functions: camelCase
+- Classes: PascalCase
+- Constants: UPPER_SNAKE_CASE
+
+## Version Control
+- Meaningful commit messages
+- One feature/fix per commit
+- Keep commits atomic and focused
+- Reference issues/PRs when applicable
+
+## Documentation
+- README.md for project overview
+- Documentation comments for public APIs
+- Example usage in code comments
+- Update docs when changing functionality
+
+## Best Practices
+- Follow semantic versioning
+- Write unit tests for new features
+- Keep dependencies up to date
+- Document breaking changes
+- Use TypeScript types when available

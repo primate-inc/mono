@@ -1,0 +1,73 @@
+---
+alwaysApply: true
+---
+
+# JavaScript Rules
+
+## File Header
+```javascript
+/**
+ * @fileoverview ${fileDescription}
+ * 
+ * This file is part of the MONO design system tooling.
+ * 
+ * @author ${author}
+ * @since ${date}
+ * @module ${moduleName}
+ */
+
+'use strict';
+```
+
+## Function Documentation
+```javascript
+/**
+ * ${functionDescription}
+ * 
+ * @param {${paramType}} ${paramName} - ${paramDescription}
+ * @returns {${returnType}} ${returnDescription}
+ * @throws {${errorType}} ${errorDescription}
+ */
+function ${functionName}(${paramName}) {
+  ${body}
+}
+```
+
+## Class Documentation
+```javascript
+/**
+ * ${classDescription}
+ * 
+ * @class
+ * @implements {${implements}}
+ */
+class ${className} {
+  ${body}
+}
+```
+
+## Style Rules
+- Indent: 2 spaces
+- Quotes: single
+- Semicolons: required
+- Max line length: 100 characters
+- Trailing comma: ES5
+- Arrow function parentheses: always
+- Bracket spacing: true
+- Print width: 80 characters
+- Use tabs: false
+
+## Import Order
+1. Core modules (`^@core/(.*)$`)
+2. Server modules (`^@server/(.*)$`)
+3. UI modules (`^@ui/(.*)$`)
+4. Relative imports (`^[./]`)
+
+## Best Practices
+- Use JSDoc for all function and class documentation
+- Document all parameters and return values
+- Include error documentation when applicable
+- Use ES6+ features appropriately
+- Prefer const over let
+- Use meaningful variable names
+- Follow camelCase naming convention

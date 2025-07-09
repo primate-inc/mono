@@ -1,0 +1,76 @@
+---
+alwaysApply: true
+---
+
+# SCSS Rules
+
+## File Header
+```scss
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+
+// =============================================================================
+// ${fileName}
+// =============================================================================
+//
+// ${fileDescription}
+//
+// @author ${author}
+// @since ${date}
+// =============================================================================
+```
+
+## Function Documentation
+```scss
+/// ${functionDescription}
+/// 
+/// @param {${paramType}} ${paramName} - ${paramDescription}
+/// @returns {${returnType}} - ${returnDescription}
+@function ${functionName}($${paramName}) {
+  ${body}
+}
+```
+
+## Mixin Documentation
+```scss
+/// ${mixinDescription}
+/// 
+/// @param {${paramType}} ${paramName} - ${paramDescription}
+/// @content - ${contentDescription}
+/// 
+/// @returns {void} - ${returnDescription}
+@mixin ${mixinName}($${paramName}) {
+  ${body}
+}
+```
+
+## Style Rules
+- Indentation: 2 spaces
+- Max line length: 80 characters
+- Require leading underscore for partials
+- Require var prefix for variables
+- Sort order: SMACSS
+
+## Property Order
+1. Position
+2. Display
+3. Box-sizing
+4. Width
+5. Height
+6. Margin
+7. Padding
+8. Border
+9. Background
+10. Color
+11. Font
+12. Text
+
+## Best Practices
+- Use triple-slash comments (`///`) for documentation
+- Include parameter types and descriptions
+- Always document return values
+- Group related properties together
+- Use meaningful variable names
+- Follow BEM naming convention for classes
