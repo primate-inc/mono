@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "sass:meta";
+
+//
+// Slots
+// Deep map providing nodes to elements.
+//
+// usage: slot(color, test)
+//        slot(color, typography, h1)
+//        responsive-slot('grid-column', grid, component, cta)
+//
+$slots: (
+  token: $tokens,
+  color: (
+    page: (
+      background: token(color, base, white),
+      text: token(color, base, black),
+      accent: token(color, base, accent),
+    ),
+  ),
+  grid: (
+    full: "1 / -1",
+    wide: "2 / -2",
+    content: "3 / -3",
+    header: (
+      default: "3 / 10",
+      desktop: "3 / 14",
+    ),
+    component: (
+      desktop: "3 / -5",
+      default: "3 / -3",
+    ),
+  ),
+  component: (
+    button: (
+      theme: (
+        primary: (
+          --background: token(color, primary, 900),
+          --background-hover: token(color, primary, 1000),
+          --text: token(color, base, white),
+        ),
+        accent: (
+          --background: token(color, accent, 800),
+          --background-hover: token(color, accent, 900),
+          --text: token(color, base, white),
+        ),
+      ),
+    )
+  ),
+);

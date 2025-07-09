@@ -1,0 +1,42 @@
+@import "tokens";
+@import "slots";
+
+$configs: (
+  typography: (
+    // Define base font size
+    // This is used for px to rem calculations
+    baseFontSize: 16,
+
+    // Define font fallbacks
+    // Key: quoted string, should match fontFamily name as defined in tokens.scss
+    // Value: quoted string of valid css font-family
+    fontRemaps: (
+        Real Text Pro: "ff-real-text-pro",
+        Real Text Pro 2: "ff-real-text-pro-2",
+      ),
+    fontFallbacks:
+      (
+        Real Text Pro: "Arial, Verdana, sans-serif",
+        Real Text Pro 2: "Arial, Verdana, sans-serif",
+      ),
+
+    // Fluid typography config
+    // Used to apply fluid typography to font styles
+    fluid: (
+        // Default range
+        // hero: (
+        //     start: default,
+        //     end: desktop,
+        //   ),
+        // hero-alt: (
+        //   start: default,
+        //   end: desktop,
+        // )
+        
+      ),
+  ),
+  breakpoints: (
+    "default": 0rem,
+    "custom": 123rem,
+  ),
+);
