@@ -1,0 +1,105 @@
+---
+alwaysApply: true
+---
+
+# SCSS Rules
+
+## File Structure
+Each SCSS file should follow this structure:
+1. Required imports
+2. File header documentation
+3. Variables and configuration
+4. Mixins and functions
+5. Base styles
+6. Component styles
+7. Utilities and helpers
+
+## File Header Template
+```scss
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+
+// =============================================================================
+// ${fileName}
+// =============================================================================
+//
+// ${fileDescription}
+//
+// @author ${author}
+// @since ${date}
+// =============================================================================
+```
+
+## Function Documentation
+```scss
+/// ${functionDescription}
+/// 
+/// @param {${paramType}} ${paramName} - ${paramDescription}
+/// @returns {${returnType}} - ${returnDescription}
+/// @throws {Error} ${errorDescription}
+@function ${functionName}($${paramName}) {
+  ${body}
+}
+```
+
+## Mixin Documentation
+```scss
+/// ${mixinDescription}
+/// 
+/// @param {${paramType}} ${paramName} - ${paramDescription}
+/// @content - ${contentDescription}
+/// 
+/// @returns {void} - ${returnDescription}
+@mixin ${mixinName}($${paramName}) {
+  ${body}
+}
+```
+
+## Property Order
+Properties should be ordered in the following groups:
+1. Positioning (`position`, `top`, `right`, `bottom`, `left`, `z-index`)
+2. Display & Box Model (`display`, `flex`, `grid`, `box-sizing`, `width`, `height`)
+3. Spacing (`margin`, `padding`)
+4. Border & Background (`border`, `border-radius`, `background`)
+5. Typography (`color`, `font-*`, `text-*`, `line-height`)
+6. Transitions & Animations
+7. Other
+
+## Naming Conventions
+- Files: kebab-case with leading underscore (`_component-name.scss`)
+- Variables: kebab-case with namespace (`$mono-color-primary`)
+- Mixins/Functions: kebab-case (`@mixin create-grid`)
+- Classes: BEM methodology (`block__element--modifier`)
+
+## Best Practices
+- Use triple-slash comments (`///`) for documentation
+- Include parameter types and descriptions
+- Document return values and side effects
+- Group related properties together
+- Use meaningful variable names
+- Follow BEM naming convention for classes
+- Avoid deep nesting (max 3 levels)
+- Use relative units (rem, em) over pixels
+- Leverage SASS features (variables, mixins, functions)
+- Keep files focused and single-purpose
+- Document magic numbers and important decisions
+
+## Grid System
+- Use the provided grid mixins for layout
+- Follow the token-based approach for spacing
+- Use responsive mixins for breakpoint handling
+- Document grid-specific configurations
+
+## Design Tokens
+- Use token functions for values (`token()`, `slot()`)
+- Follow the token hierarchy
+- Document any custom token usage
+- Use semantic token names
+
+## Responsive Design
+- Use the provided breakpoint mixins
+- Follow mobile-first approach
+- Document breakpoint-specific styles
+- Use relative units for flexibility

@@ -1,0 +1,122 @@
+---
+alwaysApply: true
+---
+
+# JavaScript Rules
+
+## File Structure
+Each JavaScript file should follow this structure:
+1. File documentation header
+2. Imports (grouped and ordered)
+3. Constants and configurations
+4. Helper functions
+5. Main functionality
+6. Exports
+
+## File Header Template
+```javascript
+/**
+ * @fileoverview ${fileDescription}
+ * 
+ * This file is part of the MONO design system tooling.
+ * 
+ * @author ${author}
+ * @since ${date}
+ * @module ${moduleName}
+ */
+
+'use strict';
+```
+
+## Function Documentation
+```javascript
+/**
+ * ${functionDescription}
+ * 
+ * @param {${paramType}} ${paramName} - ${paramDescription}
+ * @returns {${returnType}} ${returnDescription}
+ * @throws {${errorType}} ${errorDescription}
+ */
+function ${functionName}(${paramName}) {
+  ${body}
+}
+```
+
+## Class Documentation
+```javascript
+/**
+ * ${classDescription}
+ * 
+ * @class
+ * @implements {${implements}}
+ * @property {${propertyType}} ${propertyName} - ${propertyDescription}
+ */
+class ${className} {
+  ${body}
+}
+```
+
+## Import Order
+1. Node.js built-in modules
+2. External dependencies
+3. Internal modules (absolute paths)
+4. Local modules (relative paths)
+5. Type imports
+
+## Naming Conventions
+- Files: kebab-case.js
+- Classes: PascalCase
+- Functions: camelCase
+- Constants: UPPER_SNAKE_CASE
+- Private properties: _camelCase
+- Boolean variables: isPascalCase
+
+## Code Style
+- Indent: 2 spaces
+- Quotes: single quotes for strings
+- Semicolons: required
+- Max line length: 80 characters
+- Trailing commas: required in multiline
+- Arrow function parentheses: always
+- No unused variables or imports
+- Use template literals for string interpolation
+
+## Best Practices
+- Use ES6+ features appropriately
+- Prefer const over let
+- Avoid var
+- Use early returns
+- Handle errors explicitly
+- Use meaningful variable names
+- Keep functions small and focused
+- Document all public APIs
+- Use TypeScript types when available
+- Write pure functions when possible
+
+## Error Handling
+- Use descriptive error messages
+- Document thrown errors
+- Use custom error classes for specific errors
+- Handle async errors with try/catch
+- Provide error recovery strategies
+
+## Testing
+- Write unit tests for utilities
+- Test error conditions
+- Use meaningful test descriptions
+- Group related tests
+- Mock external dependencies
+
+## CLI Commands
+- Use descriptive command names
+- Provide help documentation
+- Validate input parameters
+- Give meaningful feedback
+- Handle edge cases gracefully
+
+## Token Transformation
+- Document transformation logic
+- Validate token structure
+- Provide clear error messages
+- Handle missing or invalid tokens
+- Document output format

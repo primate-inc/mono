@@ -1,0 +1,113 @@
+---
+alwaysApply: true
+title: General Project Rules
+---
+
+# General Project Rules
+
+## Project Structure
+```
+mono/
+├── src/                    # Source files
+│   ├── mono/              # Core functionality
+│   │   ├── generators/    # SCSS generators
+│   │   ├── helpers/      # Helper functions
+│   │   └── utils/        # Utility functions
+│   ├── examples/          # Example implementations
+│   ├── init/             # Initialization templates
+│   └── scripts/          # Build and transform scripts
+├── local/                 # Local development
+└── docs/                  # Documentation
+```
+
+## File Settings
+- Encoding: UTF-8
+- Line endings: LF
+- Insert final newline: true
+- Trim trailing whitespace: true
+- Max line length: 80 characters
+
+## Naming Conventions
+- Directories: kebab-case
+- Files: kebab-case with appropriate extension
+- Documentation: PascalCase.md
+- Configuration: kebab-case.json/yml
+
+## Version Control
+- Meaningful commit messages
+- One feature/fix per commit
+- Reference issues/PRs when applicable
+- Keep commits atomic and focused
+- Use feature branches
+- Follow semantic versioning
+
+## Documentation
+- README.md in each major directory
+- JSDoc/SassDoc for API documentation
+- Example usage in code comments
+- Update docs with code changes
+- Document breaking changes
+- Include usage examples
+
+## Dependencies
+- Keep dependencies up to date
+- Document version requirements
+- Use exact versions for critical deps
+- Audit dependencies regularly
+- Document peer dependencies
+
+## Testing
+- Write tests for new features
+- Update tests with changes
+- Document test requirements
+- Use meaningful test names
+- Test edge cases
+
+## Build Process
+- Document build steps
+- Validate output
+- Handle errors gracefully
+- Provide clean scripts
+- Document environment requirements
+
+## Design Tokens
+- Follow token naming convention
+- Document token structure
+- Validate token values
+- Keep tokens synchronized
+- Document token usage
+
+## Local Development
+- Use consistent dev environment
+- Document setup steps
+- Provide example configurations
+- Include dev-only utilities
+- Document debugging process
+
+## Error Handling
+- Use descriptive messages
+- Log appropriately
+- Provide recovery steps
+- Document known issues
+- Include troubleshooting guides
+
+## Performance
+- Optimize build output
+- Monitor bundle size
+- Document performance considerations
+- Profile critical paths
+- Optimize dependencies
+
+## Security
+- Follow security best practices
+- Document security considerations
+- Keep dependencies secure
+- Handle sensitive data appropriately
+- Document security requirements
+
+## Accessibility
+- Follow WCAG guidelines
+- Document a11y features
+- Test with screen readers
+- Provide a11y documentation
+- Include a11y examples
