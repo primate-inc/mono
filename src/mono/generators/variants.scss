@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "sass:list";
 @use "sass:string";
+@use 'sass:meta';
 
 // // Validates if the key starts with -- or -
 // @function is-valid-key($key) {
@@ -331,4 +332,18 @@
   @debug "Variants map: ", $variants-map;
 
   @include traverse-variants($prefix, $collection, $name, $variants-map);
+}
+
+@mixin variant($variant-map) {
+  @if meta.type-of($variant-map) == "map" {
+    $variant-name: map.get($variant-map, 'name');
+    $variant-value: map.get($variant-map, 'value');
+    $variant-type: map.get($variant-map, 'type');
+
+    @if $variant-name and $variant-value {
+      &--#{$variant-name} {
+        @content($variant-value, $variant-type);
+      }
+    }
+  }
 }

@@ -1,3 +1,4 @@
+@use 'sass:meta';
 @use 'sass:map';
 @use 'sass:list';
 @use 'sass:string';
@@ -16,7 +17,7 @@
     $value: map.get($slots, $keys...);
   }
 
-  @if type-of($value) == 'map' {
+  @if meta.type-of($value) == 'map' {
     @error 'Looks like this value goes deeper, please extend your arguments or use responsive-#{$type} function. Available keys: #{map.keys($value)}.'; 
   }
 
@@ -28,7 +29,7 @@
     $value: get-function-value($value);
   }
 
-  @if type-of($value) == 'string' {
+  @if meta.type-of($value) == 'string' {
     $value: unquote($value);
   }
 
@@ -59,7 +60,7 @@
   //   $map: get-function-value($map);
   // }
 
-  @if (type-of($map) == 'map') {
+  @if (meta.type-of($map) == 'map') {
     $scopedMap: map.get($map, $keys...);
 
     @if ($scopedMap != null) {
@@ -72,11 +73,11 @@
 
         @if $value != null {
           @include screen($screen) {
-            @if (type-of($value) == 'string') {
+            @if (meta.type-of($value) == 'string') {
                 $value: unquote($value); 
             }
 
-            @if (type-of($attr) == 'list') {
+            @if (meta.type-of($attr) == 'list') {
               @each $attribute in $attr {
                 #{$attribute}: $value;
               }
@@ -92,6 +93,6 @@
       @error 'No breakpoints found. You need to select a key that returns a map containing one of following keys: #{map.keys(sortedBreakpoints())}';
     }
   } @else {
-    @error 'No map found. Instead had: Type <#{type-of($map)}>: #{$map}';
+    @error 'No map found. Instead had: Type <#{meta.type-of($map)}>: #{$map}';
   }
 }

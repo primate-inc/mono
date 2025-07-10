@@ -1,4 +1,6 @@
+@use 'sass:meta';
 @use 'sass:map';
+@use 'sass:list';
 
 /// Generate grid layout from the tokens map.
 /// 
@@ -6,101 +8,20 @@
 /// @param {boolean} $breakpoint - Whether to include a breakpoint for the grid layout. Default value is false.
 /// 
 /// @returns {void} - Grid layout for given name and breakpoint.
-@mixin grid($name: '') {
+@mixin grid($grid-map) {
   
-  $grid-map: map.get($tokens, size, grid);
+  @if(meta.type-of($grid-map) == 'map') {
+    $grid-columns: map.get($grid-map, 'columns');
+    $grid-gap: map.get($grid-map, 'gap');
+    $grid-width: map.get($grid-map, 'width');
+    $grid-margin: map.get($grid-map, 'margin');
 
-  @if ($name != '') {
-    @if (map.has-key($grid-map, $name)) {
-      $grid-map: map.get($grid-map, $name);
-    } @else {
-      @error 'Value not found. Expected token grid > #{$name} being a valid grid map.';
-    }
+    display: grid;
+    grid-template-columns: repeat($grid-columns, 1fr);
+    grid-gap: $grid-gap;
+    width: $grid-width;
+    margin: $grid-margin;
   }
-
-  $grid-token: null;
-  $grid-width: 100vw;
-
-  @debug '--------- Grid ---------';
-  @debug $grid-map;
-
-  @each $property, $values in $grid-map {
-    @if (type-of($values) == 'map') {
-      @debug 'Property: #{$property}';
-      @debug $values;
-      @debug sortedBreakpoints();
-
-      @each $screen, $size in sortedBreakpoints() {
-        @if (map.has-key($values, $screen)) {
-          $grid-token: map.get($values, $screen);
-          @debug 'Screen: #{$screen}';
-          @debug $grid-token;
-
-          @include screen($screen) {
-            --grid-#{$property}: #{$grid-token};
-          }
-        }
-      }
-    }
-  }
-  @debug '------------------------';
-
-  // @if($breakpoint) {
-  //   @if (map.has-key($grid-map, $breakpoint)) {
-  //     $grid-token: map.get($grid-map, $breakpoint, $name);
-  //   } @else {
-  //     @error 'Value not found. Expected token grid > #{$name} > #{$breakpoint} being a valid grid map.';
-  //   }
-
-  //   @if (type-of(map.get($tokens, 'size')) == 'map' and map.has-key(map.get($tokens, 'size'), $breakpoint)) {
-  //     $grid-width: map.get($tokens, 'size', $breakpoint, 'grid', $name, 'max-width');
-  //     @if ($grid-width == null or $grid-width == 0) {
-  //       $grid-width: 100vw;
-  //     }
-  //   }
-  // }
-
-  // @if not (map.has-key($grid-token, 'count') and map.has-key($grid-token, 'gutterSize')) {
-  //   @error 'Invalid Value. Expected keys `count` & `gutterSize` to be a defined, instead has: #{map.keys($grid-token)}.';
-  // }
-
-  // $grid-columns: map.get($grid-token, count);
-  // $grid-gap: rem(map.get($grid-token, gutterSize));
-  // $grid-offset: rem(map.get($grid-token, offset));
-  // $grid-free-space: 0; // minmax(0, $grid-gap);
-
-  // @if ($grid-width != null and type-of($grid-width) == 'number') {
-  //   $grid-free-space: minmax(0, calc(50% - ($grid-width/2) - $grid-offset));
-  // }
-
-  // $grid-template-columns: ();
-
-  // $grid-template-columns: append($grid-template-columns, $grid-free-space);
-
-  // $grid-template-columns: append($grid-template-columns, $grid-offset);
-
-  // @for $i from 1 through $grid-columns {
-  //   @if ($i == $grid-columns) {
-  //     $grid-template-columns: append($grid-template-columns, 1fr);
-  //   } @else {
-  //     $grid-template-columns: append($grid-template-columns, 1fr);
-  //     $grid-template-columns: append($grid-template-columns, $grid-gap);
-  //   }
-  // }
-
-  // $grid-template-columns: append($grid-template-columns, $grid-offset);
-
-  // $grid-template-columns: append($grid-template-columns, $grid-free-space);
-
-  // @include screen($breakpoint) {
-  //   // --_grid-width: #{$grid-width};
-  //   // --_grid-columns: #{$grid-columns};
-  //   // --_grid-gap: #{$grid-gap};
-  //   // --_grid-offset: #{$grid-offset};
-  //   // --_grid-free-space: #{$grid-free-space};
-  //   display: grid;
-  //   grid-template-columns: $grid-template-columns;
-  // }
 }
 
 /// Creates a responsive grid layout.
@@ -108,21 +29,17 @@
 /// @param {string} $name - The name of the grid layout. Default value is 'main'.
 ///
 /// @returns {void} - Responsive grid layout for given name.
-@mixin responsive-grid($name: main) {
-  $grid-map: map.get($tokens, 'grid');
+@mixin responsive-grid($values: null) {
+  $grid-map: if($values != null, $values, token(grid));
 
-  @if($grid-map) {
-    @if(type-of($grid-map) == 'map') {
-      @each $screen, $value in sortedBreakpoints() {
-        $stepSize: map.get($grid-map, $screen);
-
-        @if ($stepSize != null) {
-          @include grid($name, $screen);
-        }
+  @if (meta.type-of($values) == 'map') {
+    @each $breakpoint, $grid in $values {
+      @include screen($breakpoint) {
+        @include grid($grid);
       }
-    } @else {
-      @include grid($name);
     }
+  } @else {
+    @include grid($grid-map);
   }
 }
 

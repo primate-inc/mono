@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+
+@mixin theme($attr, $collection, $keys...) {
+    $map: map.get($tokens, $collection, $keys...);
+
+    @if $map {
+        @each $key, $value in $map {
+            @debug '--------------------------------';
+            @debug $key;
+            @debug $value;
+            @debug str-replace($key, '#', '.');
+            #{str-replace($key, '#', '.')} {
+                #{$attr}: $value;
+            }
+        }
+    } @else {
+        @error 'Theme map not found: #{$collection} > #{$keys}';
+    }
+}

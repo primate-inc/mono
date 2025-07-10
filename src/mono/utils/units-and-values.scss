@@ -1,7 +1,7 @@
+@use 'sass:string';
 @use 'sass:meta';
 @use 'sass:math';
 @use 'sass:list';
-@use 'sass:string';
 
 /// Convert a string to a number
 /// 
@@ -9,22 +9,22 @@
 /// 
 /// @returns {number} - The converted number.
 @function to-number($value) {
-  @if type-of($value) == 'number' {
+  @if meta.type-of($value) == 'number' {
     @return $value;
-  } @else if type-of($value) != 'string' {
+  } @else if meta.type-of($value) != 'string' {
     $_: log('Value for `to-number` should be a number or a string.');
+    @return $value;
   }
   
   $result: 0;
-  $digits: 0;
-  $minus: str-slice($value, 1, 1) == '-';
+  $minus: string.slice($value, 1, 1) == '-';
   $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
   
-  @for $i from if($minus, 2, 1) through str-length($value) {
-    $character: str-slice($value, $i, $i);
+  @for $i from if($minus, 2, 1) through string.length($value) {
+    $character: string.slice($value, $i, $i);
     
-    @if not (index(map-keys($numbers), $character) or $character == '.') {
-      @return to-length(if($minus, -$result, $result), str-slice($value, $i))
+    @if not (map-has-key($numbers, $character) or $character == '.') {
+      @return to-length(if($minus, -$result, $result), string.slice($value, $i))
     }
     
     @if $character == '.' {
@@ -54,11 +54,9 @@
 /// @param {Number} $value - Number to remove unit from
 /// 
 /// @return {Number} - Unitless number
-@function strip-unit($value) {
-  $number: to-number($value);
-
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return math.div($number, $number * 0 + 1);
+@function strip-unit($number) {
+  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
   }
 
   @return $number;
@@ -148,10 +146,8 @@
 /// 
 /// @return {Boolean} - Whether the string is a function
 @function is-function($string) {
-  @if type-of($string) == 'string' {
-    @if string.index($string, '(') and string.index($string, ')') == string.length($string) {
-      @return true;
-    }
+  @if meta.type-of($string) == 'string' {
+    @return string.index($string, '(') != null;
   }
   @return false;
 }

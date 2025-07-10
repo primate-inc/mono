@@ -18,3 +18,9 @@ body {
   min-height: 100vh;
   color: black;
 }
+body .light {
+  --test: black;
+}
+body .green {
+  --test: black;
+}
