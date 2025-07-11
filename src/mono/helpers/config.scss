@@ -1,3 +1,8 @@
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 @use 'sass:map';
 
 /// Get value from a config map

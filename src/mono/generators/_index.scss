@@ -1,0 +1,20 @@
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
+@use 'grid' with (
+  $tokens: $tokens,
+  $slots: $slots,
+  $configs: $configs
+);
+@forward 'typography' with (
+  $tokens: $tokens,
+  $slots: $slots,
+  $configs: $configs
+);
+@use 'variants' with (
+  $tokens: $tokens,
+  $slots: $slots,
+  $configs: $configs
+);

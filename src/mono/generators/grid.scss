@@ -2,6 +2,11 @@
 @use 'sass:map';
 @use 'sass:list';
 
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 /// Generate grid layout from the tokens map.
 /// 
 /// @param {string} $name - The name of the grid layout. Default value is 'main'.

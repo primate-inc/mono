@@ -3,6 +3,11 @@
 @use 'sass:list';
 @use 'sass:string';
 
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 /// Get value from a map.
 ///
 /// @param {string} $type - The type of the map to get the value from. Available types: token, slot.
@@ -30,7 +35,7 @@
   }
 
   @if meta.type-of($value) == 'string' {
-    $value: unquote($value);
+    $value: string.unquote($value);
   }
 
   @return $value;
@@ -56,25 +61,18 @@
   }
   $check: false;
 
-  // @if is-function($map) {
-  //   $map: get-function-value($map);
-  // }
-
   @if (meta.type-of($map) == 'map') {
     $scopedMap: map.get($map, $keys...);
 
     @if ($scopedMap != null) {
-      
-
       @each $screen, $value in sortedBreakpoints() {     
-
         $check: true;
         $value: map.get($scopedMap, string.quote($screen));
 
         @if $value != null {
           @include screen($screen) {
             @if (meta.type-of($value) == 'string') {
-                $value: unquote($value); 
+                $value: string.unquote($value); 
             }
 
             @if (meta.type-of($attr) == 'list') {

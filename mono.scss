@@ -1,1 +1,11 @@
-@import 'src/mono/index.scss';
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
+// Forward all functionality
+@forward 'src/mono' with (
+  $tokens: $tokens,
+  $slots: $slots,
+  $configs: $configs
+);

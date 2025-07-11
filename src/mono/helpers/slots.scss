@@ -2,6 +2,11 @@
 @use 'sass:list';
 @use 'sass:string';
 
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 /// Get value from a slots map
 /// 
 /// @param {string} $keys - The key to get the value from the slots map.

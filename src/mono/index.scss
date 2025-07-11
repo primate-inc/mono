@@ -1,4 +1,30 @@
-@import 'helpers';
-@import 'utils';
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
 
-@import 'generators';
+// Forward all functionality
+@use 'helpers' with (
+  $tokens: $tokens,
+  $slots: $slots,
+  $configs: $configs
+);
+@use 'utils' with (
+  $tokens: $tokens,
+  $slots: $slots,
+  $configs: $configs
+);
+@use 'generators' with (
+  $tokens: $tokens,
+  $slots: $slots,
+  $configs: $configs
+);
+
+
+@debug '--------------------------------';
+@debug $tokens;
+@debug '--------------------------------';
+@debug $slots;
+@debug '--------------------------------';
+@debug $configs;
+@debug '--------------------------------';

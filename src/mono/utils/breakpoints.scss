@@ -1,6 +1,11 @@
 @use 'sass:map';
 @use 'sass:list';
 
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 // Get breakpoint value from tokens map
 @function breakpoint($key) {
     $breakpoints: map.merge(map.get($tokens, "breakpoint"), map.get($configs, breakpoints));

@@ -1,26 +1,31 @@
-/**
- * Do not edit directly, this file was auto-generated.
- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* Error: Two forwarded modules both define a variable named $tokens.
+ *    ,
+ * 6  | / @forward 'config' with (
+ * 7  | |   $tokens: $tokens,
+ * 8  | |   $slots: $slots,
+ * 9  | |   $configs: $configs
+ * 10 | | );
+ *    | '-^ original @forward
+ * 11 | / @forward 'values' with (
+ * 12 | |   $tokens: $tokens,
+ * 13 | |   $slots: $slots,
+ * 14 | |   $configs: $configs
+ * 15 | | );
+ *    | '-^ new @forward
+ *    '
+ *   src/mono/helpers/_index.scss 11:1  @use
+ *   src/mono/index.scss 7:1            @forward
+ *   mono.scss 7:1                      @forward
+ *   local/mono/_index.scss 5:1         @use
+ *   local/main.scss 2:1                root stylesheet */
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  width: 100%;
-  min-height: 100vh;
-  color: black;
-}
-body .light {
-  --test: black;
-}
-body .green {
-  --test: black;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Two forwarded modules both define a variable named $tokens.\a    \2577 \a 6  \2502  \250c  @forward 'config' with (\a 7  \2502  \2502    $tokens: $tokens,\a 8  \2502  \2502    $slots: $slots,\a 9  \2502  \2502    $configs: $configs\a 10 \2502  \2502  );\a    \2502  \2514 \2500 ^ original @forward\a 11 \2502  \250c  @forward 'values' with (\a 12 \2502  \2502    $tokens: $tokens,\a 13 \2502  \2502    $slots: $slots,\a 14 \2502  \2502    $configs: $configs\a 15 \2502  \2502  );\a    \2502  \2514 \2500 ^ new @forward\a    \2575 \a   src/mono/helpers/_index.scss 11:1  @use\a   src/mono/index.scss 7:1            @forward\a   mono.scss 7:1                      @forward\a   local/mono/_index.scss 5:1         @use\a   local/main.scss 2:1                root stylesheet";
 }

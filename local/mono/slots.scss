@@ -1,6 +1,8 @@
 @use "sass:map";
 @use "sass:meta";
 
+@use "tokens" as *;
+
 //
 // Slots
 // Deep map providing nodes to elements.

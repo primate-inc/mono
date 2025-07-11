@@ -3,6 +3,11 @@
 @use 'sass:math';
 @use 'sass:list';
 
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 /// Convert a string to a number
 /// 
 /// @param {string} $value - The value to convert to a number.

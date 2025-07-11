@@ -1,6 +1,11 @@
 @use 'sass:map';
 @use 'sass:list';
 
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 /// Get sorted map by values.
 /// 
 /// @param {map} $map - The map to sort by values.

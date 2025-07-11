@@ -1,0 +1,8 @@
+$test: 'funcitons' !default;
+
+// @use 'generators' as *;
+@forward 'generators' with (
+  $test: $test
+);
+
+// @include test('funcitons');

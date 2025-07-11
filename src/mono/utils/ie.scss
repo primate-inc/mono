@@ -1,3 +1,8 @@
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 /// CSS fallback for IE
 @mixin ie {
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {

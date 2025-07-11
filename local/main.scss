@@ -1,5 +1,15 @@
 // Import MONO core
-@import 'mono';
+@use 'mono' as *;
+
+@use 'test/variables' as *;
+
+@use 'test' as * with (
+  $test: $test
+);
+
+.test {
+  @include test('main');
+}
 
 // Reset styles
 *,
@@ -18,7 +28,7 @@ body {
   width: 100%;
   min-height: 100vh; 
   // background-color: token(color, white);
-  color: token(color, page, text, base, '#green');
+  // color: token(color, page, text, base, '#green');
 
   @include theme('--test', color, page, text, base);
 }

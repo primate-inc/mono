@@ -1,0 +1,46 @@
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
+@use 'global' with (
+    $tokens: $tokens,
+    $slots: $slots,
+    $configs: $configs
+);
+@use 'maps' with (
+    $tokens: $tokens,
+    $slots: $slots,
+    $configs: $configs
+);
+@use 'lists' with (
+    $tokens: $tokens,
+    $slots: $slots,
+    $configs: $configs
+);
+
+@use 'strings' with (
+    $tokens: $tokens,
+    $slots: $slots,
+    $configs: $configs
+);
+@use 'units-and-values' with (
+    $tokens: $tokens,
+    $slots: $slots,
+    $configs: $configs
+);
+@use 'breakpoints' with (
+    $tokens: $tokens,
+    $slots: $slots,
+    $configs: $configs
+);
+@use 'dev' with (
+    $tokens: $tokens,
+    $slots: $slots,
+    $configs: $configs
+);
+@use 'ie' with (
+    $tokens: $tokens,
+    $slots: $slots,
+    $configs: $configs
+);

@@ -1,0 +1,14 @@
+@use 'config' as *;
+// @use '../../mono.scss' as *;
+
+// Forward everything from mono
+@forward '../../mono.scss' with (
+  $tokens: $tokens,
+  $slots: $slots,
+  $configs: $configs
+);
+
+// .test {
+//   @include typography('heading-md');
+// }
+

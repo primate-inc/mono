@@ -1,0 +1,8 @@
+$test: 'generators' !default;
+
+@mixin test($name) {
+  @debug '////////////////////////////';
+  @debug 'Test Generator: #{$name}';
+  @debug 'Variable: #{$test}';
+  @debug '////////////////////////////';
+}

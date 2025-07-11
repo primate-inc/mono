@@ -1,5 +1,10 @@
-@import "tokens";
-@import "slots";
+// Import tokens and slots
+@forward 'tokens';
+@forward 'slots';
+
+// Export configuration variables
+// $tokens: tokens.$tokens;
+// $slots: slots.$slots;
 
 $configs: (
   typography: (
@@ -39,4 +44,4 @@ $configs: (
     "default": 0rem,
     "custom": 123rem,
   ),
-);
+) !default;

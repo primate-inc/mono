@@ -3,6 +3,11 @@
 @use 'sass:list';
 @use 'sass:string';
 
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 /// Calculate fluid typography values.
 /// 
 /// @param {number} $min-value - The minimum value for the fluid typography.

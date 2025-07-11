@@ -1,5 +1,5 @@
-@import "tokens";
-@import "slots";
+@forward "tokens";
+@forward "slots";
 
 $configs: (
   typography: (

@@ -1,6 +1,11 @@
 @use "sass:map";
 @use "sass:list";
 
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 /// Generate CSS variables from a tokens map
 ///
 /// @param $prefix - The prefix for the CSS variable names

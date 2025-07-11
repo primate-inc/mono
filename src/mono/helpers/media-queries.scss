@@ -1,3 +1,8 @@
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
 @mixin screen($size, $mode: null, $type: min) {
   $breakpoint: breakpoint($size);
 
