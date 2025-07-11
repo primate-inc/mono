@@ -1,10 +1,7 @@
-$test: 'index' !default;
 // @use 'variables' as *;
 // @forward 'variables';
-
+@forward 'init';
 // @use 'functions' as *;
-@forward 'functions' with (
-  $test: $test
-);
+@forward 'functions';
 
 // @include test('index');

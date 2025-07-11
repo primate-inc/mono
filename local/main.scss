@@ -1,5 +1,5 @@
 // Import MONO core
-@use 'mono' as *;
+// @use 'mono' as *;
 
 @use 'test/variables' as *;
 
@@ -8,7 +8,7 @@
 );
 
 .test {
-  @include test('main');
+  @include generator('henlo');
 }
 
 // Reset styles
@@ -30,9 +30,8 @@ body {
   // background-color: token(color, white);
   // color: token(color, page, text, base, '#green');
 
-  @include theme('--test', color, page, text, base);
+  // @include theme('--test', color, page, text, base);
 }
-
 // // Demo Grid
 // .grid {
 //   @include responsive-grid();
@@ -116,3 +115,4 @@ body {
 //     }
 //   }
 // }
+

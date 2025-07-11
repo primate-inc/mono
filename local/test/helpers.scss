@@ -1,8 +1,8 @@
 @use 'init' as *;
 
-@mixin generator($name) {
+@mixin helper($name) {
   @debug '////////////////////////////';
-  @debug 'Test Generator: #{$name}';
+  @debug 'Test Helpers: #{$name}';
   @debug get_test_value();
   @debug '////////////////////////////';
 }

@@ -1,0 +1,14 @@
+$test: 'init' !default;
+
+@mixin init($name) {
+  @debug '////////////////////////////';
+  @debug 'Test Helpers: #{$name}';
+  @debug 'Variable: #{$test}';
+  @debug '////////////////////////////';
+}
+
+@function get_test_value() {
+  @debug '/////// getting test value: #{$test}';
+  
+  @return $test;
+}
