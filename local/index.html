@@ -6,8 +6,15 @@
     <title>MONO Design System</title>
     <link rel="stylesheet" href="./main.css">
   </head>
-  <body>
+  <body class="theme-light">
     <main id="app">
+      <!-- Theme Switcher -->
+      <div style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
+        <label for="theme-switch" style="cursor: pointer; user-select: none;">
+          <input type="checkbox" id="theme-switch" style="margin-right: 0.5em;">
+          <span id="theme-label">Light Theme</span>
+        </label>
+      </div>
       <!-- Background Grid -->
       <div class="grid">
         <div class="grid__item"></div>
@@ -26,6 +33,7 @@
 
       <!-- Typography Demo -->
       <section class="content">
+        <div class="test"></div>
         <div class="test"></div>
         <h1>MONO Design System</h1>
         <h2>A framework-agnostic utility library for SASS</h2>
@@ -51,5 +59,45 @@
         <div class="layout__item layout__item--text"></div>
       </section>
     </main>
+    <script>
+      // Theme switcher logic
+      (function () {
+        const body = document.body;
+        const switchInput = document.getElementById('theme-switch');
+        const themeLabel = document.getElementById('theme-label');
+
+        function setTheme(theme) {
+          if (theme === 'green') {
+            body.classList.remove('theme-light');
+            body.classList.add('theme-green');
+            themeLabel.textContent = 'Green Theme';
+            switchInput.checked = true;
+          } else {
+            body.classList.remove('theme-green');
+            body.classList.add('theme-light');
+            themeLabel.textContent = 'Light Theme';
+            switchInput.checked = false;
+          }
+        }
+
+        // Load theme from localStorage if available
+        const savedTheme = localStorage.getItem('mono-theme');
+        if (savedTheme === 'green') {
+          setTheme('green');
+        } else {
+          setTheme('light');
+        }
+
+        switchInput.addEventListener('change', function () {
+          if (switchInput.checked) {
+            setTheme('green');
+            localStorage.setItem('mono-theme', 'green');
+          } else {
+            setTheme('light');
+            localStorage.setItem('mono-theme', 'light');
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

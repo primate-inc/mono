@@ -1,0 +1,37 @@
+// Configuration variables with default values
+$tokens: () !default;
+$slots: () !default;
+$configs: () !default;
+
+@forward 'utils' with (
+  $utils_tokens: $tokens
+);
+
+@forward 'helpers/config' with (
+  $configs: $configs
+);
+
+@forward 'helpers/values' with (
+  $tokens: $tokens,
+  $slots: $slots
+);
+
+
+
+
+// @use 'test' as *;
+// @use 'test2' as *;
+
+// @debug '123srutututuutututu';
+// @debug 'sad, ' + #{test()};
+// @debug 'sad, ' + #{test2()};
+
+// Forward all functionality
+// @forward 'utils';
+// @forward 'helpers';
+
+// @use 'generators' with (
+//   $tokens: $tokens,
+//   $slots: $slots,
+//   $configs: $configs
+// );

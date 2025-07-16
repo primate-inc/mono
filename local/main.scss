@@ -2,12 +2,12 @@
 @use 'mono';
 
 // Import local variables
-@use 'test/variables' as *;
+// @use 'test/variables' as *;
 
-@use 'test' as * with (
-  $test: $test,
-  $map: $map
-);
+// @use 'test' as * with (
+//   $test: $test,
+//   $map: $map
+// );
 
 // @debug '/////// tokens:';
 // @debug mono.$tokens;
@@ -20,18 +20,24 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .test {
-  @include generator('henlo');
+  // @include generator('henlo');
 
+  // width: 10rem;
   height: 10rem;
 
-  background: red;
+  // background: red;
   
-  @include mono.value('width', 'token', 'size', 'page', 'spacing', '100');
+  // @debug mono.get_token('size', 'page', 'spacing', '100', '@xx');
+  // width: mono.get_token('size', 'page', 'spacing', '100', '@xx');
 
+  color: pink;
+
+  @include mono.responsive-token('width', 'size', 'page', 'spacing', '1000'); 
+  @include mono.themed-token('background-color', 'color', 'page', 'text', 'accent');
 }
 
 // Reset styles
@@ -54,6 +60,15 @@ body {
   // color: token(color, page, text, base, '#green');
 
   // @include theme('--test', color, page, text, base);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
 }
 // // Demo Grid
 // .grid {

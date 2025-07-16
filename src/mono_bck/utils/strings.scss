@@ -1,0 +1,64 @@
+@use 'sass:string';
+@use 'sass:meta';
+
+
+/// Replace `$search` with `$replace` in `$string`
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function str-split($string, $separator) {
+  // empty array/list
+  $split-arr: ();
+  // first index of separator in string
+  $index : string.index($string, $separator);
+  // loop through string
+  @while $index != null {
+      // get the substring from the first character to the separator
+      $item: string.slice($string, 1, $index - 1);
+      // push item to array
+      $split-arr: append($split-arr, $item);
+      // remove item and separator from string
+      $string: string.slice($string, $index + 1);
+      // find new index of separator
+      $index : string.index($string, $separator);
+  }
+  // add the remaining string to list (the last item)
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
+@function safe-unquote($value) {
+  @if (meta.type-of($value) == string) {
+    @return string.unquote($value);
+  } @else {
+    @return $value;
+  }
+}
+
+@function sanitize($string) {
+  // change spaces to dashes
+  $sanitizedString: str-replace($string, ' ', '-');
+  // remove keywords
+  $sanitizedString: str-replace($sanitizedString, '-fluid', '');
+  @return $sanitizedString;
+}
+
+@function starts-with($string, $substring) {
+  @return string.slice($string, 1, string.length($substring)) == $substring;
+}
+
+@function ends-with($string, $substring) {
+  @return #{string.slice($string, string.length($string), string.length($substring) * -1)} == #{$substring};
+}

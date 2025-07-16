@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
+
+$tokens: () !default;
+
+/// Deeply lookup a token value in $tokens using a sequence of keys.
+/// Returns the first non-map value found, or throws if not found.
+/// 
+/// @param {...} $keys - The path of keys to lookup.
+/// @returns {any} - The found token value.
+/// @throws {Error} If the token path is invalid.
+@function get_token($keys...) {
+  $current: $tokens;
+  $path: ();
+  @each $key in $keys {
+    $path: list.append($path, $key);
+    @if map.has-key($current, $key) {
+      $current: map.get($current, $key);
+      // If the value is not a map, return it immediately
+      @if meta.type-of($current) != 'map' {
+        @return $current;
+      }
+    } @else {
+      @error 'Token path not found: #{list.join($path, " > ")}';
+    }
+  }
+  // If all keys traversed and still a map, return the map
+  @return $current;
+}
