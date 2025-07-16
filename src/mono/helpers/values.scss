@@ -3,10 +3,12 @@
 @use 'sass:list';
 @use 'sass:string';
 
+@use '../utils/breakpoints' as *;
+@use 'media-queries' as *;
+
 // Configuration variables with default values
 $tokens: () !default;
 $slots: () !default;
-$configs: () !default;
 
 /// Get value from a map.
 ///
@@ -50,7 +52,7 @@ $configs: () !default;
 /// @param {string} $keys - The key to get the value from the map.
 ///
 /// @returns {void} - The responsive pair of attribute & value from the map.
-@mixin responsive-value($attr, $type, $collection, $keys...) {
+@mixin value($attr, $type, $collection, $keys...) {
   $map: null;
   @if $type == 'token' {
     $map: map.get($tokens, $collection);
@@ -60,6 +62,9 @@ $configs: () !default;
     @error 'Unrecognized type: #{$type}. Available types: token, slot.';
   }
   $check: false;
+
+  @debug 'breakpoints:';
+  @debug sortedBreakpoints();
 
   @if (meta.type-of($map) == 'map') {
     $scopedMap: map.get($map, $keys...);
@@ -93,4 +98,9 @@ $configs: () !default;
   } @else {
     @error 'No map found. Instead had: Type <#{meta.type-of($map)}>: #{$map}';
   }
+}
+
+// Legacy function name
+@mixin responsive-value($attr, $type, $collection, $keys...) {
+  @include value($attr, $type, $collection, $keys...);
 }

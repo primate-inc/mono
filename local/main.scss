@@ -1,14 +1,37 @@
 // Import MONO core
-// @use 'mono' as *;
+@use 'mono';
 
+// Import local variables
 @use 'test/variables' as *;
 
 @use 'test' as * with (
-  $test: $test
+  $test: $test,
+  $map: $map
 );
+
+// @debug '/////// tokens:';
+// @debug mono.$tokens;
+// @debug '/////// slots:';
+// @debug mono.$slots;
+// @debug '/////// configs:';
+// @debug mono.$configs;
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .test {
   @include generator('henlo');
+
+  height: 10rem;
+
+  background: red;
+  
+  @include mono.value('width', 'token', 'size', 'page', 'spacing', '100');
+
 }
 
 // Reset styles

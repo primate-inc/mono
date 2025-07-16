@@ -2,11 +2,6 @@
 @use "sass:list";
 @use "sass:map";
 
-// Configuration variables with default values
-$tokens: () !default;
-$slots: () !default;
-$configs: () !default;
-
 // Validates if the key starts with -- or -
 @function is-valid-key($key) {
   @if not string.slice($key, 1, 1) == "-" {

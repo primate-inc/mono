@@ -1,40 +1,11 @@
-// Configuration variables with default values
-$tokens: () !default;
-$slots: () !default;
-$configs: () !default;
+// Configuration variables;
+// $tokens: () !default;
+// $slots: () !default;
+// $configs: () !default;
 
-@forward 'config' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
-@forward 'values' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
-@forward 'theme' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
-@forward 'tokens' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
-@forward 'slots' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
-@forward 'variables' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
-@forward 'media-queries' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
+
+@forward 'theme';
+@forward 'tokens';
+// @forward 'slots';
+// @forward 'variables';
+// @forward 'media-queries';

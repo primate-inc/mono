@@ -1,8 +1,9 @@
-@use 'init' as *;
+@use 'init' as mono;
 
 @mixin generator($name) {
   @debug '////////////////////////////';
   @debug 'Test Generator: #{$name}';
-  @debug get_test_value();
+  @debug mono.get_test_value();
+  @debug mono.get_test_map();
   @debug '////////////////////////////';
 }

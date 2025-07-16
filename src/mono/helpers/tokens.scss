@@ -2,10 +2,7 @@
 @use 'sass:list';
 @use 'sass:string';
 
-// Configuration variables with default values
-$tokens: () !default;
-$slots: () !default;
-$configs: () !default;
+//@use 'values' as *;
 
 /// Get value from a tokens map
 ///
@@ -36,5 +33,5 @@ $configs: () !default;
 /// @returns {void} - The responsive pair of attribute & value from the map.
 // @mixin token($attr, $collection, $keys...) {
 @mixin token($attr, $collection, $keys...) {
-    @include responsive-value($attr, 'token', $collection, $keys...);
+    @include value($attr, 'token', $collection, $keys...);
 }

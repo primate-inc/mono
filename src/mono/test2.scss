@@ -1,0 +1,9 @@
+@use 'sass:map';
+@use 'helpers/values' as *;
+
+@function test2() {
+    @debug '------->2222';
+    // @debug map.get($tokens, 'size', 'page', 'spacing', '100');
+    @debug value('token', 'size', 'page', 'spacing', '100', '@xx');
+  @return 'test2';
+}

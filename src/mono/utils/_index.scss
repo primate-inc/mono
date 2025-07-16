@@ -1,46 +1,16 @@
-// Configuration variables with default values
-$tokens: () !default;
-$slots: () !default;
-$configs: () !default;
+$utils_tokens: () !default;
 
-@use 'global' with (
-    $tokens: $tokens,
-    $slots: $slots,
-    $configs: $configs
-);
-@use 'maps' with (
-    $tokens: $tokens,
-    $slots: $slots,
-    $configs: $configs
-);
-@use 'lists' with (
-    $tokens: $tokens,
-    $slots: $slots,
-    $configs: $configs
-);
+@forward 'global';
+// @forward 'maps';
+@forward 'lists';
 
-@use 'strings' with (
-    $tokens: $tokens,
-    $slots: $slots,
-    $configs: $configs
+@forward 'strings';
+@forward 'units-and-values';
+@forward 'breakpoints' with (
+  $utils_tokens: $utils_tokens
 );
-@use 'units-and-values' with (
-    $tokens: $tokens,
-    $slots: $slots,
-    $configs: $configs
-);
-@use 'breakpoints' with (
-    $tokens: $tokens,
-    $slots: $slots,
-    $configs: $configs
-);
-@use 'dev' with (
-    $tokens: $tokens,
-    $slots: $slots,
-    $configs: $configs
-);
-@use 'ie' with (
-    $tokens: $tokens,
-    $slots: $slots,
-    $configs: $configs
-);
+@forward 'dev';
+@forward 'ie';
+
+// @debug 'UTILS --------------------------';
+// @debug value('token', 'size', 'page', 'spacing', '100', '@xx');

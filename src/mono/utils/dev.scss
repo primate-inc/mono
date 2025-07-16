@@ -1,8 +1,3 @@
-// Configuration variables with default values
-$tokens: () !default;
-$slots: () !default;
-$configs: () !default;
-
 /// Paints a border around the element using box-shadow to prevent resizing & shifting
 /// 
 /// @param {String} $color - The color of the border

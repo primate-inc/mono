@@ -1,12 +1,8 @@
 @use 'sass:map';
 @use 'sass:list';
 @use 'sass:string';
-// @use 'values' as *;
 
-// Configuration variables with default values
-$tokens: () !default;
-$slots: () !default;
-$configs: () !default;
+//@use 'values' as *;
 
 @mixin theme($attr, $collection, $keys...) {
     $map: value('token', $collection, $keys...);

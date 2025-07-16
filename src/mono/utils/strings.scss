@@ -1,10 +1,6 @@
 @use 'sass:string';
 @use 'sass:meta';
 
-// Configuration variables with default values
-$tokens: () !default;
-$slots: () !default;
-$configs: () !default;
 
 /// Replace `$search` with `$replace` in `$string`
 /// @param {String} $string - Initial string

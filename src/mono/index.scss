@@ -3,28 +3,35 @@ $tokens: () !default;
 $slots: () !default;
 $configs: () !default;
 
+@forward 'utils' with (
+  $utils_tokens: $tokens
+);
+
+@forward 'helpers/config' with (
+  $configs: $configs
+);
+
+@forward 'helpers/values' with (
+  $tokens: $tokens,
+  $slots: $slots
+);
+
+
+
+
+// @use 'test' as *;
+// @use 'test2' as *;
+
+// @debug '123srutututuutututu';
+// @debug 'sad, ' + #{test()};
+// @debug 'sad, ' + #{test2()};
+
 // Forward all functionality
-@use 'helpers' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
-@use 'utils' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
-@use 'generators' with (
-  $tokens: $tokens,
-  $slots: $slots,
-  $configs: $configs
-);
+// @forward 'utils';
+// @forward 'helpers';
 
-
-@debug '--------------------------------';
-@debug $tokens;
-@debug '--------------------------------';
-@debug $slots;
-@debug '--------------------------------';
-@debug $configs;
-@debug '--------------------------------';
+// @use 'generators' with (
+//   $tokens: $tokens,
+//   $slots: $slots,
+//   $configs: $configs
+// );

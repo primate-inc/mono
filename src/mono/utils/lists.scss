@@ -1,11 +1,3 @@
-@use "sass:list";
-@use "sass:string";
-@use 'sass:meta';
-
-// Configuration variables with default values
-$tokens: () !default;
-$slots: () !default;
-$configs: () !default;
 
 /// Converts a list to a string by concatenating its elements with an optional glue string.
 /// If the list contains nested lists, they are recursively converted to strings.

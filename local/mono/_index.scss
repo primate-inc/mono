@@ -1,4 +1,6 @@
 @use 'config' as *;
+@use 'tokens' as *;
+@use 'slots' as *;
 // @use '../../mono.scss' as *;
 
 // Forward everything from mono
@@ -7,8 +9,3 @@
   $slots: $slots,
   $configs: $configs
 );
-
-// .test {
-//   @include typography('heading-md');
-// }
-

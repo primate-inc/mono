@@ -23,7 +23,7 @@
   },
   "scripts": {
     "tokens": "node ./src/scripts/transformTokens.js",
-    "sass:watch": "sass local/main.scss:local/main.css --watch --no-source-map",
+    "sass:watch": "sass --watch local/main.scss:local/main.css --load-path=src/mono --no-source-map",
     "serve": "live-server local --watch=main.css,index.html --no-browser",
     "dev": "npm-run-all -p tokens sass:watch serve",
     "setup": "node mono.js tokens -p ./local && node mono.js init -p ./local"
