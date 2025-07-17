@@ -8,3 +8,5 @@ $configs: () !default;
 );
 
 @forward 'values';
+@forward 'variables';
+@forward 'font';

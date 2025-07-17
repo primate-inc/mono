@@ -1,0 +1,16 @@
+@use 'utils/global' as *;
+
+@use 'tokens' as *;
+@use 'screen' as *;
+
+@mixin font($keys...) {
+    $font: get_token('size', 'typography', $keys...);
+
+    @each $attribute, $responsive-values in $font {
+        @each $screen, $value in $responsive-values {
+            @include screen(sanitize-key($screen)) {
+                #{$attribute}: $value;
+            }
+        }
+    }
+}

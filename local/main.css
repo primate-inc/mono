@@ -6,8 +6,145 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  --size-typography-heading-md-font-size: 1.375rem;
+  --size-typography-heading-md-font-weight: 37.5rem;
+  --size-typography-heading-md-letter-spacing: 0;
+  --size-typography-heading-md-line-height: 1.71875rem;
+  --size-typography-heading-xxl-font-size: 2.25rem;
+  --size-typography-heading-xxl-font-weight: 43.75rem;
+  --size-typography-heading-xxl-line-height: 2.8125rem;
+  --size-typography-heading-xxl-letter-spacing: 0;
+  --size-typography-heading-xl-font-size: 1.9375rem;
+  --size-typography-heading-xl-font-weight: 43.75rem;
+  --size-typography-heading-xl-line-height: 2.421875rem;
+  --size-typography-heading-xl-letter-spacing: 0;
+  --size-typography-heading-lg-font-size: 1.625rem;
+  --size-typography-heading-lg-font-weight: 37.5rem;
+  --size-typography-heading-lg-line-height: 2.03125rem;
+  --size-typography-heading-lg-letter-spacing: 0;
+  --size-typography-heading-sm-font-size: 1.1875rem;
+  --size-typography-heading-sm-font-weight: 31.25rem;
+  --size-typography-heading-sm-line-height: 1.484375rem;
+  --size-typography-heading-sm-letter-spacing: 0;
+  --size-typography-heading-xs-font-size: 1.125rem;
+  --size-typography-heading-xs-font-weight: 25rem;
+  --size-typography-heading-xs-line-height: 1.375rem;
+  --size-typography-heading-xs-letter-spacing: 0;
+  --size-typography-body-md-font-size: 1rem;
+  --size-typography-body-md-font-weight: 18.75rem;
+  --size-typography-body-md-line-height: 1.25rem;
+  --size-typography-body-md-letter-spacing: 0;
+  --size-typography-body-md-paragraph-spacing: 0.5rem;
+  --size-typography-body-md-list-spacing: 0.5rem;
+  --size-typography-body-sm-font-size: 0.875rem;
+  --size-typography-body-sm-font-weight: 18.75rem;
+  --size-typography-body-sm-line-height: 1.125rem;
+  --size-typography-body-sm-letter-spacing: 0;
+  --size-typography-body-sm-paragraph-spacing: 0.25rem;
+  --size-typography-body-sm-list-spacing: 0.25rem;
+  --size-typography-body-lg-font-size: 1.125rem;
+  --size-typography-body-lg-font-weight: 25rem;
+  --size-typography-body-lg-line-height: 1.375rem;
+  --size-typography-body-lg-letter-spacing: 0;
+  --size-typography-body-lg-paragraph-spacing: 0.5rem;
+  --size-typography-body-lg-list-spacing: 0.5rem;
+  --size-typography-label-sm-font-size: 0.75rem;
+  --size-typography-label-sm-font-weight: 43.75rem;
+  --size-typography-label-sm-line-height: 0.875rem;
+  --size-typography-label-sm-letter-spacing: 0;
+  --size-typography-label-sm-paragraph-spacing: 0;
+  --size-typography-label-lg-font-size: 1rem;
+  --size-typography-label-lg-font-weight: 43.75rem;
+  --size-typography-label-lg-line-height: 1.25rem;
+  --size-typography-label-lg-letter-spacing: 0;
+  --size-typography-label-lg-paragraph-spacing: 0;
+  --size-typography-label-md-font-size: 0.875rem;
+  --size-typography-label-md-font-weight: 43.75rem;
+  --size-typography-label-md-line-height: 1.125rem;
+  --size-typography-label-md-letter-spacing: 0;
+  --size-typography-label-md-paragraph-spacing: 0;
+  --size-grid-columns: 4;
+  --size-grid-gap: 0.25rem;
+  --size-grid-margin: 0.5rem;
+  --size-grid-max-width: 75rem;
+  --size-page-spacing-100: 0.25rem;
+  --size-page-spacing-200: 0.5rem;
+  --size-page-spacing-300: 1rem;
+  --size-page-spacing-400: 1.5rem;
+  --size-page-spacing-500: 2rem;
+  --size-page-spacing-600: 3rem;
+  --size-page-spacing-700: 4rem;
+  --size-page-spacing-800: 5rem;
+  --size-page-spacing-900: 6.25rem;
+  --size-page-spacing-1000: 7.5rem;
+  --size-page-spacing-000: 0;
+  --size-page-padding-100: 0.25rem;
+  --size-page-padding-200: 0.5rem;
+  --size-page-padding-300: 1rem;
+  --size-page-padding-400: 1.5rem;
+  --size-page-padding-500: 2rem;
+  --size-page-padding-600: 2.75rem;
+  --size-page-padding-700: 3.5rem;
+  --size-page-padding-800: 4rem;
+  --size-page-padding-900: 5rem;
+  --size-page-padding-1000: 6.75rem;
+  --size-page-padding-000: 0;
+  --size-page-radius-300: 0.25rem;
+  --size-page-radius-500: 1rem;
+  --size-page-radius-700: 2rem;
+  --size-page-radius-1000: 624.9375rem;
+  --size-page-radius-000: 0;
+  --size-page-max-width: 21.875rem;
+  --size-element---size--normal-padding-y: 1.5rem;
+  --size-element---size--normal-padding-x: 1rem;
+  --size-element---size--normal-spacing-x: 2rem;
+  --size-element---size--normal-spacing-y: 2rem;
+  --size-element---size--large-spacing-x: 2rem;
+  --size-element---size--large-spacing-y: 4rem;
+  --size-element---size--large-padding-x: 2rem;
+  --size-element---size--large-padding-y: 2.5rem;
+  --size-element---size--compact*-spacing-x: 1rem;
+  --size-element---size--compact*-spacing-y: 1rem;
+  --size-element---size--compact*-padding-x: 1rem;
+  --size-element---size--compact*-padding-y: 1rem;
+  --size-element---radius--none*-radius: 0;
+  --size-element---radius--small-radius: 0.5rem;
+  --size-section---radius--none*-radius: 0;
+  --size-section---radius--small-radius: 0.5rem;
+  --size-section---size--normal*-spacing-x: 2rem;
+  --size-section---size--normal*-spacing-y: 2rem;
+  --size-section---size--normal*-padding-x: 1rem;
+  --size-section---size--normal*-padding-y: 1.5rem;
+  --size-section---size--normal*-padding-outer: 2rem;
+  --size-section---size--normal*-outer-padding-x: 0.5rem;
+  --size-button---radius--none*-radius: 0;
+  --size-button---radius--small-radius: 0.25rem;
+  --size-button---radius--medium-radius: 0.5rem;
+  --size-button---size--default*-spacing-x: 2rem;
+  --size-button---size--default*-spacing-y: 2rem;
+  --size-button---size--default*-padding-x: 1rem;
+  --size-button---size--default*-padding-y: 0.75rem;
+  --size-button---size--large-spacing-x: 2rem;
+  --size-button---size--large-spacing-y: 4rem;
+  --size-button---size--large-padding-x: 2rem;
+  --size-button---size--large-padding-y: 1rem;
+  --size-button---size--small-spacing-x: 1rem;
+  --size-button---size--small-spacing-y: 1rem;
+  --size-button---size--small-padding-x: 0.5rem;
+  --size-button---size--small-padding-y: 0.25rem;
+  --size-header-padding-y: 0.5rem;
+  --size-header-padding-x: 0.5rem;
+  --size-header-spacing: 1rem;
+  --size-header-navigation-item-spacing: 1.25rem;
+  --size-footer-padding-x: 0.5rem;
+  --size-footer-padding-y: 0.5rem;
+  --size-footer-spacing: 3rem;
+  --size-footer-navigation-column-spacing: 1rem;
+  --size-footer-navigation-item-spacing: 0.5rem;
+  --size-footer-navigation-title-spacing: 1rem;
+  --size-footer-footnote-padding: 1.5rem;
 }
-body .theme-light {
+body.theme-light {
   --color-button---color--accent-background-initial: #294bb0;
   --color-button---color--accent-background-hover: #4569d2;
   --color-button---color--accent-background-focus: #4569d2;
@@ -38,7 +175,7 @@ body .theme-light {
   --color-page-border-subtle: #b1aca9;
   --color-page-border-accent: #294bb0;
 }
-body .theme-green {
+body.theme-green {
   --color-button---color--accent-background-initial: #868d46;
   --color-button---color--accent-background-hover: #a4ad5a;
   --color-button---color--accent-background-focus: #a4ad5a;
@@ -69,148 +206,7 @@ body .theme-green {
   --color-page-border-subtle: #b1aca9;
   --color-page-border-accent: #868d46;
 }
-@media (min-width: 0) {
-  body {
-    --size-typography-heading-md-font-size: 1.375rem;
-    --size-typography-heading-md-font-weight: 37.5rem;
-    --size-typography-heading-md-letter-spacing: 0;
-    --size-typography-heading-md-line-height: 1.71875rem;
-    --size-typography-heading-xxl-font-size: 2.25rem;
-    --size-typography-heading-xxl-font-weight: 43.75rem;
-    --size-typography-heading-xxl-line-height: 2.8125rem;
-    --size-typography-heading-xxl-letter-spacing: 0;
-    --size-typography-heading-xl-font-size: 1.9375rem;
-    --size-typography-heading-xl-font-weight: 43.75rem;
-    --size-typography-heading-xl-line-height: 2.421875rem;
-    --size-typography-heading-xl-letter-spacing: 0;
-    --size-typography-heading-lg-font-size: 1.625rem;
-    --size-typography-heading-lg-font-weight: 37.5rem;
-    --size-typography-heading-lg-line-height: 2.03125rem;
-    --size-typography-heading-lg-letter-spacing: 0;
-    --size-typography-heading-sm-font-size: 1.1875rem;
-    --size-typography-heading-sm-font-weight: 31.25rem;
-    --size-typography-heading-sm-line-height: 1.484375rem;
-    --size-typography-heading-sm-letter-spacing: 0;
-    --size-typography-heading-xs-font-size: 1.125rem;
-    --size-typography-heading-xs-font-weight: 25rem;
-    --size-typography-heading-xs-line-height: 1.375rem;
-    --size-typography-heading-xs-letter-spacing: 0;
-    --size-typography-body-md-font-size: 1rem;
-    --size-typography-body-md-font-weight: 18.75rem;
-    --size-typography-body-md-line-height: 1.25rem;
-    --size-typography-body-md-letter-spacing: 0;
-    --size-typography-body-md-paragraph-spacing: 0.5rem;
-    --size-typography-body-md-list-spacing: 0.5rem;
-    --size-typography-body-sm-font-size: 0.875rem;
-    --size-typography-body-sm-font-weight: 18.75rem;
-    --size-typography-body-sm-line-height: 1.125rem;
-    --size-typography-body-sm-letter-spacing: 0;
-    --size-typography-body-sm-paragraph-spacing: 0.25rem;
-    --size-typography-body-sm-list-spacing: 0.25rem;
-    --size-typography-body-lg-font-size: 1.125rem;
-    --size-typography-body-lg-font-weight: 25rem;
-    --size-typography-body-lg-line-height: 1.375rem;
-    --size-typography-body-lg-letter-spacing: 0;
-    --size-typography-body-lg-paragraph-spacing: 0.5rem;
-    --size-typography-body-lg-list-spacing: 0.5rem;
-    --size-typography-label-sm-font-size: 0.75rem;
-    --size-typography-label-sm-font-weight: 43.75rem;
-    --size-typography-label-sm-line-height: 0.875rem;
-    --size-typography-label-sm-letter-spacing: 0;
-    --size-typography-label-sm-paragraph-spacing: 0;
-    --size-typography-label-lg-font-size: 1rem;
-    --size-typography-label-lg-font-weight: 43.75rem;
-    --size-typography-label-lg-line-height: 1.25rem;
-    --size-typography-label-lg-letter-spacing: 0;
-    --size-typography-label-lg-paragraph-spacing: 0;
-    --size-typography-label-md-font-size: 0.875rem;
-    --size-typography-label-md-font-weight: 43.75rem;
-    --size-typography-label-md-line-height: 1.125rem;
-    --size-typography-label-md-letter-spacing: 0;
-    --size-typography-label-md-paragraph-spacing: 0;
-    --size-grid-columns: 4;
-    --size-grid-gap: 0.25rem;
-    --size-grid-margin: 0.5rem;
-    --size-grid-max-width: 75rem;
-    --size-page-spacing-100: 0.25rem;
-    --size-page-spacing-200: 0.5rem;
-    --size-page-spacing-300: 1rem;
-    --size-page-spacing-400: 1.5rem;
-    --size-page-spacing-500: 2rem;
-    --size-page-spacing-600: 3rem;
-    --size-page-spacing-700: 4rem;
-    --size-page-spacing-800: 5rem;
-    --size-page-spacing-900: 6.25rem;
-    --size-page-spacing-1000: 7.5rem;
-    --size-page-spacing-000: 0;
-    --size-page-padding-100: 0.25rem;
-    --size-page-padding-200: 0.5rem;
-    --size-page-padding-300: 1rem;
-    --size-page-padding-400: 1.5rem;
-    --size-page-padding-500: 2rem;
-    --size-page-padding-600: 2.75rem;
-    --size-page-padding-700: 3.5rem;
-    --size-page-padding-800: 4rem;
-    --size-page-padding-900: 5rem;
-    --size-page-padding-1000: 6.75rem;
-    --size-page-padding-000: 0;
-    --size-page-radius-300: 0.25rem;
-    --size-page-radius-500: 1rem;
-    --size-page-radius-700: 2rem;
-    --size-page-radius-1000: 624.9375rem;
-    --size-page-radius-000: 0;
-    --size-page-max-width: 21.875rem;
-    --size-element---size--normal-padding-y: 1.5rem;
-    --size-element---size--normal-padding-x: 1rem;
-    --size-element---size--normal-spacing-x: 2rem;
-    --size-element---size--normal-spacing-y: 2rem;
-    --size-element---size--large-spacing-x: 2rem;
-    --size-element---size--large-spacing-y: 4rem;
-    --size-element---size--large-padding-x: 2rem;
-    --size-element---size--large-padding-y: 2.5rem;
-    --size-element---size--compact*-spacing-x: 1rem;
-    --size-element---size--compact*-spacing-y: 1rem;
-    --size-element---size--compact*-padding-x: 1rem;
-    --size-element---size--compact*-padding-y: 1rem;
-    --size-element---radius--none*-radius: 0;
-    --size-element---radius--small-radius: 0.5rem;
-    --size-section---radius--none*-radius: 0;
-    --size-section---radius--small-radius: 0.5rem;
-    --size-section---size--normal*-spacing-x: 2rem;
-    --size-section---size--normal*-spacing-y: 2rem;
-    --size-section---size--normal*-padding-x: 1rem;
-    --size-section---size--normal*-padding-y: 1.5rem;
-    --size-section---size--normal*-padding-outer: 2rem;
-    --size-section---size--normal*-outer-padding-x: 0.5rem;
-    --size-button---radius--none*-radius: 0;
-    --size-button---radius--small-radius: 0.25rem;
-    --size-button---radius--medium-radius: 0.5rem;
-    --size-button---size--default*-spacing-x: 2rem;
-    --size-button---size--default*-spacing-y: 2rem;
-    --size-button---size--default*-padding-x: 1rem;
-    --size-button---size--default*-padding-y: 0.75rem;
-    --size-button---size--large-spacing-x: 2rem;
-    --size-button---size--large-spacing-y: 4rem;
-    --size-button---size--large-padding-x: 2rem;
-    --size-button---size--large-padding-y: 1rem;
-    --size-button---size--small-spacing-x: 1rem;
-    --size-button---size--small-spacing-y: 1rem;
-    --size-button---size--small-padding-x: 0.5rem;
-    --size-button---size--small-padding-y: 0.25rem;
-    --size-header-padding-y: 0.5rem;
-    --size-header-padding-x: 0.5rem;
-    --size-header-spacing: 1rem;
-    --size-header-navigation-item-spacing: 1.25rem;
-    --size-footer-padding-x: 0.5rem;
-    --size-footer-padding-y: 0.5rem;
-    --size-footer-spacing: 3rem;
-    --size-footer-navigation-column-spacing: 1rem;
-    --size-footer-navigation-item-spacing: 0.5rem;
-    --size-footer-navigation-title-spacing: 1rem;
-    --size-footer-footnote-padding: 1.5rem;
-  }
-}
-@media (min-width: 21.875rem) {
+@media only screen and (min-width: 21.875rem) {
   body {
     --size-typography-heading-md-font-size: 1.625rem;
     --size-typography-heading-md-font-weight: 37.5rem;
@@ -351,7 +347,7 @@ body .theme-green {
     --size-footer-footnote-padding: 1.5rem;
   }
 }
-@media (min-width: 45rem) {
+@media only screen and (min-width: 45rem) {
   body {
     --size-typography-heading-md-font-size: 1.9375rem;
     --size-typography-heading-md-font-weight: 37.5rem;
@@ -496,6 +492,7 @@ body .theme-green {
 .test {
   height: 10rem;
   color: pink;
+  background-color: var(--color-page-text-accent);
   width: 7.5rem;
 }
 @media only screen and (min-width: 21.875rem) {
@@ -507,12 +504,6 @@ body .theme-green {
   .test {
     width: 10rem;
   }
-}
-.theme-light .test, .test.theme-light {
-  background-color: #1f3883;
-}
-.theme-green .test, .test.theme-green {
-  background-color: #6b7138;
 }
 
 *,
@@ -538,4 +529,70 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  font-size: 1rem;
+  font-weight: 18.75rem;
+  line-height: 1.25rem;
+  letter-spacing: 0;
+  paragraph-spacing: 0.5rem;
+  list-spacing: 0.5rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  .content {
+    font-size: 1.0625rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content {
+    font-size: 1.125rem;
+  }
+}
+@media only screen and (min-width: 21.875rem) {
+  .content {
+    font-weight: 18.75rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content {
+    font-weight: 18.75rem;
+  }
+}
+@media only screen and (min-width: 21.875rem) {
+  .content {
+    line-height: 1.3125rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content {
+    line-height: 1.375rem;
+  }
+}
+@media only screen and (min-width: 21.875rem) {
+  .content {
+    letter-spacing: 0;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content {
+    letter-spacing: 0;
+  }
+}
+@media only screen and (min-width: 21.875rem) {
+  .content {
+    paragraph-spacing: 0.5rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content {
+    paragraph-spacing: 0.5rem;
+  }
+}
+@media only screen and (min-width: 21.875rem) {
+  .content {
+    list-spacing: 0.5rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content {
+    list-spacing: 0.5rem;
+  }
 }

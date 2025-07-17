@@ -21,6 +21,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
   @include mono.generate_tokens_variables();
 }
 
@@ -37,8 +38,11 @@ body {
 
   color: pink;
 
+  background-color: var(--color-page-text-accent);
+
   @include mono.responsive-token('width', 'size', 'page', 'spacing', '1000'); 
-  @include mono.themed-token('background-color', 'color', 'page', 'text', 'accent');
+  // @include mono.themed-token('background-color', 'color', 'page', 'text', 'accent');
+
 }
 
 // Reset styles
@@ -70,6 +74,8 @@ body {
   justify-content: flex-start;
 
   width: 100%;
+
+  @include mono.font('body', 'md');
 }
 // // Demo Grid
 // .grid {
