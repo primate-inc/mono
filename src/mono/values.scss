@@ -52,7 +52,7 @@
   @if (meta.type-of($map) == "map" and $map != null) {
     @each $screen, $value in sortedBreakpoints() {
       $check: true;
-      $value: map.get($map, string.quote($screen));
+      $value: map.get($map, '@' + string.quote($screen));
 
       @if $value != null {
         @include screen($screen) {
@@ -81,15 +81,9 @@
 
 @mixin themed-token($attr, $keys...) {
   $map: get_token($keys...);
-  // $check: false;
 
   @if (meta.type-of($map) == "map" and $map != null) {
     @each $theme, $value in $map {
-      // $check: true;
-      // $value: map.get($map, string.quote($theme));
-      // @debug $theme + ' - ' + str-replace($theme, '#', '');
-      // @debug $attr;
-      // @debug $value;
       @if $value != null {
         $theme-name: str-replace($theme, '#', '');
         .theme-#{$theme-name} &,

@@ -21,6 +21,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  @include mono.generate_tokens_variables();
 }
 
 .test {

@@ -27,7 +27,7 @@
   $special-characters: ("@", "#", ":");
   $first-char: string.slice($key, 1, 1);
   // @return $first-char == "@" or $first-char == "#";
-  @return index($special-characters, $first-char) != null;
+  @return list.index($special-characters, $first-char) != null;
 }
 
 @function is-responsive-key($key) {
@@ -71,4 +71,33 @@
     }
   }
   @return $result;
+}
+
+/// Sanitizes a key for use in CSS variable names
+/// Removes special characters and normalizes the format
+/// @param {String} $key - The key to sanitize
+/// @return {String} The sanitized key
+@function sanitize-key($key) {
+  $key: string.to-lower-case($key);
+  
+  // Remove special prefixes
+  @if string.slice($key, 1, 1) == "%" {
+    $key: string.slice($key, 2);
+  }
+  
+  // Handle special keys
+  @if is-special-key($key) {
+    @if is-theme-key($key) {
+      // Remove # prefix for theme keys
+      $key: string.slice($key, 2);
+    } @else if is-state-key($key) {
+      // Remove : prefix for state keys
+      $key: string.slice($key, 2);
+    } @else if is-responsive-key($key) {
+      // Remove @ prefix for responsive keys
+      $key: string.slice($key, 2);
+    }
+  }
+  
+  @return $key;
 }

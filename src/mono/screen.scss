@@ -3,7 +3,7 @@
 @mixin screen($size, $mode: null, $type: min) {
     $breakpoint: get_token('breakpoint', $size);
   
-    @if ($size == '@xx' or $size == false) {
+    @if ($size == 'xx' or $size == false) {
       @content;
     } @else {
       @if $mode {

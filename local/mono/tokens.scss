@@ -547,10 +547,10 @@ $color-page-border-accent-green: #868d46ff !default;
 
 $tokens: (
   'breakpoint': (
-    '@sm': $breakpoint-sm,
-    '@md': $breakpoint-md,
-    '@lg': $breakpoint-lg,
-    '@xx': $breakpoint-xx
+    'sm': $breakpoint-sm,
+    'md': $breakpoint-md,
+    'lg': $breakpoint-lg,
+    'xx': $breakpoint-xx
   ),
   'size': (
     'typography': (
