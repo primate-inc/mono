@@ -1,33 +1,96 @@
-@use 'sass:map';
-@use 'sass:list';
-@use 'sass:meta';
-@use 'sass:string';
+@use "sass:meta";
+@use "sass:map";
+@use "sass:list";
+@use "sass:string";
 
-@use 'utils/global' as *;
+@use "api/tokens" as *;
+@use "utils/breakpoints" as *;
+@use "utils/strings" as *;
+@use "screen" as *;
 
-$tokens: () !default;
+/// Get value from a map.
+///
+/// @param {string} $type - The type of the map to get the value from. Available types: token, slot.
+/// @param {string} $keys - The key to get the value from the slot map.
+///
+/// @returns {any} - The value from the slot map.
+@function token($keys...) {
+  $value: get_token($keys...);
 
-/// Deeply lookup a token value in $tokens using a sequence of keys.
-/// Returns the first non-map value found, or throws if not found.
-/// 
-/// @param {...} $keys - The path of keys to lookup.
-/// @returns {any} - The found token value.
-/// @throws {Error} If the token path is invalid.
-@function get_token($keys...) {
-  $current: $tokens;
-  $path: ();
-  @each $key in $keys {
-    $path: list.append($path, $key);
-    @if map.has-key($current, $key) {
-      $current: map.get($current, $key);
-      // If the value is not a map, return it immediately
-      @if meta.type-of($current) != 'map' {
-        @return $current;
+  @if meta.type-of($value) == "map" {
+    @error 'Looks like this value goes deeper, please extend your arguments or use responsive-token function. Available keys: #{map.keys($value)}.';
+  }
+
+  @if $value == null {
+    @error 'There is no value defined for #{$keys}';
+  }
+
+  @if is-function($value) {
+    $value: get-function-value($value);
+  }
+
+  @if meta.type-of($value) == "string" {
+    $value: string.unquote($value);
+  }
+
+  @return $value;
+}
+
+/// Get responsive pair of attribute & value from a map.
+/// Value should be a part of collecion with breakpoints.
+///
+/// @param {string} $attr - The CSS attribute to assign the value to.
+/// @param {string} $type - The type of the map to get the value from. Available types: token, slot.
+/// @param {string} $collection - The key of the group of tokens to get the value from.
+/// @param {string} $keys - The key to get the value from the map.
+///
+/// @returns {void} - The responsive pair of attribute & value from the map.
+@mixin responsive-token($attr, $keys...) {
+  $map: get_token($keys...);
+  $check: false;
+
+  @if (meta.type-of($map) == "map" and $map != null) {
+    @each $screen, $value in sortedBreakpoints() {
+      $check: true;
+      $value: map.get($map, '@' + string.quote($screen));
+
+      @if $value != null {
+        @include screen($screen) {
+          @if (meta.type-of($value) == "string") {
+            $value: string.unquote($value);
+          }
+
+          @if (meta.type-of($attr) == "list") {
+            @each $attribute in $attr {
+              #{$attribute}: $value;
+            }
+          } @else {
+            #{$attr}: #{$value};
+          }
+        }
       }
-    } @else {
-      @error 'Token path not found: #{list.join($path, " > ")}';
+    }
+
+    @if (not $check) {
+      @error 'No breakpoints found. You need to select a key that returns a map containing one of following keys: #{map.keys(sortedBreakpoints())}';
+    }
+  } @else {
+    @error 'No map found. Instead had: Type <#{meta.type-of($map)}>: #{$map}';
+  }
+}
+
+@mixin themed-token($attr, $keys...) {
+  $map: get_token($keys...);
+
+  @if (meta.type-of($map) == "map" and $map != null) {
+    @each $theme, $value in $map {
+      @if $value != null {
+        $theme-name: str-replace($theme, '#', '');
+        .theme-#{$theme-name} &,
+        &.theme-#{$theme-name} { 
+          #{$attr}: #{$value}; 
+        }
+      }
     }
   }
-  // If all keys traversed and still a map, return the map
-  @return $current;
 }

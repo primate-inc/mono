@@ -3,10 +3,10 @@ $tokens: () !default;
 $slots: () !default;
 $configs: () !default;
 
-@forward 'tokens' with (
+@forward 'api/tokens' with (
   $tokens: $tokens
 );
 
-@forward 'values';
+@forward 'tokens';
 @forward 'variables';
 @forward 'font';

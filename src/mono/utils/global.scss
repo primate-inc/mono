@@ -77,7 +77,7 @@
 /// Removes special characters and normalizes the format
 /// @param {String} $key - The key to sanitize
 /// @return {String} The sanitized key
-@function sanitize-key($key) {
+@function sanitize-special-key($key) {
   $key: string.to-lower-case($key);
   
   // Remove special prefixes

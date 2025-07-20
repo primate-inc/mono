@@ -529,70 +529,8 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  font-size: 1rem;
-  font-weight: 18.75rem;
-  line-height: 1.25rem;
-  letter-spacing: 0;
-  paragraph-spacing: 0.5rem;
-  list-spacing: 0.5rem;
-}
-@media only screen and (min-width: 21.875rem) {
-  .content {
-    font-size: 1.0625rem;
-  }
-}
-@media only screen and (min-width: 45rem) {
-  .content {
-    font-size: 1.125rem;
-  }
-}
-@media only screen and (min-width: 21.875rem) {
-  .content {
-    font-weight: 18.75rem;
-  }
-}
-@media only screen and (min-width: 45rem) {
-  .content {
-    font-weight: 18.75rem;
-  }
-}
-@media only screen and (min-width: 21.875rem) {
-  .content {
-    line-height: 1.3125rem;
-  }
-}
-@media only screen and (min-width: 45rem) {
-  .content {
-    line-height: 1.375rem;
-  }
-}
-@media only screen and (min-width: 21.875rem) {
-  .content {
-    letter-spacing: 0;
-  }
-}
-@media only screen and (min-width: 45rem) {
-  .content {
-    letter-spacing: 0;
-  }
-}
-@media only screen and (min-width: 21.875rem) {
-  .content {
-    paragraph-spacing: 0.5rem;
-  }
-}
-@media only screen and (min-width: 45rem) {
-  .content {
-    paragraph-spacing: 0.5rem;
-  }
-}
-@media only screen and (min-width: 21.875rem) {
-  .content {
-    list-spacing: 0.5rem;
-  }
-}
-@media only screen and (min-width: 45rem) {
-  .content {
-    list-spacing: 0.5rem;
-  }
+  font-size: clamp(2.75rem, calc(1.7449324324rem + 4.5945945946vw), 3.8125rem);
+  font-weight: clamp(43.75rem, calc(49.6621621622rem + -27.027027027vw), 37.5rem);
+  line-height: clamp(3.4375rem, calc(2.1811655405rem + 5.7432432432vw), 4.765625rem);
+  letter-spacing: clamp(0, calc(0rem + 0vw), 0);
 }

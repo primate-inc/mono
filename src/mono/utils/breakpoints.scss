@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:list';
 
-@use '../tokens' as *;
+@use '../api/tokens' as *;
 @use 'maps' as *;
 
 // Get breakpoint value from tokens map

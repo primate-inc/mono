@@ -1,4 +1,4 @@
-@use 'tokens' as *;
+@use 'api/tokens' as *;
 
 @mixin screen($size, $mode: null, $type: min) {
     $breakpoint: get_token('breakpoint', $size);

@@ -4,7 +4,7 @@
 @use 'sass:string';
 
 @use 'utils/global' as *;
-@use 'tokens' as *;
+@use 'api/tokens' as *;
 @use 'screen' as *;
 
 /// Join path segments into a valid CSS variable name
@@ -35,13 +35,13 @@
     // Handle theme keys
     @if is_theme_key($key) {
       $var-name: join_path($path);
-      $variables: map.set($variables, 'theme', sanitize-key($key), $var-name, $value);
+      $variables: map.set($variables, 'theme', sanitize-special-key($key), $var-name, $value);
     } @else if is_responsive_key($key) {
       $var-name: join_path($path);
-      $variables: map.set($variables, 'responsive', sanitize-key($key), $var-name, $value);
+      $variables: map.set($variables, 'responsive', sanitize-special-key($key), $var-name, $value);
     } @else {
       // Add non-theme keys to the path
-      $current-path: list.append($current-path, sanitize-key($key));
+      $current-path: list.append($current-path, sanitize-special-key($key));
     }
     
     // If value is a map, recurse

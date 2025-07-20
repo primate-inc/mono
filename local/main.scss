@@ -75,7 +75,11 @@ body {
 
   width: 100%;
 
-  @include mono.font('body', 'md');
+  @include mono.fluid-font(
+    ('heading', 'xxl'),
+    'xx', 'md',
+    'sm', 'md'
+  );
 }
 // // Demo Grid
 // .grid {
