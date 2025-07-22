@@ -1,0 +1,128 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:list';
+@use 'breakpoints' as *;
+@use '../api/tokens' as *;
+
+/// Strips the unit from a number
+/// @param {Number} $value - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($value) {
+    @return math.div($value, ($value * 0 + 1));
+}
+
+/// Validates if a breakpoint exists in the token system
+/// @param {String} $breakpoint - Breakpoint key to validate
+/// @return {Boolean} - Whether the breakpoint exists
+@function is-valid-breakpoint($breakpoint) {
+    $breakpoints: sortedBreakpoints();
+    @return map.has-key($breakpoints, $breakpoint);
+}
+
+/// Calculates a fluid value between two breakpoints
+/// @param {Number} $min-value - Starting value
+/// @param {Number} $max-value - Ending value
+/// @param {String} $min-breakpoint - Starting breakpoint key
+/// @param {String} $max-breakpoint - Ending breakpoint key
+/// @return {String} - CSS calc() expression for fluid scaling
+@function calculate-fluid-value($min-value, $max-value, $min-breakpoint, $max-breakpoint) {
+    @if not is-valid-breakpoint($min-breakpoint) {
+        @error "Invalid min-breakpoint: #{$min-breakpoint}";
+    }
+    @if not is-valid-breakpoint($max-breakpoint) {
+        @error "Invalid max-breakpoint: #{$max-breakpoint}";
+    }
+
+    $min-vw: get_token_value('breakpoint', $min-breakpoint);
+    $max-vw: get_token_value('breakpoint', $max-breakpoint);
+
+    // Strip units for calculations
+    $min-value: strip-unit($min-value);
+    $max-value: strip-unit($max-value);
+    $min-vw: strip-unit($min-vw);
+    $max-vw: strip-unit($max-vw);
+    
+    // Calculate the slope
+    $slope: math.div($max-value - $min-value, $max-vw - $min-vw);
+    
+    // Calculate the intersection point
+    $intersection: $min-value - $slope * $min-vw;
+    
+    // Return the fluid calculation with proper units
+    @return calc(#{$intersection}rem + #{$slope * 100}vw);
+}
+
+/// Creates a fluid value that scales between two breakpoints
+/// @param {String} $property - CSS property to make fluid
+/// @param {Number} $start-value - Value at the starting breakpoint
+/// @param {Number} $end-value - Value at the ending breakpoint
+/// @param {String} $start-breakpoint - Starting breakpoint key (default: first breakpoint)
+/// @param {String} $end-breakpoint - Ending breakpoint key (default: last breakpoint)
+@mixin fluid-value(
+    $property,
+    $start-value,
+    $end-value,
+    $start-breakpoint: 'xx',
+    $end-breakpoint: 'md'
+) {
+    #{$property}: clamp(
+        #{$start-value},
+        #{calculate-fluid-value($start-value, $end-value, $start-breakpoint, $end-breakpoint)},
+        #{$end-value}
+    );
+}
+
+@mixin fluid-token($property, $keys, $min-value, $max-value, $min-breakpoint: null, $max-breakpoint: null) {
+    $token: get_token($keys...);
+
+    @if meta.type-of($token) != 'map' {
+        @error "Token must be a responsive map with @breakpoint values";
+    }
+
+    // Get the first and last breakpoint values
+    $breakpoints: sortedBreakpoints();
+    $breakpoint-keys: map.keys($breakpoints);
+
+    // @each $breakpoint, $value in $token {
+        @if meta.type-of($token) == 'map' {
+            $start-value: map.get($token, '@#{$min-value}');
+            $end-value: map.get($token, '@#{$max-value}');
+
+            @debug $property;
+            @debug $start-value;
+            @debug $end-value;
+
+            @if $start-value and $end-value {
+                @include fluid-value($property, $start-value, $end-value, $min-breakpoint, $max-breakpoint);
+            }
+        }
+    // }
+} 
+
+/// Gets a responsive token value and makes it fluid
+/// @param {List} $keys - Path to the token in the design system
+/// @param {String} $start-breakpoint - Starting breakpoint key
+/// @param {String} $end-breakpoint - Ending breakpoint key
+@mixin fluid-token-property($keys, $min-value, $max-value, $min-breakpoint: null, $max-breakpoint: null) {
+    $token: get_token($keys...);
+
+    @if meta.type-of($token) != 'map' {
+        @error "Token must be a responsive map with @breakpoint values";
+    }
+
+    // Get the first and last breakpoint values
+    $breakpoints: sortedBreakpoints();
+    $breakpoint-keys: map.keys($breakpoints);
+
+    @each $property, $values in $token {
+        @if meta.type-of($values) == 'map' {
+            $start-value: map.get($values, '@#{$min-breakpoint}');
+            $end-value: map.get($values, '@#{$max-breakpoint}');
+
+            @if $start-value and $end-value {
+                @include fluid-value($property, $start-value, $end-value, $min-breakpoint, $max-breakpoint);
+            }
+        }
+    }
+} 

@@ -6,6 +6,7 @@
 @use "api/tokens" as *;
 @use "utils/breakpoints" as *;
 @use "utils/strings" as *;
+@use "utils/fluid" as *;
 @use "screen" as *;
 
 /// Get value from a map.
@@ -15,7 +16,7 @@
 ///
 /// @returns {any} - The value from the slot map.
 @function token($keys...) {
-  $value: get_token($keys...);
+  $value: get_token_value($keys...);
 
   @if meta.type-of($value) == "map" {
     @error 'Looks like this value goes deeper, please extend your arguments or use responsive-token function. Available keys: #{map.keys($value)}.';
@@ -46,7 +47,7 @@
 ///
 /// @returns {void} - The responsive pair of attribute & value from the map.
 @mixin responsive-token($attr, $keys...) {
-  $map: get_token($keys...);
+  $map: get_token_value($keys...);
   $check: false;
 
   @if (meta.type-of($map) == "map" and $map != null) {
@@ -80,7 +81,7 @@
 }
 
 @mixin themed-token($attr, $keys...) {
-  $map: get_token($keys...);
+  $map: get_token_value($keys...);
 
   @if (meta.type-of($map) == "map" and $map != null) {
     @each $theme, $value in $map {

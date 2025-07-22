@@ -7,7 +7,7 @@
 // Get breakpoint value from tokens map
 @function breakpoint($key) {
     // $breakpoints: map.merge(map.get($tokens, "breakpoint"), map.get($configs, breakpoints));
-    $breakpoints: get_token('breakpoint');
+    $breakpoints: get_token_value('breakpoint');
 
     // @if str-index($key, '@') == 1 {
     //   $key: str-slice($key, 2);
@@ -20,7 +20,7 @@
   // Get map of sorted breakpoints from tokens map and config custom breakpoints
   @function sortedBreakpoints() {
     // $breakpoints: map.merge(map.get($tokens, "breakpoint"), map.get($configs, breakpoints));
-    $breakpoints: get_token('breakpoint');
+    $breakpoints: get_token_value('breakpoint');
 
     // // Prepend all breakpoints with @ character
     // $prefixed-breakpoints: ();

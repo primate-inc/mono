@@ -13,7 +13,7 @@ $tokens: () !default;
 /// @param {...} $keys - The path of keys to lookup.
 /// @returns {any} - The found token value.
 /// @throws {Error} If the token path is invalid.
-@function get_token($keys...) {
+@function get_token_value($keys...) {
   $current: $tokens;
   $path: ();
   @each $key in $keys {
@@ -30,4 +30,9 @@ $tokens: () !default;
   }
   // If all keys traversed and still a map, return the map
   @return $current;
+}
+
+@function get_token($keys...) {
+  $token: map.get($tokens, $keys...);
+  @return $token;
 }

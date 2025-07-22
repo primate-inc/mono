@@ -71,7 +71,7 @@
   }
 
   @each $breakpoint-name, $breakpoint-variables in $responsive {
-    // @media (min-width: get_token('breakpoint', $breakpoint-name)) {
+    // @media (min-width: get_token_value('breakpoint', $breakpoint-name)) {
     @include screen($breakpoint-name) {
       @each $variable, $value in $breakpoint-variables {
         #{$variable}: $value;

@@ -1,13 +1,13 @@
-@use 'sass:math';
 @use 'sass:map';
-
+@use 'sass:list';
 @use 'utils/global' as *;
 @use 'utils/breakpoints' as *;
+@use 'utils/fluid' as *;
 @use 'api/tokens' as *;
 @use 'screen' as *;
 
 @mixin font($keys...) {
-    $font: get_token('size', 'typography', $keys...);
+    $font: get_token_value('size', 'typography', $keys...);
 
     @each $attribute, $responsive-values in $font {
         @each $screen, $value in $responsive-values {
@@ -20,55 +20,6 @@
     }
 }
 
-@function strip-unit($value) {
-    @return math.div($value, ($value * 0 + 1));
-}
-
-@function calculate-fluid-value($min-value, $max-value, $min-vw: 21.875rem, $max-vw: 75rem) {
-    // Strip units for calculations
-    $min-value: strip-unit($min-value);
-    $max-value: strip-unit($max-value);
-    $min-vw: strip-unit($min-vw);
-    $max-vw: strip-unit($max-vw);
-    
-    // Calculate the slope
-    $slope: math.div($max-value - $min-value, $max-vw - $min-vw);
-    
-    // Calculate the intersection point
-    $intersection: $min-value - $slope * $min-vw;
-    
-    // Return the fluid calculation with proper units
-    @return calc(#{$intersection}rem + #{$slope * 100}vw);
-}
-
-@mixin fluid-font($keys, $value-start, $value-end, $breakpoint-start: null, $breakpoint-end: null) {
-    $font: get_token('size', 'typography', $keys...);
-    $breakpoints: sortedBreakpoints();
-    $breakpoints-keys: map.keys($breakpoints);
-
-    @if $breakpoint-start == null {
-        $breakpoint-start: $value-start;
-    }
-    @if $breakpoint-end == null {
-        $breakpoint-end: $value-end;
-    }
-
-    $min-vw: get_token('breakpoint', $breakpoint-start);  // Smallest breakpoint
-    $max-vw: get_token('breakpoint', $breakpoint-end);  // Largest breakpoint
-
-    @debug $breakpoint-start;
-    @debug $breakpoint-end;
-
-    @each $attribute, $responsive-values in $font {
-        $min-value: map.get($responsive-values, '@#{$breakpoint-start}');
-        $max-value: map.get($responsive-values, '@#{$breakpoint-end}');
-
-        @if $min-value and $max-value {
-            #{$attribute}: clamp(
-                #{$min-value},
-                #{calculate-fluid-value($min-value, $max-value, $min-vw, $max-vw)},
-                #{$max-value}
-            );
-        }
-    }
+@mixin fluid-font($keys, $min-value, $max-value, $min-breakpoint: null, $max-breakpoint: null) {
+    @include fluid-token-property(list.join(('size', 'typography'), $keys), $min-value, $max-value, $min-breakpoint, $max-breakpoint);
 }

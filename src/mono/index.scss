@@ -7,6 +7,8 @@ $configs: () !default;
   $tokens: $tokens
 );
 
+@forward 'utils/fluid';
+
 @forward 'tokens';
 @forward 'variables';
 @forward 'font';

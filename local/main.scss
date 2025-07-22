@@ -40,8 +40,9 @@ body {
 
   background-color: var(--color-page-text-accent);
 
-  @include mono.responsive-token('width', 'size', 'page', 'spacing', '1000'); 
+  // @include mono.responsive-token('width', 'size', 'page', 'spacing', '1000'); 
   // @include mono.themed-token('background-color', 'color', 'page', 'text', 'accent');
+  @include mono.fluid-token('width', ('size', 'typography', 'heading', 'xxl', 'font-size'), 'xx', 'md', 'sm', 'md');
 
 }
 
@@ -75,11 +76,13 @@ body {
 
   width: 100%;
 
-  @include mono.fluid-font(
-    ('heading', 'xxl'),
-    'xx', 'md',
-    'sm', 'md'
-  );
+  h1 {
+    @include mono.fluid-font(
+      ('heading', 'xxl'),
+      'xx', 'md',
+      'sm', 'md'
+    );
+  }
 }
 // // Demo Grid
 // .grid {

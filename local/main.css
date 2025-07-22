@@ -76,7 +76,7 @@ body {
   --size-page-spacing-700: 4rem;
   --size-page-spacing-800: 5rem;
   --size-page-spacing-900: 6.25rem;
-  --size-page-spacing-1000: 7.5rem;
+  --size-page-spacing-1000: 2.5rem;
   --size-page-spacing-000: 0;
   --size-page-padding-100: 0.25rem;
   --size-page-padding-200: 0.5rem;
@@ -493,17 +493,7 @@ body.theme-green {
   height: 10rem;
   color: pink;
   background-color: var(--color-page-text-accent);
-  width: 7.5rem;
-}
-@media only screen and (min-width: 21.875rem) {
-  .test {
-    width: 8.75rem;
-  }
-}
-@media only screen and (min-width: 45rem) {
-  .test {
-    width: 10rem;
-  }
+  width: clamp(2.25rem, calc(0.7719594595rem + 6.7567567568vw), 3.8125rem);
 }
 
 *,
@@ -529,6 +519,8 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+}
+.content h1 {
   font-size: clamp(2.75rem, calc(1.7449324324rem + 4.5945945946vw), 3.8125rem);
   font-weight: clamp(43.75rem, calc(49.6621621622rem + -27.027027027vw), 37.5rem);
   line-height: clamp(3.4375rem, calc(2.1811655405rem + 5.7432432432vw), 4.765625rem);
