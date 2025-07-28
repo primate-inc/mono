@@ -1,10 +1,12 @@
 @use 'sass:map';
 @use 'sass:list';
+@use 'sass:meta';
 @use 'utils/global' as *;
 @use 'utils/breakpoints' as *;
 @use 'utils/fluid' as *;
 @use 'api/tokens' as *;
 @use 'screen' as *;
+@use 'tokens' as *;
 
 @mixin font($keys...) {
     $font: get_token_value('size', 'typography', $keys...);
@@ -21,5 +23,32 @@
 }
 
 @mixin fluid-font($keys, $min-value, $max-value, $min-breakpoint: null, $max-breakpoint: null) {
-    @include fluid-token-property(list.join(('size', 'typography'), $keys), $min-value, $max-value, $min-breakpoint, $max-breakpoint);
+    // @include fluid-token-property(list.join(('size', 'typography'), $keys), $min-value, $max-value, $min-breakpoint, $max-breakpoint);
+    $keys: list.join(('size', 'typography'), $keys);
+    $token: get_token($keys...);
+
+    @if meta.type-of($token) != 'map' {
+        @error "Token must be a responsive map with @breakpoint values";
+    }
+
+    // Get the first and last breakpoint values
+    // $breakpoints: sortedBreakpoints();
+    // $breakpoint-keys: map.keys($breakpoints);
+
+    @each $property, $values in $token {
+        @if ($property == 'font-size' or $property == 'line-height') {
+            @if meta.type-of($values) == 'map' {
+                $start-value: map.get($values, '@#{$min-breakpoint}');
+                $end-value: map.get($values, '@#{$max-breakpoint}');
+
+                @if $start-value and $end-value {
+                    @include fluid-value($property, $start-value, $end-value, $min-breakpoint, $max-breakpoint);
+                }
+            }
+        } @else {
+            @debug $keys;
+            @debug $property;
+            @include responsive-token($property, list.join($keys, $property));
+        }
+    }
 }
