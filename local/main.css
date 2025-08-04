@@ -1,19 +1,272 @@
-/* Error: "Token path not found: size, typography, heading, xxl, font-weight  > "
- *    ,
- * 50 |   $map: get_token_value($keys...);
- *    |         ^^^^^^^^^^^^^^^^^^^^^^^^^
- *    '
- *   src/mono/tokens.scss 50:9  responsive-token()
- *   src/mono/font.scss 51:13   fluid-font()
- *   local/main.scss 80:5       root stylesheet */
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  --size-typography-heading-md-font-size: 1.375rem;
+  --size-typography-heading-md-font-weight: 37.5rem;
+  --size-typography-heading-md-letter-spacing: 0;
+  --size-typography-heading-md-line-height: 1.71875rem;
+  --size-typography-heading-lg-font-size: 1.625rem;
+  --size-typography-heading-lg-font-weight: 37.5rem;
+  --size-typography-heading-lg-line-height: 2.03125rem;
+  --size-typography-heading-lg-letter-spacing: 0;
+  --size-typography-body-font-size: 1rem;
+  --size-typography-body-font-weight: 18.75rem;
+  --size-typography-body-line-height: 1.25rem;
+  --size-typography-body-letter-spacing: 0;
+  --size-typography-body-paragraph-spacing: 0.5rem;
+  --size-typography-body-list-spacing: 0.5rem;
+  --size-typography-button-font-weight: 18.75rem;
+  --size-typography-button-line-height: 1.25rem;
+  --size-typography-button-letter-spacing: 0;
+  --size-typography-button-paragraph-spacing: 0;
+  --size-typography-button-font-size: 1rem;
+  --size-typography-button-font-family: Lato;
+  --size-grid-columns: 4;
+  --size-grid-gap: 0.25rem;
+  --size-grid-margin: 0.5rem;
+  --size-grid-max-width: 75rem;
+  --size-page-spacing-none: 0;
+  --size-page-spacing-sm: 0.5rem;
+  --size-page-spacing-xl: 4rem;
+  --size-page-spacing-md: 0.75rem;
+  --size-page-spacing-xs: 0.125rem;
+  --size-page-spacing-lg: 2rem;
+  --size-page-radius-md: 0.5rem;
+  --size-page-radius-sm: 0.125rem;
+  --size-page-radius-none: 0;
+  --size-page-max-width: 21.875rem;
+  --size-button---radius--none*-radius: 0;
+  --size-button---radius--small-radius: 0.125rem;
+  --size-button---radius--medium-radius: 0.5rem;
+  --size-button---size--default*-padding-x: 1.5rem;
+  --size-button---size--default*-padding-y: 0.75rem;
+}
+body.theme-blue {
+  --color-button---color--secondary-background-initial: [object Object];
+  --color-button---color--secondary-background-hover: [object Object];
+  --color-button---color--secondary-background-focus: [object Object];
+  --color-button---color--secondary-background-active: [object Object];
+  --color-button---color--secondary-background-disabled: [object Object];
+  --color-button---color--secondary-text-initial: [object Object];
+  --color-button---color--secondary-text-hover: [object Object];
+  --color-button---color--secondary-text-focus: [object Object];
+  --color-button---color--secondary-text-active: [object Object];
+  --color-button---color--secondary-text-disabled: [object Object];
+  --color-button---color--secondary-border-initial: [object Object];
+  --color-button---color--secondary-border-hover: [object Object];
+  --color-button---color--secondary-border-focus: [object Object];
+  --color-button---color--secondary-border-active: [object Object];
+  --color-button---color--secondary-border-disabled: [object Object];
+  --color-button---color--primary-background: [object Object];
+  --color-button---color--primary-inner-border: [object Object];
+  --color-button---color--primary-outer-border: [object Object];
+  --color-button---color--primary-text: [object Object];
+  --color-page-background: white;
+  --color-page-text: #182861;
+  --color-page-accent: #3c64f3;
+  --color-page-accent-light: #6f8df6;
+  --color-page-accent-dark: #092690;
+  --color-page-disabled: #cccccc;
+}
+body.theme-green {
+  --color-button---color--secondary-background-initial: [object Object];
+  --color-button---color--secondary-background-hover: [object Object];
+  --color-button---color--secondary-background-focus: [object Object];
+  --color-button---color--secondary-background-active: [object Object];
+  --color-button---color--secondary-background-disabled: [object Object];
+  --color-button---color--secondary-text-initial: [object Object];
+  --color-button---color--secondary-text-hover: [object Object];
+  --color-button---color--secondary-text-focus: [object Object];
+  --color-button---color--secondary-text-active: [object Object];
+  --color-button---color--secondary-text-disabled: [object Object];
+  --color-button---color--secondary-border-initial: [object Object];
+  --color-button---color--secondary-border-hover: [object Object];
+  --color-button---color--secondary-border-focus: [object Object];
+  --color-button---color--secondary-border-active: [object Object];
+  --color-button---color--secondary-border-disabled: [object Object];
+  --color-button---color--primary-background: [object Object];
+  --color-button---color--primary-inner-border: [object Object];
+  --color-button---color--primary-outer-border: [object Object];
+  --color-button---color--primary-text: [object Object];
+  --color-page-background: white;
+  --color-page-text: black;
+  --color-page-accent: #316454;
+  --color-page-accent-light: #527d6f;
+  --color-page-accent-dark: #22463b;
+  --color-page-disabled: #cccccc;
+}
+body.theme-dark {
+  --color-button---color--secondary-background-initial: [object Object];
+  --color-button---color--secondary-background-hover: [object Object];
+  --color-button---color--secondary-background-focus: [object Object];
+  --color-button---color--secondary-background-active: [object Object];
+  --color-button---color--secondary-background-disabled: [object Object];
+  --color-button---color--secondary-text-initial: [object Object];
+  --color-button---color--secondary-text-hover: [object Object];
+  --color-button---color--secondary-text-focus: [object Object];
+  --color-button---color--secondary-text-active: [object Object];
+  --color-button---color--secondary-text-disabled: [object Object];
+  --color-button---color--secondary-border-initial: [object Object];
+  --color-button---color--secondary-border-hover: [object Object];
+  --color-button---color--secondary-border-focus: [object Object];
+  --color-button---color--secondary-border-active: [object Object];
+  --color-button---color--secondary-border-disabled: [object Object];
+  --color-button---color--primary-background: [object Object];
+  --color-button---color--primary-inner-border: [object Object];
+  --color-button---color--primary-outer-border: [object Object];
+  --color-button---color--primary-text: [object Object];
+  --color-page-background: #292929;
+  --color-page-text: white;
+  --color-page-accent: #f5e12e;
+  --color-page-accent-light: #fcf5b6;
+  --color-page-accent-dark: #4e4604;
+  --color-page-disabled: #cccccc;
+}
+@media only screen and (min-width: 21.875rem) {
+  body {
+    --size-typography-heading-md-font-size: 1.625rem;
+    --size-typography-heading-md-font-weight: 37.5rem;
+    --size-typography-heading-md-letter-spacing: 0;
+    --size-typography-heading-md-line-height: 2.03125rem;
+    --size-typography-heading-lg-font-size: 2rem;
+    --size-typography-heading-lg-font-weight: 37.5rem;
+    --size-typography-heading-lg-line-height: 2.5rem;
+    --size-typography-heading-lg-letter-spacing: 0;
+    --size-typography-body-font-size: 1.0625rem;
+    --size-typography-body-font-weight: 18.75rem;
+    --size-typography-body-line-height: 1.3125rem;
+    --size-typography-body-letter-spacing: 0;
+    --size-typography-body-paragraph-spacing: 0.5rem;
+    --size-typography-body-list-spacing: 0.5rem;
+    --size-typography-button-font-weight: 18.75rem;
+    --size-typography-button-line-height: 1.5rem;
+    --size-typography-button-letter-spacing: 0;
+    --size-typography-button-paragraph-spacing: 0;
+    --size-typography-button-font-size: 1.25rem;
+    --size-typography-button-font-family: Lato;
+    --size-grid-columns: 6;
+    --size-grid-gap: 1rem;
+    --size-grid-margin: 2rem;
+    --size-grid-max-width: 75rem;
+    --size-page-spacing-none: 0;
+    --size-page-spacing-sm: 0.625rem;
+    --size-page-spacing-xl: 4.5rem;
+    --size-page-spacing-md: 0.875rem;
+    --size-page-spacing-xs: 0.25rem;
+    --size-page-spacing-lg: 3rem;
+    --size-page-radius-md: 0.5rem;
+    --size-page-radius-sm: 0.125rem;
+    --size-page-radius-none: 0;
+    --size-page-max-width: 45rem;
+    --size-button---radius--none*-radius: 0;
+    --size-button---radius--small-radius: 0.125rem;
+    --size-button---radius--medium-radius: 0.5rem;
+    --size-button---size--default*-padding-x: 1.5rem;
+    --size-button---size--default*-padding-y: 0.75rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  body {
+    --size-typography-heading-md-font-size: 1.9375rem;
+    --size-typography-heading-md-font-weight: 37.5rem;
+    --size-typography-heading-md-letter-spacing: 0;
+    --size-typography-heading-md-line-height: 2.421875rem;
+    --size-typography-heading-lg-font-size: 2.4375rem;
+    --size-typography-heading-lg-font-weight: 37.5rem;
+    --size-typography-heading-lg-line-height: 3.046875rem;
+    --size-typography-heading-lg-letter-spacing: 0;
+    --size-typography-body-font-size: 1.125rem;
+    --size-typography-body-font-weight: 18.75rem;
+    --size-typography-body-line-height: 1.375rem;
+    --size-typography-body-letter-spacing: 0;
+    --size-typography-body-paragraph-spacing: 0.5rem;
+    --size-typography-body-list-spacing: 0.5rem;
+    --size-typography-button-font-weight: 18.75rem;
+    --size-typography-button-line-height: 1.75rem;
+    --size-typography-button-letter-spacing: 0;
+    --size-typography-button-paragraph-spacing: 0;
+    --size-typography-button-font-size: 1.5rem;
+    --size-typography-button-font-family: Lato;
+    --size-grid-columns: 12;
+    --size-grid-gap: 2rem;
+    --size-grid-margin: 4rem;
+    --size-grid-max-width: 75rem;
+    --size-page-spacing-none: 0;
+    --size-page-spacing-sm: 0.75rem;
+    --size-page-spacing-xl: 5rem;
+    --size-page-spacing-md: 1rem;
+    --size-page-spacing-xs: 0.5rem;
+    --size-page-spacing-lg: 4rem;
+    --size-page-radius-md: 0.5rem;
+    --size-page-radius-sm: 0.125rem;
+    --size-page-radius-none: 0;
+    --size-page-max-width: 75rem;
+    --size-button---radius--none*-radius: 0;
+    --size-button---radius--small-radius: 0.125rem;
+    --size-button---radius--medium-radius: 0.5rem;
+    --size-button---size--default*-padding-x: 1.5rem;
+    --size-button---size--default*-padding-y: 0.75rem;
+  }
+}
 
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: "Token path not found: size, typography, heading, xxl, font-weight  > "\a    \2577 \a 50 \2502    $map: get_token_value($keys...);\a    \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   src/mono/tokens.scss 50:9  responsive-token()\a   src/mono/font.scss 51:13   fluid-font()\a   local/main.scss 80:5       root stylesheet';
+.test {
+  width: clamp(1.625rem, calc(0.8564189189rem + 3.5135135135vw), 2.4375rem);
+  height: 10rem;
+  background-color: var(--color-page-accent);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+.content h1 {
+  font-size: clamp(2rem, calc(1.5861486486rem + 1.8918918919vw), 2.4375rem);
+  font-weight: 37.5rem;
+  line-height: clamp(2.5rem, calc(1.9826858108rem + 2.3648648649vw), 3.046875rem);
+  letter-spacing: 0;
+}
+@media only screen and (min-width: 21.875rem) {
+  .content h1 {
+    font-weight: 37.5rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content h1 {
+    font-weight: 37.5rem;
+  }
+}
+@media only screen and (min-width: 21.875rem) {
+  .content h1 {
+    letter-spacing: 0;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content h1 {
+    letter-spacing: 0;
+  }
 }

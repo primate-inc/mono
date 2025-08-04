@@ -19,30 +19,6 @@ $size-typography-heading-md-letter-spacing-md: 0 !default;
 $size-typography-heading-md-line-height-xx: 1.71875rem !default;
 $size-typography-heading-md-line-height-sm: 2.03125rem !default;
 $size-typography-heading-md-line-height-md: 2.421875rem !default;
-$size-typography-heading-xxl-font-size-xx: 2.25rem !default;
-$size-typography-heading-xxl-font-size-sm: 2.75rem !default;
-$size-typography-heading-xxl-font-size-md: 3.8125rem !default;
-$size-typography-heading-xxl-font-weight-xx: 43.75rem !default;
-$size-typography-heading-xxl-font-weight-sm: 43.75rem !default;
-$size-typography-heading-xxl-font-weight-md: 37.5rem !default;
-$size-typography-heading-xxl-line-height-xx: 2.8125rem !default;
-$size-typography-heading-xxl-line-height-sm: 3.4375rem !default;
-$size-typography-heading-xxl-line-height-md: 4.765625rem !default;
-$size-typography-heading-xxl-letter-spacing-xx: 0 !default;
-$size-typography-heading-xxl-letter-spacing-sm: 0 !default;
-$size-typography-heading-xxl-letter-spacing-md: 0 !default;
-$size-typography-heading-xl-font-size-xx: 1.9375rem !default;
-$size-typography-heading-xl-font-size-sm: 2.5rem !default;
-$size-typography-heading-xl-font-size-md: 3.0625rem !default;
-$size-typography-heading-xl-font-weight-xx: 43.75rem !default;
-$size-typography-heading-xl-font-weight-sm: 43.75rem !default;
-$size-typography-heading-xl-font-weight-md: 37.5rem !default;
-$size-typography-heading-xl-line-height-xx: 2.421875rem !default;
-$size-typography-heading-xl-line-height-sm: 3.125rem !default;
-$size-typography-heading-xl-line-height-md: 3.828125rem !default;
-$size-typography-heading-xl-letter-spacing-xx: 0 !default;
-$size-typography-heading-xl-letter-spacing-sm: 0 !default;
-$size-typography-heading-xl-letter-spacing-md: 0 !default;
 $size-typography-heading-lg-font-size-xx: 1.625rem !default;
 $size-typography-heading-lg-font-size-sm: 2rem !default;
 $size-typography-heading-lg-font-size-md: 2.4375rem !default;
@@ -55,129 +31,42 @@ $size-typography-heading-lg-line-height-md: 3.046875rem !default;
 $size-typography-heading-lg-letter-spacing-xx: 0 !default;
 $size-typography-heading-lg-letter-spacing-sm: 0 !default;
 $size-typography-heading-lg-letter-spacing-md: 0 !default;
-$size-typography-heading-sm-font-size-xx: 1.1875rem !default;
-$size-typography-heading-sm-font-size-sm: 1.375rem !default;
-$size-typography-heading-sm-font-size-md: 1.5625rem !default;
-$size-typography-heading-sm-font-weight-xx: 31.25rem !default;
-$size-typography-heading-sm-font-weight-sm: 31.25rem !default;
-$size-typography-heading-sm-font-weight-md: 31.25rem !default;
-$size-typography-heading-sm-line-height-xx: 1.484375rem !default;
-$size-typography-heading-sm-line-height-sm: 1.71875rem !default;
-$size-typography-heading-sm-line-height-md: 1.953125rem !default;
-$size-typography-heading-sm-letter-spacing-xx: 0 !default;
-$size-typography-heading-sm-letter-spacing-sm: 0 !default;
-$size-typography-heading-sm-letter-spacing-md: 0 !default;
-$size-typography-heading-xs-font-size-xx: 1.125rem !default;
-$size-typography-heading-xs-font-size-sm: 1.1875rem !default;
-$size-typography-heading-xs-font-size-md: 1.25rem !default;
-$size-typography-heading-xs-font-weight-xx: 25rem !default;
-$size-typography-heading-xs-font-weight-sm: 25rem !default;
-$size-typography-heading-xs-font-weight-md: 25rem !default;
-$size-typography-heading-xs-line-height-xx: 1.375rem !default;
-$size-typography-heading-xs-line-height-sm: 1.46875rem !default;
-$size-typography-heading-xs-line-height-md: 1.5625rem !default;
-$size-typography-heading-xs-letter-spacing-xx: 0 !default;
-$size-typography-heading-xs-letter-spacing-sm: 0 !default;
-$size-typography-heading-xs-letter-spacing-md: 0 !default;
-$size-typography-body-md-font-size-xx: 1rem !default;
-$size-typography-body-md-font-size-sm: 1.0625rem !default;
-$size-typography-body-md-font-size-md: 1.125rem !default;
-$size-typography-body-md-font-weight-xx: 18.75rem !default;
-$size-typography-body-md-font-weight-sm: 18.75rem !default;
-$size-typography-body-md-font-weight-md: 18.75rem !default;
-$size-typography-body-md-line-height-xx: 1.25rem !default;
-$size-typography-body-md-line-height-sm: 1.3125rem !default;
-$size-typography-body-md-line-height-md: 1.375rem !default;
-$size-typography-body-md-letter-spacing-xx: 0 !default;
-$size-typography-body-md-letter-spacing-sm: 0 !default;
-$size-typography-body-md-letter-spacing-md: 0 !default;
-$size-typography-body-md-paragraph-spacing-xx: 0.5rem !default;
-$size-typography-body-md-paragraph-spacing-sm: 0.5rem !default;
-$size-typography-body-md-paragraph-spacing-md: 0.5rem !default;
-$size-typography-body-md-list-spacing-xx: 0.5rem !default;
-$size-typography-body-md-list-spacing-sm: 0.5rem !default;
-$size-typography-body-md-list-spacing-md: 0.5rem !default;
-$size-typography-body-sm-font-size-xx: 0.875rem !default;
-$size-typography-body-sm-font-size-sm: 0.9375rem !default;
-$size-typography-body-sm-font-size-md: 1rem !default;
-$size-typography-body-sm-font-weight-xx: 18.75rem !default;
-$size-typography-body-sm-font-weight-sm: 18.75rem !default;
-$size-typography-body-sm-font-weight-md: 18.75rem !default;
-$size-typography-body-sm-line-height-xx: 1.125rem !default;
-$size-typography-body-sm-line-height-sm: 1.1875rem !default;
-$size-typography-body-sm-line-height-md: 1.25rem !default;
-$size-typography-body-sm-letter-spacing-xx: 0 !default;
-$size-typography-body-sm-letter-spacing-sm: 0 !default;
-$size-typography-body-sm-letter-spacing-md: 0 !default;
-$size-typography-body-sm-paragraph-spacing-xx: 0.25rem !default;
-$size-typography-body-sm-paragraph-spacing-sm: 0.25rem !default;
-$size-typography-body-sm-paragraph-spacing-md: 0.25rem !default;
-$size-typography-body-sm-list-spacing-xx: 0.25rem !default;
-$size-typography-body-sm-list-spacing-sm: 0.25rem !default;
-$size-typography-body-sm-list-spacing-md: 0.25rem !default;
-$size-typography-body-lg-font-size-xx: 1.125rem !default;
-$size-typography-body-lg-font-size-sm: 1.1875rem !default;
-$size-typography-body-lg-font-size-md: 1.25rem !default;
-$size-typography-body-lg-font-weight-xx: 25rem !default;
-$size-typography-body-lg-font-weight-sm: 25rem !default;
-$size-typography-body-lg-font-weight-md: 25rem !default;
-$size-typography-body-lg-line-height-xx: 1.375rem !default;
-$size-typography-body-lg-line-height-sm: 1.4375rem !default;
-$size-typography-body-lg-line-height-md: 1.5rem !default;
-$size-typography-body-lg-letter-spacing-xx: 0 !default;
-$size-typography-body-lg-letter-spacing-sm: 0 !default;
-$size-typography-body-lg-letter-spacing-md: 0 !default;
-$size-typography-body-lg-paragraph-spacing-xx: 0.5rem !default;
-$size-typography-body-lg-paragraph-spacing-sm: 0.5625rem !default;
-$size-typography-body-lg-paragraph-spacing-md: 0.625rem !default;
-$size-typography-body-lg-list-spacing-xx: 0.5rem !default;
-$size-typography-body-lg-list-spacing-sm: 0.5625rem !default;
-$size-typography-body-lg-list-spacing-md: 0.625rem !default;
-$size-typography-label-sm-font-size-xx: 0.75rem !default;
-$size-typography-label-sm-font-size-sm: 0.75rem !default;
-$size-typography-label-sm-font-size-md: 0.75rem !default;
-$size-typography-label-sm-font-weight-xx: 43.75rem !default;
-$size-typography-label-sm-font-weight-sm: 43.75rem !default;
-$size-typography-label-sm-font-weight-md: 43.75rem !default;
-$size-typography-label-sm-line-height-xx: 0.875rem !default;
-$size-typography-label-sm-line-height-sm: 0.875rem !default;
-$size-typography-label-sm-line-height-md: 0.875rem !default;
-$size-typography-label-sm-letter-spacing-xx: 0 !default;
-$size-typography-label-sm-letter-spacing-sm: 0 !default;
-$size-typography-label-sm-letter-spacing-md: 0 !default;
-$size-typography-label-sm-paragraph-spacing-xx: 0 !default;
-$size-typography-label-sm-paragraph-spacing-sm: 0 !default;
-$size-typography-label-sm-paragraph-spacing-md: 0 !default;
-$size-typography-label-lg-font-size-xx: 1rem !default;
-$size-typography-label-lg-font-size-sm: 1rem !default;
-$size-typography-label-lg-font-size-md: 1rem !default;
-$size-typography-label-lg-font-weight-xx: 43.75rem !default;
-$size-typography-label-lg-font-weight-sm: 43.75rem !default;
-$size-typography-label-lg-font-weight-md: 43.75rem !default;
-$size-typography-label-lg-line-height-xx: 1.25rem !default;
-$size-typography-label-lg-line-height-sm: 1.25rem !default;
-$size-typography-label-lg-line-height-md: 1.25rem !default;
-$size-typography-label-lg-letter-spacing-xx: 0 !default;
-$size-typography-label-lg-letter-spacing-sm: 0 !default;
-$size-typography-label-lg-letter-spacing-md: 0 !default;
-$size-typography-label-lg-paragraph-spacing-xx: 0 !default;
-$size-typography-label-lg-paragraph-spacing-sm: 0 !default;
-$size-typography-label-lg-paragraph-spacing-md: 0 !default;
-$size-typography-label-md-font-size-xx: 0.875rem !default;
-$size-typography-label-md-font-size-sm: 0.875rem !default;
-$size-typography-label-md-font-size-md: 0.875rem !default;
-$size-typography-label-md-font-weight-xx: 43.75rem !default;
-$size-typography-label-md-font-weight-sm: 43.75rem !default;
-$size-typography-label-md-font-weight-md: 43.75rem !default;
-$size-typography-label-md-line-height-xx: 1.125rem !default;
-$size-typography-label-md-line-height-sm: 1.125rem !default;
-$size-typography-label-md-line-height-md: 1.125rem !default;
-$size-typography-label-md-letter-spacing-xx: 0 !default;
-$size-typography-label-md-letter-spacing-sm: 0 !default;
-$size-typography-label-md-letter-spacing-md: 0 !default;
-$size-typography-label-md-paragraph-spacing-xx: 0 !default;
-$size-typography-label-md-paragraph-spacing-sm: 0 !default;
-$size-typography-label-md-paragraph-spacing-md: 0.25rem !default;
+$size-typography-body-font-size-xx: 1rem !default;
+$size-typography-body-font-size-sm: 1.0625rem !default;
+$size-typography-body-font-size-md: 1.125rem !default;
+$size-typography-body-font-weight-xx: 18.75rem !default;
+$size-typography-body-font-weight-sm: 18.75rem !default;
+$size-typography-body-font-weight-md: 18.75rem !default;
+$size-typography-body-line-height-xx: 1.25rem !default;
+$size-typography-body-line-height-sm: 1.3125rem !default;
+$size-typography-body-line-height-md: 1.375rem !default;
+$size-typography-body-letter-spacing-xx: 0 !default;
+$size-typography-body-letter-spacing-sm: 0 !default;
+$size-typography-body-letter-spacing-md: 0 !default;
+$size-typography-body-paragraph-spacing-xx: 0.5rem !default;
+$size-typography-body-paragraph-spacing-sm: 0.5rem !default;
+$size-typography-body-paragraph-spacing-md: 0.5rem !default;
+$size-typography-body-list-spacing-xx: 0.5rem !default;
+$size-typography-body-list-spacing-sm: 0.5rem !default;
+$size-typography-body-list-spacing-md: 0.5rem !default;
+$size-typography-button-font-weight-xx: 18.75rem !default;
+$size-typography-button-font-weight-sm: 18.75rem !default;
+$size-typography-button-font-weight-md: 18.75rem !default;
+$size-typography-button-line-height-xx: 1.25rem !default;
+$size-typography-button-line-height-sm: 1.5rem !default;
+$size-typography-button-line-height-md: 1.75rem !default;
+$size-typography-button-letter-spacing-xx: 0 !default;
+$size-typography-button-letter-spacing-sm: 0 !default;
+$size-typography-button-letter-spacing-md: 0 !default;
+$size-typography-button-paragraph-spacing-xx: 0 !default;
+$size-typography-button-paragraph-spacing-sm: 0 !default;
+$size-typography-button-paragraph-spacing-md: 0 !default;
+$size-typography-button-font-size-xx: 1rem !default;
+$size-typography-button-font-size-sm: 1.25rem !default;
+$size-typography-button-font-size-md: 1.5rem !default;
+$size-typography-button-font-family-xx: Lato !default;
+$size-typography-button-font-family-sm: Lato !default;
+$size-typography-button-font-family-md: Lato !default;
 $size-grid-columns-xx: 4 !default;
 $size-grid-columns-sm: 6 !default;
 $size-grid-columns-md: 12 !default;
@@ -190,360 +79,126 @@ $size-grid-margin-md: 4rem !default;
 $size-grid-max-width-xx: 75rem !default;
 $size-grid-max-width-sm: 75rem !default;
 $size-grid-max-width-md: 75rem !default;
-$size-page-spacing-100-xx: 0.25rem !default;
-$size-page-spacing-100-sm: 0.5rem !default;
-$size-page-spacing-100-md: 0.75rem !default;
-$size-page-spacing-200-xx: 0.5rem !default;
-$size-page-spacing-200-sm: 0.75rem !default;
-$size-page-spacing-200-md: 1rem !default;
-$size-page-spacing-300-xx: 1rem !default;
-$size-page-spacing-300-sm: 1.25rem !default;
-$size-page-spacing-300-md: 1.5rem !default;
-$size-page-spacing-400-xx: 1.5rem !default;
-$size-page-spacing-400-sm: 1.75rem !default;
-$size-page-spacing-400-md: 2rem !default;
-$size-page-spacing-500-xx: 2rem !default;
-$size-page-spacing-500-sm: 2.75rem !default;
-$size-page-spacing-500-md: 3rem !default;
-$size-page-spacing-600-xx: 3rem !default;
-$size-page-spacing-600-sm: 3.5rem !default;
-$size-page-spacing-600-md: 4rem !default;
-$size-page-spacing-700-xx: 4rem !default;
-$size-page-spacing-700-sm: 4.5rem !default;
-$size-page-spacing-700-md: 5rem !default;
-$size-page-spacing-800-xx: 5rem !default;
-$size-page-spacing-800-sm: 5.5rem !default;
-$size-page-spacing-800-md: 6rem !default;
-$size-page-spacing-900-xx: 6.25rem !default;
-$size-page-spacing-900-sm: 6.75rem !default;
-$size-page-spacing-900-md: 7.5rem !default;
-$size-page-spacing-1000-xx: 2.5rem !default;
-$size-page-spacing-1000-sm: 8.75rem !default;
-$size-page-spacing-1000-md: 10rem !default;
-$size-page-spacing-000-xx: 0 !default;
-$size-page-spacing-000-sm: 0 !default;
-$size-page-spacing-000-md: 0 !default;
-$size-page-padding-100-xx: 0.25rem !default;
-$size-page-padding-100-sm: 0.5rem !default;
-$size-page-padding-100-md: 0.5rem !default;
-$size-page-padding-200-xx: 0.5rem !default;
-$size-page-padding-200-sm: 0.75rem !default;
-$size-page-padding-200-md: 0.75rem !default;
-$size-page-padding-300-xx: 1rem !default;
-$size-page-padding-300-sm: 1.5rem !default;
-$size-page-padding-300-md: 1.5rem !default;
-$size-page-padding-400-xx: 1.5rem !default;
-$size-page-padding-400-sm: 2rem !default;
-$size-page-padding-400-md: 2rem !default;
-$size-page-padding-500-xx: 2rem !default;
-$size-page-padding-500-sm: 4rem !default;
-$size-page-padding-500-md: 4rem !default;
-$size-page-padding-600-xx: 2.75rem !default;
-$size-page-padding-600-sm: 4.5rem !default;
-$size-page-padding-600-md: 4.5rem !default;
-$size-page-padding-700-xx: 3.5rem !default;
-$size-page-padding-700-sm: 5rem !default;
-$size-page-padding-700-md: 5rem !default;
-$size-page-padding-800-xx: 4rem !default;
-$size-page-padding-800-sm: 5.5rem !default;
-$size-page-padding-800-md: 5.5rem !default;
-$size-page-padding-900-xx: 5rem !default;
-$size-page-padding-900-sm: 6.25rem !default;
-$size-page-padding-900-md: 6.25rem !default;
-$size-page-padding-1000-xx: 6.75rem !default;
-$size-page-padding-1000-sm: 7.5rem !default;
-$size-page-padding-1000-md: 7.5rem !default;
-$size-page-padding-000-xx: 0 !default;
-$size-page-padding-000-sm: 0 !default;
-$size-page-padding-000-md: 0 !default;
-$size-page-radius-300-xx: 0.25rem !default;
-$size-page-radius-300-sm: 0.25rem !default;
-$size-page-radius-300-md: 0.25rem !default;
-$size-page-radius-500-xx: 1rem !default;
-$size-page-radius-500-sm: 1rem !default;
-$size-page-radius-500-md: 1rem !default;
-$size-page-radius-700-xx: 2rem !default;
-$size-page-radius-700-sm: 2rem !default;
-$size-page-radius-700-md: 2rem !default;
-$size-page-radius-1000-xx: 624.9375rem !default;
-$size-page-radius-1000-sm: 624.9375rem !default;
-$size-page-radius-1000-md: 624.9375rem !default;
-$size-page-radius-000-xx: 0 !default;
-$size-page-radius-000-sm: 0 !default;
-$size-page-radius-000-md: 0 !default;
+$size-page-spacing-none-xx: 0 !default;
+$size-page-spacing-none-sm: 0 !default;
+$size-page-spacing-none-md: 0 !default;
+$size-page-spacing-sm-xx: 0.5rem !default;
+$size-page-spacing-sm-sm: 0.625rem !default;
+$size-page-spacing-sm-md: 0.75rem !default;
+$size-page-spacing-xl-xx: 4rem !default;
+$size-page-spacing-xl-sm: 4.5rem !default;
+$size-page-spacing-xl-md: 5rem !default;
+$size-page-spacing-md-xx: 0.75rem !default;
+$size-page-spacing-md-sm: 0.875rem !default;
+$size-page-spacing-md-md: 1rem !default;
+$size-page-spacing-xs-xx: 0.125rem !default;
+$size-page-spacing-xs-sm: 0.25rem !default;
+$size-page-spacing-xs-md: 0.5rem !default;
+$size-page-spacing-lg-xx: 2rem !default;
+$size-page-spacing-lg-sm: 3rem !default;
+$size-page-spacing-lg-md: 4rem !default;
+$size-page-radius-md-xx: 0.5rem !default;
+$size-page-radius-md-sm: 0.5rem !default;
+$size-page-radius-md-md: 0.5rem !default;
+$size-page-radius-sm-xx: 0.125rem !default;
+$size-page-radius-sm-sm: 0.125rem !default;
+$size-page-radius-sm-md: 0.125rem !default;
+$size-page-radius-none-xx: 0 !default;
+$size-page-radius-none-sm: 0 !default;
+$size-page-radius-none-md: 0 !default;
 $size-page-max-width-xx: 21.875rem !default;
 $size-page-max-width-sm: 45rem !default;
 $size-page-max-width-md: 75rem !default;
-$size-element-size-normal-padding-y-xx: 1.5rem !default;
-$size-element-size-normal-padding-y-sm: 1.75rem !default;
-$size-element-size-normal-padding-y-md: 2rem !default;
-$size-element-size-normal-padding-x-xx: 1rem !default;
-$size-element-size-normal-padding-x-sm: 1.5rem !default;
-$size-element-size-normal-padding-x-md: 1.75rem !default;
-$size-element-size-normal-spacing-x-xx: 2rem !default;
-$size-element-size-normal-spacing-x-sm: 3rem !default;
-$size-element-size-normal-spacing-x-md: 3rem !default;
-$size-element-size-normal-spacing-y-xx: 2rem !default;
-$size-element-size-normal-spacing-y-sm: 3rem !default;
-$size-element-size-normal-spacing-y-md: 3rem !default;
-$size-element-size-large-spacing-x-xx: 2rem !default;
-$size-element-size-large-spacing-x-sm: 3rem !default;
-$size-element-size-large-spacing-x-md: 3rem !default;
-$size-element-size-large-spacing-y-xx: 4rem !default;
-$size-element-size-large-spacing-y-sm: 4.5rem !default;
-$size-element-size-large-spacing-y-md: 4.5rem !default;
-$size-element-size-large-padding-x-xx: 2rem !default;
-$size-element-size-large-padding-x-sm: 2.25rem !default;
-$size-element-size-large-padding-x-md: 2.5rem !default;
-$size-element-size-large-padding-y-xx: 2.5rem !default;
-$size-element-size-large-padding-y-sm: 3rem !default;
-$size-element-size-large-padding-y-md: 3.25rem !default;
-$size-element-size-compact-spacing-x-xx: 1rem !default;
-$size-element-size-compact-spacing-x-sm: 1.5rem !default;
-$size-element-size-compact-spacing-x-md: 1.5rem !default;
-$size-element-size-compact-spacing-y-xx: 1rem !default;
-$size-element-size-compact-spacing-y-sm: 1.5rem !default;
-$size-element-size-compact-spacing-y-md: 1.5rem !default;
-$size-element-size-compact-padding-x-xx: 1rem !default;
-$size-element-size-compact-padding-x-sm: 1.5rem !default;
-$size-element-size-compact-padding-x-md: 1.75rem !default;
-$size-element-size-compact-padding-y-xx: 1rem !default;
-$size-element-size-compact-padding-y-sm: 1.5rem !default;
-$size-element-size-compact-padding-y-md: 1.75rem !default;
-$size-element-radius-none-radius-xx: 0 !default;
-$size-element-radius-none-radius-sm: 0 !default;
-$size-element-radius-none-radius-md: 0 !default;
-$size-element-radius-small-radius-xx: 0.5rem !default;
-$size-element-radius-small-radius-sm: 0.75rem !default;
-$size-element-radius-small-radius-md: 1rem !default;
-$size-section-radius-none-radius-xx: 0 !default;
-$size-section-radius-none-radius-sm: 0 !default;
-$size-section-radius-none-radius-md: 0 !default;
-$size-section-radius-small-radius-xx: 0.5rem !default;
-$size-section-radius-small-radius-sm: 0 !default;
-$size-section-radius-small-radius-md: 0 !default;
-$size-section-size-normal-spacing-x-xx: 2rem !default;
-$size-section-size-normal-spacing-x-sm: 3rem !default;
-$size-section-size-normal-spacing-x-md: 3rem !default;
-$size-section-size-normal-spacing-y-xx: 2rem !default;
-$size-section-size-normal-spacing-y-sm: 3rem !default;
-$size-section-size-normal-spacing-y-md: 3rem !default;
-$size-section-size-normal-padding-x-xx: 1rem !default;
-$size-section-size-normal-padding-x-sm: 1.5rem !default;
-$size-section-size-normal-padding-x-md: 1.75rem !default;
-$size-section-size-normal-padding-y-xx: 1.5rem !default;
-$size-section-size-normal-padding-y-sm: 1.75rem !default;
-$size-section-size-normal-padding-y-md: 2rem !default;
-$size-section-size-normal-padding-outer-xx: 2rem !default;
-$size-section-size-normal-padding-outer-sm: 3rem !default;
-$size-section-size-normal-padding-outer-md: 4rem !default;
-$size-section-size-normal-outer-padding-x-xx: 0.5rem !default;
-$size-section-size-normal-outer-padding-x-sm: 2rem !default;
-$size-section-size-normal-outer-padding-x-md: 4rem !default;
 $size-button-radius-none-radius-xx: 0 !default;
 $size-button-radius-none-radius-sm: 0 !default;
 $size-button-radius-none-radius-md: 0 !default;
-$size-button-radius-small-radius-xx: 0.25rem !default;
-$size-button-radius-small-radius-sm: 0.25rem !default;
-$size-button-radius-small-radius-md: 0.25rem !default;
+$size-button-radius-small-radius-xx: 0.125rem !default;
+$size-button-radius-small-radius-sm: 0.125rem !default;
+$size-button-radius-small-radius-md: 0.125rem !default;
 $size-button-radius-medium-radius-xx: 0.5rem !default;
 $size-button-radius-medium-radius-sm: 0.5rem !default;
 $size-button-radius-medium-radius-md: 0.5rem !default;
-$size-button-size-default-spacing-x-xx: 2rem !default;
-$size-button-size-default-spacing-x-sm: 3rem !default;
-$size-button-size-default-spacing-x-md: 3rem !default;
-$size-button-size-default-spacing-y-xx: 2rem !default;
-$size-button-size-default-spacing-y-sm: 3rem !default;
-$size-button-size-default-spacing-y-md: 3rem !default;
-$size-button-size-default-padding-x-xx: 1rem !default;
-$size-button-size-default-padding-x-sm: 1rem !default;
-$size-button-size-default-padding-x-md: 1rem !default;
+$size-button-size-default-padding-x-xx: 1.5rem !default;
+$size-button-size-default-padding-x-sm: 1.5rem !default;
+$size-button-size-default-padding-x-md: 1.5rem !default;
 $size-button-size-default-padding-y-xx: 0.75rem !default;
 $size-button-size-default-padding-y-sm: 0.75rem !default;
 $size-button-size-default-padding-y-md: 0.75rem !default;
-$size-button-size-large-spacing-x-xx: 2rem !default;
-$size-button-size-large-spacing-x-sm: 3rem !default;
-$size-button-size-large-spacing-x-md: 3rem !default;
-$size-button-size-large-spacing-y-xx: 4rem !default;
-$size-button-size-large-spacing-y-sm: 4.5rem !default;
-$size-button-size-large-spacing-y-md: 4.5rem !default;
-$size-button-size-large-padding-x-xx: 2rem !default;
-$size-button-size-large-padding-x-sm: 2rem !default;
-$size-button-size-large-padding-x-md: 2rem !default;
-$size-button-size-large-padding-y-xx: 1rem !default;
-$size-button-size-large-padding-y-sm: 1rem !default;
-$size-button-size-large-padding-y-md: 1rem !default;
-$size-button-size-small-spacing-x-xx: 1rem !default;
-$size-button-size-small-spacing-x-sm: 1.5rem !default;
-$size-button-size-small-spacing-x-md: 1.5rem !default;
-$size-button-size-small-spacing-y-xx: 1rem !default;
-$size-button-size-small-spacing-y-sm: 1.5rem !default;
-$size-button-size-small-spacing-y-md: 1.5rem !default;
-$size-button-size-small-padding-x-xx: 0.5rem !default;
-$size-button-size-small-padding-x-sm: 0.5rem !default;
-$size-button-size-small-padding-x-md: 0.5rem !default;
-$size-button-size-small-padding-y-xx: 0.25rem !default;
-$size-button-size-small-padding-y-sm: 0.25rem !default;
-$size-button-size-small-padding-y-md: 0.25rem !default;
-$size-header-padding-y-xx: 0.5rem !default;
-$size-header-padding-y-sm: 1rem !default;
-$size-header-padding-y-md: 1rem !default;
-$size-header-padding-x-xx: 0.5rem !default;
-$size-header-padding-x-sm: 2rem !default;
-$size-header-padding-x-md: 4rem !default;
-$size-header-spacing-xx: 1rem !default;
-$size-header-spacing-sm: 2rem !default;
-$size-header-spacing-md: 2rem !default;
-$size-header-navigation-item-spacing-xx: 1.25rem !default;
-$size-header-navigation-item-spacing-sm: 1rem !default;
-$size-header-navigation-item-spacing-md: 1rem !default;
-$size-footer-padding-x-xx: 0.5rem !default;
-$size-footer-padding-x-sm: 2rem !default;
-$size-footer-padding-x-md: 4rem !default;
-$size-footer-spacing-xx: 3rem !default;
-$size-footer-spacing-sm: 3rem !default;
-$size-footer-spacing-md: 3rem !default;
-$size-footer-navigation-column-spacing-xx: 1rem !default;
-$size-footer-navigation-column-spacing-sm: 1rem !default;
-$size-footer-navigation-column-spacing-md: 1rem !default;
-$size-footer-navigation-item-spacing-xx: 0.5rem !default;
-$size-footer-navigation-item-spacing-sm: 0.5rem !default;
-$size-footer-navigation-item-spacing-md: 0.5rem !default;
-$size-footer-navigation-title-spacing-xx: 1rem !default;
-$size-footer-navigation-title-spacing-sm: 1rem !default;
-$size-footer-navigation-title-spacing-md: 1rem !default;
-$size-footer-footnote-padding-xx: 1.5rem !default;
-$size-footer-footnote-padding-sm: 1.5rem !default;
-$size-footer-footnote-padding-md: 1.5rem !default;
-$primitive-size-100: 6.25rem !default;
-$primitive-size-104: 6.5rem !default;
-$primitive-size-108: 6.75rem !default;
-$primitive-size-112: 7rem !default;
-$primitive-size-116: 7.25rem !default;
-$primitive-size-120: 7.5rem !default;
-$primitive-size-124: 7.75rem !default;
-$primitive-size-128: 8rem !default;
-$primitive-size-132: 8.25rem !default;
-$primitive-size-136: 8.5rem !default;
-$primitive-size-140: 8.75rem !default;
-$primitive-size-144: 9rem !default;
-$primitive-size-148: 9.25rem !default;
-$primitive-size-152: 9.5rem !default;
-$primitive-size-156: 9.75rem !default;
-$primitive-size-160: 10rem !default;
-$primitive-size-000: 0 !default;
-$primitive-size-004: 0.25rem !default;
-$primitive-size-008: 0.5rem !default;
-$primitive-size-012: 0.75rem !default;
-$primitive-size-016: 1rem !default;
-$primitive-size-020: 1.25rem !default;
-$primitive-size-024: 1.5rem !default;
-$primitive-size-028: 1.75rem !default;
-$primitive-size-032: 2rem !default;
-$primitive-size-036: 2.25rem !default;
-$primitive-size-040: 2.5rem !default;
-$primitive-size-044: 2.75rem !default;
-$primitive-size-048: 3rem !default;
-$primitive-size-052: 3.25rem !default;
-$primitive-size-056: 3.5rem !default;
-$primitive-size-060: 3.75rem !default;
-$primitive-size-064: 4rem !default;
-$primitive-size-068: 4.25rem !default;
-$primitive-size-072: 4.5rem !default;
-$primitive-size-076: 4.75rem !default;
-$primitive-size-080: 5rem !default;
-$primitive-size-084: 5.25rem !default;
-$primitive-size-088: 5.5rem !default;
-$primitive-size-092: 5.75rem !default;
-$primitive-size-096: 6rem !default;
-$primitive-color-green-100: #d9dcbaff !default;
-$primitive-color-green-200: #d3d7afff !default;
-$primitive-color-green-300: #ccd0a2ff !default;
-$primitive-color-green-400: #c2c890ff !default;
-$primitive-color-green-500: #b5bc79ff !default;
-$primitive-color-green-600: #a4ad5aff !default;
-$primitive-color-green-700: #868d46ff !default;
-$primitive-color-green-800: #6b7138ff !default;
-$primitive-color-green-900: #54592cff !default;
-$primitive-color-green-1000: #414422ff !default;
-$primitive-color-blue-100: #d5ddf4ff !default;
-$primitive-color-blue-200: #c5d0f1ff !default;
-$primitive-color-blue-300: #b1c0ecff !default;
-$primitive-color-blue-400: #97aae6ff !default;
-$primitive-color-blue-500: #748eddff !default;
-$primitive-color-blue-600: #4569d2ff !default;
-$primitive-color-blue-700: #294bb0ff !default;
-$primitive-color-blue-800: #1f3883ff !default;
-$primitive-color-blue-900: #172960ff !default;
-$primitive-color-blue-1000: #101c42ff !default;
-$primitive-color-neutral-100: #fefefeff !default;
-$primitive-color-neutral-200: #f1f1f0ff !default;
-$primitive-color-neutral-300: #e2e0dfff !default;
-$primitive-color-neutral-400: #cdcac8ff !default;
-$primitive-color-neutral-500: #b1aca9ff !default;
-$primitive-color-neutral-600: #8c8580ff !default;
-$primitive-color-neutral-700: #615b58ff !default;
-$primitive-color-neutral-800: #3a3735ff !default;
-$primitive-color-neutral-900: #1a1918ff !default;
-$primitive-color-neutral-1000: #000000ff !default;
-$color-button-color-accent-background-initial-light: #294bb0ff !default;
-$color-button-color-accent-background-initial-green: #868d46ff !default;
-$color-button-color-accent-background-hover-light: #4569d2ff !default;
-$color-button-color-accent-background-hover-green: #a4ad5aff !default;
-$color-button-color-accent-background-focus-light: #4569d2ff !default;
-$color-button-color-accent-background-focus-green: #a4ad5aff !default;
-$color-button-color-accent-background-active-light: #4569d2ff !default;
-$color-button-color-accent-background-active-green: #a4ad5aff !default;
-$color-button-color-accent-background-disabled-light: #cdcac8ff !default;
-$color-button-color-accent-background-disabled-green: #cdcac8ff !default;
-$color-button-color-accent-text-initial-light: #fefefeff !default;
-$color-button-color-accent-text-initial-green: #fefefeff !default;
-$color-button-color-accent-text-hover-light: #fefefeff !default;
-$color-button-color-accent-text-hover-green: #fefefeff !default;
-$color-button-color-accent-text-focus-light: #fefefeff !default;
-$color-button-color-accent-text-focus-green: #fefefeff !default;
-$color-button-color-accent-text-active-light: #fefefeff !default;
-$color-button-color-accent-text-active-green: #fefefeff !default;
-$color-button-color-accent-text-disabled-light: #615b58ff !default;
-$color-button-color-accent-text-disabled-green: #615b58ff !default;
-$color-button-color-subtle-background-light: #b1c0ecff !default;
-$color-button-color-subtle-background-green: #c2c890ff !default;
-$color-button-color-subtle-text-light: #294bb0ff !default;
-$color-button-color-subtle-text-green: #6b7138ff !default;
-$color-element-color-subtle-background-light: #d5ddf4ff !default;
-$color-element-color-subtle-background-green: #d9dcbaff !default;
-$color-element-color-subtle-text-light: #000000ff !default;
-$color-element-color-subtle-text-green: #000000ff !default;
-$color-element-color-white-background-light: #fefefeff !default;
-$color-element-color-white-background-green: #fefefeff !default;
-$color-element-color-white-text-light: #000000ff !default;
-$color-element-color-white-text-green: #000000ff !default;
-$color-element-color-white-background-secondary-light: #7e7e7e4d !default;
-$color-element-color-white-background-secondary-green: #7e7e7e4d !default;
-$color-element-color-accent-background-light: #294bb0ff !default;
-$color-element-color-accent-background-green: #868d46ff !default;
-$color-element-color-accent-text-light: #fefefeff !default;
-$color-element-color-accent-text-green: #fefefeff !default;
-$color-element-color-accent-background-secondary-light: #ffffff4d !default;
-$color-element-color-accent-background-secondary-green: #ffffff4d !default;
-$color-page-surface-base-light: #fefefeff !default;
-$color-page-surface-base-green: #fefefeff !default;
-$color-page-surface-subtle-light: #f1f1f0ff !default;
-$color-page-surface-subtle-green: #f1f1f0ff !default;
-$color-page-text-base-light: #000000ff !default;
-$color-page-text-base-green: #000000ff !default;
-$color-page-text-base-inverse-light: #fefefeff !default;
-$color-page-text-base-inverse-green: #fefefeff !default;
-$color-page-text-subtle-light: #3a3735ff !default;
-$color-page-text-subtle-green: #3a3735ff !default;
-$color-page-text-accent-light: #1f3883ff !default;
-$color-page-text-accent-green: #6b7138ff !default;
-$color-page-border-base-light: #1a1918ff !default;
-$color-page-border-base-green: #1a1918ff !default;
-$color-page-border-subtle-light: #b1aca9ff !default;
-$color-page-border-subtle-green: #b1aca9ff !default;
-$color-page-border-accent-light: #294bb0ff !default;
-$color-page-border-accent-green: #868d46ff !default;
+$color-button-color-secondary-background-initial-blue: [object Object] !default;
+$color-button-color-secondary-background-initial-green: [object Object] !default;
+$color-button-color-secondary-background-initial-dark: [object Object] !default;
+$color-button-color-secondary-background-hover-blue: [object Object] !default;
+$color-button-color-secondary-background-hover-green: [object Object] !default;
+$color-button-color-secondary-background-hover-dark: [object Object] !default;
+$color-button-color-secondary-background-focus-blue: [object Object] !default;
+$color-button-color-secondary-background-focus-green: [object Object] !default;
+$color-button-color-secondary-background-focus-dark: [object Object] !default;
+$color-button-color-secondary-background-active-blue: [object Object] !default;
+$color-button-color-secondary-background-active-green: [object Object] !default;
+$color-button-color-secondary-background-active-dark: [object Object] !default;
+$color-button-color-secondary-background-disabled-blue: [object Object] !default;
+$color-button-color-secondary-background-disabled-green: [object Object] !default;
+$color-button-color-secondary-background-disabled-dark: [object Object] !default;
+$color-button-color-secondary-text-initial-blue: [object Object] !default;
+$color-button-color-secondary-text-initial-green: [object Object] !default;
+$color-button-color-secondary-text-initial-dark: [object Object] !default;
+$color-button-color-secondary-text-hover-blue: [object Object] !default;
+$color-button-color-secondary-text-hover-green: [object Object] !default;
+$color-button-color-secondary-text-hover-dark: [object Object] !default;
+$color-button-color-secondary-text-focus-blue: [object Object] !default;
+$color-button-color-secondary-text-focus-green: [object Object] !default;
+$color-button-color-secondary-text-focus-dark: [object Object] !default;
+$color-button-color-secondary-text-active-blue: [object Object] !default;
+$color-button-color-secondary-text-active-green: [object Object] !default;
+$color-button-color-secondary-text-active-dark: [object Object] !default;
+$color-button-color-secondary-text-disabled-blue: [object Object] !default;
+$color-button-color-secondary-text-disabled-green: [object Object] !default;
+$color-button-color-secondary-text-disabled-dark: [object Object] !default;
+$color-button-color-secondary-border-initial-blue: [object Object] !default;
+$color-button-color-secondary-border-initial-green: [object Object] !default;
+$color-button-color-secondary-border-initial-dark: [object Object] !default;
+$color-button-color-secondary-border-hover-blue: [object Object] !default;
+$color-button-color-secondary-border-hover-green: [object Object] !default;
+$color-button-color-secondary-border-hover-dark: [object Object] !default;
+$color-button-color-secondary-border-focus-blue: [object Object] !default;
+$color-button-color-secondary-border-focus-green: [object Object] !default;
+$color-button-color-secondary-border-focus-dark: [object Object] !default;
+$color-button-color-secondary-border-active-blue: [object Object] !default;
+$color-button-color-secondary-border-active-green: [object Object] !default;
+$color-button-color-secondary-border-active-dark: [object Object] !default;
+$color-button-color-secondary-border-disabled-blue: [object Object] !default;
+$color-button-color-secondary-border-disabled-green: [object Object] !default;
+$color-button-color-secondary-border-disabled-dark: [object Object] !default;
+$color-button-color-primary-background-blue: [object Object] !default;
+$color-button-color-primary-background-green: [object Object] !default;
+$color-button-color-primary-background-dark: [object Object] !default;
+$color-button-color-primary-inner-border-blue: [object Object] !default;
+$color-button-color-primary-inner-border-green: [object Object] !default;
+$color-button-color-primary-inner-border-dark: [object Object] !default;
+$color-button-color-primary-outer-border-blue: [object Object] !default;
+$color-button-color-primary-outer-border-green: [object Object] !default;
+$color-button-color-primary-outer-border-dark: [object Object] !default;
+$color-button-color-primary-text-blue: [object Object] !default;
+$color-button-color-primary-text-green: [object Object] !default;
+$color-button-color-primary-text-dark: [object Object] !default;
+$color-page-background-blue: #ffffffff !default;
+$color-page-background-green: #ffffffff !default;
+$color-page-background-dark: #292929ff !default;
+$color-page-text-blue: #182861ff !default;
+$color-page-text-green: #000000ff !default;
+$color-page-text-dark: #ffffffff !default;
+$color-page-accent-blue: #3c64f3ff !default;
+$color-page-accent-green: #316454ff !default;
+$color-page-accent-dark: #f5e12eff !default;
+$color-page-accent-light-blue: #6f8df6ff !default;
+$color-page-accent-light-green: #527d6fff !default;
+$color-page-accent-light-dark: #fcf5b6ff !default;
+$color-page-accent-dark-blue: #092690ff !default;
+$color-page-accent-dark-green: #22463bff !default;
+$color-page-accent-dark-dark: #4e4604ff !default;
+$color-page-disabled-blue: #ccccccff !default;
+$color-page-disabled-green: #ccccccff !default;
+$color-page-disabled-dark: #ccccccff !default;
 
 $tokens: (
   'breakpoint': (
@@ -577,50 +232,6 @@ $tokens: (
             '@md': $size-typography-heading-md-line-height-md
           )
         ),
-        'xxl': (
-          'font-size': (
-            '@xx': $size-typography-heading-xxl-font-size-xx,
-            '@sm': $size-typography-heading-xxl-font-size-sm,
-            '@md': $size-typography-heading-xxl-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-heading-xxl-font-weight-xx,
-            '@sm': $size-typography-heading-xxl-font-weight-sm,
-            '@md': $size-typography-heading-xxl-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-heading-xxl-line-height-xx,
-            '@sm': $size-typography-heading-xxl-line-height-sm,
-            '@md': $size-typography-heading-xxl-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-heading-xxl-letter-spacing-xx,
-            '@sm': $size-typography-heading-xxl-letter-spacing-sm,
-            '@md': $size-typography-heading-xxl-letter-spacing-md
-          )
-        ),
-        'xl': (
-          'font-size': (
-            '@xx': $size-typography-heading-xl-font-size-xx,
-            '@sm': $size-typography-heading-xl-font-size-sm,
-            '@md': $size-typography-heading-xl-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-heading-xl-font-weight-xx,
-            '@sm': $size-typography-heading-xl-font-weight-sm,
-            '@md': $size-typography-heading-xl-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-heading-xl-line-height-xx,
-            '@sm': $size-typography-heading-xl-line-height-sm,
-            '@md': $size-typography-heading-xl-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-heading-xl-letter-spacing-xx,
-            '@sm': $size-typography-heading-xl-letter-spacing-sm,
-            '@md': $size-typography-heading-xl-letter-spacing-md
-          )
-        ),
         'lg': (
           'font-size': (
             '@xx': $size-typography-heading-lg-font-size-xx,
@@ -642,231 +253,70 @@ $tokens: (
             '@sm': $size-typography-heading-lg-letter-spacing-sm,
             '@md': $size-typography-heading-lg-letter-spacing-md
           )
-        ),
-        'sm': (
-          'font-size': (
-            '@xx': $size-typography-heading-sm-font-size-xx,
-            '@sm': $size-typography-heading-sm-font-size-sm,
-            '@md': $size-typography-heading-sm-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-heading-sm-font-weight-xx,
-            '@sm': $size-typography-heading-sm-font-weight-sm,
-            '@md': $size-typography-heading-sm-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-heading-sm-line-height-xx,
-            '@sm': $size-typography-heading-sm-line-height-sm,
-            '@md': $size-typography-heading-sm-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-heading-sm-letter-spacing-xx,
-            '@sm': $size-typography-heading-sm-letter-spacing-sm,
-            '@md': $size-typography-heading-sm-letter-spacing-md
-          )
-        ),
-        'xs': (
-          'font-size': (
-            '@xx': $size-typography-heading-xs-font-size-xx,
-            '@sm': $size-typography-heading-xs-font-size-sm,
-            '@md': $size-typography-heading-xs-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-heading-xs-font-weight-xx,
-            '@sm': $size-typography-heading-xs-font-weight-sm,
-            '@md': $size-typography-heading-xs-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-heading-xs-line-height-xx,
-            '@sm': $size-typography-heading-xs-line-height-sm,
-            '@md': $size-typography-heading-xs-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-heading-xs-letter-spacing-xx,
-            '@sm': $size-typography-heading-xs-letter-spacing-sm,
-            '@md': $size-typography-heading-xs-letter-spacing-md
-          )
         )
       ),
       'body': (
-        'md': (
-          'font-size': (
-            '@xx': $size-typography-body-md-font-size-xx,
-            '@sm': $size-typography-body-md-font-size-sm,
-            '@md': $size-typography-body-md-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-body-md-font-weight-xx,
-            '@sm': $size-typography-body-md-font-weight-sm,
-            '@md': $size-typography-body-md-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-body-md-line-height-xx,
-            '@sm': $size-typography-body-md-line-height-sm,
-            '@md': $size-typography-body-md-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-body-md-letter-spacing-xx,
-            '@sm': $size-typography-body-md-letter-spacing-sm,
-            '@md': $size-typography-body-md-letter-spacing-md
-          ),
-          'paragraph-spacing': (
-            '@xx': $size-typography-body-md-paragraph-spacing-xx,
-            '@sm': $size-typography-body-md-paragraph-spacing-sm,
-            '@md': $size-typography-body-md-paragraph-spacing-md
-          ),
-          'list-spacing': (
-            '@xx': $size-typography-body-md-list-spacing-xx,
-            '@sm': $size-typography-body-md-list-spacing-sm,
-            '@md': $size-typography-body-md-list-spacing-md
-          )
+        'font-size': (
+          '@xx': $size-typography-body-font-size-xx,
+          '@sm': $size-typography-body-font-size-sm,
+          '@md': $size-typography-body-font-size-md
         ),
-        'sm': (
-          'font-size': (
-            '@xx': $size-typography-body-sm-font-size-xx,
-            '@sm': $size-typography-body-sm-font-size-sm,
-            '@md': $size-typography-body-sm-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-body-sm-font-weight-xx,
-            '@sm': $size-typography-body-sm-font-weight-sm,
-            '@md': $size-typography-body-sm-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-body-sm-line-height-xx,
-            '@sm': $size-typography-body-sm-line-height-sm,
-            '@md': $size-typography-body-sm-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-body-sm-letter-spacing-xx,
-            '@sm': $size-typography-body-sm-letter-spacing-sm,
-            '@md': $size-typography-body-sm-letter-spacing-md
-          ),
-          'paragraph-spacing': (
-            '@xx': $size-typography-body-sm-paragraph-spacing-xx,
-            '@sm': $size-typography-body-sm-paragraph-spacing-sm,
-            '@md': $size-typography-body-sm-paragraph-spacing-md
-          ),
-          'list-spacing': (
-            '@xx': $size-typography-body-sm-list-spacing-xx,
-            '@sm': $size-typography-body-sm-list-spacing-sm,
-            '@md': $size-typography-body-sm-list-spacing-md
-          )
+        'font-weight': (
+          '@xx': $size-typography-body-font-weight-xx,
+          '@sm': $size-typography-body-font-weight-sm,
+          '@md': $size-typography-body-font-weight-md
         ),
-        'lg': (
-          'font-size': (
-            '@xx': $size-typography-body-lg-font-size-xx,
-            '@sm': $size-typography-body-lg-font-size-sm,
-            '@md': $size-typography-body-lg-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-body-lg-font-weight-xx,
-            '@sm': $size-typography-body-lg-font-weight-sm,
-            '@md': $size-typography-body-lg-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-body-lg-line-height-xx,
-            '@sm': $size-typography-body-lg-line-height-sm,
-            '@md': $size-typography-body-lg-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-body-lg-letter-spacing-xx,
-            '@sm': $size-typography-body-lg-letter-spacing-sm,
-            '@md': $size-typography-body-lg-letter-spacing-md
-          ),
-          'paragraph-spacing': (
-            '@xx': $size-typography-body-lg-paragraph-spacing-xx,
-            '@sm': $size-typography-body-lg-paragraph-spacing-sm,
-            '@md': $size-typography-body-lg-paragraph-spacing-md
-          ),
-          'list-spacing': (
-            '@xx': $size-typography-body-lg-list-spacing-xx,
-            '@sm': $size-typography-body-lg-list-spacing-sm,
-            '@md': $size-typography-body-lg-list-spacing-md
-          )
+        'line-height': (
+          '@xx': $size-typography-body-line-height-xx,
+          '@sm': $size-typography-body-line-height-sm,
+          '@md': $size-typography-body-line-height-md
+        ),
+        'letter-spacing': (
+          '@xx': $size-typography-body-letter-spacing-xx,
+          '@sm': $size-typography-body-letter-spacing-sm,
+          '@md': $size-typography-body-letter-spacing-md
+        ),
+        'paragraph-spacing': (
+          '@xx': $size-typography-body-paragraph-spacing-xx,
+          '@sm': $size-typography-body-paragraph-spacing-sm,
+          '@md': $size-typography-body-paragraph-spacing-md
+        ),
+        'list-spacing': (
+          '@xx': $size-typography-body-list-spacing-xx,
+          '@sm': $size-typography-body-list-spacing-sm,
+          '@md': $size-typography-body-list-spacing-md
         )
       ),
-      'label': (
-        'sm': (
-          'font-size': (
-            '@xx': $size-typography-label-sm-font-size-xx,
-            '@sm': $size-typography-label-sm-font-size-sm,
-            '@md': $size-typography-label-sm-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-label-sm-font-weight-xx,
-            '@sm': $size-typography-label-sm-font-weight-sm,
-            '@md': $size-typography-label-sm-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-label-sm-line-height-xx,
-            '@sm': $size-typography-label-sm-line-height-sm,
-            '@md': $size-typography-label-sm-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-label-sm-letter-spacing-xx,
-            '@sm': $size-typography-label-sm-letter-spacing-sm,
-            '@md': $size-typography-label-sm-letter-spacing-md
-          ),
-          'paragraph-spacing': (
-            '@xx': $size-typography-label-sm-paragraph-spacing-xx,
-            '@sm': $size-typography-label-sm-paragraph-spacing-sm,
-            '@md': $size-typography-label-sm-paragraph-spacing-md
-          )
+      'button': (
+        'font-weight': (
+          '@xx': $size-typography-button-font-weight-xx,
+          '@sm': $size-typography-button-font-weight-sm,
+          '@md': $size-typography-button-font-weight-md
         ),
-        'lg': (
-          'font-size': (
-            '@xx': $size-typography-label-lg-font-size-xx,
-            '@sm': $size-typography-label-lg-font-size-sm,
-            '@md': $size-typography-label-lg-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-label-lg-font-weight-xx,
-            '@sm': $size-typography-label-lg-font-weight-sm,
-            '@md': $size-typography-label-lg-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-label-lg-line-height-xx,
-            '@sm': $size-typography-label-lg-line-height-sm,
-            '@md': $size-typography-label-lg-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-label-lg-letter-spacing-xx,
-            '@sm': $size-typography-label-lg-letter-spacing-sm,
-            '@md': $size-typography-label-lg-letter-spacing-md
-          ),
-          'paragraph-spacing': (
-            '@xx': $size-typography-label-lg-paragraph-spacing-xx,
-            '@sm': $size-typography-label-lg-paragraph-spacing-sm,
-            '@md': $size-typography-label-lg-paragraph-spacing-md
-          )
+        'line-height': (
+          '@xx': $size-typography-button-line-height-xx,
+          '@sm': $size-typography-button-line-height-sm,
+          '@md': $size-typography-button-line-height-md
         ),
-        'md': (
-          'font-size': (
-            '@xx': $size-typography-label-md-font-size-xx,
-            '@sm': $size-typography-label-md-font-size-sm,
-            '@md': $size-typography-label-md-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-label-md-font-weight-xx,
-            '@sm': $size-typography-label-md-font-weight-sm,
-            '@md': $size-typography-label-md-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-label-md-line-height-xx,
-            '@sm': $size-typography-label-md-line-height-sm,
-            '@md': $size-typography-label-md-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-label-md-letter-spacing-xx,
-            '@sm': $size-typography-label-md-letter-spacing-sm,
-            '@md': $size-typography-label-md-letter-spacing-md
-          ),
-          'paragraph-spacing': (
-            '@xx': $size-typography-label-md-paragraph-spacing-xx,
-            '@sm': $size-typography-label-md-paragraph-spacing-sm,
-            '@md': $size-typography-label-md-paragraph-spacing-md
-          )
+        'letter-spacing': (
+          '@xx': $size-typography-button-letter-spacing-xx,
+          '@sm': $size-typography-button-letter-spacing-sm,
+          '@md': $size-typography-button-letter-spacing-md
+        ),
+        'paragraph-spacing': (
+          '@xx': $size-typography-button-paragraph-spacing-xx,
+          '@sm': $size-typography-button-paragraph-spacing-sm,
+          '@md': $size-typography-button-paragraph-spacing-md
+        ),
+        'font-size': (
+          '@xx': $size-typography-button-font-size-xx,
+          '@sm': $size-typography-button-font-size-sm,
+          '@md': $size-typography-button-font-size-md
+        ),
+        'font-family': (
+          '@xx': $size-typography-button-font-family-xx,
+          '@sm': $size-typography-button-font-family-sm,
+          '@md': $size-typography-button-font-family-md
         )
       )
     ),
@@ -894,306 +344,58 @@ $tokens: (
     ),
     'page': (
       'spacing': (
-        '100': (
-          '@xx': $size-page-spacing-100-xx,
-          '@sm': $size-page-spacing-100-sm,
-          '@md': $size-page-spacing-100-md
+        'none': (
+          '@xx': $size-page-spacing-none-xx,
+          '@sm': $size-page-spacing-none-sm,
+          '@md': $size-page-spacing-none-md
         ),
-        '200': (
-          '@xx': $size-page-spacing-200-xx,
-          '@sm': $size-page-spacing-200-sm,
-          '@md': $size-page-spacing-200-md
+        'sm': (
+          '@xx': $size-page-spacing-sm-xx,
+          '@sm': $size-page-spacing-sm-sm,
+          '@md': $size-page-spacing-sm-md
         ),
-        '300': (
-          '@xx': $size-page-spacing-300-xx,
-          '@sm': $size-page-spacing-300-sm,
-          '@md': $size-page-spacing-300-md
+        'xl': (
+          '@xx': $size-page-spacing-xl-xx,
+          '@sm': $size-page-spacing-xl-sm,
+          '@md': $size-page-spacing-xl-md
         ),
-        '400': (
-          '@xx': $size-page-spacing-400-xx,
-          '@sm': $size-page-spacing-400-sm,
-          '@md': $size-page-spacing-400-md
+        'md': (
+          '@xx': $size-page-spacing-md-xx,
+          '@sm': $size-page-spacing-md-sm,
+          '@md': $size-page-spacing-md-md
         ),
-        '500': (
-          '@xx': $size-page-spacing-500-xx,
-          '@sm': $size-page-spacing-500-sm,
-          '@md': $size-page-spacing-500-md
+        'xs': (
+          '@xx': $size-page-spacing-xs-xx,
+          '@sm': $size-page-spacing-xs-sm,
+          '@md': $size-page-spacing-xs-md
         ),
-        '600': (
-          '@xx': $size-page-spacing-600-xx,
-          '@sm': $size-page-spacing-600-sm,
-          '@md': $size-page-spacing-600-md
-        ),
-        '700': (
-          '@xx': $size-page-spacing-700-xx,
-          '@sm': $size-page-spacing-700-sm,
-          '@md': $size-page-spacing-700-md
-        ),
-        '800': (
-          '@xx': $size-page-spacing-800-xx,
-          '@sm': $size-page-spacing-800-sm,
-          '@md': $size-page-spacing-800-md
-        ),
-        '900': (
-          '@xx': $size-page-spacing-900-xx,
-          '@sm': $size-page-spacing-900-sm,
-          '@md': $size-page-spacing-900-md
-        ),
-        '1000': (
-          '@xx': $size-page-spacing-1000-xx,
-          '@sm': $size-page-spacing-1000-sm,
-          '@md': $size-page-spacing-1000-md
-        ),
-        '000': (
-          '@xx': $size-page-spacing-000-xx,
-          '@sm': $size-page-spacing-000-sm,
-          '@md': $size-page-spacing-000-md
-        )
-      ),
-      'padding': (
-        '100': (
-          '@xx': $size-page-padding-100-xx,
-          '@sm': $size-page-padding-100-sm,
-          '@md': $size-page-padding-100-md
-        ),
-        '200': (
-          '@xx': $size-page-padding-200-xx,
-          '@sm': $size-page-padding-200-sm,
-          '@md': $size-page-padding-200-md
-        ),
-        '300': (
-          '@xx': $size-page-padding-300-xx,
-          '@sm': $size-page-padding-300-sm,
-          '@md': $size-page-padding-300-md
-        ),
-        '400': (
-          '@xx': $size-page-padding-400-xx,
-          '@sm': $size-page-padding-400-sm,
-          '@md': $size-page-padding-400-md
-        ),
-        '500': (
-          '@xx': $size-page-padding-500-xx,
-          '@sm': $size-page-padding-500-sm,
-          '@md': $size-page-padding-500-md
-        ),
-        '600': (
-          '@xx': $size-page-padding-600-xx,
-          '@sm': $size-page-padding-600-sm,
-          '@md': $size-page-padding-600-md
-        ),
-        '700': (
-          '@xx': $size-page-padding-700-xx,
-          '@sm': $size-page-padding-700-sm,
-          '@md': $size-page-padding-700-md
-        ),
-        '800': (
-          '@xx': $size-page-padding-800-xx,
-          '@sm': $size-page-padding-800-sm,
-          '@md': $size-page-padding-800-md
-        ),
-        '900': (
-          '@xx': $size-page-padding-900-xx,
-          '@sm': $size-page-padding-900-sm,
-          '@md': $size-page-padding-900-md
-        ),
-        '1000': (
-          '@xx': $size-page-padding-1000-xx,
-          '@sm': $size-page-padding-1000-sm,
-          '@md': $size-page-padding-1000-md
-        ),
-        '000': (
-          '@xx': $size-page-padding-000-xx,
-          '@sm': $size-page-padding-000-sm,
-          '@md': $size-page-padding-000-md
+        'lg': (
+          '@xx': $size-page-spacing-lg-xx,
+          '@sm': $size-page-spacing-lg-sm,
+          '@md': $size-page-spacing-lg-md
         )
       ),
       'radius': (
-        '300': (
-          '@xx': $size-page-radius-300-xx,
-          '@sm': $size-page-radius-300-sm,
-          '@md': $size-page-radius-300-md
+        'md': (
+          '@xx': $size-page-radius-md-xx,
+          '@sm': $size-page-radius-md-sm,
+          '@md': $size-page-radius-md-md
         ),
-        '500': (
-          '@xx': $size-page-radius-500-xx,
-          '@sm': $size-page-radius-500-sm,
-          '@md': $size-page-radius-500-md
+        'sm': (
+          '@xx': $size-page-radius-sm-xx,
+          '@sm': $size-page-radius-sm-sm,
+          '@md': $size-page-radius-sm-md
         ),
-        '700': (
-          '@xx': $size-page-radius-700-xx,
-          '@sm': $size-page-radius-700-sm,
-          '@md': $size-page-radius-700-md
-        ),
-        '1000': (
-          '@xx': $size-page-radius-1000-xx,
-          '@sm': $size-page-radius-1000-sm,
-          '@md': $size-page-radius-1000-md
-        ),
-        '000': (
-          '@xx': $size-page-radius-000-xx,
-          '@sm': $size-page-radius-000-sm,
-          '@md': $size-page-radius-000-md
+        'none': (
+          '@xx': $size-page-radius-none-xx,
+          '@sm': $size-page-radius-none-sm,
+          '@md': $size-page-radius-none-md
         )
       ),
       'max-width': (
         '@xx': $size-page-max-width-xx,
         '@sm': $size-page-max-width-sm,
         '@md': $size-page-max-width-md
-      )
-    ),
-    '%element': (
-      '--size': (
-        '-normal': (
-          'padding': (
-            'y': (
-              '@xx': $size-element-size-normal-padding-y-xx,
-              '@sm': $size-element-size-normal-padding-y-sm,
-              '@md': $size-element-size-normal-padding-y-md
-            ),
-            'x': (
-              '@xx': $size-element-size-normal-padding-x-xx,
-              '@sm': $size-element-size-normal-padding-x-sm,
-              '@md': $size-element-size-normal-padding-x-md
-            )
-          ),
-          'spacing': (
-            'x': (
-              '@xx': $size-element-size-normal-spacing-x-xx,
-              '@sm': $size-element-size-normal-spacing-x-sm,
-              '@md': $size-element-size-normal-spacing-x-md
-            ),
-            'y': (
-              '@xx': $size-element-size-normal-spacing-y-xx,
-              '@sm': $size-element-size-normal-spacing-y-sm,
-              '@md': $size-element-size-normal-spacing-y-md
-            )
-          )
-        ),
-        '-large': (
-          'spacing': (
-            'x': (
-              '@xx': $size-element-size-large-spacing-x-xx,
-              '@sm': $size-element-size-large-spacing-x-sm,
-              '@md': $size-element-size-large-spacing-x-md
-            ),
-            'y': (
-              '@xx': $size-element-size-large-spacing-y-xx,
-              '@sm': $size-element-size-large-spacing-y-sm,
-              '@md': $size-element-size-large-spacing-y-md
-            )
-          ),
-          'padding': (
-            'x': (
-              '@xx': $size-element-size-large-padding-x-xx,
-              '@sm': $size-element-size-large-padding-x-sm,
-              '@md': $size-element-size-large-padding-x-md
-            ),
-            'y': (
-              '@xx': $size-element-size-large-padding-y-xx,
-              '@sm': $size-element-size-large-padding-y-sm,
-              '@md': $size-element-size-large-padding-y-md
-            )
-          )
-        ),
-        '-compact*': (
-          'spacing': (
-            'x': (
-              '@xx': $size-element-size-compact-spacing-x-xx,
-              '@sm': $size-element-size-compact-spacing-x-sm,
-              '@md': $size-element-size-compact-spacing-x-md
-            ),
-            'y': (
-              '@xx': $size-element-size-compact-spacing-y-xx,
-              '@sm': $size-element-size-compact-spacing-y-sm,
-              '@md': $size-element-size-compact-spacing-y-md
-            )
-          ),
-          'padding': (
-            'x': (
-              '@xx': $size-element-size-compact-padding-x-xx,
-              '@sm': $size-element-size-compact-padding-x-sm,
-              '@md': $size-element-size-compact-padding-x-md
-            ),
-            'y': (
-              '@xx': $size-element-size-compact-padding-y-xx,
-              '@sm': $size-element-size-compact-padding-y-sm,
-              '@md': $size-element-size-compact-padding-y-md
-            )
-          )
-        )
-      ),
-      '--radius': (
-        '-none*': (
-          'radius': (
-            '@xx': $size-element-radius-none-radius-xx,
-            '@sm': $size-element-radius-none-radius-sm,
-            '@md': $size-element-radius-none-radius-md
-          )
-        ),
-        '-small': (
-          'radius': (
-            '@xx': $size-element-radius-small-radius-xx,
-            '@sm': $size-element-radius-small-radius-sm,
-            '@md': $size-element-radius-small-radius-md
-          )
-        )
-      )
-    ),
-    '%section': (
-      '--radius': (
-        '-none*': (
-          'radius': (
-            '@xx': $size-section-radius-none-radius-xx,
-            '@sm': $size-section-radius-none-radius-sm,
-            '@md': $size-section-radius-none-radius-md
-          )
-        ),
-        '-small': (
-          'radius': (
-            '@xx': $size-section-radius-small-radius-xx,
-            '@sm': $size-section-radius-small-radius-sm,
-            '@md': $size-section-radius-small-radius-md
-          )
-        )
-      ),
-      '--size': (
-        '-normal*': (
-          'spacing': (
-            'x': (
-              '@xx': $size-section-size-normal-spacing-x-xx,
-              '@sm': $size-section-size-normal-spacing-x-sm,
-              '@md': $size-section-size-normal-spacing-x-md
-            ),
-            'y': (
-              '@xx': $size-section-size-normal-spacing-y-xx,
-              '@sm': $size-section-size-normal-spacing-y-sm,
-              '@md': $size-section-size-normal-spacing-y-md
-            )
-          ),
-          'padding': (
-            'x': (
-              '@xx': $size-section-size-normal-padding-x-xx,
-              '@sm': $size-section-size-normal-padding-x-sm,
-              '@md': $size-section-size-normal-padding-x-md
-            ),
-            'y': (
-              '@xx': $size-section-size-normal-padding-y-xx,
-              '@sm': $size-section-size-normal-padding-y-sm,
-              '@md': $size-section-size-normal-padding-y-md
-            ),
-            'outer': (
-              '@xx': $size-section-size-normal-padding-outer-xx,
-              '@sm': $size-section-size-normal-padding-outer-sm,
-              '@md': $size-section-size-normal-padding-outer-md
-            )
-          ),
-          'outer-padding': (
-            'x': (
-              '@xx': $size-section-size-normal-outer-padding-x-xx,
-              '@sm': $size-section-size-normal-outer-padding-x-sm,
-              '@md': $size-section-size-normal-outer-padding-x-md
-            )
-          )
-        )
       )
     ),
     '%button': (
@@ -1222,18 +424,6 @@ $tokens: (
       ),
       '--size': (
         '-default*': (
-          'spacing': (
-            'x': (
-              '@xx': $size-button-size-default-spacing-x-xx,
-              '@sm': $size-button-size-default-spacing-x-sm,
-              '@md': $size-button-size-default-spacing-x-md
-            ),
-            'y': (
-              '@xx': $size-button-size-default-spacing-y-xx,
-              '@sm': $size-button-size-default-spacing-y-sm,
-              '@md': $size-button-size-default-spacing-y-md
-            )
-          ),
           'padding': (
             'x': (
               '@xx': $size-button-size-default-padding-x-xx,
@@ -1246,367 +436,150 @@ $tokens: (
               '@md': $size-button-size-default-padding-y-md
             )
           )
-        ),
-        '-large': (
-          'spacing': (
-            'x': (
-              '@xx': $size-button-size-large-spacing-x-xx,
-              '@sm': $size-button-size-large-spacing-x-sm,
-              '@md': $size-button-size-large-spacing-x-md
-            ),
-            'y': (
-              '@xx': $size-button-size-large-spacing-y-xx,
-              '@sm': $size-button-size-large-spacing-y-sm,
-              '@md': $size-button-size-large-spacing-y-md
-            )
-          ),
-          'padding': (
-            'x': (
-              '@xx': $size-button-size-large-padding-x-xx,
-              '@sm': $size-button-size-large-padding-x-sm,
-              '@md': $size-button-size-large-padding-x-md
-            ),
-            'y': (
-              '@xx': $size-button-size-large-padding-y-xx,
-              '@sm': $size-button-size-large-padding-y-sm,
-              '@md': $size-button-size-large-padding-y-md
-            )
-          )
-        ),
-        '-small': (
-          'spacing': (
-            'x': (
-              '@xx': $size-button-size-small-spacing-x-xx,
-              '@sm': $size-button-size-small-spacing-x-sm,
-              '@md': $size-button-size-small-spacing-x-md
-            ),
-            'y': (
-              '@xx': $size-button-size-small-spacing-y-xx,
-              '@sm': $size-button-size-small-spacing-y-sm,
-              '@md': $size-button-size-small-spacing-y-md
-            )
-          ),
-          'padding': (
-            'x': (
-              '@xx': $size-button-size-small-padding-x-xx,
-              '@sm': $size-button-size-small-padding-x-sm,
-              '@md': $size-button-size-small-padding-x-md
-            ),
-            'y': (
-              '@xx': $size-button-size-small-padding-y-xx,
-              '@sm': $size-button-size-small-padding-y-sm,
-              '@md': $size-button-size-small-padding-y-md
-            )
-          )
         )
-      )
-    ),
-    '%header': (
-      'padding': (
-        'y': (
-          '@xx': $size-header-padding-y-xx,
-          '@sm': $size-header-padding-y-sm,
-          '@md': $size-header-padding-y-md
-        ),
-        'x': (
-          '@xx': $size-header-padding-x-xx,
-          '@sm': $size-header-padding-x-sm,
-          '@md': $size-header-padding-x-md
-        )
-      ),
-      'spacing': (
-        '@xx': $size-header-spacing-xx,
-        '@sm': $size-header-spacing-sm,
-        '@md': $size-header-spacing-md
-      ),
-      'navigation': (
-        'item': (
-          'spacing': (
-            '@xx': $size-header-navigation-item-spacing-xx,
-            '@sm': $size-header-navigation-item-spacing-sm,
-            '@md': $size-header-navigation-item-spacing-md
-          )
-        )
-      )
-    ),
-    '%footer': (
-      'padding': (
-        'x': (
-          '@xx': $size-footer-padding-x-xx,
-          '@sm': $size-footer-padding-x-sm,
-          '@md': $size-footer-padding-x-md
-        ),
-        'y': (
-          '@xx': $size-footer-padding-x-xx,
-          '@sm': $size-footer-padding-x-sm,
-          '@md': $size-footer-padding-x-md
-        )
-      ),
-      'spacing': (
-        '@xx': $size-footer-spacing-xx,
-        '@sm': $size-footer-spacing-sm,
-        '@md': $size-footer-spacing-md
-      ),
-      'navigation': (
-        'column': (
-          'spacing': (
-            '@xx': $size-footer-navigation-column-spacing-xx,
-            '@sm': $size-footer-navigation-column-spacing-sm,
-            '@md': $size-footer-navigation-column-spacing-md
-          )
-        ),
-        'item': (
-          'spacing': (
-            '@xx': $size-footer-navigation-item-spacing-xx,
-            '@sm': $size-footer-navigation-item-spacing-sm,
-            '@md': $size-footer-navigation-item-spacing-md
-          )
-        ),
-        'title': (
-          'spacing': (
-            '@xx': $size-footer-navigation-title-spacing-xx,
-            '@sm': $size-footer-navigation-title-spacing-sm,
-            '@md': $size-footer-navigation-title-spacing-md
-          )
-        )
-      ),
-      'footnote': (
-        'padding': (
-          '@xx': $size-footer-footnote-padding-xx,
-          '@sm': $size-footer-footnote-padding-sm,
-          '@md': $size-footer-footnote-padding-md
-        )
-      )
-    )
-  ),
-  'primitive': (
-    'size': (
-      '100': $primitive-size-100,
-      '104': $primitive-size-104,
-      '108': $primitive-size-108,
-      '112': $primitive-size-112,
-      '116': $primitive-size-116,
-      '120': $primitive-size-120,
-      '124': $primitive-size-124,
-      '128': $primitive-size-128,
-      '132': $primitive-size-132,
-      '136': $primitive-size-136,
-      '140': $primitive-size-140,
-      '144': $primitive-size-144,
-      '148': $primitive-size-148,
-      '152': $primitive-size-152,
-      '156': $primitive-size-156,
-      '160': $primitive-size-160,
-      '000': $primitive-size-000,
-      '004': $primitive-size-004,
-      '008': $primitive-size-008,
-      '012': $primitive-size-012,
-      '016': $primitive-size-016,
-      '020': $primitive-size-020,
-      '024': $primitive-size-024,
-      '028': $primitive-size-028,
-      '032': $primitive-size-032,
-      '036': $primitive-size-036,
-      '040': $primitive-size-040,
-      '044': $primitive-size-044,
-      '048': $primitive-size-048,
-      '052': $primitive-size-052,
-      '056': $primitive-size-056,
-      '060': $primitive-size-060,
-      '064': $primitive-size-064,
-      '068': $primitive-size-068,
-      '072': $primitive-size-072,
-      '076': $primitive-size-076,
-      '080': $primitive-size-080,
-      '084': $primitive-size-084,
-      '088': $primitive-size-088,
-      '092': $primitive-size-092,
-      '096': $primitive-size-096
-    ),
-    'color': (
-      'green': (
-        '100': $primitive-color-green-100,
-        '200': $primitive-color-green-200,
-        '300': $primitive-color-green-300,
-        '400': $primitive-color-green-400,
-        '500': $primitive-color-green-500,
-        '600': $primitive-color-green-600,
-        '700': $primitive-color-green-700,
-        '800': $primitive-color-green-800,
-        '900': $primitive-color-green-900,
-        '1000': $primitive-color-green-1000
-      ),
-      'blue': (
-        '100': $primitive-color-blue-100,
-        '200': $primitive-color-blue-200,
-        '300': $primitive-color-blue-300,
-        '400': $primitive-color-blue-400,
-        '500': $primitive-color-blue-500,
-        '600': $primitive-color-blue-600,
-        '700': $primitive-color-blue-700,
-        '800': $primitive-color-blue-800,
-        '900': $primitive-color-blue-900,
-        '1000': $primitive-color-blue-1000
-      ),
-      'neutral': (
-        '100': $primitive-color-neutral-100,
-        '200': $primitive-color-neutral-200,
-        '300': $primitive-color-neutral-300,
-        '400': $primitive-color-neutral-400,
-        '500': $primitive-color-neutral-500,
-        '600': $primitive-color-neutral-600,
-        '700': $primitive-color-neutral-700,
-        '800': $primitive-color-neutral-800,
-        '900': $primitive-color-neutral-900,
-        '1000': $primitive-color-neutral-1000
       )
     )
   ),
   'color': (
     '%button': (
       '--color': (
-        '-accent': (
+        '-secondary': (
           'background': (
             ':initial': (
-              '#light': $color-button-color-accent-background-initial-light,
-              '#green': $color-button-color-accent-background-initial-green
+              '#blue': $color-button-color-secondary-background-initial-blue,
+              '#green': $color-button-color-secondary-background-initial-green,
+              '#dark': $color-button-color-secondary-background-initial-dark
             ),
             ':hover': (
-              '#light': $color-button-color-accent-background-hover-light,
-              '#green': $color-button-color-accent-background-hover-green
+              '#blue': $color-button-color-secondary-background-hover-blue,
+              '#green': $color-button-color-secondary-background-hover-green,
+              '#dark': $color-button-color-secondary-background-hover-dark
             ),
             ':focus': (
-              '#light': $color-button-color-accent-background-focus-light,
-              '#green': $color-button-color-accent-background-focus-green
+              '#blue': $color-button-color-secondary-background-focus-blue,
+              '#green': $color-button-color-secondary-background-focus-green,
+              '#dark': $color-button-color-secondary-background-focus-dark
             ),
             ':active': (
-              '#light': $color-button-color-accent-background-active-light,
-              '#green': $color-button-color-accent-background-active-green
+              '#blue': $color-button-color-secondary-background-active-blue,
+              '#green': $color-button-color-secondary-background-active-green,
+              '#dark': $color-button-color-secondary-background-active-dark
             ),
             ':disabled': (
-              '#light': $color-button-color-accent-background-disabled-light,
-              '#green': $color-button-color-accent-background-disabled-green
+              '#blue': $color-button-color-secondary-background-disabled-blue,
+              '#green': $color-button-color-secondary-background-disabled-green,
+              '#dark': $color-button-color-secondary-background-disabled-dark
             )
           ),
           'text': (
             ':initial': (
-              '#light': $color-button-color-accent-text-initial-light,
-              '#green': $color-button-color-accent-text-initial-green
+              '#blue': $color-button-color-secondary-text-initial-blue,
+              '#green': $color-button-color-secondary-text-initial-green,
+              '#dark': $color-button-color-secondary-text-initial-dark
             ),
             ':hover': (
-              '#light': $color-button-color-accent-text-hover-light,
-              '#green': $color-button-color-accent-text-hover-green
+              '#blue': $color-button-color-secondary-text-hover-blue,
+              '#green': $color-button-color-secondary-text-hover-green,
+              '#dark': $color-button-color-secondary-text-hover-dark
             ),
             ':focus': (
-              '#light': $color-button-color-accent-text-focus-light,
-              '#green': $color-button-color-accent-text-focus-green
+              '#blue': $color-button-color-secondary-text-focus-blue,
+              '#green': $color-button-color-secondary-text-focus-green,
+              '#dark': $color-button-color-secondary-text-focus-dark
             ),
             ':active': (
-              '#light': $color-button-color-accent-text-active-light,
-              '#green': $color-button-color-accent-text-active-green
+              '#blue': $color-button-color-secondary-text-active-blue,
+              '#green': $color-button-color-secondary-text-active-green,
+              '#dark': $color-button-color-secondary-text-active-dark
             ),
             ':disabled': (
-              '#light': $color-button-color-accent-text-disabled-light,
-              '#green': $color-button-color-accent-text-disabled-green
+              '#blue': $color-button-color-secondary-text-disabled-blue,
+              '#green': $color-button-color-secondary-text-disabled-green,
+              '#dark': $color-button-color-secondary-text-disabled-dark
+            )
+          ),
+          'border': (
+            ':initial': (
+              '#blue': $color-button-color-secondary-border-initial-blue,
+              '#green': $color-button-color-secondary-border-initial-green,
+              '#dark': $color-button-color-secondary-border-initial-dark
+            ),
+            ':hover': (
+              '#blue': $color-button-color-secondary-border-hover-blue,
+              '#green': $color-button-color-secondary-border-hover-green,
+              '#dark': $color-button-color-secondary-border-hover-dark
+            ),
+            ':focus': (
+              '#blue': $color-button-color-secondary-border-focus-blue,
+              '#green': $color-button-color-secondary-border-focus-green,
+              '#dark': $color-button-color-secondary-border-focus-dark
+            ),
+            ':active': (
+              '#blue': $color-button-color-secondary-border-active-blue,
+              '#green': $color-button-color-secondary-border-active-green,
+              '#dark': $color-button-color-secondary-border-active-dark
+            ),
+            ':disabled': (
+              '#blue': $color-button-color-secondary-border-disabled-blue,
+              '#green': $color-button-color-secondary-border-disabled-green,
+              '#dark': $color-button-color-secondary-border-disabled-dark
             )
           )
         ),
-        '-subtle': (
+        '-primary': (
           'background': (
-            '#light': $color-button-color-subtle-background-light,
-            '#green': $color-button-color-subtle-background-green
+            '#blue': $color-button-color-primary-background-blue,
+            '#green': $color-button-color-primary-background-green,
+            '#dark': $color-button-color-primary-background-dark
+          ),
+          'inner-border': (
+            '#blue': $color-button-color-primary-inner-border-blue,
+            '#green': $color-button-color-primary-inner-border-green,
+            '#dark': $color-button-color-primary-inner-border-dark
+          ),
+          'outer-border': (
+            '#blue': $color-button-color-primary-outer-border-blue,
+            '#green': $color-button-color-primary-outer-border-green,
+            '#dark': $color-button-color-primary-outer-border-dark
           ),
           'text': (
-            '#light': $color-button-color-subtle-text-light,
-            '#green': $color-button-color-subtle-text-green
-          )
-        )
-      )
-    ),
-    '%element': (
-      '--color': (
-        '-subtle': (
-          'background': (
-            '#light': $color-element-color-subtle-background-light,
-            '#green': $color-element-color-subtle-background-green
-          ),
-          'text': (
-            '#light': $color-element-color-subtle-text-light,
-            '#green': $color-element-color-subtle-text-green
-          )
-        ),
-        '-white*': (
-          'background': (
-            '#light': $color-element-color-white-background-light,
-            '#green': $color-element-color-white-background-green
-          ),
-          'text': (
-            '#light': $color-element-color-white-text-light,
-            '#green': $color-element-color-white-text-green
-          ),
-          'background-secondary': (
-            '#light': $color-element-color-white-background-secondary-light,
-            '#green': $color-element-color-white-background-secondary-green
-          )
-        ),
-        '-accent': (
-          'background': (
-            '#light': $color-element-color-accent-background-light,
-            '#green': $color-element-color-accent-background-green
-          ),
-          'text': (
-            '#light': $color-element-color-accent-text-light,
-            '#green': $color-element-color-accent-text-green
-          ),
-          'background-secondary': (
-            '#light': $color-element-color-accent-background-secondary-light,
-            '#green': $color-element-color-accent-background-secondary-green
+            '#blue': $color-button-color-primary-text-blue,
+            '#green': $color-button-color-primary-text-green,
+            '#dark': $color-button-color-primary-text-dark
           )
         )
       )
     ),
     'page': (
-      'surface': (
-        'base': (
-          '#light': $color-page-surface-base-light,
-          '#green': $color-page-surface-base-green
-        ),
-        'subtle': (
-          '#light': $color-page-surface-subtle-light,
-          '#green': $color-page-surface-subtle-green
-        )
+      'background': (
+        '#blue': $color-page-background-blue,
+        '#green': $color-page-background-green,
+        '#dark': $color-page-background-dark
       ),
       'text': (
-        'base': (
-          '#light': $color-page-text-base-light,
-          '#green': $color-page-text-base-green
-        ),
-        'base-inverse': (
-          '#light': $color-page-text-base-inverse-light,
-          '#green': $color-page-text-base-inverse-green
-        ),
-        'subtle': (
-          '#light': $color-page-text-subtle-light,
-          '#green': $color-page-text-subtle-green
-        ),
-        'accent': (
-          '#light': $color-page-text-accent-light,
-          '#green': $color-page-text-accent-green
-        )
+        '#blue': $color-page-text-blue,
+        '#green': $color-page-text-green,
+        '#dark': $color-page-text-dark
       ),
-      'border': (
-        'base': (
-          '#light': $color-page-border-base-light,
-          '#green': $color-page-border-base-green
-        ),
-        'subtle': (
-          '#light': $color-page-border-subtle-light,
-          '#green': $color-page-border-subtle-green
-        ),
-        'accent': (
-          '#light': $color-page-border-accent-light,
-          '#green': $color-page-border-accent-green
-        )
+      'accent': (
+        '#blue': $color-page-accent-blue,
+        '#green': $color-page-accent-green,
+        '#dark': $color-page-accent-dark
+      ),
+      'accent-light': (
+        '#blue': $color-page-accent-light-blue,
+        '#green': $color-page-accent-light-green,
+        '#dark': $color-page-accent-light-dark
+      ),
+      'accent-dark': (
+        '#blue': $color-page-accent-dark-blue,
+        '#green': $color-page-accent-dark-green,
+        '#dark': $color-page-accent-dark-dark
+      ),
+      'disabled': (
+        '#blue': $color-page-disabled-blue,
+        '#green': $color-page-disabled-green,
+        '#dark': $color-page-disabled-dark
       )
     )
   )

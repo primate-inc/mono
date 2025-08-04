@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'sass:list';
+@use 'sass:string';
 @use 'sass:meta';
 @use 'utils/global' as *;
 @use 'utils/breakpoints' as *;
@@ -46,9 +47,8 @@
                 }
             }
         } @else {
-            @debug $keys;
-            @debug $property;
-            @include responsive-token($property, list.join($keys, $property));
+            $new-keys: list.append($keys, $property);
+            @include responsive-token($property, $new-keys...);
         }
     }
 }
