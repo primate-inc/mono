@@ -47,25 +47,25 @@ body {
   --size-button---size--default*-padding-y: 0.75rem;
 }
 body.theme-blue {
-  --color-button---color--secondary-background-initial: [object Object];
-  --color-button---color--secondary-background-hover: [object Object];
-  --color-button---color--secondary-background-focus: [object Object];
-  --color-button---color--secondary-background-active: [object Object];
-  --color-button---color--secondary-background-disabled: [object Object];
-  --color-button---color--secondary-text-initial: [object Object];
-  --color-button---color--secondary-text-hover: [object Object];
-  --color-button---color--secondary-text-focus: [object Object];
-  --color-button---color--secondary-text-active: [object Object];
-  --color-button---color--secondary-text-disabled: [object Object];
-  --color-button---color--secondary-border-initial: [object Object];
-  --color-button---color--secondary-border-hover: [object Object];
-  --color-button---color--secondary-border-focus: [object Object];
-  --color-button---color--secondary-border-active: [object Object];
-  --color-button---color--secondary-border-disabled: [object Object];
-  --color-button---color--primary-background: [object Object];
-  --color-button---color--primary-inner-border: [object Object];
-  --color-button---color--primary-outer-border: [object Object];
-  --color-button---color--primary-text: [object Object];
+  --color-button---color--secondary-background-initial: #292929;
+  --color-button---color--secondary-background-hover: #f5e12e;
+  --color-button---color--secondary-background-focus: #4e4604;
+  --color-button---color--secondary-background-active: #4e4604;
+  --color-button---color--secondary-background-disabled: #cccccc;
+  --color-button---color--secondary-text-initial: #f5e12e;
+  --color-button---color--secondary-text-hover: #292929;
+  --color-button---color--secondary-text-focus: #292929;
+  --color-button---color--secondary-text-active: #292929;
+  --color-button---color--secondary-text-disabled: #4e4604;
+  --color-button---color--secondary-border-initial: #f5e12e;
+  --color-button---color--secondary-border-hover: #f5e12e;
+  --color-button---color--secondary-border-focus: #4e4604;
+  --color-button---color--secondary-border-active: #4e4604;
+  --color-button---color--secondary-border-disabled: #cccccc;
+  --color-button---color--primary-background: #f5e12e;
+  --color-button---color--primary-inner-border: #292929;
+  --color-button---color--primary-outer-border: #f5e12e;
+  --color-button---color--primary-text: #292929;
   --color-page-background: white;
   --color-page-text: #182861;
   --color-page-accent: #3c64f3;
@@ -74,25 +74,25 @@ body.theme-blue {
   --color-page-disabled: #cccccc;
 }
 body.theme-green {
-  --color-button---color--secondary-background-initial: [object Object];
-  --color-button---color--secondary-background-hover: [object Object];
-  --color-button---color--secondary-background-focus: [object Object];
-  --color-button---color--secondary-background-active: [object Object];
-  --color-button---color--secondary-background-disabled: [object Object];
-  --color-button---color--secondary-text-initial: [object Object];
-  --color-button---color--secondary-text-hover: [object Object];
-  --color-button---color--secondary-text-focus: [object Object];
-  --color-button---color--secondary-text-active: [object Object];
-  --color-button---color--secondary-text-disabled: [object Object];
-  --color-button---color--secondary-border-initial: [object Object];
-  --color-button---color--secondary-border-hover: [object Object];
-  --color-button---color--secondary-border-focus: [object Object];
-  --color-button---color--secondary-border-active: [object Object];
-  --color-button---color--secondary-border-disabled: [object Object];
-  --color-button---color--primary-background: [object Object];
-  --color-button---color--primary-inner-border: [object Object];
-  --color-button---color--primary-outer-border: [object Object];
-  --color-button---color--primary-text: [object Object];
+  --color-button---color--secondary-background-initial: #292929;
+  --color-button---color--secondary-background-hover: #f5e12e;
+  --color-button---color--secondary-background-focus: #4e4604;
+  --color-button---color--secondary-background-active: #4e4604;
+  --color-button---color--secondary-background-disabled: #cccccc;
+  --color-button---color--secondary-text-initial: #f5e12e;
+  --color-button---color--secondary-text-hover: #292929;
+  --color-button---color--secondary-text-focus: #292929;
+  --color-button---color--secondary-text-active: #292929;
+  --color-button---color--secondary-text-disabled: #4e4604;
+  --color-button---color--secondary-border-initial: #f5e12e;
+  --color-button---color--secondary-border-hover: #f5e12e;
+  --color-button---color--secondary-border-focus: #4e4604;
+  --color-button---color--secondary-border-active: #4e4604;
+  --color-button---color--secondary-border-disabled: #cccccc;
+  --color-button---color--primary-background: #f5e12e;
+  --color-button---color--primary-inner-border: #fcf5b6;
+  --color-button---color--primary-outer-border: #4e4604;
+  --color-button---color--primary-text: #292929;
   --color-page-background: white;
   --color-page-text: black;
   --color-page-accent: #316454;
@@ -101,25 +101,25 @@ body.theme-green {
   --color-page-disabled: #cccccc;
 }
 body.theme-dark {
-  --color-button---color--secondary-background-initial: [object Object];
-  --color-button---color--secondary-background-hover: [object Object];
-  --color-button---color--secondary-background-focus: [object Object];
-  --color-button---color--secondary-background-active: [object Object];
-  --color-button---color--secondary-background-disabled: [object Object];
-  --color-button---color--secondary-text-initial: [object Object];
-  --color-button---color--secondary-text-hover: [object Object];
-  --color-button---color--secondary-text-focus: [object Object];
-  --color-button---color--secondary-text-active: [object Object];
-  --color-button---color--secondary-text-disabled: [object Object];
-  --color-button---color--secondary-border-initial: [object Object];
-  --color-button---color--secondary-border-hover: [object Object];
-  --color-button---color--secondary-border-focus: [object Object];
-  --color-button---color--secondary-border-active: [object Object];
-  --color-button---color--secondary-border-disabled: [object Object];
-  --color-button---color--primary-background: [object Object];
-  --color-button---color--primary-inner-border: [object Object];
-  --color-button---color--primary-outer-border: [object Object];
-  --color-button---color--primary-text: [object Object];
+  --color-button---color--secondary-background-initial: #292929;
+  --color-button---color--secondary-background-hover: #f5e12e;
+  --color-button---color--secondary-background-focus: #fcf5b6;
+  --color-button---color--secondary-background-active: #fcf5b6;
+  --color-button---color--secondary-background-disabled: #cccccc;
+  --color-button---color--secondary-text-initial: #f5e12e;
+  --color-button---color--secondary-text-hover: #292929;
+  --color-button---color--secondary-text-focus: #292929;
+  --color-button---color--secondary-text-active: #292929;
+  --color-button---color--secondary-text-disabled: #4e4604;
+  --color-button---color--secondary-border-initial: #f5e12e;
+  --color-button---color--secondary-border-hover: #f5e12e;
+  --color-button---color--secondary-border-focus: #fcf5b6;
+  --color-button---color--secondary-border-active: #fcf5b6;
+  --color-button---color--secondary-border-disabled: #cccccc;
+  --color-button---color--primary-background: #f5e12e;
+  --color-button---color--primary-inner-border: #f5e12e;
+  --color-button---color--primary-outer-border: #f5e12e;
+  --color-button---color--primary-text: #292929;
   --color-page-background: #292929;
   --color-page-text: white;
   --color-page-accent: #f5e12e;
@@ -217,7 +217,15 @@ body.theme-dark {
 .test {
   width: clamp(1.625rem, calc(0.8564189189rem + 3.5135135135vw), 2.4375rem);
   height: 10rem;
-  background-color: var(--color-page-accent);
+}
+.theme-blue .test, .test.theme-blue {
+  background-color: #3c64f3;
+}
+.theme-green .test, .test.theme-green {
+  background-color: #316454;
+}
+.theme-dark .test, .test.theme-dark {
+  background-color: #f5e12e;
 }
 
 *,

@@ -29,10 +29,11 @@ body {
   @include mono.fluid-token('width', ('size', 'typography', 'heading', 'lg', 'font-size'), 'xx', 'md', 'sm', 'md');
   height: 10rem;
 
-  background-color: var(--color-page-accent);
+  // background-color: var(--color-page-accent);
+
 
   // @include mono.responsive-token('width', 'size', 'page', 'spacing', '1000'); 
-  // @include mono.themed-token('background-color', 'color', 'page', 'text', 'accent');
+  @include mono.themed-token('background-color', 'color', 'page', 'accent');
 
 }
 
