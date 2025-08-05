@@ -47,25 +47,25 @@ body {
   --size-button---size--default*-padding-y: 0.75rem;
 }
 body.theme-blue {
-  --color-button---color--secondary-background-initial: #292929;
-  --color-button---color--secondary-background-hover: #f5e12e;
-  --color-button---color--secondary-background-focus: #4e4604;
-  --color-button---color--secondary-background-active: #4e4604;
+  --color-button---color--secondary-background-initial: white;
+  --color-button---color--secondary-background-hover: #3c64f3;
+  --color-button---color--secondary-background-focus: #092690;
+  --color-button---color--secondary-background-active: #092690;
   --color-button---color--secondary-background-disabled: #cccccc;
-  --color-button---color--secondary-text-initial: #f5e12e;
-  --color-button---color--secondary-text-hover: #292929;
-  --color-button---color--secondary-text-focus: #292929;
-  --color-button---color--secondary-text-active: #292929;
-  --color-button---color--secondary-text-disabled: #4e4604;
-  --color-button---color--secondary-border-initial: #f5e12e;
-  --color-button---color--secondary-border-hover: #f5e12e;
-  --color-button---color--secondary-border-focus: #4e4604;
-  --color-button---color--secondary-border-active: #4e4604;
+  --color-button---color--secondary-text-initial: #3c64f3;
+  --color-button---color--secondary-text-hover: white;
+  --color-button---color--secondary-text-focus: white;
+  --color-button---color--secondary-text-active: white;
+  --color-button---color--secondary-text-disabled: #092690;
+  --color-button---color--secondary-border-initial: #3c64f3;
+  --color-button---color--secondary-border-hover: #3c64f3;
+  --color-button---color--secondary-border-focus: #092690;
+  --color-button---color--secondary-border-active: #092690;
   --color-button---color--secondary-border-disabled: #cccccc;
-  --color-button---color--primary-background: #f5e12e;
-  --color-button---color--primary-inner-border: #292929;
-  --color-button---color--primary-outer-border: #f5e12e;
-  --color-button---color--primary-text: #292929;
+  --color-button---color--primary-background: #3c64f3;
+  --color-button---color--primary-inner-border: white;
+  --color-button---color--primary-outer-border: #3c64f3;
+  --color-button---color--primary-text: white;
   --color-page-background: white;
   --color-page-text: #182861;
   --color-page-accent: #3c64f3;
@@ -74,25 +74,25 @@ body.theme-blue {
   --color-page-disabled: #cccccc;
 }
 body.theme-green {
-  --color-button---color--secondary-background-initial: #292929;
-  --color-button---color--secondary-background-hover: #f5e12e;
-  --color-button---color--secondary-background-focus: #4e4604;
-  --color-button---color--secondary-background-active: #4e4604;
+  --color-button---color--secondary-background-initial: white;
+  --color-button---color--secondary-background-hover: #316454;
+  --color-button---color--secondary-background-focus: #22463b;
+  --color-button---color--secondary-background-active: #22463b;
   --color-button---color--secondary-background-disabled: #cccccc;
-  --color-button---color--secondary-text-initial: #f5e12e;
-  --color-button---color--secondary-text-hover: #292929;
-  --color-button---color--secondary-text-focus: #292929;
-  --color-button---color--secondary-text-active: #292929;
-  --color-button---color--secondary-text-disabled: #4e4604;
-  --color-button---color--secondary-border-initial: #f5e12e;
-  --color-button---color--secondary-border-hover: #f5e12e;
-  --color-button---color--secondary-border-focus: #4e4604;
-  --color-button---color--secondary-border-active: #4e4604;
+  --color-button---color--secondary-text-initial: #316454;
+  --color-button---color--secondary-text-hover: white;
+  --color-button---color--secondary-text-focus: white;
+  --color-button---color--secondary-text-active: white;
+  --color-button---color--secondary-text-disabled: #22463b;
+  --color-button---color--secondary-border-initial: #316454;
+  --color-button---color--secondary-border-hover: #316454;
+  --color-button---color--secondary-border-focus: #22463b;
+  --color-button---color--secondary-border-active: #22463b;
   --color-button---color--secondary-border-disabled: #cccccc;
-  --color-button---color--primary-background: #f5e12e;
-  --color-button---color--primary-inner-border: #fcf5b6;
-  --color-button---color--primary-outer-border: #4e4604;
-  --color-button---color--primary-text: #292929;
+  --color-button---color--primary-background: #316454;
+  --color-button---color--primary-inner-border: #527d6f;
+  --color-button---color--primary-outer-border: #22463b;
+  --color-button---color--primary-text: white;
   --color-page-background: white;
   --color-page-text: black;
   --color-page-accent: #316454;
@@ -277,4 +277,79 @@ body {
   .content h1 {
     letter-spacing: 0;
   }
+}
+
+.button {
+  padding: 1rem 2rem;
+  background-color: var(--btn-background);
+  color: var(--btn-text);
+}
+.theme-blue .button--color-secondary {
+  --btn-background--initial: white;
+  --btn-background--hover: #3c64f3;
+  --btn-background--focus: #092690;
+  --btn-background--active: #092690;
+  --btn-background--disabled: #cccccc;
+  --btn-text--initial: #3c64f3;
+  --btn-text--hover: white;
+  --btn-text--focus: white;
+  --btn-text--active: white;
+  --btn-text--disabled: #092690;
+  --btn-border--initial: #3c64f3;
+  --btn-border--hover: #3c64f3;
+  --btn-border--focus: #092690;
+  --btn-border--active: #092690;
+  --btn-border--disabled: #cccccc;
+}
+.theme-green .button--color-secondary {
+  --btn-background--initial: white;
+  --btn-background--hover: #316454;
+  --btn-background--focus: #22463b;
+  --btn-background--active: #22463b;
+  --btn-background--disabled: #cccccc;
+  --btn-text--initial: #316454;
+  --btn-text--hover: white;
+  --btn-text--focus: white;
+  --btn-text--active: white;
+  --btn-text--disabled: #22463b;
+  --btn-border--initial: #316454;
+  --btn-border--hover: #316454;
+  --btn-border--focus: #22463b;
+  --btn-border--active: #22463b;
+  --btn-border--disabled: #cccccc;
+}
+.theme-dark .button--color-secondary {
+  --btn-background--initial: #292929;
+  --btn-background--hover: #f5e12e;
+  --btn-background--focus: #fcf5b6;
+  --btn-background--active: #fcf5b6;
+  --btn-background--disabled: #cccccc;
+  --btn-text--initial: #f5e12e;
+  --btn-text--hover: #292929;
+  --btn-text--focus: #292929;
+  --btn-text--active: #292929;
+  --btn-text--disabled: #4e4604;
+  --btn-border--initial: #f5e12e;
+  --btn-border--hover: #f5e12e;
+  --btn-border--focus: #fcf5b6;
+  --btn-border--active: #fcf5b6;
+  --btn-border--disabled: #cccccc;
+}
+.theme-blue .button--color-primary {
+  --btn-background: #3c64f3;
+  --btn-inner-border: white;
+  --btn-outer-border: #3c64f3;
+  --btn-text: white;
+}
+.theme-green .button--color-primary {
+  --btn-background: #316454;
+  --btn-inner-border: #527d6f;
+  --btn-outer-border: #22463b;
+  --btn-text: white;
+}
+.theme-dark .button--color-primary {
+  --btn-background: #f5e12e;
+  --btn-inner-border: #f5e12e;
+  --btn-outer-border: #f5e12e;
+  --btn-text: #292929;
 }

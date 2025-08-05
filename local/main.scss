@@ -75,6 +75,16 @@ body {
     );
   }
 }
+
+.button {
+  @include mono.variants('btn', 'color', 'button');
+
+  padding: 1rem 2rem;
+
+  background-color: var(--btn-background);
+  color: var(--btn-text);
+}
+
 // // Demo Grid
 // .grid {
 //   @include responsive-grid();

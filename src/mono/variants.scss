@@ -1,0 +1,227 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:string";
+@use 'sass:meta';
+
+@use 'utils/global' as *;
+@use 'api/tokens' as *;
+@use 'screen' as *;
+
+/// Generates a BEM modifier class name from variant parts
+/// @param {List} $parts - List of class name parts
+/// @return {String} The generated class name
+@function generate-variant-class($parts) {
+  $result: "";
+  @each $part in $parts {
+    @if $part != null {
+            // Check if part ends with * and remove it if it does
+      $has-asterisk: string.slice($part, -1) == '*';
+      $clean-part: if($has-asterisk,
+                     string.slice($part, 1, -2),
+                     $part);
+      
+      @debug 'has asterisk: ' + $has-asterisk;
+      
+      // Handle variant group (--) and variant (-) prefixes
+      @if string.slice($clean-part, 1, 2) == '--' {
+        // For variant groups, keep the full name after --
+        $result: $result + string.slice($clean-part, 1);
+      } @else if string.slice($clean-part, 1, 1) == '-' {
+        // For variants, keep the full name after -
+        $result: $result + string.slice($clean-part, 1);
+      } @else {
+        $result: $result + '-' + $clean-part;
+      }
+    }
+  }
+  @return $result;
+}
+
+/// Generates a CSS variable name from parts
+/// @param {String} $prefix - Variable prefix
+/// @param {List} $parts - List of variable name parts
+/// @return {String} The generated variable name
+@function generate-variant-variable($prefix, $parts) {
+  $result: '--' + $prefix;
+  @each $part in $parts {
+    @if $part != null {
+      // Handle action states
+      @if string.slice($part, 1, 1) == ':' {
+        $result: $result + '--' + string.slice($part, 2);
+      } 
+      // Handle normal parts
+      @else {
+        $result: $result + '-' + $part;
+      }
+    }
+  }
+  @return $result;
+}
+
+/// Global map to store all theme values
+$_theme_store: () !default;
+
+/// Processes variant values based on their type (theme/responsive)
+/// @param {String} $class-name - The variant class name
+/// @param {String} $variable-name - The CSS variable name
+/// @param {Map} $values - Map of values to process
+/// @param {Boolean} $is-default - Whether this is a default variant
+@mixin process-variant-values($class-name, $variable-name, $values, $is-default: false) {
+  @each $key, $value in $values {
+    // Handle themed values
+    @if string.slice($key, 1, 1) == '#' {
+      $theme: string.slice($key, 2);
+      $selector: if($is-default, 
+                   '.theme-#{$theme} &, .theme-#{$theme} &#{$class-name}',
+                   '.theme-#{$theme} &#{$class-name}');
+      
+      // Initialize theme store for this selector if not exists
+      @if not map.has-key($_theme_store, $selector) {
+        $_theme_store: map.set($_theme_store, $selector, ()) !global;
+      }
+      
+      // Add value to theme store
+      $current_props: map.get($_theme_store, $selector);
+      $current_props: map.set($current_props, $variable-name, $value);
+      $_theme_store: map.set($_theme_store, $selector, $current_props) !global;
+    }
+    // Handle responsive values
+    @else if string.slice($key, 1, 1) == '@' {
+      @include screen($key) {
+        @if $is-default {
+          &,
+          &#{$class-name} {
+            #{$variable-name}: #{$value};
+          }
+        } @else {
+          &#{$class-name} {
+            #{$variable-name}: #{$value};
+          }
+        }
+      }
+    }
+  }
+}
+
+/// Main function to generate variants
+/// @param {String} $prefix - CSS variable prefix
+/// @param {String} $collection - Token collection name
+/// @param {String} $name - Element name
+/// Reset the theme store
+@mixin reset-theme-store {
+  $_theme_store: () !global;
+}
+
+/// Output all stored theme values
+@mixin output-theme-store {
+  @each $selector, $props in $_theme_store {
+    #{$selector} {
+      @each $prop, $value in $props {
+        #{$prop}: #{$value};
+      }
+    }
+  }
+  // Reset store after output
+  @include reset-theme-store;
+}
+
+/// Generate variants of CSS variables from a tokens map
+/// @param {String} $prefix - The prefix for the CSS variable names
+/// @param {String} $collection - The collection name for the tokens
+/// @param {String} $name - The name of the token to generate variants for
+@mixin variants($prefix, $collection, $name) {
+  $element-name: '%' + $name;
+  $variants-map: get_token($collection, $element-name);
+  
+  // Reset theme store at start
+  @include reset-theme-store;
+  
+  // Process each variant group
+  @each $group-key, $group-value in $variants-map {
+    @if string.slice($group-key, 1, 2) == '--' {
+      $class-parts: ($group-key);
+      
+      // Process each variant
+      @each $variant-key, $variant-value in $group-value {
+        @if string.slice($variant-key, 1, 1) == '-' {
+          $is-default: string.slice($variant-key, -1) == '*';
+          $current-class-parts: append($class-parts, $variant-key);
+          
+          // Process each property
+          @each $prop-key, $prop-value in $variant-value {
+            $variable-parts: ($prop-key);
+            
+            $class-name: generate-variant-class($current-class-parts);
+            
+            // Handle action states
+            @if meta.type-of($prop-value) == 'map' {
+              // Check if this is an action states map (has keys starting with :)
+              $has-actions: false;
+              // Check first key that starts with : to determine if this is an actions map
+              @each $key, $_ in $prop-value {
+                @if not $has-actions and string.slice($key, 1, 1) == ':' {
+                  $has-actions: true;
+                }
+              }
+              
+              @if $has-actions {
+                // Process action states
+                @each $action-key, $action-value in $prop-value {
+                  @if string.slice($action-key, 1, 1) == ':' {
+                    $current-variable-parts: append($variable-parts, $action-key);
+                    $variable-name: generate-variant-variable($prefix, $current-variable-parts);
+                    
+                    @include process-variant-values(
+                      $class-name,
+                      $variable-name,
+                      $action-value,
+                      $is-default
+                    );
+                  }
+                }
+              } @else {
+                // Handle direct theme values
+                $variable-name: generate-variant-variable($prefix, $variable-parts);
+                @include process-variant-values(
+                  $class-name,
+                  $variable-name,
+                  $prop-value,
+                  $is-default
+                );
+              }
+            }
+            // Handle direct values (if any)
+            @else {
+              $variable-name: generate-variant-variable($prefix, $variable-parts);
+              @include process-variant-values(
+                $class-name,
+                $variable-name,
+                $prop-value,
+                $is-default
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Output all theme values at the end
+  @include output-theme-store;
+}
+
+/// Helper mixin for simple variant maps
+/// @param {Map} $variant-map - Map containing variant data
+// @mixin variant($variant-map) {
+//   @if meta.type-of($variant-map) == "map" {
+//     $variant-name: map.get($variant-map, 'name');
+//     $variant-value: map.get($variant-map, 'value');
+//     $variant-type: map.get($variant-map, 'type');
+
+//     @if $variant-name and $variant-value {
+//       &--#{$variant-name} {
+//         @content($variant-value, $variant-type);
+//       }
+//     }
+//   }
+// }

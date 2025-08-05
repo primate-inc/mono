@@ -9,7 +9,7 @@ function getValueByPath(obj, path) {
 }
 
 // Helper function to get the actual value (resolving references if needed)
-function resolveValue(value, dictionary) {
+function resolveValue(value, dictionary, currentMode = null) {
   // If it's not a reference, return as is
   if (!isReference(value)) {
     return value;
@@ -36,7 +36,27 @@ function resolveValue(value, dictionary) {
     return resolvedValue?.value || value;
   }
 
-  // Resolve for each mode
+  // If we're resolving for a specific mode, only resolve that mode
+  if (currentMode) {
+    let resolvedValue = collectionObject[currentMode];
+    for (const key of restOfPath) {
+      resolvedValue = resolvedValue?.[key];
+      if (!resolvedValue) break;
+    }
+
+    // Get the final value
+    while (resolvedValue && typeof resolvedValue === 'object' && 'value' in resolvedValue) {
+      resolvedValue = resolvedValue.value;
+      // If the new value is a reference, resolve it recursively in the same mode
+      if (isReference(resolvedValue)) {
+        resolvedValue = resolveValue(resolvedValue, dictionary, currentMode);
+      }
+    }
+
+    return resolvedValue || value;
+  }
+
+  // If no specific mode, resolve for all modes
   const resolvedValues = {};
   validModes.forEach(mode => {
     let resolvedValue = collectionObject[mode];
@@ -48,9 +68,9 @@ function resolveValue(value, dictionary) {
     // Get the final value
     while (resolvedValue && typeof resolvedValue === 'object' && 'value' in resolvedValue) {
       resolvedValue = resolvedValue.value;
-      // If the new value is a reference, resolve it recursively
+      // If the new value is a reference, resolve it recursively in the same mode
       if (isReference(resolvedValue)) {
-        resolvedValue = resolveValue(resolvedValue, dictionary);
+        resolvedValue = resolveValue(resolvedValue, dictionary, mode);
       }
     }
 
@@ -117,12 +137,15 @@ function resolveFigmaReferences(dictionary) {
     // Resolve each value
     values.forEach(({ path, value, original }) => {
       if (isReference(value)) {
-        const resolvedValue = resolveValue(value, dictionary);
+        // Find the current mode from the path if it exists
+        const currentMode = path.find(p => p.startsWith('#') || p.startsWith('@'));
+        
+        const resolvedValue = resolveValue(value, dictionary, currentMode);
         
         // If resolution was successful, update the value
         if (resolvedValue !== value) {
-          if (typeof resolvedValue === 'object') {
-            // For mode-based values, create new objects for each mode
+          if (typeof resolvedValue === 'object' && !currentMode) {
+            // For mode-based values without a current mode, create new objects for each mode
             Object.entries(resolvedValue).forEach(([mode, modeValue]) => {
               const modePath = [mode, ...path];
               setValueByPath(collection, modePath, {
@@ -131,7 +154,7 @@ function resolveFigmaReferences(dictionary) {
               });
             });
           } else {
-            // For direct values, update in place
+            // For direct values or mode-specific values, update in place
             original.value = resolvedValue;
           }
         }
