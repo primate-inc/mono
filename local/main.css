@@ -280,21 +280,24 @@ body {
 }
 
 .button {
-  --_button-background-color: var(--button-background);
-  --_button-text-color: var(--button-text);
+  --_button-radius: var(--button-radius);
+  --_button-padding-x: var(--button-padding-x);
+  --_button-padding-y: var(--button-padding-y);
+  --_button-background-color: var(--button-background--initial, var(--button-background));
+  --_button-text-color: var(--button-text--initial, var(--button-text));
   --_button-border-width: var(--button-inner-border-width, .125em);
-  --_button-border-color: var(--button-inner-border);
+  --_button-border-color: var(--button-border--initial, --button-inner-border);
   --_button-border-style: var(--button-inner-border-style, solid);
-  --_button-border-radius: var(--button-inner-border-radius);
   --_button-outline-width: var(--button-outer-border-width, .125em);
   --_button-outline-color: var(--button-outer-border);
   --_button-outline-style: var(--button-outer-border-style, solid);
-  padding: 1rem 2rem;
+  padding: var(--_button-padding-y) var(--_button-padding-x);
+  margin-bottom: 1rem;
   background-color: var(--_button-background-color);
   color: var(--_button-text-color);
   border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
   outline: var(--_button-outline-width) var(--_button-outline-style) var(--_button-outline-color);
-  border-radius: var(--_button-border-radius);
+  border-radius: var(--_button-radius);
 }
 .theme-blue .button--color-secondary {
   --button-background--initial: white;
@@ -419,4 +422,24 @@ body {
     --button-padding-x: 1.5rem;
     --button-padding-y: 0.75rem;
   }
+}
+.button:hover {
+  --_button-background-color: var(--button-background--hover, var(--button-background));
+  --_button-text-color: var(--button-text--hover, var(--button-text));
+  --_button-border-color: var(--button-border--hover, var(--button-border));
+}
+.button:focus {
+  --_button-background-color: var(--button-background--focus, var(--button-background));
+  --_button-text-color: var(--button-text--focus, var(--button-text));
+  --_button-border-color: var(--button-border--focus, var(--button-border));
+}
+.button:active {
+  --_button-background-color: var(--button-background--active, var(--button-background));
+  --_button-text-color: var(--button-text--active, var(--button-text));
+  --_button-border-color: var(--button-border--active, var(--button-border));
+}
+.button:disabled {
+  --_button-background-color: var(--button-background--disabled, var(--button-background));
+  --_button-text-color: var(--button-text--disabled, var(--button-text));
+  --_button-border-color: var(--button-border--disabled, var(--button-border));
 }
