@@ -280,76 +280,143 @@ body {
 }
 
 .button {
+  --_button-background-color: var(--button-background);
+  --_button-text-color: var(--button-text);
+  --_button-border-width: var(--button-inner-border-width, .125em);
+  --_button-border-color: var(--button-inner-border);
+  --_button-border-style: var(--button-inner-border-style, solid);
+  --_button-border-radius: var(--button-inner-border-radius);
+  --_button-outline-width: var(--button-outer-border-width, .125em);
+  --_button-outline-color: var(--button-outer-border);
+  --_button-outline-style: var(--button-outer-border-style, solid);
   padding: 1rem 2rem;
-  background-color: var(--btn-background);
-  color: var(--btn-text);
+  background-color: var(--_button-background-color);
+  color: var(--_button-text-color);
+  border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
+  outline: var(--_button-outline-width) var(--_button-outline-style) var(--_button-outline-color);
+  border-radius: var(--_button-border-radius);
 }
 .theme-blue .button--color-secondary {
-  --btn-background--initial: white;
-  --btn-background--hover: #3c64f3;
-  --btn-background--focus: #092690;
-  --btn-background--active: #092690;
-  --btn-background--disabled: #cccccc;
-  --btn-text--initial: #3c64f3;
-  --btn-text--hover: white;
-  --btn-text--focus: white;
-  --btn-text--active: white;
-  --btn-text--disabled: #092690;
-  --btn-border--initial: #3c64f3;
-  --btn-border--hover: #3c64f3;
-  --btn-border--focus: #092690;
-  --btn-border--active: #092690;
-  --btn-border--disabled: #cccccc;
+  --button-background--initial: white;
+  --button-background--hover: #3c64f3;
+  --button-background--focus: #092690;
+  --button-background--active: #092690;
+  --button-background--disabled: #cccccc;
+  --button-text--initial: #3c64f3;
+  --button-text--hover: white;
+  --button-text--focus: white;
+  --button-text--active: white;
+  --button-text--disabled: #092690;
+  --button-border--initial: #3c64f3;
+  --button-border--hover: #3c64f3;
+  --button-border--focus: #092690;
+  --button-border--active: #092690;
+  --button-border--disabled: #cccccc;
 }
 .theme-green .button--color-secondary {
-  --btn-background--initial: white;
-  --btn-background--hover: #316454;
-  --btn-background--focus: #22463b;
-  --btn-background--active: #22463b;
-  --btn-background--disabled: #cccccc;
-  --btn-text--initial: #316454;
-  --btn-text--hover: white;
-  --btn-text--focus: white;
-  --btn-text--active: white;
-  --btn-text--disabled: #22463b;
-  --btn-border--initial: #316454;
-  --btn-border--hover: #316454;
-  --btn-border--focus: #22463b;
-  --btn-border--active: #22463b;
-  --btn-border--disabled: #cccccc;
+  --button-background--initial: white;
+  --button-background--hover: #316454;
+  --button-background--focus: #22463b;
+  --button-background--active: #22463b;
+  --button-background--disabled: #cccccc;
+  --button-text--initial: #316454;
+  --button-text--hover: white;
+  --button-text--focus: white;
+  --button-text--active: white;
+  --button-text--disabled: #22463b;
+  --button-border--initial: #316454;
+  --button-border--hover: #316454;
+  --button-border--focus: #22463b;
+  --button-border--active: #22463b;
+  --button-border--disabled: #cccccc;
 }
 .theme-dark .button--color-secondary {
-  --btn-background--initial: #292929;
-  --btn-background--hover: #f5e12e;
-  --btn-background--focus: #fcf5b6;
-  --btn-background--active: #fcf5b6;
-  --btn-background--disabled: #cccccc;
-  --btn-text--initial: #f5e12e;
-  --btn-text--hover: #292929;
-  --btn-text--focus: #292929;
-  --btn-text--active: #292929;
-  --btn-text--disabled: #4e4604;
-  --btn-border--initial: #f5e12e;
-  --btn-border--hover: #f5e12e;
-  --btn-border--focus: #fcf5b6;
-  --btn-border--active: #fcf5b6;
-  --btn-border--disabled: #cccccc;
+  --button-background--initial: #292929;
+  --button-background--hover: #f5e12e;
+  --button-background--focus: #fcf5b6;
+  --button-background--active: #fcf5b6;
+  --button-background--disabled: #cccccc;
+  --button-text--initial: #f5e12e;
+  --button-text--hover: #292929;
+  --button-text--focus: #292929;
+  --button-text--active: #292929;
+  --button-text--disabled: #4e4604;
+  --button-border--initial: #f5e12e;
+  --button-border--hover: #f5e12e;
+  --button-border--focus: #fcf5b6;
+  --button-border--active: #fcf5b6;
+  --button-border--disabled: #cccccc;
 }
 .theme-blue .button--color-primary {
-  --btn-background: #3c64f3;
-  --btn-inner-border: white;
-  --btn-outer-border: #3c64f3;
-  --btn-text: white;
+  --button-background: #3c64f3;
+  --button-inner-border: white;
+  --button-outer-border: #3c64f3;
+  --button-text: white;
 }
 .theme-green .button--color-primary {
-  --btn-background: #316454;
-  --btn-inner-border: #527d6f;
-  --btn-outer-border: #22463b;
-  --btn-text: white;
+  --button-background: #316454;
+  --button-inner-border: #527d6f;
+  --button-outer-border: #22463b;
+  --button-text: white;
 }
 .theme-dark .button--color-primary {
-  --btn-background: #f5e12e;
-  --btn-inner-border: #f5e12e;
-  --btn-outer-border: #f5e12e;
-  --btn-text: #292929;
+  --button-background: #f5e12e;
+  --button-inner-border: #f5e12e;
+  --button-outer-border: #f5e12e;
+  --button-text: #292929;
+}
+.button, .button--radius-none {
+  --button-radius: 0;
+}
+@media only screen and (min-width: 21.875rem) {
+  .button, .button--radius-none {
+    --button-radius: 0;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .button, .button--radius-none {
+    --button-radius: 0;
+  }
+}
+.button--radius-small {
+  --button-radius: 0.125rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  .button--radius-small {
+    --button-radius: 0.125rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .button--radius-small {
+    --button-radius: 0.125rem;
+  }
+}
+.button--radius-medium {
+  --button-radius: 0.5rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  .button--radius-medium {
+    --button-radius: 0.5rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .button--radius-medium {
+    --button-radius: 0.5rem;
+  }
+}
+.button, .button--size-default {
+  --button-padding-x: 1.5rem;
+  --button-padding-y: 0.75rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  .button, .button--size-default {
+    --button-padding-x: 1.5rem;
+    --button-padding-y: 0.75rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .button, .button--size-default {
+    --button-padding-x: 1.5rem;
+    --button-padding-y: 0.75rem;
+  }
 }

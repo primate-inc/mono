@@ -61,6 +61,9 @@
 /// Global map to store all theme values
 $_theme_store: () !default;
 
+/// Global map to store all responsive values
+$_responsive_store: () !default;
+
 /// Processes variant values based on their type (theme/responsive)
 /// @param {String} $class-name - The variant class name
 /// @param {String} $variable-name - The CSS variable name
@@ -87,18 +90,52 @@ $_theme_store: () !default;
     }
     // Handle responsive values
     @else if string.slice($key, 1, 1) == '@' {
-      @include screen($key) {
-        @if $is-default {
-          &,
-          &#{$class-name} {
-            #{$variable-name}: #{$value};
-          }
-        } @else {
-          &#{$class-name} {
-            #{$variable-name}: #{$value};
-          }
-        }
+      $selector: if($is-default, 
+                   '&, &#{$class-name}',
+                   '&#{$class-name}');
+      
+      // Initialize responsive store for this selector if not exists
+      @if not map.has-key($_responsive_store, $selector) {
+        $_responsive_store: map.set($_responsive_store, $selector, (
+          'base': (),
+          'breakpoints': ()
+        )) !global;
       }
+      
+      
+      // Add value to responsive store
+      $store: map.get($_responsive_store, $selector);
+      $breakpoints: map.get($store, 'breakpoints');
+      
+      // Add breakpoint value
+      $screen: string.slice($key, 2);
+      $breakpoint_values: if(map.has-key($breakpoints, $screen), 
+                           map.get($breakpoints, $screen),
+                           ());
+      $breakpoint_values: map.set($breakpoint_values, $variable-name, $value);
+      $breakpoints: map.set($breakpoints, $screen, $breakpoint_values);
+      
+      $store: map.set($store, 'breakpoints', $breakpoints);
+      $_responsive_store: map.set($_responsive_store, $selector, $store) !global;
+    } @else {
+      $selector: if($is-default, 
+                   '&, &#{$class-name}',
+                   '&#{$class-name}');
+      
+      // Initialize responsive store for this selector if not exists
+      @if not map.has-key($_responsive_store, $selector) {
+        $_responsive_store: map.set($_responsive_store, $selector, (
+          'base': (),
+          'breakpoints': ()
+        )) !global;
+      }
+      
+      // Add base value
+      $store: map.get($_responsive_store, $selector);
+      $base: map.get($store, 'base');
+      $base: map.set($base, $variable-name, $value);
+      $store: map.set($store, 'base', $base);
+      $_responsive_store: map.set($_responsive_store, $selector, $store) !global;
     }
   }
 }
@@ -110,6 +147,11 @@ $_theme_store: () !default;
 /// Reset the theme store
 @mixin reset-theme-store {
   $_theme_store: () !global;
+}
+
+/// Reset the responsive store
+@mixin reset-responsive-store {
+  $_responsive_store: () !global;
 }
 
 /// Output all stored theme values
@@ -125,6 +167,29 @@ $_theme_store: () !default;
   @include reset-theme-store;
 }
 
+/// Output all stored responsive values
+@mixin output-responsive-store {
+  @each $selector, $store in $_responsive_store {
+    #{$selector} {
+      // Output base values first
+      @each $prop, $value in map.get($store, 'base') {
+        #{$prop}: #{$value};
+      }
+
+      // Then output breakpoint values
+      @each $breakpoint, $props in map.get($store, 'breakpoints') {
+        @include screen($breakpoint) {
+          @each $prop, $value in $props {
+            #{$prop}: #{$value};
+          }
+        }
+      }
+    }
+  }
+  // Reset store after output
+  @include reset-responsive-store;
+}
+
 /// Generate variants of CSS variables from a tokens map
 /// @param {String} $prefix - The prefix for the CSS variable names
 /// @param {String} $collection - The collection name for the tokens
@@ -133,8 +198,9 @@ $_theme_store: () !default;
   $element-name: '%' + $name;
   $variants-map: get_token($collection, $element-name);
   
-  // Reset theme store at start
+  // Reset stores at start
   @include reset-theme-store;
+  @include reset-responsive-store;
   
   // Process each variant group
   @each $group-key, $group-value in $variants-map {
@@ -206,8 +272,9 @@ $_theme_store: () !default;
     }
   }
   
-  // Output all theme values at the end
+  // Output all values at the end
   @include output-theme-store;
+  @include output-responsive-store;
 }
 
 /// Helper mixin for simple variant maps

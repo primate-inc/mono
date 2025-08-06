@@ -423,18 +423,16 @@ $tokens: (
         )
       ),
       '--size': (
-        '-default*': (
-          'padding': (
-            'x': (
-              '@xx': $size-button-size-default-padding-x-xx,
-              '@sm': $size-button-size-default-padding-x-sm,
-              '@md': $size-button-size-default-padding-x-md
-            ),
-            'y': (
-              '@xx': $size-button-size-default-padding-y-xx,
-              '@sm': $size-button-size-default-padding-y-sm,
-              '@md': $size-button-size-default-padding-y-md
-            )
+        '-default*': (        
+          'padding-x': (
+            '@xx': $size-button-size-default-padding-x-xx,
+            '@sm': $size-button-size-default-padding-x-sm,
+            '@md': $size-button-size-default-padding-x-md
+          ),
+          'padding-y': (
+            '@xx': $size-button-size-default-padding-y-xx,
+            '@sm': $size-button-size-default-padding-y-sm,
+            '@md': $size-button-size-default-padding-y-md
           )
         )
       )

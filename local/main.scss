@@ -77,12 +77,29 @@ body {
 }
 
 .button {
-  @include mono.variants('btn', 'color', 'button');
+  @include mono.variants('button', 'color', 'button');
+  @include mono.variants('button', 'size', 'button');
+
+  --_button-background-color: var(--button-background);
+  --_button-text-color: var(--button-text);
+
+  --_button-border-width: var(--button-inner-border-width, .125em);
+  --_button-border-color: var(--button-inner-border);
+  --_button-border-style: var(--button-inner-border-style, solid);
+  --_button-border-radius: var(--button-inner-border-radius);
+
+  --_button-outline-width: var(--button-outer-border-width, .125em);
+  --_button-outline-color: var(--button-outer-border);
+  --_button-outline-style: var(--button-outer-border-style, solid);
 
   padding: 1rem 2rem;
 
-  background-color: var(--btn-background);
-  color: var(--btn-text);
+  background-color: var(--_button-background-color);
+  color: var(--_button-text-color);
+  border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
+  outline: var(--_button-outline-width) var(--_button-outline-style) var(--_button-outline-color);
+  border-radius: var(--_button-border-radius);
+  
 }
 
 // // Demo Grid
