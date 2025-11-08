@@ -41,12 +41,10 @@
 /// Value should be a part of collecion with breakpoints.
 ///
 /// @param {string} $attr - The CSS attribute to assign the value to.
-/// @param {string} $type - The type of the map to get the value from. Available types: token, slot.
-/// @param {string} $collection - The key of the group of tokens to get the value from.
-/// @param {string} $keys - The key to get the value from the map.
+/// @param {list} $keys - The token path keys as a list (e.g., ('size', 'grid', 'gap')).
 ///
 /// @returns {void} - The responsive pair of attribute & value from the map.
-@mixin responsive-token($attr, $keys...) {
+@mixin responsive-token($attr, $keys) {
   $map: get_token_value($keys...);
   $check: false;
 
@@ -82,7 +80,14 @@
   }
 }
 
-@mixin themed-token($attr, $keys...) {
+/// Get themed pair of attribute & value from a map.
+/// Value should be a part of collection with theme keys.
+///
+/// @param {string} $attr - The CSS attribute to assign the value to.
+/// @param {list} $keys - The token path keys as a list (e.g., ('color', 'text')).
+///
+/// @returns {void} - The themed pair of attribute & value from the map.
+@mixin themed-token($attr, $keys) {
   $map: get_token_value($keys...);
 
   @if (meta.type-of($map) == "map" and $map != null) {

@@ -1,3 +1,4 @@
+@use 'sass:list';
 // Import MONO core
 @use 'mono';
 
@@ -33,8 +34,8 @@ body {
   // background-color: var(--color-page-accent);
 
 
-  // @include mono.responsive-token('width', 'size', 'page', 'spacing', '1000'); 
-  @include mono.themed-token('background-color', 'color', 'page', 'accent');
+  // @include mono.responsive-token('width', ('size', 'page', 'spacing', '1000')); 
+  @include mono.themed-token('background-color', ('color', 'page', 'accent'));
 }
 
 // Reset styles
@@ -58,14 +59,18 @@ body {
   // color: token(color, page, text, base, '#green');
   
   // @include theme('--test', color, page, text, base);
-  @include mono.responsive-grid();
 }
 
 main {
-  grid-column: 3 / -3;
+  // Span from first content column to last content column
+  // Skip the first margin column, so start at 2
+  
+  @include mono.responsive-grid();
 }
 
 .content {
+  grid-column: 2 / -2;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,6 +140,67 @@ main {
   @include mono.variants('button', 'color', 'button');
   @include mono.variants('button', 'size', 'button');
 }
+
+
+
+// Demo Grid Visualization
+.grid {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  
+  opacity: 0.4;
+  
+  @include mono.responsive-grid();
+  
+  // Style all grid columns (margins, content, and gaps)
+  & > * {
+    height: 100vh;
+  }
+
+  // Margin columns (first and last)
+  & > :first-child,
+  & > :last-child {
+    background: rgba(255, 0, 0, 0.1) !important;
+    border: 1px dashed rgba(255, 0, 0, 0.3) !important;
+  }
+
+  // Gap columns (even-indexed columns after margin)
+  @media (min-width: 0) {
+    // xx breakpoint: 4 columns = 1 margin + 4 content + 3 gaps + 1 margin = 9 total
+    $columns: 50;
+    
+    // Generate gap column selectors (odd positions from 3 onwards)
+    $gap-selectors: ();
+    @for $i from 1 through ($columns - 1) {
+      $position: (2 * $i) + 1;
+      $gap-selectors: list.append($gap-selectors, '& > :nth-child(#{$position})', comma);
+    }
+    
+    // Generate content column selectors (even positions from 2 onwards)
+    $content-selectors: ();
+    @for $i from 1 through $columns {
+      $position: 2 * $i;
+      $content-selectors: list.append($content-selectors, '& > :nth-child(#{$position})', comma);
+    }
+    
+    // Apply gap styles
+    #{$gap-selectors} {
+      background: rgba(0, 0, 255, 0.1);
+      border: 1px dashed rgba(0, 0, 255, 0.3);
+    }
+    
+    // Apply content column styles
+    #{$content-selectors} {
+      background: rgba(0, 255, 0, 0.1);
+      border: 1px dashed rgba(0, 255, 0, 0.3);
+    }
+  }
+}
+
+
+
 
 // // Demo Grid
 // .grid {

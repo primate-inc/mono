@@ -48,7 +48,7 @@
             }
         } @else {
             $new-keys: list.append($keys, $property);
-            @include responsive-token($property, $new-keys...);
+            @include responsive-token($property, $new-keys);
         }
     }
 }

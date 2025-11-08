@@ -1,0 +1,194 @@
+/* 
+ * Grid System Visual Reference
+ * 
+ * This file provides a visual reference for understanding the grid system structure.
+ * 
+ * COLOR CODING:
+ * - Red: Margin columns (first and last)
+ * - Blue: Gap columns (between content)
+ * - Green: Content columns (flexible 1fr)
+ */
+
+/* =============================================================================
+ * XX BREAKPOINT (4 columns)
+ * =============================================================================
+ * 
+ * Grid Structure:
+ * ┌─────────┬───────┬─────┬───────┬─────┬───────┬─────┬───────┬─────────┐
+ * │ MARGIN  │  COL  │ GAP │  COL  │ GAP │  COL  │ GAP │  COL  │  MARGIN │
+ * │ 0.5rem  │  1fr  │0.25 │  1fr  │0.25 │  1fr  │0.25 │  1fr  │ 0.5rem  │
+ * │  [1]    │  [2]  │ [3] │  [4]  │ [5] │  [6]  │ [7] │  [8]  │   [9]   │
+ * └─────────┴───────┴─────┴───────┴─────┴───────┴─────┴───────┴─────────┘
+ * 
+ * Total: 9 grid columns
+ * Formula: 2 + 4 + (4-1) = 9
+ * 
+ * CSS Output:
+ * grid-template-columns: 0.5rem 1fr 0.25rem 1fr 0.25rem 1fr 0.25rem 1fr 0.5rem;
+ * 
+ * Usage Examples:
+ * - Full width (including margins): grid-column: 1 / -1;
+ * - Content width (excluding margins): grid-column: 2 / -2;
+ * - First 2 content columns: grid-column: 2 / 5;
+ * - Last 2 content columns: grid-column: 6 / -2;
+ */
+
+/* =============================================================================
+ * SM BREAKPOINT (6 columns)
+ * =============================================================================
+ * 
+ * Grid Structure:
+ * ┌────────┬──────┬─────┬──────┬─────┬──────┬─────┬──────┬─────┬──────┬─────┬──────┬────────┐
+ * │ MARGIN │ COL  │ GAP │ COL  │ GAP │ COL  │ GAP │ COL  │ GAP │ COL  │ GAP │ COL  │ MARGIN │
+ * │  2rem  │ 1fr  │1rem │ 1fr  │1rem │ 1fr  │1rem │ 1fr  │1rem │ 1fr  │1rem │ 1fr  │  2rem  │
+ * │  [1]   │ [2]  │ [3] │ [4]  │ [5] │ [6]  │ [7] │ [8]  │ [9] │ [10] │[11] │ [12] │  [13]  │
+ * └────────┴──────┴─────┴──────┴─────┴──────┴─────┴──────┴─────┴──────┴─────┴──────┴────────┘
+ * 
+ * Total: 13 grid columns
+ * Formula: 2 + 6 + (6-1) = 13
+ * 
+ * CSS Output:
+ * grid-template-columns: 2rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 2rem;
+ * 
+ * Usage Examples:
+ * - Full width (including margins): grid-column: 1 / -1;
+ * - Content width (excluding margins): grid-column: 2 / -2;
+ * - First 3 content columns: grid-column: 2 / 7;
+ * - Middle 4 content columns: grid-column: 4 / 11;
+ */
+
+/* =============================================================================
+ * MD BREAKPOINT (12 columns)
+ * =============================================================================
+ * 
+ * Grid Structure:
+ * ┌────────┬──────┬─────┬──────┬─────┬─────┬──────┬─────┬─────┬──────┬────────┐
+ * │ MARGIN │ COL  │ GAP │ COL  │ ... │ ... │ COL  │ GAP │ ... │ COL  │ MARGIN │
+ * │  4rem  │ 1fr  │2rem │ 1fr  │2rem │ ... │ 1fr  │2rem │ ... │ 1fr  │  4rem  │
+ * │  [1]   │ [2]  │ [3] │ [4]  │ [5] │ ... │[22]  │[23] │[24] │ [25] │  [26]  │
+ * └────────┴──────┴─────┴──────┴─────┴─────┴──────┴─────┴─────┴──────┴────────┘
+ * 
+ * Total: 25 grid columns
+ * Formula: 2 + 12 + (12-1) = 25
+ * 
+ * Full CSS Output:
+ * grid-template-columns: 4rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 
+ *                        2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 2rem 1fr 4rem;
+ * 
+ * Usage Examples:
+ * - Full width (including margins): grid-column: 1 / -1;
+ * - Content width (excluding margins): grid-column: 2 / -2;
+ * - First 6 content columns: grid-column: 2 / 13;
+ * - Last 6 content columns: grid-column: 14 / -2;
+ * - Middle 4 content columns: grid-column: 10 / 17;
+ */
+
+/* =============================================================================
+ * COLUMN INDEX CALCULATOR
+ * =============================================================================
+ * 
+ * To calculate grid-column span:
+ * 
+ * Start Index = 1 + (content_col_start - 1) * 2
+ * End Index = 1 + (content_col_end) * 2
+ * 
+ * Examples (XX breakpoint, 4 content columns):
+ * - Content column 1: index 2
+ * - Content column 2: index 4
+ * - Content column 3: index 6
+ * - Content column 4: index 8
+ * 
+ * To span content columns 2-3:
+ * - Start: index 4
+ * - End: index 6 + 1 = 7
+ * - grid-column: 4 / 7;
+ */
+
+/* =============================================================================
+ * BREAKPOINT COMPARISON
+ * =============================================================================
+ * 
+ * | Breakpoint | Content Cols | Gap Width | Margin Width | Total Cols | Max Width |
+ * |------------|-------------|-----------|--------------|------------|-----------|
+ * | xx (0px)   | 4           | 0.25rem   | 0.5rem       | 9          | 75rem     |
+ * | sm (350px) | 6           | 1rem      | 2rem         | 13         | 75rem     |
+ * | md (720px) | 12          | 2rem      | 4rem         | 25         | 75rem     |
+ * 
+ * As screen size increases:
+ * - More content columns
+ * - Larger gaps
+ * - Larger margins
+ * - Same max-width (container constraint)
+ */
+
+/* =============================================================================
+ * COMMON PATTERNS
+ * =============================================================================
+ */
+
+/* Pattern: Full-width content (including margins) */
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Pattern: Content-width (excluding margins) */
+.content-width {
+  grid-column: 2 / -2;
+}
+
+/* Pattern: Centered narrow content (xx: 2 cols, sm: 4 cols, md: 8 cols) */
+.narrow-content {
+  /* XX: cols 2-3 (includes 1 gap) */
+  grid-column: 2 / 5;
+}
+@media (min-width: 21.875rem) {
+  .narrow-content {
+    /* SM: cols 2-4 (includes 2 gaps) */
+    grid-column: 2 / 9;
+  }
+}
+@media (min-width: 45rem) {
+  .narrow-content {
+    /* MD: cols 3-10 (8 content + 7 gaps) */
+    grid-column: 6 / 21;
+  }
+}
+
+/* Pattern: Sidebar + Content */
+.sidebar-layout {
+  display: contents; /* Allow children to participate in parent grid */
+}
+
+.sidebar {
+  /* XX: 1 col */
+  grid-column: 2 / 3;
+}
+
+.main-content {
+  /* XX: remaining 3 cols */
+  grid-column: 4 / -2;
+}
+
+@media (min-width: 45rem) {
+  .sidebar {
+    /* MD: 3 cols */
+    grid-column: 2 / 7;
+  }
+  
+  .main-content {
+    /* MD: remaining 9 cols */
+    grid-column: 8 / -2;
+  }
+}
+
+/* Pattern: Card Grid (nested grid) */
+.card-grid {
+  /* Span content width */
+  grid-column: 2 / -2;
+  
+  /* Create nested grid without margins/gaps */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+

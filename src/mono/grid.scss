@@ -9,35 +9,113 @@
 @use 'screen' as *;
 @use 'tokens' as *;
 
+// =============================================================================
+// Grid System
+// =============================================================================
+//
+// This grid system uses CSS Grid with fixed-width margins and gaps as columns.
+//
+// Grid Structure:
+// ┌─────────┬───┬───┬───┬───┬───┬───┬───┬───┬─────────┐
+// │ margin  │col│gap│col│gap│col│gap│col│gap│  margin │
+// └─────────┴───┴───┴───┴───┴───┴───┴───┴───┴─────────┘
+//
+// Features:
+// - Margin columns (first and last) use fixed widths from tokens
+// - Gap columns use fixed widths from tokens
+// - Content columns use flexible 1fr units
+// - Max-width constrains the container (includes margins for edge-to-edge)
+// - Fully responsive across all breakpoints
+//
+// Example with 4 columns:
+// Grid template = [0.5rem] [1fr] [0.25rem] [1fr] [0.25rem] [1fr] [0.25rem] [1fr] [0.5rem]
+// Total = 1 margin + 4 content + 3 gaps + 1 margin = 9 grid columns
+// Max-width = 75rem + 0.5rem + 0.5rem = 76rem (includes margins)
+//
+// Usage:
+// .container {
+//   @include responsive-grid(); // Uses default 'grid' tokens
+// }
+//
+// .content {
+//   grid-column: 2 / -2; // Spans from first content to last content column
+// }
+//
+// =============================================================================
+
 /// Applies responsive grid layout using tokens.
 /// 
 /// Generates a responsive CSS Grid layout with the following properties:
-/// - columns: Number of grid columns (automatically converted to repeat(N, 1fr))
-/// - gap: Space between grid items
+/// - columns: Number of content columns
+/// - gap: Width of gap columns (converted to fixed-width columns)
+/// - margin: Outer margin columns (first and last)
 /// - max-width: Maximum width of the grid container
+/// 
+/// The grid structure is:
+/// [margin] [col] [gap] [col] [gap] ... [col] [margin]
+/// 
+/// @example scss
+///   .container {
+///     @include responsive-grid();
+///   }
+///   
+///   .content {
+///     // Span from first content column to last content column
+///     grid-column: 2 / -2;
+///   }
 /// 
 /// @returns {void} - Responsive grid layout styles
 @mixin responsive-grid() {
   display: grid;
   margin: 0 auto;
+  width: 100%;
 
-  // Handle grid columns with repeat()
+  // Get tokens
   $columns-token: get_token_value('size', 'grid', 'columns');
+  $gap-token: get_token_value('size', 'grid', 'gap');
+  $margin-token: get_token_value('size', 'grid', 'margin');
+  $max-width-token: get_token_value('size', 'grid', 'max-width');
+
+  // Build grid template for each breakpoint
   @if meta.type-of($columns-token) == 'map' {
     @each $screen, $value in sortedBreakpoints() {
-      $column-value: map.get($columns-token, '@' + string.quote($screen));
-      @if $column-value != null {
+      $columns: map.get($columns-token, '@' + string.quote($screen));
+      $gap: map.get($gap-token, '@' + string.quote($screen));
+      $margin: map.get($margin-token, '@' + string.quote($screen));
+      $max-width: map.get($max-width-token, '@' + string.quote($screen));
+
+      @if $columns != null and $gap != null and $margin != null {
         @include screen($screen) {
           & {
-            grid-template-columns: repeat($column-value, 1fr);
+            // Build template: [margin] [col gap col gap ... col] [margin]
+            // Total columns = margin + (columns * 2 - 1) + margin
+            // = 2 margins + columns + (columns - 1) gaps
+            $template-parts: ($margin);
+            
+            // Add content columns and gaps
+            @for $i from 1 through $columns {
+              $template-parts: list.append($template-parts, 1fr, 'space');
+              @if $i < $columns {
+                $template-parts: list.append($template-parts, $gap, 'space');
+              }
+            }
+            
+            // End with margin column
+            $template-parts: list.append($template-parts, $margin, 'space');
+            
+            grid-template-columns: $template-parts;
+          }
+          
+          @if $max-width != null {
+            & {
+              // Add margins to max-width so it measures from outer edge to outer edge
+              max-width: calc($max-width + $margin + $margin);
+            }
           }
         }
       }
     }
   }
-
-  @include responsive-token('gap', 'size', 'grid', 'gap');
-  @include responsive-token('max-width', 'size', 'grid', 'max-width');
 }
 
 /// Applies responsive grid layout with custom path.
@@ -49,24 +127,45 @@
 
   display: grid;
   margin: 0 auto;
+  width: 100%;
 
-  @each $property, $responsive-values in $grid {
-    @if $property == 'columns' {
-      @each $screen, $value in $responsive-values {
+  // Extract all properties from the grid token
+  $columns-map: map.get($grid, 'columns');
+  $gap-map: map.get($grid, 'gap');
+  $margin-map: map.get($grid, 'margin');
+  $max-width-map: map.get($grid, 'max-width');
+
+  // Process each breakpoint
+  @if $columns-map {
+    @each $screen, $columns in $columns-map {
+      $gap: map.get($gap-map, $screen);
+      $margin: map.get($margin-map, $screen);
+      $max-width: map.get($max-width-map, $screen);
+
+      @if $columns and $gap and $margin {
         @include screen(sanitize-special-key($screen)) {
           & {
-            grid-template-columns: repeat($value, 1fr);
+            // Build template: [margin] [col gap col gap ... col] [margin]
+            $template-parts: ($margin);
+            
+            // Add content columns and gaps
+            @for $i from 1 through $columns {
+              $template-parts: list.append($template-parts, 1fr, 'space');
+              @if $i < $columns {
+                $template-parts: list.append($template-parts, $gap, 'space');
+              }
+            }
+            
+            // End with margin column
+            $template-parts: list.append($template-parts, $margin, 'space');
+            
+            grid-template-columns: $template-parts;
           }
-        }
-      }
-    } @else if $property == 'gap' or $property == 'max-width' or $property == 'margin' {
-      @each $screen, $value in $responsive-values {
-        @include screen(sanitize-special-key($screen)) {
-          & {
-            @if $property == 'margin' {
-              margin: $value auto;
-            } @else {
-              #{$property}: $value;
+          
+          @if $max-width {
+            & {
+              // Add margins to max-width so it measures from outer edge to outer edge
+              max-width: calc($max-width + $margin + $margin);
             }
           }
         }
