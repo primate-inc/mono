@@ -20,7 +20,7 @@
                      string.slice($part, 1, -2),
                      $part);
       
-      @debug 'has asterisk: ' + $has-asterisk;
+      // @debug 'has asterisk: ' + $has-asterisk;
       
       // Handle variant group (--) and variant (-) prefixes
       @if string.slice($clean-part, 1, 2) == '--' {
@@ -211,7 +211,7 @@ $_responsive_store: () !default;
       @each $variant-key, $variant-value in $group-value {
         @if string.slice($variant-key, 1, 1) == '-' {
           $is-default: string.slice($variant-key, -1) == '*';
-          $current-class-parts: append($class-parts, $variant-key);
+          $current-class-parts: list.append($class-parts, $variant-key);
           
           // Process each property
           @each $prop-key, $prop-value in $variant-value {
@@ -234,7 +234,7 @@ $_responsive_store: () !default;
                 // Process action states
                 @each $action-key, $action-value in $prop-value {
                   @if string.slice($action-key, 1, 1) == ':' {
-                    $current-variable-parts: append($variable-parts, $action-key);
+                    $current-variable-parts: list.append($variable-parts, $action-key);
                     $variable-name: generate-variant-variable($prefix, $current-variable-parts);
                     
                     @include process-variant-values(

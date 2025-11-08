@@ -215,8 +215,10 @@ body.theme-dark {
 }
 
 .test {
-  width: clamp(1.625rem, calc(0.8564189189rem + 3.5135135135vw), 2.4375rem);
   height: 10rem;
+}
+.test {
+  width: clamp(1.625rem, calc(0.8564189189rem + 3.5135135135vw), 2.4375rem);
 }
 .theme-blue .test, .test.theme-blue {
   background-color: #3c64f3;
@@ -243,6 +245,51 @@ html {
 body {
   width: 100%;
   min-height: 100vh;
+  display: grid;
+  margin: 0 auto;
+}
+body {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media only screen and (min-width: 21.875rem) {
+  body {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media only screen and (min-width: 45rem) {
+  body {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+body {
+  gap: 0.25rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  body {
+    gap: 1rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  body {
+    gap: 2rem;
+  }
+}
+body {
+  max-width: 75rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  body {
+    max-width: 75rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  body {
+    max-width: 75rem;
+  }
+}
+
+main {
+  grid-column: 3/-3;
 }
 
 .content {
@@ -254,9 +301,9 @@ body {
 }
 .content h1 {
   font-size: clamp(2rem, calc(1.5861486486rem + 1.8918918919vw), 2.4375rem);
+}
+.content h1 {
   font-weight: 37.5rem;
-  line-height: clamp(2.5rem, calc(1.9826858108rem + 2.3648648649vw), 3.046875rem);
-  letter-spacing: 0;
 }
 @media only screen and (min-width: 21.875rem) {
   .content h1 {
@@ -267,6 +314,12 @@ body {
   .content h1 {
     font-weight: 37.5rem;
   }
+}
+.content h1 {
+  line-height: clamp(2.5rem, calc(1.9826858108rem + 2.3648648649vw), 3.046875rem);
+}
+.content h1 {
+  letter-spacing: 0;
 }
 @media only screen and (min-width: 21.875rem) {
   .content h1 {
@@ -298,6 +351,26 @@ body {
   border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
   outline: var(--_button-outline-width) var(--_button-outline-style) var(--_button-outline-color);
   border-radius: var(--_button-radius);
+}
+.button:hover {
+  --_button-background-color: var(--button-background--hover, var(--button-background));
+  --_button-text-color: var(--button-text--hover, var(--button-text));
+  --_button-border-color: var(--button-border--hover, var(--button-border));
+}
+.button:focus {
+  --_button-background-color: var(--button-background--focus, var(--button-background));
+  --_button-text-color: var(--button-text--focus, var(--button-text));
+  --_button-border-color: var(--button-border--focus, var(--button-border));
+}
+.button:active {
+  --_button-background-color: var(--button-background--active, var(--button-background));
+  --_button-text-color: var(--button-text--active, var(--button-text));
+  --_button-border-color: var(--button-border--active, var(--button-border));
+}
+.button:disabled {
+  --_button-background-color: var(--button-background--disabled, var(--button-background));
+  --_button-text-color: var(--button-text--disabled, var(--button-text));
+  --_button-border-color: var(--button-border--disabled, var(--button-border));
 }
 .theme-blue .button--color-secondary {
   --button-background--initial: white;
@@ -422,24 +495,4 @@ body {
     --button-padding-x: 1.5rem;
     --button-padding-y: 0.75rem;
   }
-}
-.button:hover {
-  --_button-background-color: var(--button-background--hover, var(--button-background));
-  --_button-text-color: var(--button-text--hover, var(--button-text));
-  --_button-border-color: var(--button-border--hover, var(--button-border));
-}
-.button:focus {
-  --_button-background-color: var(--button-background--focus, var(--button-background));
-  --_button-text-color: var(--button-text--focus, var(--button-text));
-  --_button-border-color: var(--button-border--focus, var(--button-border));
-}
-.button:active {
-  --_button-background-color: var(--button-background--active, var(--button-background));
-  --_button-text-color: var(--button-text--active, var(--button-text));
-  --_button-border-color: var(--button-border--active, var(--button-border));
-}
-.button:disabled {
-  --_button-background-color: var(--button-background--disabled, var(--button-background));
-  --_button-text-color: var(--button-text--disabled, var(--button-text));
-  --_button-border-color: var(--button-border--disabled, var(--button-border));
 }

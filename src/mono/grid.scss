@@ -1,0 +1,95 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+@use 'sass:meta';
+@use 'utils/global' as *;
+@use 'utils/breakpoints' as *;
+@use 'utils/fluid' as *;
+@use 'api/tokens' as *;
+@use 'screen' as *;
+@use 'tokens' as *;
+
+/// Applies responsive grid layout using tokens.
+/// 
+/// Generates a responsive CSS Grid layout with the following properties:
+/// - columns: Number of grid columns (automatically converted to repeat(N, 1fr))
+/// - gap: Space between grid items
+/// - max-width: Maximum width of the grid container
+/// 
+/// @returns {void} - Responsive grid layout styles
+@mixin responsive-grid() {
+  display: grid;
+  margin: 0 auto;
+
+  // Handle grid columns with repeat()
+  $columns-token: get_token_value('size', 'grid', 'columns');
+  @if meta.type-of($columns-token) == 'map' {
+    @each $screen, $value in sortedBreakpoints() {
+      $column-value: map.get($columns-token, '@' + string.quote($screen));
+      @if $column-value != null {
+        @include screen($screen) {
+          & {
+            grid-template-columns: repeat($column-value, 1fr);
+          }
+        }
+      }
+    }
+  }
+
+  @include responsive-token('gap', 'size', 'grid', 'gap');
+  @include responsive-token('max-width', 'size', 'grid', 'max-width');
+}
+
+/// Applies responsive grid layout with custom path.
+/// 
+/// @param {List} $keys - Token path keys (e.g., 'grid' or 'page')
+/// @returns {void} - Responsive grid layout styles
+@mixin grid($keys...) {
+  $grid: get_token_value('size', $keys...);
+
+  display: grid;
+  margin: 0 auto;
+
+  @each $property, $responsive-values in $grid {
+    @if $property == 'columns' {
+      @each $screen, $value in $responsive-values {
+        @include screen(sanitize-special-key($screen)) {
+          & {
+            grid-template-columns: repeat($value, 1fr);
+          }
+        }
+      }
+    } @else if $property == 'gap' or $property == 'max-width' or $property == 'margin' {
+      @each $screen, $value in $responsive-values {
+        @include screen(sanitize-special-key($screen)) {
+          & {
+            @if $property == 'margin' {
+              margin: $value auto;
+            } @else {
+              #{$property}: $value;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/// Applies fluid grid gap that scales between breakpoints.
+/// 
+/// @param {String} $min-breakpoint - Starting breakpoint key (e.g., 'xx')
+/// @param {String} $max-breakpoint - Ending breakpoint key (e.g., 'md')
+/// @returns {void} - Fluid gap value
+@mixin fluid-grid-gap($min-breakpoint: 'xx', $max-breakpoint: 'md') {
+  $gap-token: get_token_value('size', 'grid', 'gap');
+  
+  @if meta.type-of($gap-token) == 'map' {
+    $start-value: map.get($gap-token, '@#{$min-breakpoint}');
+    $end-value: map.get($gap-token, '@#{$max-breakpoint}');
+
+    @if $start-value and $end-value {
+      @include fluid-value('gap', $start-value, $end-value, $min-breakpoint, $max-breakpoint);
+    }
+  }
+}
+

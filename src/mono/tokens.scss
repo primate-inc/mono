@@ -61,12 +61,14 @@
             $value: string.unquote($value);
           }
 
-          @if (meta.type-of($attr) == "list") {
-            @each $attribute in $attr {
-              #{$attribute}: $value;
+          & {
+            @if (meta.type-of($attr) == "list") {
+              @each $attribute in $attr {
+                #{$attribute}: $value;
+              }
+            } @else {
+              #{$attr}: #{$value};
             }
-          } @else {
-            #{$attr}: #{$value};
           }
         }
       }

@@ -66,11 +66,13 @@
     $start-breakpoint: 'xx',
     $end-breakpoint: 'md'
 ) {
-    #{$property}: clamp(
-        #{$start-value},
-        #{calculate-fluid-value($start-value, $end-value, $start-breakpoint, $end-breakpoint)},
-        #{$end-value}
-    );
+    & {
+        #{$property}: clamp(
+            #{$start-value},
+            #{calculate-fluid-value($start-value, $end-value, $start-breakpoint, $end-breakpoint)},
+            #{$end-value}
+        );
+    }
 }
 
 @mixin fluid-token($property, $keys, $min-value, $max-value, $min-breakpoint: null, $max-breakpoint: null) {
@@ -89,9 +91,9 @@
             $start-value: map.get($token, '@#{$min-value}');
             $end-value: map.get($token, '@#{$max-value}');
 
-            @debug $property;
-            @debug $start-value;
-            @debug $end-value;
+            // @debug $property;
+            // @debug $start-value;
+            // @debug $end-value;
 
             @if $start-value and $end-value {
                 @include fluid-value($property, $start-value, $end-value, $min-breakpoint, $max-breakpoint);
