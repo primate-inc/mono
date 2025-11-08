@@ -7,8 +7,42 @@
 
 $tokens: () !default;
 
+/// Helper function to find a key in a map, checking both with and without special characters
+/// @param {Map} $map - The map to search in
+/// @param {String} $key - The key to find
+/// @returns {String|null} - The actual key found in the map, or null if not found
+@function find_token_key($map, $key) {
+  // First try the exact key
+  @if map.has-key($map, $key) {
+    @return $key;
+  }
+  
+  // Define special characters that might be prefixes or suffixes
+  $special-chars: ('*', '@', '#', ':', '%', '-', '--');
+  
+  // Try adding/removing special characters
+  @each $char in $special-chars {
+    // Try with suffix
+    $key-with-suffix: $key + $char;
+    @if map.has-key($map, $key-with-suffix) {
+      @return $key-with-suffix;
+    }
+    
+    // Try without suffix (if key ends with char)
+    @if string.length($key) > 1 and string.slice($key, -1) == $char {
+      $key-without-suffix: string.slice($key, 1, -2);
+      @if map.has-key($map, $key-without-suffix) {
+        @return $key-without-suffix;
+      }
+    }
+  }
+  
+  @return null;
+}
+
 /// Deeply lookup a token value in $tokens using a sequence of keys.
 /// Returns the first non-map value found, or throws if not found.
+/// Supports flexible key matching - can call tokens with or without special characters.
 /// 
 /// @param {...} $keys - The path of keys to lookup.
 /// @returns {any} - The found token value.
@@ -18,14 +52,18 @@ $tokens: () !default;
   $path: ();
   @each $key in $keys {
     $path: list.append($path, $key);
-    @if map.has-key($current, $key) {
-      $current: map.get($current, $key);
+    
+    // Try to find the key (with flexible matching)
+    $found-key: find_token_key($current, $key);
+    
+    @if $found-key != null {
+      $current: map.get($current, $found-key);
       // If the value is not a map, return it immediately
       @if meta.type-of($current) != 'map' {
         @return $current;
       }
     } @else {
-      @error 'Token path not found: #{list.join($path, " > ")}';
+      @error 'Token path not found: #{list.join($path, " > ")}. Available keys: #{map.keys($current)}';
     }
   }
   // If all keys traversed and still a map, return the map

@@ -99,5 +99,10 @@
     }
   }
   
+  // Remove trailing * (default variant marker)
+  @if string.length($key) > 0 and string.slice($key, -1) == "*" {
+    $key: string.slice($key, 1, -2);
+  }
+  
   @return $key;
 }

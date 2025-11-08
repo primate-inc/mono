@@ -34,7 +34,7 @@ body {
   // background-color: var(--color-page-accent);
 
 
-  // @include mono.responsive-token('width', ('size', 'page', 'spacing', '1000')); 
+  @include mono.responsive-token('width', ('size', '%button', '--radius', '-none', 'radius')); 
   @include mono.themed-token('background-color', ('color', 'page', 'accent'));
 }
 
@@ -80,15 +80,16 @@ main {
 
   h1 {
     @include mono.fluid-font(
-      ('heading', 'lg'),
-      'xx', 'md',
-      'sm', 'md'
+      $keys: ('heading', 'lg'),
+      $min-value: 'xx',
+      $max-value: 'md',
+      $min-breakpoint: 'sm',
+      $max-breakpoint: 'md'
     );
   }
 }
 
 .button {
-  
   --_button-radius: var(--button-radius);
   --_button-padding-x: var(--button-padding-x);
   --_button-padding-y: var(--button-padding-y);
@@ -112,7 +113,17 @@ main {
   border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
   outline: var(--_button-outline-width) var(--_button-outline-style) var(--_button-outline-color);
   border-radius: var(--_button-radius);
-  
+    
+  @include mono.variants('button', 'color', 'button');
+  @include mono.variants('button', 'size', 'button');
+  @include mono.fluid-font(
+    $keys: ('button'),
+    $min-value: 'xx',
+    $max-value: 'md',
+    $min-breakpoint: 'sm',
+    $max-breakpoint: 'md'
+  );
+
   &:hover {
     --_button-background-color: var(--button-background--hover, var(--button-background));
     --_button-text-color: var(--button-text--hover, var(--button-text));
@@ -136,12 +147,7 @@ main {
     --_button-text-color: var(--button-text--disabled, var(--button-text));
     --_button-border-color: var(--button-border--disabled, var(--button-border));
   }
-  
-  @include mono.variants('button', 'color', 'button');
-  @include mono.variants('button', 'size', 'button');
 }
-
-
 
 // Demo Grid Visualization
 .grid {
@@ -153,7 +159,7 @@ main {
   opacity: 0.4;
   
   @include mono.responsive-grid();
-  
+
   // Style all grid columns (margins, content, and gaps)
   & > * {
     height: 100vh;
