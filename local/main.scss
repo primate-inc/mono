@@ -1,44 +1,6 @@
-@use 'sass:list';
-// Import MONO core
 @use 'mono';
 
-// Import local variables
-// @use 'test/variables' as *;
-
-// @use 'test' as * with (
-//   $test: $test,
-//   $map: $map
-// );
-
-// @debug '/////// tokens:';
-// @debug mono.$tokens;
-// @debug '/////// slots:';
-// @debug mono.$slots;
-// @debug '/////// configs:';
-// @debug mono.$configs;
-
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
-  @include mono.generate_tokens_variables();
-}
-
-.test {
-  height: 10rem;
-
-  @include mono.fluid-token('width', ('size', 'typography', 'heading', 'lg', 'font-size'), 'xx', 'md', 'sm', 'md');
-
-  // background-color: var(--color-page-accent);
-
-
-  @include mono.responsive-token('width', ('size', '%button', '--radius', '-none', 'radius')); 
-  @include mono.themed-token('background-color', ('color', 'page', 'accent'));
-}
-
-// Reset styles
+// Reset
 *,
 *::before,
 *::after {
@@ -52,314 +14,273 @@ html {
 }
 
 body {
+  @include mono.generate_tokens_variables();
+  
+  // Define root-level CSS variables for common values
+  @include mono.themed-token('--bg-page', ('color', 'page', 'background'));
+  @include mono.themed-token('--color-text', ('color', 'page', 'text'));
+  @include mono.themed-token('--color-accent', ('color', 'page', 'accent'));
+  @include mono.themed-token('--color-accent-secondary', ('color', 'page', 'accent-secondary'));
+  
+  @include mono.responsive-token('--spacing-sm', ('size', 'spacing', 'sm'));
+  @include mono.responsive-token('--spacing-md', ('size', 'spacing', 'md'));
+  @include mono.responsive-token('--spacing-lg', ('size', 'spacing', 'lg'));
+  @include mono.responsive-token('--radius-md', ('size', 'radius', 'md'));
   
   width: 100%;
-  min-height: 100vh; 
-  // background-color: token(color, white);
-  // color: token(color, page, text, base, '#green');
+  min-height: 100vh;
+  font-family: 'Lato', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
   
-  // @include theme('--test', color, page, text, base);
+  background-color: var(--bg-page);
+  color: var(--color-text);
 }
 
+// Main grid container
 main {
-  // Span from first content column to last content column
-  // Skip the first margin column, so start at 2
-  
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+
   @include mono.responsive-grid();
 }
 
+// Typography showcase
+.content {
+  grid-column: 4 / -4;
+  
+  margin-bottom: var(--spacing-lg);
+  
+  h1 {
+    color: var(--color-accent-secondary);
+    
+    @include mono.fluid-font(
+      $keys: ('heading'),
+      $min-value: 'xx',
+      $max-value: 'md',
+      $min-breakpoint: 'sm',
+      $max-breakpoint: 'md'
+    );
+    margin-bottom: var(--spacing-md);
+  }
+  
+  p {
+    @include mono.font('body');
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+// Grid item examples
 .grid-item {
+  grid-column: 4 / -4;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: auto;
-
-  grid-column: 4 / -4;
   
-  padding: 4rem 1rem;
-  margin: 1rem 0;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-sm);
   
-  // background-color: #4a5759b4;
-  background: #f7e1d773;
-  border-radius: var(--size-page-radius-md);
-  border: 1px solid #9ba49c;
-  
+  border: 1px solid;
   text-align: center;
-  // color: #fff;
-
-  // TODO: Fix font generation, font family not working
+  
   @include mono.font('body');
-
-  &--wide {
-    grid-column: 3 / -3;
+  
+  .theme-light & {
+    background: rgba(42, 157, 143, 0.1);
+    border-color: rgba(42, 157, 143, 0.3);
   }
-
-  &--wider {
-    grid-column: 2 / -2;
+  
+  .theme-dark & {
+    background: rgba(233, 196, 106, 0.15);
+    border-color: rgba(233, 196, 106, 0.4);
   }
-
+  
   &--full {
     grid-column: 1 / -1;
-  }
-
-  &--with-sidebar {
-    grid-column: 4 / -4;
-
-    @include mono.screen('sm') {
-      grid-column: 4 / 9;
+    
+    .theme-light & {
+      background: rgba(244, 162, 97, 0.15);
+      border-color: rgba(244, 162, 97, 0.4);
     }
-
-    @include mono.screen('md') {
-      grid-column: 4 / 19;
+    
+    .theme-dark & {
+      background: rgba(231, 111, 81, 0.2);
+      border-color: rgba(231, 111, 81, 0.5);
     }
   }
-
-  &--sidebar {
-    grid-column: 4 / -4;
-
-    @include mono.screen('sm') {
-      grid-column: 10 / -4;
+  
+  &--wider {
+    grid-column: 2 / -2;
+    
+    .theme-light & {
+      background: rgba(42, 157, 143, 0.15);
+      border-color: rgba(42, 157, 143, 0.35);
     }
-
-    @include mono.screen('md') {
-      grid-column: 20 / -4;
+    
+    .theme-dark & {
+      background: rgba(233, 196, 106, 0.18);
+      border-color: rgba(233, 196, 106, 0.45);
+    }
+  }
+  
+  &--wide {
+    grid-column: 3 / -3;
+    
+    .theme-light & {
+      background: rgba(42, 157, 143, 0.12);
+      border-color: rgba(42, 157, 143, 0.32);
+    }
+    
+    .theme-dark & {
+      background: rgba(233, 196, 106, 0.16);
+      border-color: rgba(233, 196, 106, 0.42);
     }
   }
 }
 
-.content {
+// Grid showcase
+.grid-demo {
   grid-column: 4 / -4;
+  display: grid;
+  gap: 1rem;
+  
+  margin-bottom: var(--spacing-lg);
+  
+  @include mono.screen('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
+.grid-demo-item {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  
+  background: rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+// Variants showcase - Buttons
+.button {
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  
+  @include mono.variants('button', 'size', 'button');
+  @include mono.variants('button', 'color', 'button');
+  
+  padding: var(--button-padding-y, 0.75rem) var(--button-padding-x, 1.5rem);
+  background: var(--button-background);
+  color: var(--button-text);
+  border-color: var(--button-border, transparent);
+  border-radius: var(--button-radius, 0.5rem);
+  
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  &--alt {
+    background: var(--color-accent-secondary);
+    color: white;
+    
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.buttons {
+  grid-column: 4 / -4;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+  margin-bottom: var(--spacing-lg);
+}
 
-  width: 100%;
-
-  h1 {
+// Theme showcase
+.theme-card {
+  grid-column: 4 / -4;
+  
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+  
+  text-align: center;
+  
+  background-color: var(--color-accent);
+  color: white;
+  
+  h2 {
     @include mono.fluid-font(
-      $keys: ('heading', 'lg'),
+      $keys: ('heading'),
       $min-value: 'xx',
-      $max-value: 'md',
+      $max-value: 'sm',
       $min-breakpoint: 'sm',
       $max-breakpoint: 'md'
     );
   }
 }
 
-.button {
-  --_button-radius: var(--button-radius);
-  --_button-padding-x: var(--button-padding-x);
-  --_button-padding-y: var(--button-padding-y);
-  
-  --_button-background-color: var(--button-background--initial, var(--button-background));
-  --_button-text-color: var(--button-text--initial, var(--button-text));
-  
-  --_button-border-width: var(--button-inner-border-width, .125em);
-  --_button-border-color: var(--button-border--initial, --button-inner-border);
-  --_button-border-style: var(--button-inner-border-style, solid);
-  
-  --_button-outline-width: var(--button-outer-border-width, .125em);
-  --_button-outline-color: var(--button-outer-border);
-  --_button-outline-style: var(--button-outer-border-style, solid);
-  
-  padding: var(--_button-padding-y) var(--_button-padding-x);
-  margin-bottom: 1rem;
-  
-  background-color: var(--_button-background-color);
-  color: var(--_button-text-color);
-  border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
-  outline: var(--_button-outline-width) var(--_button-outline-style) var(--_button-outline-color);
-  border-radius: var(--_button-radius);
-    
-  @include mono.variants('button', 'color', 'button');
-  @include mono.variants('button', 'size', 'button');
-  @include mono.fluid-font(
-    $keys: ('button'),
-    $min-value: 'xx',
-    $max-value: 'md',
-    $min-breakpoint: 'sm',
-    $max-breakpoint: 'md'
-  );
-
-  &:hover {
-    --_button-background-color: var(--button-background--hover, var(--button-background));
-    --_button-text-color: var(--button-text--hover, var(--button-text));
-    --_button-border-color: var(--button-border--hover, var(--button-border));
-  }
-  
-  &:focus {
-    --_button-background-color: var(--button-background--focus, var(--button-background));
-    --_button-text-color: var(--button-text--focus, var(--button-text));
-    --_button-border-color: var(--button-border--focus, var(--button-border));
-  }
-  
-  &:active {
-    --_button-background-color: var(--button-background--active, var(--button-background));
-    --_button-text-color: var(--button-text--active, var(--button-text));
-    --_button-border-color: var(--button-border--active, var(--button-border));
-  }
-  
-  &:disabled {
-    --_button-background-color: var(--button-background--disabled, var(--button-background));
-    --_button-text-color: var(--button-text--disabled, var(--button-text));
-    --_button-border-color: var(--button-border--disabled, var(--button-border));
-  }
-}
-
-// Demo Grid Visualization
-.grid {
+// Visual grid overlay
+.grid-overlay {
   position: fixed;
   z-index: -1;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   
-  opacity: 0.4;
+  body.show-grid & {
+    opacity: 1;
+  }
   
   @include mono.responsive-grid();
-
-  // Style all grid columns (margins, content, and gaps)
+  
   & > * {
     height: 100vh;
   }
-
-  // First and last columns (margins)
-  & > :first-child,
-  & > :last-child {
-    // background: #4a5759 !important;
-    background: #9ba49c !important;
-
-  }
-
-  // 2nd and 2nd to last columns
-  & > :nth-child(2),
-  & > :nth-last-child(2) {
-    background: #b0c4b1 !important;
-  }
-
-  // 3rd and 3rd to last columns
-  & > :nth-child(3),
-  & > :nth-last-child(3) {
-    background: #dedbd2 !important;
-  }
-
-  @media (min-width: 0) {
-    $columns: 50;
-    
-    // Generate gap column selectors (odd positions from 5 onwards, excluding last 3)
-    $gap-selectors: ();
-    @for $i from 2 through ($columns - 2) {
-      $position: (2 * $i) + 1;
-      $gap-selectors: list.append($gap-selectors, '& > :nth-child(#{$position})', comma);
+  
+  .theme-light & {
+    // First and last columns (margins)
+    & > :first-child,
+    & > :last-child {
+      background: rgba(38, 70, 83, 0.08);
     }
     
-    // Generate content column selectors (even positions from 4 onwards, excluding last 3)
-    $content-selectors: ();
-    @for $i from 2 through ($columns - 1) {
-      $position: 2 * $i;
-      $content-selectors: list.append($content-selectors, '& > :nth-child(#{$position})', comma);
+    // Content columns (even positions)
+    & > :nth-child(even) {
+      background: rgba(42, 157, 143, 0.05);
     }
     
-    // Apply gap styles (inner gaps)
-    #{$gap-selectors} {
-      background: #edafb8;
+    // Gap columns (odd positions, excluding first and last)
+    & > :nth-child(odd):not(:first-child):not(:last-child) {
+      background: rgba(244, 162, 97, 0.08);
+    }
+  }
+  
+  .theme-dark & {
+    // First and last columns (margins)
+    & > :first-child,
+    & > :last-child {
+      background: rgba(233, 196, 106, 0.1);
     }
     
-    // Apply content column styles (inner columns)
-    #{$content-selectors} {
-      // background: #f7e1d7;
-      background: #fff;
+    // Content columns (even positions)
+    & > :nth-child(even) {
+      background: rgba(42, 157, 143, 0.08);
+    }
+    
+    // Gap columns (odd positions, excluding first and last)
+    & > :nth-child(odd):not(:first-child):not(:last-child) {
+      background: rgba(231, 111, 81, 0.12);
     }
   }
 }
-
-
-
-
-// // Demo Grid
-// .grid {
-//   @include responsive-grid();
-//   position: fixed;
-//   z-index: -1;
-//   width: 100%;
-//   height: 100vh;
-
-//   &__item {
-//     height: 100vh;
-//     background: rgba(token(color, green), 0.1);
-
-//     &:nth-child(odd) {
-//       background: rgba(token(color, dark-green), 0.1);
-//     }
-//   }
-// }
-
-// // Demo Content
-// .content {
-//   @include responsive-grid();
-//   margin: 2rem auto;
-//   padding: 2rem;
-
-//   h1 { 
-//     @include typography(heading-2xl);
-//     @include responsive-slot('grid-column', grid, typography, h1);
-//   }
-
-//   h2 { 
-//     @include typography(heading-xl);
-//     @include responsive-slot('grid-column', grid, typography, h2);
-//   }
-
-//   h3 {
-//     @include typography(heading-lg);
-//     @include responsive-slot('grid-column', grid, typography, h3);
-//     @include responsive-size('margin-bottom', xl);
-//     @include responsive-size('padding', md);
-//     @include responsive-border-radius(md);
-//   }
-
-//   p {
-//     @include typography(text-md);
-//     @include responsive-slot('grid-column', grid, typography, p);
-//     margin-bottom: 1rem;
-
-//     &.intro {
-//       @include typography(text-lg);
-//     }
-
-//     &.small {
-//       @include typography(text-sm);
-//     }
-//   }
-// }
-
-// // Demo Layout
-// .layout {
-//   @include responsive-grid();
-//   margin: 2rem 0;
-//   padding: 1rem;
-
-//   &__item {
-//     height: 100px;
-//     border-radius: 4px;
-
-//     &--wide {
-//       grid-column: slot(grid, wide);
-//       background-color: rgba(token(color, green), 0.3);
-//     }
-
-//     &--component {
-//       grid-column: slot(grid, component);
-//       background-color: rgba(token(color, dark-green), 0.3);
-//     }
-
-//     &--text {
-//       grid-column: slot(grid, text);
-//       background-color: rgba(token(color, default), 0.3);
-//     }
-//   }
-// }
-

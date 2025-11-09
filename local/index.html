@@ -1,164 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>MONO Design System</title>
-
-    <!-- Google Fonts -->
+    <title>MONO Design System Demo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./main.css">
   </head>
-  <body class="theme-blue">
-    <main id="app">
-      <!-- Theme Switcher -->
-      <div style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
-        <label for="theme-switch" style="cursor: pointer; user-select: none;">
-          <input type="checkbox" id="theme-switch" style="margin-right: 0.5em;">
-          <span id="theme-label">Light Theme</span>
-        </label>
-      </div>
+  <body class="theme-light show-grid">
+    <!-- Theme Switcher -->
+    <div style="position: fixed; top: 1rem; right: 1rem; z-index: 1000; background: rgba(255,255,255,0.95); padding: 0.5rem 1rem; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); backdrop-filter: blur(10px);">
+      <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; margin-bottom: 0.5rem;">
+        <span style="font-family: 'Lato', sans-serif; font-size: 0.875rem; font-weight: 600; color: #264653;">Theme:</span>
+        <select id="theme-switch" style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; border: 1px solid #2a9d8f; background: white; color: #264653; font-family: 'Lato', sans-serif; cursor: pointer;">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+      <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+        <input type="checkbox" id="grid-toggle" checked style="cursor: pointer; width: 16px; height: 16px; accent-color: #2a9d8f;">
+        <span style="font-family: 'Lato', sans-serif; font-size: 0.875rem; font-weight: 600; color: #264653;">Show Grid</span>
+      </label>
+    </div>
 
-      <!-- Introduction -->
+    <main>
+      <!-- Typography Feature -->
       <section class="content">
-        <h1>MONO Design System</h1>
-        <h2>A framework-agnostic utility library for SASS</h2>
-        <p class="intro">
-          MONO helps to manage your styles between Figma and your code. It provides access to Figma Variables 
-          and a set of useful tools to help you reflect the designs easier in your code.
-        </p>
-
-        <h3>Features</h3>
-        <p>
-          MONO is not generating any CSS code, instead it provides you access to Figma Variables and set of 
-          useful tools to help you reflect the designs easier in your code.
-        </p>
-        <p class="small">
-          Built with modern SASS features and best practices in mind.
-        </p>
+        <h1>Typography</h1>
+        <p>Fluid typography that scales smoothly between breakpoints using responsive font tokens.</p>
+        <p>This heading uses <code>fluid-font()</code> mixin, and this body text uses <code>font()</code> mixin with responsive sizing.</p>
       </section>
 
-      <!-- Layout Demo -->
-      <div class="grid-item">Grid Item</div>
-      <div class="grid-item grid-item--with-sidebar">Grid Item with Sidebar</div>
-      <div class="grid-item grid-item--sidebar">Sidebar</div>
-      <div class="grid-item grid-item--wide">Grid Item Wide</div>
-      <div class="grid-item grid-item--wider">Grid Item Wider</div>
-      <div class="grid-item grid-item--full">Grid Item Full</div>
-
-      <!-- Content Demo -->
+      <!-- Grid Feature -->
       <section class="content">
-        <h2>Vivamus sagittis lacus vel augue</h2>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
-
-        <h3>Aenean ultricies mi vitae est</h3>
-        <p>Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.</p>
-
-        <h4>Praesent dapibus neque id</h4>
-        <p>Etiam vel neque nec dui dignissim bibendum. Vivamus id enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa. Phasellus purus. Pellentesque tristique imperdiet tortor. Nam euismod tellus id erat.</p>
-
-        <h5>Curabitur blandit mollis lacus</h5>
-        <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh.</p>
-        <p>Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui.</p>
-
-        <h6>Integer tincidunt</h6>
-        <p>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-
-        <ul>
-          <li>Phasellus viverra nulla ut metus varius laoreet</li>
-          <li>Quisque rutrum aenean imperdiet</li>
-          <li>Etiam ultricies nisi vel augue</li>
-        </ul>
-
-        <ol>
-          <li>Curabitur ullamcorper ultricies nisi nam eget dui</li>
-          <li>Etiam rhoncus maecenas tempus tellus eget condimentum</li>
-          <li>Donec vitae sapien ut libero venenatis faucibus</li>
-        </ol>
-
-        <blockquote>
-          <p>Sed dignissim lacinia nunc. Curabitur tortor pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.</p>
-        </blockquote>
-
-        <button class="button button--color-primary button--radius-medium">Button</button>
-        <button class="button button--color-secondary">Button</button>
+        <h1>Grid System</h1>
+        <p>Responsive grid with configurable columns, gaps, and margins across breakpoints.</p>
       </section>
 
-      <!-- Background Grid -->
-      <div class="grid">
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
-        <div class="grid__item"></div>
+      <!-- Grid Item Examples -->
+      <div class="grid-item">
+        <strong>Grid Item (4 / -4)</strong>
+        <p style="margin: 0.5rem 0 0 0; opacity: 0.7;">Default content width</p>
       </div>
+
+      <div class="grid-item grid-item--wide">
+        <strong>Grid Item Wide (3 / -3)</strong>
+        <p style="margin: 0.5rem 0 0 0; opacity: 0.7;">Wider content area</p>
+      </div>
+
+      <div class="grid-item grid-item--wider">
+        <strong>Grid Item Wider (2 / -2)</strong>
+        <p style="margin: 0.5rem 0 0 0; opacity: 0.7;">Even wider content area</p>
+      </div>
+
+      <div class="grid-item grid-item--full">
+        <strong>Grid Item Full (1 / -1)</strong>
+        <p style="margin: 0.5rem 0 0 0; opacity: 0.7;">Full width spanning entire grid</p>
+      </div>
+
+      <div class="grid-demo">
+        <div class="grid-demo-item">4 columns @ mobile</div>
+        <div class="grid-demo-item">8 columns @ tablet</div>
+        <div class="grid-demo-item">12 columns @ desktop</div>
+        <div class="grid-demo-item">Responsive gaps & margins</div>
+      </div>
+
+      <!-- Global Variables Feature -->
+      <section class="content">
+        <h1>Global Variables</h1>
+        <p>Design tokens for spacing (xs, sm, md, lg) and border radius (sm, md, lg) that adapt to screen size.</p>
+        <p>All spacing and sizing values use <code>responsive-token()</code> for consistent scaling.</p>
+      </section>
+
+      <!-- Variants Feature -->
+      <section class="content">
+        <h1>Variants</h1>
+        <p>Component variants for size and style using the <code>variants()</code> mixin.</p>
+      </section>
+
+      <div class="content buttons">
+        <button class="button button--color-primary button--size-small button--radius-small">Primary Small</button>
+        <button class="button button--color-primary">Primary Default</button>
+        <button class="button button--color-secondary button--radius-small">Secondary Small</button>
+        <button class="button button--color-secondary">Secondary Default</button>
+      </div>
+
+      <!-- Themes Feature -->
+      <section class="content">
+        <h1>Themes</h1>
+        <p>Multi-theme support with color tokens. Try switching themes using the selector above!</p>
+      </section>
+
+      <div class="content theme-card">
+        <h2>Themed Accent Card</h2>
+        <p style="margin-top: 1rem;">This card uses <code>themed-token()</code> to apply accent colors that change with the active theme.</p>
+      </div>
+
+      <!-- Additional content to show grid -->
+      <section class="content">
+        <h1>All Features Combined</h1>
+        <p>MONO provides a complete design token system with responsive typography, flexible grid, global variables, component variants, and multi-theme support.</p>
+      </section>
     </main>
+
+    <!-- Visual grid overlay -->
+    <div class="grid-overlay">
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+
     <script>
-      // Theme switcher logic
-      (function () {
-        const body = document.body;
-        const switchInput = document.getElementById('theme-switch');
-        const themeLabel = document.getElementById('theme-label');
+      const body = document.body;
+      const themeSwitch = document.getElementById('theme-switch');
+      const gridToggle = document.getElementById('grid-toggle');
 
-        function setTheme(theme) {
-          if (theme === 'green') {
-            body.classList.remove('theme-light');
-            body.classList.add('theme-green');
-            themeLabel.textContent = 'Green Theme';
-            switchInput.checked = true;
-          } else {
-            body.classList.remove('theme-green');
-            body.classList.add('theme-light');
-            themeLabel.textContent = 'Light Theme';
-            switchInput.checked = false;
-          }
-        }
+      function setTheme(theme) {
+        body.classList.remove('theme-light', 'theme-dark');
+        body.classList.add('theme-' + theme);
+        localStorage.setItem('mono-theme', theme);
+        themeSwitch.value = theme;
+      }
 
-        // Load theme from localStorage if available
-        const savedTheme = localStorage.getItem('mono-theme');
-        if (savedTheme === 'green') {
-          setTheme('green');
+      function setGridVisibility(visible) {
+        if (visible) {
+          body.classList.add('show-grid');
         } else {
-          setTheme('light');
+          body.classList.remove('show-grid');
         }
+        localStorage.setItem('mono-show-grid', visible);
+        gridToggle.checked = visible;
+      }
 
-        switchInput.addEventListener('change', function () {
-          if (switchInput.checked) {
-            setTheme('green');
-            localStorage.setItem('mono-theme', 'green');
-          } else {
-            setTheme('light');
-            localStorage.setItem('mono-theme', 'light');
-          }
-        });
-      })();
+      // Load saved preferences
+      const savedTheme = localStorage.getItem('mono-theme') || 'light';
+      const savedGridVisible = localStorage.getItem('mono-show-grid') !== 'false';
+      
+      setTheme(savedTheme);
+      setGridVisibility(savedGridVisible);
+
+      // Event listeners
+      themeSwitch.addEventListener('change', function() {
+        setTheme(themeSwitch.value);
+      });
+
+      gridToggle.addEventListener('change', function() {
+        setGridVisibility(gridToggle.checked);
+      });
     </script>
   </body>
 </html>

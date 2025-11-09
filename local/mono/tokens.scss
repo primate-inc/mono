@@ -3,202 +3,118 @@
  * Do not edit directly, this file was auto-generated.
  */
 
-$breakpoint-sm: 21.875rem !default;
-$breakpoint-md: 45rem !default;
-$breakpoint-lg: 75rem !default;
+// Breakpoints
+$breakpoint-sm: 30rem !default;
+$breakpoint-md: 60rem !default;
+$breakpoint-lg: 90rem !default;
 $breakpoint-xx: 0 !default;
-$size-typography-heading-md-font-size-xx: 1.375rem !default;
-$size-typography-heading-md-font-size-sm: 1.625rem !default;
-$size-typography-heading-md-font-size-md: 1.9375rem !default;
-$size-typography-heading-md-font-weight-xx: 37.5rem !default;
-$size-typography-heading-md-font-weight-sm: 37.5rem !default;
-$size-typography-heading-md-font-weight-md: 37.5rem !default;
-$size-typography-heading-md-letter-spacing-xx: 0 !default;
-$size-typography-heading-md-letter-spacing-sm: 0 !default;
-$size-typography-heading-md-letter-spacing-md: 0 !default;
-$size-typography-heading-md-line-height-xx: 1.71875rem !default;
-$size-typography-heading-md-line-height-sm: 2.03125rem !default;
-$size-typography-heading-md-line-height-md: 2.421875rem !default;
-$size-typography-heading-lg-font-size-xx: 1.625rem !default;
-$size-typography-heading-lg-font-size-sm: 2rem !default;
-$size-typography-heading-lg-font-size-md: 2.4375rem !default;
-$size-typography-heading-lg-font-weight-xx: 37.5rem !default;
-$size-typography-heading-lg-font-weight-sm: 37.5rem !default;
-$size-typography-heading-lg-font-weight-md: 37.5rem !default;
-$size-typography-heading-lg-line-height-xx: 2.03125rem !default;
-$size-typography-heading-lg-line-height-sm: 2.5rem !default;
-$size-typography-heading-lg-line-height-md: 3.046875rem !default;
-$size-typography-heading-lg-letter-spacing-xx: 0 !default;
-$size-typography-heading-lg-letter-spacing-sm: 0 !default;
-$size-typography-heading-lg-letter-spacing-md: 0 !default;
+
+// Typography - Heading
+$size-typography-heading-font-size-xx: 1.5rem !default;
+$size-typography-heading-font-size-sm: 2rem !default;
+$size-typography-heading-font-size-md: 2.5rem !default;
+$size-typography-heading-font-weight-xx: 700 !default;
+$size-typography-heading-font-weight-sm: 700 !default;
+$size-typography-heading-font-weight-md: 700 !default;
+$size-typography-heading-line-height-xx: 1.875rem !default;
+$size-typography-heading-line-height-sm: 2.5rem !default;
+$size-typography-heading-line-height-md: 3.125rem !default;
+
+// Typography - Body
 $size-typography-body-font-size-xx: 1rem !default;
-$size-typography-body-font-size-sm: 1.0625rem !default;
-$size-typography-body-font-size-md: 1.125rem !default;
-$size-typography-body-font-weight-xx: 18.75rem !default;
-$size-typography-body-font-weight-sm: 18.75rem !default;
-$size-typography-body-font-weight-md: 18.75rem !default;
-$size-typography-body-line-height-xx: 1.25rem !default;
-$size-typography-body-line-height-sm: 1.3125rem !default;
-$size-typography-body-line-height-md: 1.375rem !default;
-$size-typography-body-letter-spacing-xx: 0 !default;
-$size-typography-body-letter-spacing-sm: 0 !default;
-$size-typography-body-letter-spacing-md: 0 !default;
-$size-typography-body-paragraph-spacing-xx: 0.5rem !default;
-$size-typography-body-paragraph-spacing-sm: 0.5rem !default;
-$size-typography-body-paragraph-spacing-md: 0.5rem !default;
-$size-typography-body-list-spacing-xx: 0.5rem !default;
-$size-typography-body-list-spacing-sm: 0.5rem !default;
-$size-typography-body-list-spacing-md: 0.5rem !default;
-$size-typography-button-font-weight-xx: 18.75rem !default;
-$size-typography-button-font-weight-sm: 18.75rem !default;
-$size-typography-button-font-weight-md: 18.75rem !default;
-$size-typography-button-line-height-xx: 1.25rem !default;
-$size-typography-button-line-height-sm: 1.5rem !default;
-$size-typography-button-line-height-md: 1.75rem !default;
-$size-typography-button-letter-spacing-xx: 0 !default;
-$size-typography-button-letter-spacing-sm: 0 !default;
-$size-typography-button-letter-spacing-md: 0 !default;
-$size-typography-button-paragraph-spacing-xx: 0 !default;
-$size-typography-button-paragraph-spacing-sm: 0 !default;
-$size-typography-button-paragraph-spacing-md: 0 !default;
-$size-typography-button-font-size-xx: 1rem !default;
-$size-typography-button-font-size-sm: 1.25rem !default;
-$size-typography-button-font-size-md: 1.5rem !default;
-$size-typography-button-font-family-xx: Lato !default;
-$size-typography-button-font-family-sm: Lato !default;
-$size-typography-button-font-family-md: Lato !default;
+$size-typography-body-font-size-sm: 1.125rem !default;
+$size-typography-body-font-size-md: 1.25rem !default;
+$size-typography-body-font-weight-xx: 400 !default;
+$size-typography-body-font-weight-sm: 400 !default;
+$size-typography-body-font-weight-md: 400 !default;
+$size-typography-body-line-height-xx: 1.5rem !default;
+$size-typography-body-line-height-sm: 1.6875rem !default;
+$size-typography-body-line-height-md: 1.875rem !default;
+
+// Grid
 $size-grid-columns-xx: 4 !default;
-$size-grid-columns-sm: 6 !default;
+$size-grid-columns-sm: 8 !default;
 $size-grid-columns-md: 12 !default;
-$size-grid-gap-xx: 0.5rem !default;
-$size-grid-gap-sm: 0.5rem !default;
-$size-grid-gap-md: 1rem !default;
-$size-grid-margin-xx: 0.5rem !default;
+$size-grid-gap-xx: 1rem !default;
+$size-grid-gap-sm: 1.5rem !default;
+$size-grid-gap-md: 2rem !default;
+$size-grid-margin-xx: 1rem !default;
 $size-grid-margin-sm: 2rem !default;
 $size-grid-margin-md: 4rem !default;
 $size-grid-max-width-xx: 75rem !default;
 $size-grid-max-width-sm: 75rem !default;
 $size-grid-max-width-md: 75rem !default;
-$size-page-spacing-none-xx: 0 !default;
-$size-page-spacing-none-sm: 0 !default;
-$size-page-spacing-none-md: 0 !default;
-$size-page-spacing-sm-xx: 0.5rem !default;
-$size-page-spacing-sm-sm: 0.625rem !default;
-$size-page-spacing-sm-md: 0.75rem !default;
-$size-page-spacing-xl-xx: 4rem !default;
-$size-page-spacing-xl-sm: 4.5rem !default;
-$size-page-spacing-xl-md: 5rem !default;
-$size-page-spacing-md-xx: 0.75rem !default;
-$size-page-spacing-md-sm: 0.875rem !default;
-$size-page-spacing-md-md: 1rem !default;
-$size-page-spacing-xs-xx: 0.125rem !default;
-$size-page-spacing-xs-sm: 0.25rem !default;
-$size-page-spacing-xs-md: 0.5rem !default;
-$size-page-spacing-lg-xx: 2rem !default;
-$size-page-spacing-lg-sm: 3rem !default;
-$size-page-spacing-lg-md: 4rem !default;
-$size-page-radius-md-xx: 0.5rem !default;
-$size-page-radius-md-sm: 0.5rem !default;
-$size-page-radius-md-md: 0.5rem !default;
-$size-page-radius-sm-xx: 0.125rem !default;
-$size-page-radius-sm-sm: 0.125rem !default;
-$size-page-radius-sm-md: 0.125rem !default;
-$size-page-radius-none-xx: 0 !default;
-$size-page-radius-none-sm: 0 !default;
-$size-page-radius-none-md: 0 !default;
-$size-page-max-width-xx: 21.875rem !default;
-$size-page-max-width-sm: 45rem !default;
-$size-page-max-width-md: 75rem !default;
-$size-button-radius-none-radius-xx: 0 !default;
-$size-button-radius-none-radius-sm: 0 !default;
-$size-button-radius-none-radius-md: 0 !default;
-$size-button-radius-small-radius-xx: 0.125rem !default;
-$size-button-radius-small-radius-sm: 0.125rem !default;
-$size-button-radius-small-radius-md: 0.125rem !default;
-$size-button-radius-medium-radius-xx: 0.5rem !default;
-$size-button-radius-medium-radius-sm: 0.5rem !default;
-$size-button-radius-medium-radius-md: 0.5rem !default;
+
+// Global Spacing
+$size-spacing-xs-xx: 0.25rem !default;
+$size-spacing-xs-sm: 0.5rem !default;
+$size-spacing-xs-md: 0.75rem !default;
+$size-spacing-sm-xx: 0.5rem !default;
+$size-spacing-sm-sm: 0.75rem !default;
+$size-spacing-sm-md: 1rem !default;
+$size-spacing-md-xx: 1rem !default;
+$size-spacing-md-sm: 1.5rem !default;
+$size-spacing-md-md: 2rem !default;
+$size-spacing-lg-xx: 2rem !default;
+$size-spacing-lg-sm: 3rem !default;
+$size-spacing-lg-md: 4rem !default;
+
+// Global Radius
+$size-radius-sm-xx: 0.25rem !default;
+$size-radius-sm-sm: 0.25rem !default;
+$size-radius-sm-md: 0.25rem !default;
+$size-radius-md-xx: 0.5rem !default;
+$size-radius-md-sm: 0.5rem !default;
+$size-radius-md-md: 0.5rem !default;
+$size-radius-lg-xx: 1rem !default;
+$size-radius-lg-sm: 1rem !default;
+$size-radius-lg-md: 1rem !default;
+
+// Button Variants - Size
+$size-button-size-small-padding-x-xx: 1rem !default;
+$size-button-size-small-padding-x-sm: 1rem !default;
+$size-button-size-small-padding-x-md: 1rem !default;
+$size-button-size-small-padding-y-xx: 0.5rem !default;
+$size-button-size-small-padding-y-sm: 0.5rem !default;
+$size-button-size-small-padding-y-md: 0.5rem !default;
 $size-button-size-default-padding-x-xx: 1.5rem !default;
 $size-button-size-default-padding-x-sm: 1.5rem !default;
 $size-button-size-default-padding-x-md: 1.5rem !default;
 $size-button-size-default-padding-y-xx: 0.75rem !default;
 $size-button-size-default-padding-y-sm: 0.75rem !default;
 $size-button-size-default-padding-y-md: 0.75rem !default;
-$color-button-color-secondary-background-initial-blue: #ffffffff !default;
-$color-button-color-secondary-background-initial-green: #ffffffff !default;
-$color-button-color-secondary-background-initial-dark: #292929ff !default;
-$color-button-color-secondary-background-hover-blue: #3c64f3ff !default;
-$color-button-color-secondary-background-hover-green: #316454ff !default;
-$color-button-color-secondary-background-hover-dark: #f5e12eff !default;
-$color-button-color-secondary-background-focus-blue: #092690ff !default;
-$color-button-color-secondary-background-focus-green: #22463bff !default;
-$color-button-color-secondary-background-focus-dark: #fcf5b6ff !default;
-$color-button-color-secondary-background-active-blue: #092690ff !default;
-$color-button-color-secondary-background-active-green: #22463bff !default;
-$color-button-color-secondary-background-active-dark: #fcf5b6ff !default;
-$color-button-color-secondary-background-disabled-blue: #ccccccff !default;
-$color-button-color-secondary-background-disabled-green: #ccccccff !default;
-$color-button-color-secondary-background-disabled-dark: #ccccccff !default;
-$color-button-color-secondary-text-initial-blue: #3c64f3ff !default;
-$color-button-color-secondary-text-initial-green: #316454ff !default;
-$color-button-color-secondary-text-initial-dark: #f5e12eff !default;
-$color-button-color-secondary-text-hover-blue: #ffffffff !default;
-$color-button-color-secondary-text-hover-green: #ffffffff !default;
-$color-button-color-secondary-text-hover-dark: #292929ff !default;
-$color-button-color-secondary-text-focus-blue: #ffffffff !default;
-$color-button-color-secondary-text-focus-green: #ffffffff !default;
-$color-button-color-secondary-text-focus-dark: #292929ff !default;
-$color-button-color-secondary-text-active-blue: #ffffffff !default;
-$color-button-color-secondary-text-active-green: #ffffffff !default;
-$color-button-color-secondary-text-active-dark: #292929ff !default;
-$color-button-color-secondary-text-disabled-blue: #092690ff !default;
-$color-button-color-secondary-text-disabled-green: #22463bff !default;
-$color-button-color-secondary-text-disabled-dark: #4e4604ff !default;
-$color-button-color-secondary-border-initial-blue: #3c64f3ff !default;
-$color-button-color-secondary-border-initial-green: #316454ff !default;
-$color-button-color-secondary-border-initial-dark: #f5e12eff !default;
-$color-button-color-secondary-border-hover-blue: #3c64f3ff !default;
-$color-button-color-secondary-border-hover-green: #316454ff !default;
-$color-button-color-secondary-border-hover-dark: #f5e12eff !default;
-$color-button-color-secondary-border-focus-blue: #092690ff !default;
-$color-button-color-secondary-border-focus-green: #22463bff !default;
-$color-button-color-secondary-border-focus-dark: #fcf5b6ff !default;
-$color-button-color-secondary-border-active-blue: #092690ff !default;
-$color-button-color-secondary-border-active-green: #22463bff !default;
-$color-button-color-secondary-border-active-dark: #fcf5b6ff !default;
-$color-button-color-secondary-border-disabled-blue: #ccccccff !default;
-$color-button-color-secondary-border-disabled-green: #ccccccff !default;
-$color-button-color-secondary-border-disabled-dark: #ccccccff !default;
-$color-button-color-primary-background-blue: #3c64f3ff !default;
-$color-button-color-primary-background-green: #316454ff !default;
-$color-button-color-primary-background-dark: #f5e12eff !default;
-$color-button-color-primary-inner-border-blue: #ffffffff !default;
-$color-button-color-primary-inner-border-green: #527d6fff !default;
-$color-button-color-primary-inner-border-dark: #f5e12eff !default;
-$color-button-color-primary-outer-border-blue: #3c64f3ff !default;
-$color-button-color-primary-outer-border-green: #22463bff !default;
-$color-button-color-primary-outer-border-dark: #f5e12eff !default;
-$color-button-color-primary-text-blue: #ffffffff !default;
-$color-button-color-primary-text-green: #ffffffff !default;
-$color-button-color-primary-text-dark: #292929ff !default;
-$color-page-background-blue: #ffffffff !default;
-$color-page-background-green: #ffffffff !default;
-$color-page-background-dark: #292929ff !default;
-$color-page-text-blue: #182861ff !default;
-$color-page-text-green: #000000ff !default;
+
+// Button Variants - Radius
+$size-button-radius-small-radius-xx: 0.25rem !default;
+$size-button-radius-small-radius-sm: 0.25rem !default;
+$size-button-radius-small-radius-md: 0.25rem !default;
+$size-button-radius-medium-radius-xx: 0.5rem !default;
+$size-button-radius-medium-radius-sm: 0.5rem !default;
+$size-button-radius-medium-radius-md: 0.5rem !default;
+
+// Theme Colors - Primary Button
+$color-button-color-primary-background-light: #2a9d8fff !default;
+$color-button-color-primary-background-dark: #e9c46aff !default;
+$color-button-color-primary-text-light: #ffffffff !default;
+$color-button-color-primary-text-dark: #264653ff !default;
+
+// Theme Colors - Secondary Button
+$color-button-color-secondary-background-initial-light: #ffffffff !default;
+$color-button-color-secondary-background-initial-dark: #264653ff !default;
+$color-button-color-secondary-text-initial-light: #2a9d8fff !default;
+$color-button-color-secondary-text-initial-dark: #e9c46aff !default;
+$color-button-color-secondary-border-initial-light: #2a9d8fff !default;
+$color-button-color-secondary-border-initial-dark: #e9c46aff !default;
+
+// Theme Colors - Page
+$color-page-background-light: #ffffffff !default;
+$color-page-background-dark: #264653ff !default;
+$color-page-text-light: #264653ff !default;
 $color-page-text-dark: #ffffffff !default;
-$color-page-accent-blue: #3c64f3ff !default;
-$color-page-accent-green: #316454ff !default;
-$color-page-accent-dark: #f5e12eff !default;
-$color-page-accent-light-blue: #6f8df6ff !default;
-$color-page-accent-light-green: #527d6fff !default;
-$color-page-accent-light-dark: #fcf5b6ff !default;
-$color-page-accent-dark-blue: #092690ff !default;
-$color-page-accent-dark-green: #22463bff !default;
-$color-page-accent-dark-dark: #4e4604ff !default;
-$color-page-disabled-blue: #ccccccff !default;
-$color-page-disabled-green: #ccccccff !default;
-$color-page-disabled-dark: #ccccccff !default;
+$color-page-accent-light: #2a9d8fff !default;
+$color-page-accent-dark: #e9c46aff !default;
+$color-page-accent-secondary-light: #e76f51ff !default;
+$color-page-accent-secondary-dark: #f4a261ff; // #e76f51ff !default;
 
 $tokens: (
   'breakpoint': (
@@ -210,57 +126,23 @@ $tokens: (
   'size': (
     'typography': (
       'heading': (
-        'md': (
-          'font-size': (
-            '@xx': $size-typography-heading-md-font-size-xx,
-            '@sm': $size-typography-heading-md-font-size-sm,
-            '@md': $size-typography-heading-md-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-heading-md-font-weight-xx,
-            '@sm': $size-typography-heading-md-font-weight-sm,
-            '@md': $size-typography-heading-md-font-weight-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-heading-md-letter-spacing-xx,
-            '@sm': $size-typography-heading-md-letter-spacing-sm,
-            '@md': $size-typography-heading-md-letter-spacing-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-heading-md-line-height-xx,
-            '@sm': $size-typography-heading-md-line-height-sm,
-            '@md': $size-typography-heading-md-line-height-md
-          )
+        'font-size': (
+          '@xx': $size-typography-heading-font-size-xx,
+          '@sm': $size-typography-heading-font-size-sm,
+          '@md': $size-typography-heading-font-size-md
         ),
-        'lg': (
-          'font-size': (
-            '@xx': $size-typography-heading-lg-font-size-xx,
-            '@sm': $size-typography-heading-lg-font-size-sm,
-            '@md': $size-typography-heading-lg-font-size-md
-          ),
-          'font-weight': (
-            '@xx': $size-typography-heading-lg-font-weight-xx,
-            '@sm': $size-typography-heading-lg-font-weight-sm,
-            '@md': $size-typography-heading-lg-font-weight-md
-          ),
-          'line-height': (
-            '@xx': $size-typography-heading-lg-line-height-xx,
-            '@sm': $size-typography-heading-lg-line-height-sm,
-            '@md': $size-typography-heading-lg-line-height-md
-          ),
-          'letter-spacing': (
-            '@xx': $size-typography-heading-lg-letter-spacing-xx,
-            '@sm': $size-typography-heading-lg-letter-spacing-sm,
-            '@md': $size-typography-heading-lg-letter-spacing-md
-          )
+        'font-weight': (
+          '@xx': $size-typography-heading-font-weight-xx,
+          '@sm': $size-typography-heading-font-weight-sm,
+          '@md': $size-typography-heading-font-weight-md
+        ),
+        'line-height': (
+          '@xx': $size-typography-heading-line-height-xx,
+          '@sm': $size-typography-heading-line-height-sm,
+          '@md': $size-typography-heading-line-height-md
         )
       ),
       'body': (
-        'font-family': (
-          '@xx': 'Lato',
-          '@sm': 'Lato',
-          '@md': 'Lato'
-        ),
         'font-size': (
           '@xx': $size-typography-body-font-size-xx,
           '@sm': $size-typography-body-font-size-sm,
@@ -275,53 +157,6 @@ $tokens: (
           '@xx': $size-typography-body-line-height-xx,
           '@sm': $size-typography-body-line-height-sm,
           '@md': $size-typography-body-line-height-md
-        ),
-        'letter-spacing': (
-          '@xx': $size-typography-body-letter-spacing-xx,
-          '@sm': $size-typography-body-letter-spacing-sm,
-          '@md': $size-typography-body-letter-spacing-md
-        ),
-        'paragraph-spacing': (
-          '@xx': $size-typography-body-paragraph-spacing-xx,
-          '@sm': $size-typography-body-paragraph-spacing-sm,
-          '@md': $size-typography-body-paragraph-spacing-md
-        ),
-        'list-spacing': (
-          '@xx': $size-typography-body-list-spacing-xx,
-          '@sm': $size-typography-body-list-spacing-sm,
-          '@md': $size-typography-body-list-spacing-md
-        )
-      ),
-      'button': (
-        'font-weight': (
-          '@xx': $size-typography-button-font-weight-xx,
-          '@sm': $size-typography-button-font-weight-sm,
-          '@md': $size-typography-button-font-weight-md
-        ),
-        'line-height': (
-          '@xx': $size-typography-button-line-height-xx,
-          '@sm': $size-typography-button-line-height-sm,
-          '@md': $size-typography-button-line-height-md
-        ),
-        'letter-spacing': (
-          '@xx': $size-typography-button-letter-spacing-xx,
-          '@sm': $size-typography-button-letter-spacing-sm,
-          '@md': $size-typography-button-letter-spacing-md
-        ),
-        'paragraph-spacing': (
-          '@xx': $size-typography-button-paragraph-spacing-xx,
-          '@sm': $size-typography-button-paragraph-spacing-sm,
-          '@md': $size-typography-button-paragraph-spacing-md
-        ),
-        'font-size': (
-          '@xx': $size-typography-button-font-size-xx,
-          '@sm': $size-typography-button-font-size-sm,
-          '@md': $size-typography-button-font-size-md
-        ),
-        'font-family': (
-          '@xx': $size-typography-button-font-family-xx,
-          '@sm': $size-typography-button-font-family-sm,
-          '@md': $size-typography-button-font-family-md
         )
       )
     ),
@@ -347,93 +182,60 @@ $tokens: (
         '@md': $size-grid-max-width-md
       )
     ),
-    'page': (
-      'spacing': (
-        'none': (
-          '@xx': $size-page-spacing-none-xx,
-          '@sm': $size-page-spacing-none-sm,
-          '@md': $size-page-spacing-none-md
-        ),
-        'sm': (
-          '@xx': $size-page-spacing-sm-xx,
-          '@sm': $size-page-spacing-sm-sm,
-          '@md': $size-page-spacing-sm-md
-        ),
-        'xl': (
-          '@xx': $size-page-spacing-xl-xx,
-          '@sm': $size-page-spacing-xl-sm,
-          '@md': $size-page-spacing-xl-md
-        ),
-        'md': (
-          '@xx': $size-page-spacing-md-xx,
-          '@sm': $size-page-spacing-md-sm,
-          '@md': $size-page-spacing-md-md
-        ),
-        'xs': (
-          '@xx': $size-page-spacing-xs-xx,
-          '@sm': $size-page-spacing-xs-sm,
-          '@md': $size-page-spacing-xs-md
-        ),
-        'lg': (
-          '@xx': $size-page-spacing-lg-xx,
-          '@sm': $size-page-spacing-lg-sm,
-          '@md': $size-page-spacing-lg-md
-        )
+    'spacing': (
+      'xs': (
+        '@xx': $size-spacing-xs-xx,
+        '@sm': $size-spacing-xs-sm,
+        '@md': $size-spacing-xs-md
       ),
-      'radius': (
-        'lg': (
-          '@xx': 1rem,
-          '@sm': 1.5rem,
-          '@md': 2rem
-        ),
-        'md': (
-          '@xx': $size-page-radius-md-xx,
-          '@sm': $size-page-radius-md-sm,
-          '@md': $size-page-radius-md-md
-        ),
-        'sm': (
-          '@xx': $size-page-radius-sm-xx,
-          '@sm': $size-page-radius-sm-sm,
-          '@md': $size-page-radius-sm-md
-        ),
-        'none': (
-          '@xx': $size-page-radius-none-xx,
-          '@sm': $size-page-radius-none-sm,
-          '@md': $size-page-radius-none-md
-        )
+      'sm': (
+        '@xx': $size-spacing-sm-xx,
+        '@sm': $size-spacing-sm-sm,
+        '@md': $size-spacing-sm-md
       ),
-      'max-width': (
-        '@xx': $size-page-max-width-xx,
-        '@sm': $size-page-max-width-sm,
-        '@md': $size-page-max-width-md
+      'md': (
+        '@xx': $size-spacing-md-xx,
+        '@sm': $size-spacing-md-sm,
+        '@md': $size-spacing-md-md
+      ),
+      'lg': (
+        '@xx': $size-spacing-lg-xx,
+        '@sm': $size-spacing-lg-sm,
+        '@md': $size-spacing-lg-md
+      )
+    ),
+    'radius': (
+      'sm': (
+        '@xx': $size-radius-sm-xx,
+        '@sm': $size-radius-sm-sm,
+        '@md': $size-radius-sm-md
+      ),
+      'md': (
+        '@xx': $size-radius-md-xx,
+        '@sm': $size-radius-md-sm,
+        '@md': $size-radius-md-md
+      ),
+      'lg': (
+        '@xx': $size-radius-lg-xx,
+        '@sm': $size-radius-lg-sm,
+        '@md': $size-radius-lg-md
       )
     ),
     '%button': (
-      '--radius': (
-        '-none*': (
-          'radius': (
-            '@xx': $size-button-radius-none-radius-xx,
-            '@sm': $size-button-radius-none-radius-sm,
-            '@md': $size-button-radius-none-radius-md
-          )
-        ),
-        '-small': (
-          'radius': (
-            '@xx': $size-button-radius-small-radius-xx,
-            '@sm': $size-button-radius-small-radius-sm,
-            '@md': $size-button-radius-small-radius-md
-          )
-        ),
-        '-medium': (
-          'radius': (
-            '@xx': $size-button-radius-medium-radius-xx,
-            '@sm': $size-button-radius-medium-radius-sm,
-            '@md': $size-button-radius-medium-radius-md
-          )
-        )
-      ),
       '--size': (
-        '-default*': (        
+        '-small': (
+          'padding-x': (
+            '@xx': $size-button-size-small-padding-x-xx,
+            '@sm': $size-button-size-small-padding-x-sm,
+            '@md': $size-button-size-small-padding-x-md
+          ),
+          'padding-y': (
+            '@xx': $size-button-size-small-padding-y-xx,
+            '@sm': $size-button-size-small-padding-y-sm,
+            '@md': $size-button-size-small-padding-y-md
+          )
+        ),
+        '-default*': (
           'padding-x': (
             '@xx': $size-button-size-default-padding-x-xx,
             '@sm': $size-button-size-default-padding-x-sm,
@@ -445,149 +247,76 @@ $tokens: (
             '@md': $size-button-size-default-padding-y-md
           )
         )
+      ),
+      '--radius': (
+        '-small': (
+          'radius': (
+            '@xx': $size-button-radius-small-radius-xx,
+            '@sm': $size-button-radius-small-radius-sm,
+            '@md': $size-button-radius-small-radius-md
+          )
+        ),
+        '-medium*': (
+          'radius': (
+            '@xx': $size-button-radius-medium-radius-xx,
+            '@sm': $size-button-radius-medium-radius-sm,
+            '@md': $size-button-radius-medium-radius-md
+          )
+        )
       )
     )
   ),
   'color': (
     '%button': (
       '--color': (
+        '-primary*': (
+          'background': (
+            '#light': $color-button-color-primary-background-light,
+            '#dark': $color-button-color-primary-background-dark
+          ),
+          'text': (
+            '#light': $color-button-color-primary-text-light,
+            '#dark': $color-button-color-primary-text-dark
+          )
+        ),
         '-secondary': (
           'background': (
             ':initial': (
-              '#blue': $color-button-color-secondary-background-initial-blue,
-              '#green': $color-button-color-secondary-background-initial-green,
+              '#light': $color-button-color-secondary-background-initial-light,
               '#dark': $color-button-color-secondary-background-initial-dark
-            ),
-            ':hover': (
-              '#blue': $color-button-color-secondary-background-hover-blue,
-              '#green': $color-button-color-secondary-background-hover-green,
-              '#dark': $color-button-color-secondary-background-hover-dark
-            ),
-            ':focus': (
-              '#blue': $color-button-color-secondary-background-focus-blue,
-              '#green': $color-button-color-secondary-background-focus-green,
-              '#dark': $color-button-color-secondary-background-focus-dark
-            ),
-            ':active': (
-              '#blue': $color-button-color-secondary-background-active-blue,
-              '#green': $color-button-color-secondary-background-active-green,
-              '#dark': $color-button-color-secondary-background-active-dark
-            ),
-            ':disabled': (
-              '#blue': $color-button-color-secondary-background-disabled-blue,
-              '#green': $color-button-color-secondary-background-disabled-green,
-              '#dark': $color-button-color-secondary-background-disabled-dark
             )
           ),
           'text': (
             ':initial': (
-              '#blue': $color-button-color-secondary-text-initial-blue,
-              '#green': $color-button-color-secondary-text-initial-green,
+              '#light': $color-button-color-secondary-text-initial-light,
               '#dark': $color-button-color-secondary-text-initial-dark
-            ),
-            ':hover': (
-              '#blue': $color-button-color-secondary-text-hover-blue,
-              '#green': $color-button-color-secondary-text-hover-green,
-              '#dark': $color-button-color-secondary-text-hover-dark
-            ),
-            ':focus': (
-              '#blue': $color-button-color-secondary-text-focus-blue,
-              '#green': $color-button-color-secondary-text-focus-green,
-              '#dark': $color-button-color-secondary-text-focus-dark
-            ),
-            ':active': (
-              '#blue': $color-button-color-secondary-text-active-blue,
-              '#green': $color-button-color-secondary-text-active-green,
-              '#dark': $color-button-color-secondary-text-active-dark
-            ),
-            ':disabled': (
-              '#blue': $color-button-color-secondary-text-disabled-blue,
-              '#green': $color-button-color-secondary-text-disabled-green,
-              '#dark': $color-button-color-secondary-text-disabled-dark
             )
           ),
           'border': (
             ':initial': (
-              '#blue': $color-button-color-secondary-border-initial-blue,
-              '#green': $color-button-color-secondary-border-initial-green,
+              '#light': $color-button-color-secondary-border-initial-light,
               '#dark': $color-button-color-secondary-border-initial-dark
-            ),
-            ':hover': (
-              '#blue': $color-button-color-secondary-border-hover-blue,
-              '#green': $color-button-color-secondary-border-hover-green,
-              '#dark': $color-button-color-secondary-border-hover-dark
-            ),
-            ':focus': (
-              '#blue': $color-button-color-secondary-border-focus-blue,
-              '#green': $color-button-color-secondary-border-focus-green,
-              '#dark': $color-button-color-secondary-border-focus-dark
-            ),
-            ':active': (
-              '#blue': $color-button-color-secondary-border-active-blue,
-              '#green': $color-button-color-secondary-border-active-green,
-              '#dark': $color-button-color-secondary-border-active-dark
-            ),
-            ':disabled': (
-              '#blue': $color-button-color-secondary-border-disabled-blue,
-              '#green': $color-button-color-secondary-border-disabled-green,
-              '#dark': $color-button-color-secondary-border-disabled-dark
             )
-          )
-        ),
-        '-primary': (
-          'background': (
-            '#blue': $color-button-color-primary-background-blue,
-            '#green': $color-button-color-primary-background-green,
-            '#dark': $color-button-color-primary-background-dark
-          ),
-          'inner-border': (
-            '#blue': $color-button-color-primary-inner-border-blue,
-            '#green': $color-button-color-primary-inner-border-green,
-            '#dark': $color-button-color-primary-inner-border-dark
-          ),
-          'outer-border': (
-            '#blue': $color-button-color-primary-outer-border-blue,
-            '#green': $color-button-color-primary-outer-border-green,
-            '#dark': $color-button-color-primary-outer-border-dark
-          ),
-          'text': (
-            '#blue': $color-button-color-primary-text-blue,
-            '#green': $color-button-color-primary-text-green,
-            '#dark': $color-button-color-primary-text-dark
           )
         )
       )
     ),
     'page': (
       'background': (
-        '#blue': $color-page-background-blue,
-        '#green': $color-page-background-green,
+        '#light': $color-page-background-light,
         '#dark': $color-page-background-dark
       ),
       'text': (
-        '#blue': $color-page-text-blue,
-        '#green': $color-page-text-green,
+        '#light': $color-page-text-light,
         '#dark': $color-page-text-dark
       ),
       'accent': (
-        '#blue': $color-page-accent-blue,
-        '#green': $color-page-accent-green,
+        '#light': $color-page-accent-light,
         '#dark': $color-page-accent-dark
       ),
-      'accent-light': (
-        '#blue': $color-page-accent-light-blue,
-        '#green': $color-page-accent-light-green,
-        '#dark': $color-page-accent-light-dark
-      ),
-      'accent-dark': (
-        '#blue': $color-page-accent-dark-blue,
-        '#green': $color-page-accent-dark-green,
-        '#dark': $color-page-accent-dark-dark
-      ),
-      'disabled': (
-        '#blue': $color-page-disabled-blue,
-        '#green': $color-page-disabled-green,
-        '#dark': $color-page-disabled-dark
+      'accent-secondary': (
+        '#light': $color-page-accent-secondary-light,
+        '#dark': $color-page-accent-secondary-dark
       )
     )
   )
