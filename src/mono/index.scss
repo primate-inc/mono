@@ -11,6 +11,7 @@ $configs: () !default;
 
 @forward 'tokens';
 @forward 'variables';
+@forward 'screen';
 @forward 'font';
 @forward 'grid';
 @forward 'variants';

@@ -68,8 +68,68 @@ main {
   @include mono.responsive-grid();
 }
 
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+
+  grid-column: 4 / -4;
+  
+  padding: 4rem 1rem;
+  margin: 1rem 0;
+  
+  background-color: #4a5759b4;
+  border-radius: var(--radius-md);
+  border: 1px solid #9ba49c;
+  
+  text-align: center;
+  color: #fff;
+
+  // TODO: Fix font generation, font family not working
+  @include mono.font('body');
+
+  &--wide {
+    grid-column: 3 / -3;
+  }
+
+  &--wider {
+    grid-column: 2 / -2;
+  }
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+
+  &--with-sidebar {
+    grid-column: 4 / -4;
+
+    @include mono.screen('sm') {
+      grid-column: 4 / 9;
+    }
+
+    @include mono.screen('md') {
+      grid-column: 4 / 19;
+    }
+  }
+
+  &--sidebar {
+    grid-column: 4 / -4;
+
+    @include mono.screen('sm') {
+      grid-column: 10 / -4;
+    }
+
+    @include mono.screen('md') {
+      grid-column: 20 / -4;
+    }
+  }
+}
+
 .content {
-  grid-column: 2 / -2;
+  grid-column: 4 / -4;
 
   display: flex;
   flex-direction: column;
@@ -165,42 +225,51 @@ main {
     height: 100vh;
   }
 
-  // Margin columns (first and last)
+  // First and last columns (margins)
   & > :first-child,
   & > :last-child {
-    background: rgba(255, 0, 0, 0.1) !important;
-    border: 1px dashed rgba(255, 0, 0, 0.3) !important;
+    // background: #4a5759 !important;
+    background: #9ba49c !important;
+
   }
 
-  // Gap columns (even-indexed columns after margin)
+  // 2nd and 2nd to last columns
+  & > :nth-child(2),
+  & > :nth-last-child(2) {
+    background: #b0c4b1 !important;
+  }
+
+  // 3rd and 3rd to last columns
+  & > :nth-child(3),
+  & > :nth-last-child(3) {
+    background: #dedbd2 !important;
+  }
+
   @media (min-width: 0) {
-    // xx breakpoint: 4 columns = 1 margin + 4 content + 3 gaps + 1 margin = 9 total
     $columns: 50;
     
-    // Generate gap column selectors (odd positions from 3 onwards)
+    // Generate gap column selectors (odd positions from 5 onwards, excluding last 3)
     $gap-selectors: ();
-    @for $i from 1 through ($columns - 1) {
+    @for $i from 2 through ($columns - 2) {
       $position: (2 * $i) + 1;
       $gap-selectors: list.append($gap-selectors, '& > :nth-child(#{$position})', comma);
     }
     
-    // Generate content column selectors (even positions from 2 onwards)
+    // Generate content column selectors (even positions from 4 onwards, excluding last 3)
     $content-selectors: ();
-    @for $i from 1 through $columns {
+    @for $i from 2 through ($columns - 1) {
       $position: 2 * $i;
       $content-selectors: list.append($content-selectors, '& > :nth-child(#{$position})', comma);
     }
     
-    // Apply gap styles
+    // Apply gap styles (inner gaps)
     #{$gap-selectors} {
-      background: rgba(0, 0, 255, 0.1);
-      border: 1px dashed rgba(0, 0, 255, 0.3);
+      background: #edafb8;
     }
     
-    // Apply content column styles
+    // Apply content column styles (inner columns)
     #{$content-selectors} {
-      background: rgba(0, 255, 0, 0.1);
-      border: 1px dashed rgba(0, 255, 0, 0.3);
+      background: #f7e1d7;
     }
   }
 }

@@ -71,8 +71,8 @@ $size-grid-columns-xx: 4 !default;
 $size-grid-columns-sm: 6 !default;
 $size-grid-columns-md: 12 !default;
 $size-grid-gap-xx: 0.5rem !default;
-$size-grid-gap-sm: 1rem !default;
-$size-grid-gap-md: 2rem !default;
+$size-grid-gap-sm: 0.5rem !default;
+$size-grid-gap-md: 1rem !default;
 $size-grid-margin-xx: 0.5rem !default;
 $size-grid-margin-sm: 2rem !default;
 $size-grid-margin-md: 4rem !default;
@@ -256,6 +256,11 @@ $tokens: (
         )
       ),
       'body': (
+        'font-family': (
+          '@xx': 'Lato',
+          '@sm': 'Lato',
+          '@md': 'Lato'
+        ),
         'font-size': (
           '@xx': $size-typography-body-font-size-xx,
           '@sm': $size-typography-body-font-size-sm,

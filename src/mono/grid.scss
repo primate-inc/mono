@@ -13,70 +13,34 @@
 // Grid System
 // =============================================================================
 //
-// This grid system uses CSS Grid with fixed-width margins and gaps as columns.
+// Structure: [spare-space][margin-gap][gap][columns][gap][margin-gap][spare-space]
 //
-// Grid Structure:
-// ┌─────────┬───┬───┬───┬───┬───┬───┬───┬───┬─────────┐
-// │ margin  │col│gap│col│gap│col│gap│col│gap│  margin │
-// └─────────┴───┴───┴───┴───┴───┴───┴───┴───┴─────────┘
+// - spare-space: minmax(0, calc((100% - max-width - 2*margin) / 2)) - centers grid
+// - margin-gap: calc(margin - gap) - fixed edge spacing
+// - gap: fixed spacing from tokens
+// - columns: 1fr flexible columns (grid-column: 4 / -4 = max-width)
+// - max-width: defines content area width (columns only, excluding margins)
 //
-// Features:
-// - Margin columns (first and last) use fixed widths from tokens
-// - Gap columns use fixed widths from tokens
-// - Content columns use flexible 1fr units
-// - Max-width constrains the container (includes margins for edge-to-edge)
-// - Fully responsive across all breakpoints
+// Example @sm: 6 cols, gap=1rem, margin=2rem, max-width=75rem
+// spare-space = calc((100% - 75rem - 4rem) / 2) ensures columns equal exactly 75rem
 //
-// Example with 4 columns:
-// Grid template = [0.5rem] [1fr] [0.25rem] [1fr] [0.25rem] [1fr] [0.25rem] [1fr] [0.5rem]
-// Total = 1 margin + 4 content + 3 gaps + 1 margin = 9 grid columns
-// Max-width = 75rem + 0.5rem + 0.5rem = 76rem (includes margins)
-//
-// Usage:
-// .container {
-//   @include responsive-grid(); // Uses default 'grid' tokens
-// }
-//
-// .content {
-//   grid-column: 2 / -2; // Spans from first content to last content column
-// }
+// Usage: .grid { @include responsive-grid(); }
+//        .content { grid-column: 4 / -4; } // spans exactly max-width
 //
 // =============================================================================
 
 /// Applies responsive grid layout using tokens.
-/// 
-/// Generates a responsive CSS Grid layout with the following properties:
-/// - columns: Number of content columns
-/// - gap: Width of gap columns (converted to fixed-width columns)
-/// - margin: Outer margin columns (first and last)
-/// - max-width: Maximum width of the grid container
-/// 
-/// The grid structure is:
-/// [margin] [col] [gap] [col] [gap] ... [col] [margin]
-/// 
-/// @example scss
-///   .container {
-///     @include responsive-grid();
-///   }
-///   
-///   .content {
-///     // Span from first content column to last content column
-///     grid-column: 2 / -2;
-///   }
-/// 
-/// @returns {void} - Responsive grid layout styles
+/// Structure: [spare-space][margin-gap][gap][columns][gap][margin-gap][spare-space]
+/// Columns (4 / -4) equal exactly max-width via spare-space calc
 @mixin responsive-grid() {
   display: grid;
-  margin: 0 auto;
   width: 100%;
 
-  // Get tokens
   $columns-token: get_token_value('size', 'grid', 'columns');
   $gap-token: get_token_value('size', 'grid', 'gap');
   $margin-token: get_token_value('size', 'grid', 'margin');
   $max-width-token: get_token_value('size', 'grid', 'max-width');
 
-  // Build grid template for each breakpoint
   @if meta.type-of($columns-token) == 'map' {
     @each $screen, $value in sortedBreakpoints() {
       $columns: map.get($columns-token, '@' + string.quote($screen));
@@ -86,32 +50,31 @@
 
       @if $columns != null and $gap != null and $margin != null {
         @include screen($screen) {
-          & {
-            // Build template: [margin] [col gap col gap ... col] [margin]
-            // Total columns = margin + (columns * 2 - 1) + margin
-            // = 2 margins + columns + (columns - 1) gaps
-            $template-parts: ($margin);
-            
-            // Add content columns and gaps
-            @for $i from 1 through $columns {
-              $template-parts: list.append($template-parts, 1fr, 'space');
-              @if $i < $columns {
-                $template-parts: list.append($template-parts, $gap, 'space');
-              }
-            }
-            
-            // End with margin column
-            $template-parts: list.append($template-parts, $margin, 'space');
-            
-            grid-template-columns: $template-parts;
+          $template-parts: ();
+          
+          // spare-space = (100% - max-width - 2*margin) / 2
+          // ensures grid-column 4/-4 equals exactly max-width
+          $spare-space: minmax(0, 1fr);
+          @if $max-width != null {
+            $spare-space: minmax(0, calc((100% - $max-width - ($margin * 2)) / 2));
           }
           
-          @if $max-width != null {
-            & {
-              // Add margins to max-width so it measures from outer edge to outer edge
-              max-width: calc($max-width + $margin + $margin);
+          $template-parts: list.append($template-parts, $spare-space, 'space');
+          $template-parts: list.append($template-parts, calc($margin - $gap), 'space');
+          $template-parts: list.append($template-parts, $gap, 'space');
+          
+          @for $i from 1 through $columns {
+            $template-parts: list.append($template-parts, 1fr, 'space');
+            @if $i < $columns {
+              $template-parts: list.append($template-parts, $gap, 'space');
             }
           }
+          
+          $template-parts: list.append($template-parts, $gap, 'space');
+          $template-parts: list.append($template-parts, calc($margin - $gap), 'space');
+          $template-parts: list.append($template-parts, $spare-space, 'space');
+          
+          grid-template-columns: $template-parts;
         }
       }
     }
@@ -119,23 +82,18 @@
 }
 
 /// Applies responsive grid layout with custom path.
-/// 
 /// @param {List} $keys - Token path keys (e.g., 'grid' or 'page')
-/// @returns {void} - Responsive grid layout styles
 @mixin grid($keys...) {
   $grid: get_token_value('size', $keys...);
 
   display: grid;
-  margin: 0 auto;
   width: 100%;
 
-  // Extract all properties from the grid token
   $columns-map: map.get($grid, 'columns');
   $gap-map: map.get($grid, 'gap');
   $margin-map: map.get($grid, 'margin');
   $max-width-map: map.get($grid, 'max-width');
 
-  // Process each breakpoint
   @if $columns-map {
     @each $screen, $columns in $columns-map {
       $gap: map.get($gap-map, $screen);
@@ -144,30 +102,31 @@
 
       @if $columns and $gap and $margin {
         @include screen(sanitize-special-key($screen)) {
-          & {
-            // Build template: [margin] [col gap col gap ... col] [margin]
-            $template-parts: ($margin);
-            
-            // Add content columns and gaps
-            @for $i from 1 through $columns {
-              $template-parts: list.append($template-parts, 1fr, 'space');
-              @if $i < $columns {
-                $template-parts: list.append($template-parts, $gap, 'space');
-              }
-            }
-            
-            // End with margin column
-            $template-parts: list.append($template-parts, $margin, 'space');
-            
-            grid-template-columns: $template-parts;
+          $template-parts: ();
+          
+          // spare-space = (100% - max-width - 2*margin) / 2
+          // ensures grid-column 4/-4 equals exactly max-width
+          $spare-space: minmax(0, 1fr);
+          @if $max-width {
+            $spare-space: minmax(0, calc((100% - $max-width - ($margin * 2)) / 2));
           }
           
-          @if $max-width {
-            & {
-              // Add margins to max-width so it measures from outer edge to outer edge
-              max-width: calc($max-width + $margin + $margin);
+          $template-parts: list.append($template-parts, $spare-space, 'space');
+          $template-parts: list.append($template-parts, calc($margin - $gap), 'space');
+          $template-parts: list.append($template-parts, $gap, 'space');
+          
+          @for $i from 1 through $columns {
+            $template-parts: list.append($template-parts, 1fr, 'space');
+            @if $i < $columns {
+              $template-parts: list.append($template-parts, $gap, 'space');
             }
           }
+          
+          $template-parts: list.append($template-parts, $gap, 'space');
+          $template-parts: list.append($template-parts, calc($margin - $gap), 'space');
+          $template-parts: list.append($template-parts, $spare-space, 'space');
+          
+          grid-template-columns: $template-parts;
         }
       }
     }
@@ -175,10 +134,8 @@
 }
 
 /// Applies fluid grid gap that scales between breakpoints.
-/// 
-/// @param {String} $min-breakpoint - Starting breakpoint key (e.g., 'xx')
-/// @param {String} $max-breakpoint - Ending breakpoint key (e.g., 'md')
-/// @returns {void} - Fluid gap value
+/// @param {String} $min-breakpoint - Starting breakpoint (e.g., 'xx')
+/// @param {String} $max-breakpoint - Ending breakpoint (e.g., 'md')
 @mixin fluid-grid-gap($min-breakpoint: 'xx', $max-breakpoint: 'md') {
   $gap-token: get_token_value('size', 'grid', 'gap');
   

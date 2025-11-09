@@ -4,40 +4,54 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>MONO Design System</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./main.css">
   </head>
   <body class="theme-blue">
     <!-- Background Grid -->
+    <!-- 
+      New Grid Structure: [spare-space][margin-gap][gap][columns][gap][margin-gap][spare-space]
+      
+      @xx: 4 columns = spare + margin-gap + gap + 4cols + 3gaps + gap + margin-gap + spare = 13 items
+      @sm: 6 columns = spare + margin-gap + gap + 6cols + 5gaps + gap + margin-gap + spare = 17 items  
+      @md: 12 columns = spare + margin-gap + gap + 12cols + 11gaps + gap + margin-gap + spare = 29 items
+    -->
     <div class="grid">
-     <!-- At xx breakpoint: 4 columns = 1 margin + 4 content + 3 gaps + 1 margin = 9 items -->
-     <!-- At sm breakpoint: 6 columns = 1 margin + 6 content + 5 gaps + 1 margin = 13 items -->
-     <!-- At md breakpoint: 12 columns = 1 margin + 12 content + 11 gaps + 1 margin = 25 items -->
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-     <div class="grid__item"></div>
-   </div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+      <div class="grid__item"></div>
+    </div>
     <main id="app">
       <!-- Theme Switcher -->
       <div style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
@@ -46,6 +60,13 @@
           <span id="theme-label">Light Theme</span>
         </label>
       </div>
+
+      <div class="grid-item">Grid Item</div>
+      <div class="grid-item grid-item--with-sidebar">Grid Item with Sidebar</div>
+      <div class="grid-item grid-item--sidebar">Sidebar</div>
+      <div class="grid-item grid-item--wide">Grid Item Wide</div>
+      <div class="grid-item grid-item--wider">Grid Item Wider</div>
+      <div class="grid-item grid-item--full">Grid Item Full</div>
      
 
       <!-- Typography Demo -->
