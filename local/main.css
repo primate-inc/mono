@@ -37,6 +37,7 @@ body {
   --size-page-spacing-md: 0.75rem;
   --size-page-spacing-xs: 0.125rem;
   --size-page-spacing-lg: 2rem;
+  --size-page-radius-lg: 1rem;
   --size-page-radius-md: 0.5rem;
   --size-page-radius-sm: 0.125rem;
   --size-page-radius-none: 0;
@@ -161,6 +162,7 @@ body.theme-dark {
     --size-page-spacing-md: 0.875rem;
     --size-page-spacing-xs: 0.25rem;
     --size-page-spacing-lg: 3rem;
+    --size-page-radius-lg: 1.5rem;
     --size-page-radius-md: 0.5rem;
     --size-page-radius-sm: 0.125rem;
     --size-page-radius-none: 0;
@@ -205,6 +207,7 @@ body.theme-dark {
     --size-page-spacing-md: 1rem;
     --size-page-spacing-xs: 0.5rem;
     --size-page-spacing-lg: 4rem;
+    --size-page-radius-lg: 2rem;
     --size-page-radius-md: 0.5rem;
     --size-page-radius-sm: 0.125rem;
     --size-page-radius-none: 0;
@@ -289,11 +292,10 @@ main {
   grid-column: 4/-4;
   padding: 4rem 1rem;
   margin: 1rem 0;
-  background-color: rgba(74, 87, 89, 0.7058823529);
-  border-radius: var(--radius-md);
+  background: rgba(247, 225, 215, 0.4509803922);
+  border-radius: var(--size-page-radius-md);
   border: 1px solid #9ba49c;
   text-align: center;
-  color: #fff;
 }
 .grid-item {
   font-family: "Lato";
@@ -723,6 +725,6 @@ main {
     background: #edafb8;
   }
   .grid > :nth-child(4), .grid > :nth-child(6), .grid > :nth-child(8), .grid > :nth-child(10), .grid > :nth-child(12), .grid > :nth-child(14), .grid > :nth-child(16), .grid > :nth-child(18), .grid > :nth-child(20), .grid > :nth-child(22), .grid > :nth-child(24), .grid > :nth-child(26), .grid > :nth-child(28), .grid > :nth-child(30), .grid > :nth-child(32), .grid > :nth-child(34), .grid > :nth-child(36), .grid > :nth-child(38), .grid > :nth-child(40), .grid > :nth-child(42), .grid > :nth-child(44), .grid > :nth-child(46), .grid > :nth-child(48), .grid > :nth-child(50), .grid > :nth-child(52), .grid > :nth-child(54), .grid > :nth-child(56), .grid > :nth-child(58), .grid > :nth-child(60), .grid > :nth-child(62), .grid > :nth-child(64), .grid > :nth-child(66), .grid > :nth-child(68), .grid > :nth-child(70), .grid > :nth-child(72), .grid > :nth-child(74), .grid > :nth-child(76), .grid > :nth-child(78), .grid > :nth-child(80), .grid > :nth-child(82), .grid > :nth-child(84), .grid > :nth-child(86), .grid > :nth-child(88), .grid > :nth-child(90), .grid > :nth-child(92), .grid > :nth-child(94), .grid > :nth-child(96), .grid > :nth-child(98) {
-    background: #f7e1d7;
+    background: #fff;
   }
 }

@@ -381,6 +381,11 @@ $tokens: (
         )
       ),
       'radius': (
+        'lg': (
+          '@xx': 1rem,
+          '@sm': 1.5rem,
+          '@md': 2rem
+        ),
         'md': (
           '@xx': $size-page-radius-md-xx,
           '@sm': $size-page-radius-md-sm,

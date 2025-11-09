@@ -13,45 +13,6 @@
     <link rel="stylesheet" href="./main.css">
   </head>
   <body class="theme-blue">
-    <!-- Background Grid -->
-    <!-- 
-      New Grid Structure: [spare-space][margin-gap][gap][columns][gap][margin-gap][spare-space]
-      
-      @xx: 4 columns = spare + margin-gap + gap + 4cols + 3gaps + gap + margin-gap + spare = 13 items
-      @sm: 6 columns = spare + margin-gap + gap + 6cols + 5gaps + gap + margin-gap + spare = 17 items  
-      @md: 12 columns = spare + margin-gap + gap + 12cols + 11gaps + gap + margin-gap + spare = 29 items
-    -->
-    <div class="grid">
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-      <div class="grid__item"></div>
-    </div>
     <main id="app">
       <!-- Theme Switcher -->
       <div style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
@@ -61,27 +22,14 @@
         </label>
       </div>
 
-      <div class="grid-item">Grid Item</div>
-      <div class="grid-item grid-item--with-sidebar">Grid Item with Sidebar</div>
-      <div class="grid-item grid-item--sidebar">Sidebar</div>
-      <div class="grid-item grid-item--wide">Grid Item Wide</div>
-      <div class="grid-item grid-item--wider">Grid Item Wider</div>
-      <div class="grid-item grid-item--full">Grid Item Full</div>
-     
-
-      <!-- Typography Demo -->
+      <!-- Introduction -->
       <section class="content">
-        <div class="test"></div>
-        <div class="test"></div>
         <h1>MONO Design System</h1>
         <h2>A framework-agnostic utility library for SASS</h2>
         <p class="intro">
           MONO helps to manage your styles between Figma and your code. It provides access to Figma Variables 
           and a set of useful tools to help you reflect the designs easier in your code.
         </p>
-
-        <button class="button button--color-primary button--radius-medium">Button</button>
-        <button class="button button--color-secondary">Button</button>
 
         <h3>Features</h3>
         <p>
@@ -94,11 +42,83 @@
       </section>
 
       <!-- Layout Demo -->
-      <section class="layout">
-        <div class="layout__item layout__item--wide"></div>
-        <div class="layout__item layout__item--component"></div>
-        <div class="layout__item layout__item--text"></div>
+      <div class="grid-item">Grid Item</div>
+      <div class="grid-item grid-item--with-sidebar">Grid Item with Sidebar</div>
+      <div class="grid-item grid-item--sidebar">Sidebar</div>
+      <div class="grid-item grid-item--wide">Grid Item Wide</div>
+      <div class="grid-item grid-item--wider">Grid Item Wider</div>
+      <div class="grid-item grid-item--full">Grid Item Full</div>
+
+      <!-- Content Demo -->
+      <section class="content">
+        <h2>Vivamus sagittis lacus vel augue</h2>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
+
+        <h3>Aenean ultricies mi vitae est</h3>
+        <p>Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.</p>
+
+        <h4>Praesent dapibus neque id</h4>
+        <p>Etiam vel neque nec dui dignissim bibendum. Vivamus id enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa. Phasellus purus. Pellentesque tristique imperdiet tortor. Nam euismod tellus id erat.</p>
+
+        <h5>Curabitur blandit mollis lacus</h5>
+        <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh.</p>
+        <p>Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui.</p>
+
+        <h6>Integer tincidunt</h6>
+        <p>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
+
+        <ul>
+          <li>Phasellus viverra nulla ut metus varius laoreet</li>
+          <li>Quisque rutrum aenean imperdiet</li>
+          <li>Etiam ultricies nisi vel augue</li>
+        </ul>
+
+        <ol>
+          <li>Curabitur ullamcorper ultricies nisi nam eget dui</li>
+          <li>Etiam rhoncus maecenas tempus tellus eget condimentum</li>
+          <li>Donec vitae sapien ut libero venenatis faucibus</li>
+        </ol>
+
+        <blockquote>
+          <p>Sed dignissim lacinia nunc. Curabitur tortor pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.</p>
+        </blockquote>
+
+        <button class="button button--color-primary button--radius-medium">Button</button>
+        <button class="button button--color-secondary">Button</button>
       </section>
+
+      <!-- Background Grid -->
+      <div class="grid">
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+        <div class="grid__item"></div>
+      </div>
     </main>
     <script>
       // Theme switcher logic

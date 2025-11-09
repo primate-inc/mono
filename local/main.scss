@@ -81,12 +81,13 @@ main {
   padding: 4rem 1rem;
   margin: 1rem 0;
   
-  background-color: #4a5759b4;
-  border-radius: var(--radius-md);
+  // background-color: #4a5759b4;
+  background: #f7e1d773;
+  border-radius: var(--size-page-radius-md);
   border: 1px solid #9ba49c;
   
   text-align: center;
-  color: #fff;
+  // color: #fff;
 
   // TODO: Fix font generation, font family not working
   @include mono.font('body');
@@ -269,7 +270,8 @@ main {
     
     // Apply content column styles (inner columns)
     #{$content-selectors} {
-      background: #f7e1d7;
+      // background: #f7e1d7;
+      background: #fff;
     }
   }
 }
