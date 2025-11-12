@@ -219,6 +219,45 @@ body.theme-dark {
     --size-button---size--default-padding-y: 0.75rem;
   }
 }
+body {
+  --page-spacing: 0.75rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  body {
+    --page-spacing: 0.875rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  body {
+    --page-spacing: 1rem;
+  }
+}
+body {
+  --page-padding: 2rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  body {
+    --page-padding: 3rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  body {
+    --page-padding: 4rem;
+  }
+}
+body {
+  --page-radius: 1rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  body {
+    --page-radius: 1.5rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  body {
+    --page-radius: 2rem;
+  }
+}
 
 .test {
   height: 10rem;
@@ -262,6 +301,7 @@ html {
 }
 
 body {
+  font-family: "Lato", sans-serif;
   width: 100%;
   min-height: 100vh;
 }
@@ -290,10 +330,10 @@ main {
   width: 100%;
   height: auto;
   grid-column: 4/-4;
-  padding: 4rem 1rem;
-  margin: 1rem 0;
+  padding: var(--page-padding);
+  margin: var(--page-spacing) 0;
   background: rgba(247, 225, 215, 0.4509803922);
-  border-radius: var(--size-page-radius-md);
+  border-radius: var(--page-radius);
   border: 1px solid #9ba49c;
   text-align: center;
 }
@@ -397,6 +437,19 @@ main {
 .grid-item--full {
   grid-column: 1/-1;
 }
+.grid-item--custom {
+  grid-column: 5/11;
+}
+@media only screen and (min-width: 21.875rem) {
+  .grid-item--custom {
+    grid-column: 5/9;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .grid-item--custom {
+    grid-column: 7/19;
+  }
+}
 .grid-item--with-sidebar {
   grid-column: 4/-4;
 }
@@ -428,9 +481,18 @@ main {
   grid-column: 4/-4;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
+  padding: var(--page-padding) 0;
+  margin: var(--page-spacing) 0;
+  border-radius: var(--page-radius);
   width: 100%;
+}
+.content.generic-content > * {
+  margin-bottom: 1em;
+}
+.content.generic-content > *:last-child {
+  margin-bottom: 0;
 }
 .content h1 {
   font-size: clamp(2rem, calc(1.5861486486rem + 1.8918918919vw), 2.4375rem);
@@ -464,6 +526,46 @@ main {
     letter-spacing: 0;
   }
 }
+.content h2 {
+  font-size: clamp(1.625rem, calc(1.3293918919rem + 1.3513513514vw), 1.9375rem);
+}
+.content h2 {
+  font-weight: 37.5rem;
+}
+@media only screen and (min-width: 21.875rem) {
+  .content h2 {
+    font-weight: 37.5rem;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content h2 {
+    font-weight: 37.5rem;
+  }
+}
+.content h2 {
+  letter-spacing: 0;
+}
+@media only screen and (min-width: 21.875rem) {
+  .content h2 {
+    letter-spacing: 0;
+  }
+}
+@media only screen and (min-width: 45rem) {
+  .content h2 {
+    letter-spacing: 0;
+  }
+}
+.content h2 {
+  line-height: clamp(2.03125rem, calc(1.6617398649rem + 1.6891891892vw), 2.421875rem);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
 
 .button {
   --_button-radius: var(--button-radius);
@@ -484,6 +586,7 @@ main {
   border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
   outline: var(--_button-outline-width) var(--_button-outline-style) var(--_button-outline-color);
   border-radius: var(--_button-radius);
+  cursor: pointer;
 }
 .theme-blue .button--color-secondary {
   --button-background--initial: white;

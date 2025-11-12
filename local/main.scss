@@ -24,6 +24,10 @@ body {
   justify-content: flex-start;
 
   @include mono.generate_tokens_variables();
+
+  @include mono.responsive-token('--page-spacing', ('size', 'page', 'spacing', 'md'));
+  @include mono.responsive-token('--page-padding', ('size', 'page', 'spacing', 'lg'));
+  @include mono.responsive-token('--page-radius', ('size', 'page', 'radius', 'lg'));
 }
 
 .test {
@@ -52,7 +56,7 @@ html {
 }
 
 body {
-  
+  font-family: "Lato", sans-serif;
   width: 100%;
   min-height: 100vh; 
   // background-color: token(color, white);
@@ -78,12 +82,12 @@ main {
 
   grid-column: 4 / -4;
   
-  padding: 4rem 1rem;
-  margin: 1rem 0;
+  padding: var(--page-padding);
+  margin: var(--page-spacing) 0;
   
   // background-color: #4a5759b4;
   background: #f7e1d773;
-  border-radius: var(--size-page-radius-md);
+  border-radius: var(--page-radius);
   border: 1px solid #9ba49c;
   
   text-align: center;
@@ -102,6 +106,18 @@ main {
 
   &--full {
     grid-column: 1 / -1;
+  }
+
+  &--custom {
+    grid-column: 5 / 11;
+
+    @include mono.screen('sm') {
+      grid-column: 5 / 9;
+    }
+
+    @include mono.screen('md') {
+      grid-column: 7 / 19;
+    }
   }
 
   &--with-sidebar {
@@ -134,10 +150,23 @@ main {
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
+  padding: var(--page-padding) 0;
+  margin: var(--page-spacing) 0;
+  border-radius: var(--page-radius);
+
   width: 100%;
+
+  &.generic-content {
+    & > * {
+      margin-bottom: 1em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 
   h1 {
     @include mono.fluid-font(
@@ -148,6 +177,24 @@ main {
       $max-breakpoint: 'md'
     );
   }
+
+  h2 {
+    @include mono.fluid-font(
+      $keys: ('heading', 'md'),
+      $min-value: 'xx',
+      $max-value: 'md',
+      $min-breakpoint: 'sm',
+      $max-breakpoint: 'md'
+    );
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .button {
@@ -174,6 +221,8 @@ main {
   border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
   outline: var(--_button-outline-width) var(--_button-outline-style) var(--_button-outline-color);
   border-radius: var(--_button-radius);
+
+  cursor: pointer;
     
   @include mono.variants('button', 'color', 'button');
   @include mono.variants('button', 'size', 'button');

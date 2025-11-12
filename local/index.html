@@ -8,7 +8,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./main.css">
   </head>
@@ -23,7 +24,7 @@
       </div>
 
       <!-- Introduction -->
-      <section class="content">
+      <section class="content generic-content">
         <h1>MONO Design System</h1>
         <h2>A framework-agnostic utility library for SASS</h2>
         <p class="intro">
@@ -41,6 +42,11 @@
         </p>
       </section>
 
+      <section class="content buttons">
+        <button class="button button--color-primary button--radius-medium">Button</button>
+        <button class="button button--color-secondary">Button</button>
+      </section>
+
       <!-- Layout Demo -->
       <div class="grid-item">Grid Item</div>
       <div class="grid-item grid-item--with-sidebar">Grid Item with Sidebar</div>
@@ -48,9 +54,10 @@
       <div class="grid-item grid-item--wide">Grid Item Wide</div>
       <div class="grid-item grid-item--wider">Grid Item Wider</div>
       <div class="grid-item grid-item--full">Grid Item Full</div>
+      <div class="grid-item grid-item--custom">Grid Item Custom</div>
 
       <!-- Content Demo -->
-      <section class="content">
+      <section class="content generic-content">
         <h2>Vivamus sagittis lacus vel augue</h2>
         <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
 
@@ -82,9 +89,6 @@
         <blockquote>
           <p>Sed dignissim lacinia nunc. Curabitur tortor pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.</p>
         </blockquote>
-
-        <button class="button button--color-primary button--radius-medium">Button</button>
-        <button class="button button--color-secondary">Button</button>
       </section>
 
       <!-- Background Grid -->
