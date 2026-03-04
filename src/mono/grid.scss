@@ -34,7 +34,7 @@
 /// Columns (4 / -4) equal exactly max-width via spare-space calc
 @mixin responsive-grid() {
   display: grid;
-  width: 100%;
+  // width: 100%;
 
   $columns-token: get_token_value('size', 'grid', 'columns');
   $gap-token: get_token_value('size', 'grid', 'gap');

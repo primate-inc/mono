@@ -63,7 +63,7 @@
   $responsive: map.get($variables, 'responsive');
   
   @each $theme-name, $theme-variables in $theme {
-    &.theme-#{$theme-name} {
+    .theme-#{$theme-name} {
       @each $variable, $value in $theme-variables {
         #{$variable}: $value;
       }
