@@ -9,8 +9,37 @@
 @use 'screen' as *;
 @use 'tokens' as *;
 
+/// Detects if typography token has variant structure (body > md > font-size)
+/// vs flat structure (body > font-size > @xx).
+@function _font-has-variant-structure($font) {
+    $first-key: list.nth(map.keys($font), 1);
+    $first-value: map.get($font, $first-key);
+    @if meta.type-of($first-value) != 'map' {
+        @return false;
+    }
+    $inner-keys: map.keys($first-value);
+    $first-inner-key: list.nth($inner-keys, 1);
+    // Variant structure: inner keys are CSS attributes (font-size, font-weight)
+    // Flat structure: inner keys are breakpoints (@xx, @sm, @md)
+    @return $first-inner-key == 'font-size'
+        or $first-inner-key == 'font-weight'
+        or $first-inner-key == 'line-height'
+        or $first-inner-key == 'letter-spacing'
+        or $first-inner-key == 'font-family';
+}
+
 @mixin font($keys...) {
     $font: get_token_value('size', 'typography', $keys...);
+
+    // Support variant structure: typography > body > md > font-size > @xx
+    // Default to 'md' when token has size variants (sm, md, lg).
+    @if _font-has-variant-structure($font) {
+        $variant: map.get($font, 'md');
+        @if $variant == null {
+            @error "Typography token has variant structure but 'md' variant not found. Available: #{map.keys($font)}";
+        }
+        $font: $variant;
+    }
 
     @each $attribute, $responsive-values in $font {
         @each $screen, $value in $responsive-values {
@@ -32,18 +61,20 @@
         @error "Token must be a responsive map with @breakpoint values";
     }
 
-    // Get the first and last breakpoint values
-    // $breakpoints: sortedBreakpoints();
-    // $breakpoint-keys: map.keys($breakpoints);
+    // $min-value/$max-value = token keys to fetch font-size/line-height from
+    // $min-breakpoint/$max-breakpoint = viewport boundaries for clamp calculation
+    $sorted-bps: map.keys(sortedBreakpoints());
+    $clamp-min-bp: if($min-breakpoint, $min-breakpoint, list.nth($sorted-bps, 1));
+    $clamp-max-bp: if($max-breakpoint, $max-breakpoint, list.nth($sorted-bps, -1));
 
     @each $property, $values in $token {
         @if ($property == 'font-size' or $property == 'line-height') {
             @if meta.type-of($values) == 'map' {
-                $start-value: map.get($values, '@#{$min-breakpoint}');
-                $end-value: map.get($values, '@#{$max-breakpoint}');
+                $start-value: map.get($values, '@#{$min-value}');
+                $end-value: map.get($values, '@#{$max-value}');
 
                 @if $start-value and $end-value {
-                    @include fluid-value($property, $start-value, $end-value, $min-breakpoint, $max-breakpoint);
+                    @include fluid-value($property, $start-value, $end-value, $clamp-min-bp, $clamp-max-bp);
                 }
             }
         } @else {
