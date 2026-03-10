@@ -3,6 +3,7 @@
 @use 'sass:math';
 @use 'sass:list';
 
+@use '../api/config' as *;
 
 /// Convert a string to a number
 /// 

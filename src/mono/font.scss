@@ -6,6 +6,7 @@
 @use 'utils/breakpoints' as *;
 @use 'utils/fluid' as *;
 @use 'api/tokens' as *;
+@use 'api/config' as *;
 @use 'screen' as *;
 @use 'tokens' as *;
 
@@ -28,6 +29,17 @@
         or $first-inner-key == 'font-family';
 }
 
+@function resolve-font-family($value) {
+    $font-name: config(typography, fontRemaps, $value);
+    $font-fallback: config(typography, fontFallbacks, $value);
+    $resolved: if($font-name != null, $font-name, $value);
+    $value: if($font-fallback != null,
+        string.unquote("#{$resolved}, #{$font-fallback}"),
+        string.unquote("#{$resolved}")
+    );
+    @return $value;
+}
+
 @mixin font($keys...) {
     $font: get_token_value('size', 'typography', $keys...);
 
@@ -44,9 +56,13 @@
     @each $attribute, $responsive-values in $font {
         @each $screen, $value in $responsive-values {
             @include screen(sanitize-special-key($screen)) {
-               & {
-                #{$attribute}: $value;
-               }
+                @if $attribute == 'font-family' {
+                    $value: resolve-font-family($value);
+                }
+
+                & {
+                    #{$attribute}: $value;
+                }
             }
         }
     }
@@ -75,6 +91,19 @@
 
                 @if $start-value and $end-value {
                     @include fluid-value($property, $start-value, $end-value, $clamp-min-bp, $clamp-max-bp);
+                }
+            }
+        } @else if $property == 'font-family' {
+            @if meta.type-of($values) == 'map' {
+                @each $screen in map.keys(sortedBreakpoints()) {
+                    $val: map.get($values, '@#{$screen}');
+                    @if $val != null {
+                        @include screen($screen) {
+                            & {
+                                font-family: resolve-font-family($val);
+                            }
+                        }
+                    }
                 }
             }
         } @else {

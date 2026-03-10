@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'sass:list';
+
+// =============================================================================
+// config
+// =============================================================================
+//
+// API for fetching data from config. Config is provided the same way as tokens
+// via $configs variable passed through @forward with ().
+//
+// =============================================================================
+
+$configs: () !default;
+
+/// Get value from config map using a path of keys.
+///
+/// @param {...} $keys - The path of keys to lookup (e.g. typography, baseFontSize).
+/// @returns {any} - The found config value.
+@function config($keys...) {
+  @return map.get($configs, $keys...);
+}
