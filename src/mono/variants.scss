@@ -69,10 +69,16 @@ $_responsive_store: () !default;
 /// @param {String} $variable-name - The CSS variable name
 /// @param {Map} $values - Map of values to process
 /// @param {Boolean} $is-default - Whether this is a default variant
-@mixin process-variant-values($class-name, $variable-name, $values, $is-default: false) {
+/// @param {Boolean} $themed - Whether to treat # keys as theme selectors (default true)
+@mixin process-variant-values($class-name, $variable-name, $values, $is-default: false, $themed: true) {
+  // Handle direct (non-map) values as single base value
+  @if meta.type-of($values) != 'map' {
+    $values: ('': $values);
+  }
+
   @each $key, $value in $values {
-    // Handle themed values
-    @if string.slice($key, 1, 1) == '#' {
+    // Theme keys (#blue, #dark) only when $themed; otherwise treat as base
+    @if $themed and meta.type-of($key) == 'string' and string.slice($key, 1, 1) == '#' {
       $theme: string.slice($key, 2);
       $selector: if($is-default, 
                    '.theme-#{$theme} &, .theme-#{$theme} &#{$class-name}',
@@ -88,8 +94,8 @@ $_responsive_store: () !default;
       $current_props: map.set($current_props, $variable-name, $value);
       $_theme_store: map.set($_theme_store, $selector, $current_props) !global;
     }
-    // Handle responsive values
-    @else if string.slice($key, 1, 1) == '@' {
+    // Handle responsive values (keys like @sm, @md)
+    @else if meta.type-of($key) == 'string' and string.slice($key, 1, 1) == '@' {
       $selector: if($is-default, 
                    '&, &#{$class-name}',
                    '&#{$class-name}');
@@ -194,7 +200,8 @@ $_responsive_store: () !default;
 /// @param {String} $prefix - The prefix for the CSS variable names
 /// @param {String} $collection - The collection name for the tokens
 /// @param {String} $name - The name of the token to generate variants for
-@mixin variants($prefix, $collection, $name) {
+/// @param {Boolean} $themed - Whether to process theme keys (#blue, #dark); use false for plain values only
+@mixin variants($prefix, $collection, $name, $themed: true) {
   $element-name: '%' + $name;
   $variants-map: get_token($collection, $element-name);
   
@@ -241,7 +248,8 @@ $_responsive_store: () !default;
                       $class-name,
                       $variable-name,
                       $action-value,
-                      $is-default
+                      $is-default,
+                      $themed
                     );
                   }
                 }
@@ -252,7 +260,8 @@ $_responsive_store: () !default;
                   $class-name,
                   $variable-name,
                   $prop-value,
-                  $is-default
+                  $is-default,
+                  $themed
                 );
               }
             }
@@ -263,7 +272,8 @@ $_responsive_store: () !default;
                 $class-name,
                 $variable-name,
                 $prop-value,
-                $is-default
+                $is-default,
+                $themed
               );
             }
           }

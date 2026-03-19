@@ -10,9 +10,9 @@ $breakpoint-xx: 0 !default;
 $size-typography-heading-md-font-size-xx: 1.375rem !default;
 $size-typography-heading-md-font-size-sm: 1.625rem !default;
 $size-typography-heading-md-font-size-md: 1.9375rem !default;
-$size-typography-heading-md-font-weight-xx: 37.5rem !default;
-$size-typography-heading-md-font-weight-sm: 37.5rem !default;
-$size-typography-heading-md-font-weight-md: 37.5rem !default;
+$size-typography-heading-md-font-weight-xx: 600 !default;
+$size-typography-heading-md-font-weight-sm: 600 !default;
+$size-typography-heading-md-font-weight-md: 600 !default;
 $size-typography-heading-md-letter-spacing-xx: 0 !default;
 $size-typography-heading-md-letter-spacing-sm: 0 !default;
 $size-typography-heading-md-letter-spacing-md: 0 !default;
@@ -22,9 +22,9 @@ $size-typography-heading-md-line-height-md: 2.421875rem !default;
 $size-typography-heading-lg-font-size-xx: 1.625rem !default;
 $size-typography-heading-lg-font-size-sm: 2rem !default;
 $size-typography-heading-lg-font-size-md: 2.4375rem !default;
-$size-typography-heading-lg-font-weight-xx: 37.5rem !default;
-$size-typography-heading-lg-font-weight-sm: 37.5rem !default;
-$size-typography-heading-lg-font-weight-md: 37.5rem !default;
+$size-typography-heading-lg-font-weight-xx: 600 !default;
+$size-typography-heading-lg-font-weight-sm: 600 !default;
+$size-typography-heading-lg-font-weight-md: 600 !default;
 $size-typography-heading-lg-line-height-xx: 2.03125rem !default;
 $size-typography-heading-lg-line-height-sm: 2.5rem !default;
 $size-typography-heading-lg-line-height-md: 3.046875rem !default;
@@ -34,9 +34,9 @@ $size-typography-heading-lg-letter-spacing-md: 0 !default;
 $size-typography-body-font-size-xx: 1rem !default;
 $size-typography-body-font-size-sm: 1.0625rem !default;
 $size-typography-body-font-size-md: 1.125rem !default;
-$size-typography-body-font-weight-xx: 18.75rem !default;
-$size-typography-body-font-weight-sm: 18.75rem !default;
-$size-typography-body-font-weight-md: 18.75rem !default;
+$size-typography-body-font-weight-xx: 300 !default;
+$size-typography-body-font-weight-sm: 300 !default;
+$size-typography-body-font-weight-md: 300 !default;
 $size-typography-body-line-height-xx: 1.25rem !default;
 $size-typography-body-line-height-sm: 1.3125rem !default;
 $size-typography-body-line-height-md: 1.375rem !default;
@@ -49,9 +49,9 @@ $size-typography-body-paragraph-spacing-md: 0.5rem !default;
 $size-typography-body-list-spacing-xx: 0.5rem !default;
 $size-typography-body-list-spacing-sm: 0.5rem !default;
 $size-typography-body-list-spacing-md: 0.5rem !default;
-$size-typography-button-font-weight-xx: 18.75rem !default;
-$size-typography-button-font-weight-sm: 18.75rem !default;
-$size-typography-button-font-weight-md: 18.75rem !default;
+$size-typography-button-font-weight-xx: 300 !default;
+$size-typography-button-font-weight-sm: 300 !default;
+$size-typography-button-font-weight-md: 300 !default;
 $size-typography-button-line-height-xx: 1.25rem !default;
 $size-typography-button-line-height-sm: 1.5rem !default;
 $size-typography-button-line-height-md: 1.75rem !default;
@@ -70,9 +70,9 @@ $size-typography-button-font-family-md: Lato !default;
 $size-grid-columns-xx: 4 !default;
 $size-grid-columns-sm: 6 !default;
 $size-grid-columns-md: 12 !default;
-$size-grid-gap-xx: 0.5rem !default;
-$size-grid-gap-sm: 0.5rem !default;
-$size-grid-gap-md: 1rem !default;
+$size-grid-gap-xx: 0.25rem !default;
+$size-grid-gap-sm: 1rem !default;
+$size-grid-gap-md: 2rem !default;
 $size-grid-margin-xx: 0.5rem !default;
 $size-grid-margin-sm: 2rem !default;
 $size-grid-margin-md: 4rem !default;
@@ -256,11 +256,6 @@ $tokens: (
         )
       ),
       'body': (
-        'font-family': (
-          '@xx': 'Lato',
-          '@sm': 'Lato',
-          '@md': 'Lato'
-        ),
         'font-size': (
           '@xx': $size-typography-body-font-size-xx,
           '@sm': $size-typography-body-font-size-sm,
@@ -381,11 +376,6 @@ $tokens: (
         )
       ),
       'radius': (
-        'lg': (
-          '@xx': 1rem,
-          '@sm': 1.5rem,
-          '@md': 2rem
-        ),
         'md': (
           '@xx': $size-page-radius-md-xx,
           '@sm': $size-page-radius-md-sm,
@@ -433,16 +423,18 @@ $tokens: (
         )
       ),
       '--size': (
-        '-default*': (        
-          'padding-x': (
-            '@xx': $size-button-size-default-padding-x-xx,
-            '@sm': $size-button-size-default-padding-x-sm,
-            '@md': $size-button-size-default-padding-x-md
-          ),
-          'padding-y': (
-            '@xx': $size-button-size-default-padding-y-xx,
-            '@sm': $size-button-size-default-padding-y-sm,
-            '@md': $size-button-size-default-padding-y-md
+        '-default*': (
+          'padding': (
+            'x': (
+              '@xx': $size-button-size-default-padding-x-xx,
+              '@sm': $size-button-size-default-padding-x-sm,
+              '@md': $size-button-size-default-padding-x-md
+            ),
+            'y': (
+              '@xx': $size-button-size-default-padding-y-xx,
+              '@sm': $size-button-size-default-padding-y-sm,
+              '@md': $size-button-size-default-padding-y-md
+            )
           )
         )
       )

@@ -142,16 +142,20 @@
   @return math.div(math.round($float * $pow), $pow);
 }
 
-/// Check if a string is a function
-/// 
-/// @param {String} $string - String to check
-/// 
-/// @return {Boolean} - Whether the string is a function
-@function is-function($string) {
-  @if meta.type-of($string) == 'string' {
-    @return string.index($string, '(') != null;
+/// Check if a value is a function call string (e.g. token(...), rgb(...)).
+/// Excludes colors, numbers, and strings that don't match the name(...) pattern.
+///
+/// @param {any} $value - Value to check
+///
+/// @return {Boolean} - Whether the value is a function call string
+@function is-function($value) {
+  @debug 'Checking if value is a function: #{$value} - type: #{meta.type-of($value)}';
+
+  @if meta.type-of($value) != 'string' {
+    @return false;
   }
-  @return false;
+  $idx: string.index($value, '(');
+  @return $idx != null and $idx > 1;
 }
 
 /// Get the value of a function

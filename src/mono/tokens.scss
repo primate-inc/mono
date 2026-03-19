@@ -26,9 +26,14 @@
     @error 'There is no value defined for #{$keys}';
   }
 
-  @if is-function($value) {
-    $value: get-function-value($value);
+  @if meta.type-of($value) == "function" {
+    $value: meta.call($value);
   }
+
+  // @if is-function($value) {
+  //   @debug 'Checking if value is a function: #{$value} - type: #{meta.type-of($value)}';
+  //   $value: get-function-value($value);
+  // }
 
   @if meta.type-of($value) == "string" {
     $value: string.unquote($value);
